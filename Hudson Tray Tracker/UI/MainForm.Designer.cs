@@ -132,6 +132,7 @@ namespace Hudson.TrayTracker.UI
             this.aboutButtonItem.Id = 1;
             this.aboutButtonItem.Name = "aboutButtonItem";
             this.aboutButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.aboutButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.aboutButtonItem_ItemClick);
             // 
             // bar3
             // 

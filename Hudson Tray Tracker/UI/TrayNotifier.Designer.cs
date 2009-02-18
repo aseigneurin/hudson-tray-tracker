@@ -32,10 +32,11 @@ namespace Hudson.TrayTracker.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrayNotifier));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notifyContextMenuStrip.SuspendLayout();
             // 
             // notifyIcon
@@ -48,27 +49,36 @@ namespace Hudson.TrayTracker.UI
             // notifyContextMenuStrip
             // 
             this.notifyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showMenuItem,
+            this.openMenuItem,
             this.settingsMenuItem,
             this.refreshMenuItem,
+            this.aboutMenuItem,
             this.exitMenuItem});
             this.notifyContextMenuStrip.Name = "notifyContextMenuStrip";
-            this.notifyContextMenuStrip.Size = new System.Drawing.Size(117, 92);
+            this.notifyContextMenuStrip.Size = new System.Drawing.Size(117, 114);
             // 
-            // showMenuItem
+            // openMenuItem
             // 
-            this.showMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.showMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showMenuItem.Image")));
-            this.showMenuItem.Name = "showMenuItem";
-            this.showMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.showMenuItem.Text = "Show";
-            this.showMenuItem.Click += new System.EventHandler(this.showMenuItem_Click);
+            this.openMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.openMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openMenuItem.Image")));
+            this.openMenuItem.Name = "openMenuItem";
+            this.openMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.openMenuItem.Text = "Open";
+            this.openMenuItem.Click += new System.EventHandler(this.openMenuItem_Click);
+            // 
+            // settingsMenuItem
+            // 
+            this.settingsMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("settingsMenuItem.Image")));
+            this.settingsMenuItem.Name = "settingsMenuItem";
+            this.settingsMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsMenuItem.Text = "Settings";
+            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // refreshMenuItem
             // 
             this.refreshMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("refreshMenuItem.Image")));
             this.refreshMenuItem.Name = "refreshMenuItem";
-            this.refreshMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.refreshMenuItem.Size = new System.Drawing.Size(116, 22);
             this.refreshMenuItem.Text = "Refresh";
             this.refreshMenuItem.Click += new System.EventHandler(this.refreshMenuItem_Click);
             // 
@@ -80,12 +90,13 @@ namespace Hudson.TrayTracker.UI
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
-            // settingsMenuItem
+            // aboutMenuItem
             // 
-            this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.settingsMenuItem.Text = "Settings";
-            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
+            this.aboutMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutMenuItem.Image")));
+            this.aboutMenuItem.Name = "aboutMenuItem";
+            this.aboutMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutMenuItem.Text = "About";
+            this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             this.notifyContextMenuStrip.ResumeLayout(false);
 
         }
@@ -94,9 +105,10 @@ namespace Hudson.TrayTracker.UI
 
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip notifyContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem showMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openMenuItem;
         private System.Windows.Forms.ToolStripMenuItem refreshMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
     }
 }

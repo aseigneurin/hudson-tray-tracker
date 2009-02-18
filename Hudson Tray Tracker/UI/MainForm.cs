@@ -205,5 +205,10 @@ namespace Hudson.TrayTracker.UI
                     details.Number, details.Time.ToLocalTime());
             }
         }
+
+        private void aboutButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AboutForm.Instance.ShowDialog();
+        }
     }
 }

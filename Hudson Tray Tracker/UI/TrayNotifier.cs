@@ -78,7 +78,7 @@ namespace Hudson.TrayTracker.UI
             MainForm.Instance.Show();
         }
 
-        private void showMenuItem_Click(object sender, EventArgs e)
+        private void openMenuItem_Click(object sender, EventArgs e)
         {
             MainForm.Instance.Show();
         }
@@ -97,6 +97,12 @@ namespace Hudson.TrayTracker.UI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MainForm.Instance.Exit();
+        }
+
+        private void aboutMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.Instance.Show();
+            AboutForm.Instance.ShowDialog();
         }
 
         public void UpdateGlobalStatus()
