@@ -1,0 +1,722 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dotnet.Commons.Logging.Log4net</name>
+    </assembly>
+    <members>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout">
+            <summary>
+            A flexible layout configurable with pattern string. This is the extension of the original
+            log4net.Layout.PatternLayout<see cref="T:log4net.Layout.PatternLayout"/>.
+            </summary>
+            <remarks>	
+            <para>
+            The recognized conversion characters are:
+            </para>
+            <list type="table">
+                <listheader>
+                    <term>Conversion Character</term>
+                    <description>Effect</description>
+                </listheader>	
+                <item>
+                    <term>hn</term>
+                    <description>Equivalent to <b>hostname</b></description>
+                </item>
+            	<item>
+                    <term>hn</term>
+                    <description>Equivalent to <b>hostname</b></description>
+                </item>	
+                <item>
+                    <term>hostname</term>		
+            		<description>
+            			<para>
+            			Used to output the hostname of the machine on which the event was originally logged. 
+            			</para>	
+            		</description>
+            	</item>
+                <item>
+                    <term>ip</term>
+                    <description>Equivalent to <b>ipaddress</b></description>
+                </item>
+                <item>
+                    <term>ipaddress</term>
+                    <description>Used to output the ip address of the machine on which the event was originally logged.</description>
+                </item>	
+            	<item>
+                    <term>server</term>
+                    <description>Equivalent to <b>hostname</b></description>
+                </item>
+                <item>
+                    <term>srv</term>
+                    <description>Equivalent to <b>hostname</b></description>
+                </item>
+            </list>
+            <para>
+            The single letter patterns are deprecated in favor of the 
+            longer more descriptive patterns.
+            </para>
+            <para>
+            By default the relevant information is output as is. However,
+            with the aid of format modifiers it is possible to change the
+            minimum field width, the maximum field width and justification.
+            </para>
+            <para>
+            The optional format modifier is placed between the percent sign
+            and the conversion character.
+            </para>
+            <para>
+            This class essentially allow users to extend the default patterns
+            provided by the "default" PatternLayout class in log4net assembly.
+            </para>		
+            </remarks>	
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.#ctor">
+            <summary>
+            Constructs a PatternLayout using the DefaultConversionPattern
+            </summary>
+            <remarks>
+            <para>
+            The default pattern just produces the application supplied message.
+            </para>
+            <para>
+            Note to Inheritors: This constructor calls the virtual method
+            <see cref="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.CreatePatternParser(System.String)"/>. If you override this method be
+            aware that it will be called before your is called constructor.
+            </para>				
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.#ctor(System.String)">
+            <summary>
+            Constructs a PatternLayout using the supplied conversion pattern
+            </summary>
+            <param name="pattern">the pattern to use</param>
+            <remarks>
+            <para>
+            Note to Inheritors: This constructor calls the virtual method
+            <see cref="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.CreatePatternParser(System.String)"/>. If you override this method be
+            aware that it will be called before your is called constructor.
+            </para>		
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.ActivateOptions">
+            <summary>		
+            Initialize layout options. Overridden. <see cref="T:log4net.Layout.PatternLayout"/>		
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.CreatePatternParser(System.String)">
+            <summary>
+            Create the pattern parser instance
+            </summary>
+            <param name="pattern">the pattern to parse</param>
+            <returns>The <see cref="T:log4net.Util.PatternParser"/> that will format the event</returns>
+            <remarks>
+            <para>
+            Creates the <see cref="T:log4net.Util.PatternParser"/> used to parse the conversion string. Sets the
+            global and instance rules on the <see cref="T:log4net.Util.PatternParser"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.ExtendedPatternLayout.Format(System.IO.TextWriter,log4net.Core.LoggingEvent)">
+            <summary>
+            Produces a formatted string as specified by the conversion pattern.
+            </summary>
+            <param name="loggingEvent">the event being logged</param>
+            <param name="writer">The TextWriter to write the formatted event to</param>		
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Layout.Pattern.EnvironmentPatternConverter">
+            <summary>
+            Write an environment variable to the output
+            </summary>
+            <remarks>
+            <para>
+            Write an environment variable to the output writer.
+            The value of the <see cref="P:log4net.Util.PatternConverter.Option"/> determines 
+            the name of the variable to output.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.Pattern.EnvironmentPatternConverter.Convert(System.IO.TextWriter,log4net.Core.LoggingEvent)">
+            <summary>
+            Write the HostName to the output
+            </summary>
+            <param name="writer"><see cref="T:System.IO.TextWriter"/> that will receive the formatted result.</param>
+            <param name="loggingEvent">the event being logged</param>
+            <remarks>
+            <para>
+            Writes the <see cref="P:log4net.Util.SystemInfo.HostName"/> to the <paramref name="writer"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender">
+            <summary>
+            This class extends the log4net SMTPAppender <see cref="T:log4net.Appender.SmtpAppender"/> by providing
+            the addition features:
+            <list>
+            	<item><b>FromAddress</b> and <b>FromName</b> properties to construct From email address</item>
+            	<item>Introduced PatternLayout in the email subject line</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender.SendBuffer(log4net.Core.LoggingEvent[])">
+            <summary>
+            Sends the contents of the cyclic buffer as an e-mail message.
+            </summary>
+            <param name="events">The logging events to send.</param>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender.From">
+            <summary>
+            Gets or sets the e-mail address of the sender.
+            </summary>
+            <value>
+            The e-mail address of the sender.
+            </value>
+            <remarks>
+            <para>
+            The e-mail address of the sender.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender.FromName">
+            <summary>
+            Gets and Sets the email From Address Name
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Log4net.Appender.ExtendedStmpAppender.FromAddress">
+            <summary>
+            Gets and Sets the email From Address
+            </summary>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Utils.Log4netUtils">
+             ======================================================================================== 
+             <summary>
+             Class: Log4netUtils
+             
+             This utility class wraps around Log4Net manager classes
+             to provide additional utility functions, such as
+             allowing changing of logging levels at runtime,
+             checking if current LogFactory is using Log4net,etc.
+            
+             </summary>	
+             ========================================================================================
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.IsLoggerFactoryLog4Net">
+            <summary>
+            Determine if current Logging Factory is Log4NetFactory.
+            </summary>
+            <returns>true if factory used is Log4NetFactory, false otherwise</returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.GetAllCurrentRepositories">
+            <summary>
+            Get all the current logger Repository.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.GetAllCurrentRepositoryNames">
+            <summary>
+            Get the names of all the current repositories.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.GetRepositoryByName(System.String)">
+            <summary>
+            Get the Log4net Repository given its name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.GetAllLoggers(log4net.Repository.ILoggerRepository)">
+            <summary>
+            Get all the loggers inside a Logger Repository.
+            </summary>
+            <param name="logRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.GetAllLoggerNames(log4net.Repository.ILoggerRepository)">
+            <summary>
+            Return the names of all the loggers.
+            </summary>
+            <param name="logRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeLoggingLevel(log4net.Core.ILogger,Dotnet.Commons.Logging.Impl.LogLevel)">
+            <summary>
+            Change the logging level of a Logger.
+            </summary>
+            <param name="logger">logger to change the log level</param>
+            <param name="logLevel">new log level to change to</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeLoggingLevel(log4net.Core.ILogger,System.String)">
+            <summary>
+            Change the logging level of a Logger.
+            </summary>
+            <param name="logger">logger to change the log level</param>
+            <param name="logLevel">new log level to change to</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeLoggingLevel(log4net.Core.ILogger,log4net.Core.Level)">
+            <summary>
+            Change the logging level of a Logger.
+            </summary>
+            <param name="logger">logger to change the log level</param>
+            <param name="logLevel">new log level to change to</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeConfigFile(System.String)">
+            <summary>
+            Change Configuration file
+            </summary>
+            <param name="configFile">config file path</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeConfigFile(System.String,System.Boolean)">
+            <summary>
+            Change Configuration file and monitor the file for change.
+            </summary>
+            <param name="configFile">config file path</param>
+            <param name="watch">true if file watcher is to be applied. False otherwise</param>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Utils.PatternStringConverters.Pattern.IpAddressPatternConverter">
+            <summary>
+            Write an Ip address of the machine in which the log entry is made to the output
+            </summary>
+            <remarks>
+            <para>
+            Write an environment variable to the output writer.
+            The value of the <see cref="P:log4net.Util.PatternConverter.Option"/> determines 
+            the name of the variable to output.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Utils.PatternStringConverters.Pattern.IpAddressPatternConverter.Convert(System.IO.TextWriter,System.Object)">
+            <summary>
+            Write the IP address (first IP address for multi-homed server)
+            </summary>
+            <param name="writer">the writer to write to</param>
+            <param name="state">null, state is not set</param>
+            <remarks>
+            <para>
+            Writes the <see cref="P:log4net.Util.SystemInfo.HostName"/> to the <paramref name="writer"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Layout.Pattern.IpAddressPatternConverter">
+            <summary>
+            Write the caller IP address info to the output
+            </summary>
+            <remarks>
+            <para>
+            Writes the machine IP address to the output writer.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.Pattern.IpAddressPatternConverter.Convert(System.IO.TextWriter,log4net.Core.LoggingEvent)">
+            <summary>
+            Write the IP address (first IP address for multi-homed server)
+            </summary>
+            <param name="writer"><see cref="T:System.IO.TextWriter"/> that will receive the formatted result.</param>
+            <param name="loggingEvent">the event being logged</param>
+            <remarks>
+            <para>
+            Writes the <see cref="P:log4net.Util.SystemInfo.HostName"/> to the <paramref name="writer"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Impl.Log4NetFactory">
+            <summary>
+            Concrete subclass of <see cref="T:Dotnet.Commons.Logging.LogFactory"/> specific to log4net.
+            </summary>	
+        </member>
+        <member name="F:Dotnet.Commons.Logging.Impl.Log4NetFactory._attributes">
+            <summary>The configuration attributes for this <see cref="T:Dotnet.Commons.Logging.LogFactory"/>.</summary>
+        </member>
+        <member name="F:Dotnet.Commons.Logging.Impl.Log4NetFactory._instances">
+            <summary>Previously returned instances, to avoid creation of proxies</summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.GetAttribute(System.String)">
+            <summary>
+            Return the configuration attribute with the specified name (if any), 
+            or <i>null</i> if there is no such attribute.
+            </summary>
+            <param name="name">Name of the attribute to return</param>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.GetAttributeNames">
+            Return an array containing the names of all currently defined
+            configuration attributes.  If there are no such attributes, a zero
+            length array is returned.
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.GetInstance(System.Type)">
+            <summary>
+            Convenience method to derive a name from the specified class and
+            call <see cref="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.GetInstance(System.String)"/> with it.
+            </summary>
+            <param name="clazz">Class for which a suitable Log name will be derived</param>
+            <returns>a log instance</returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.GetInstance(System.String)">
+            <summary>
+            		
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.Release">
+            <summary>
+            Release any internal references to previously created {@link Log}
+            instances returned by this factory.  This is useful in environments
+            like servlet containers, which implement application reloading by
+            throwing away a ClassLoader.  Dangling references to objects in that
+            class loader would prevent garbage collection.
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.RemoveAttribute(System.String)">
+            <summary>
+            Remove any configuration attribute associated with the specified name.
+            If there is no such attribute, no action is taken.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.SetAttribute(System.String,System.Object)">
+            <summary>
+            Set the configuration attribute with the specified name.  Calling
+            this with a <i>null</i> value is equivalent to calling
+            <see cref="M:Dotnet.Commons.Logging.Impl.Log4NetFactory.RemoveAttribute(System.String)"/>.		
+            </summary>
+            <param name="name">Name of the attribute to set</param>
+            <param name="value">Value of the attribute to set, or <i>null</i> to remove any setting for this attribute</param>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Impl.Log4NetLogger">
+            ======================================================================================== 
+            <summary>
+            Class: Log4NetLogger
+            
+            <p>Implementation of <see cref="T:Dotnet.Commons.Logging.ILog"/> that maps directly to a Log4Net
+            <strong>Logger</strong>.  Initial configuration of the corresponding
+            Logger instances should be done in the usual manner, as outlined in
+            the log4net documentation.</p>
+            </summary> 
+            ========================================================================================
+            
+        </member>
+        <member name="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_FILE">
+            <summary>
+            AppSetting to set the Log4net config file path.                
+            <para>
+            In the app.config or web.config appSettings section, add the setting: 
+            <code  lang="XML" escaped="true">        
+                <add key="Dotnet.Commons.Logging.Log4Net.ConfigFile" value="myAppConfigPath\log4net_config_Filename.xml" />
+            </code>
+            where<br/> 
+            <i>myAppConfigPath</i> is the path where the config file is located.<br/>
+            <i>log4net_config_Filename.xml</i> is the name of the config file. 
+            </para>
+            </summary>
+            <example>
+            <code  lang="XML" escaped="true">        
+                     <add key="Dotnet.Commons.Logging.Log4Net.ConfigFile" value="D:\\MyApp\\config\\log4NetConfig.xml" />        
+            </code>
+            </example>
+        </member>
+        <member name="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_WATCH">
+            <summary>
+            AppSetting to set the Log4net config file to be watched by the log4Net config file watcher.        
+            <para>
+            In the app.config or web.config appSettings section, add the setting:
+            <code lang="XML" escaped="true">        
+                <add key="Dotnet.Commons.Logging.Log4Net.ConfigWatch" value="watchValue" />        
+            </code>
+            where<br/> 
+            <i>watchValue</i> is a boolean value, ie. True or False, 0 or 1, and Yes or No.
+            </para>
+            </summary>
+            <example>
+            <code lang="XML" escaped="true">        
+                <add key="Dotnet.Commons.Logging.Log4Net.ConfigFile" value="D:\\MyApp\\config\\log4NetConfig.xml" />
+                <add key="Dotnet.Commons.Logging.Log4Net.ConfigWatch" value="true" />        
+            </code>
+            </example>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="className"></param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.#ctor(log4net.ILog)">
+            <summary>
+            For use with a log4net factory.
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Trace(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Trace"/> level.
+            </summary>
+            <param name="message">message to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Trace(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Trace"/> level.         
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exceptions to log</param>		
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Debug(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with  the <see cref="F:log4net.Core.Level.Debug"/> level.
+            </summary>
+            <param name="message">message to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Debug(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Debug"/> level.
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Info(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Info"/> level.
+            </summary>
+            <param name="message">message to log</param>		
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Info(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Info"/> level.
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Warn(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Warn"/> level.
+            </summary>
+            <param name="message">message to log</param>		
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Warn(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Warn"/> level.
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Error(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Error"/> level.
+            </summary>
+            <param name="message">message to log</param>		
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Error(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Error"/> level.
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Fatal(System.Object)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Fatal"/> level.
+            </summary>
+            <param name="message">message to log</param>		
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Fatal(System.Object,System.Exception)">
+            <summary>
+            Log a message to the log4net Logger with the <see cref="F:log4net.Core.Level.Fatal"/> level.
+            </summary>
+            <param name="message">message to log</param>
+            <param name="ex">exception to log</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.ConfigureAndWatch(System.IO.FileInfo)">
+            <summary>
+            Config the log4net Logger based on a given configuration file and watch 
+            for any changes. Reload the config file config file is modified.
+            </summary>
+            <param name="configFile"></param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Configure">
+            <summary>
+            Config the log4net Logger based on the configuration set in the Application
+            config file, ie. app.config, web.config, etc or one defined in the
+            AppSettings <see cref="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_FILE"/>.
+            The AppSettings <see cref="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_WATCH"/> can 
+            be used for setting the Log4Net config file watcher to watch for any changes
+            to the config file.
+            
+            <b>Note:</b><br/>
+            If the Log4net default repository is already configured, this method will return
+            immediate. Use <see cref="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Configure(System.Boolean)"/> method to force the configure of log4Net
+            to take place. The API <see cref="M:Dotnet.Commons.Logging.Utils.Log4netUtils.ChangeConfigFile(System.String)"/> can also be
+            used for getting Log4net to reload a new configuration file.
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Configure(System.Boolean)">
+            <summary>
+            Config the log4net Logger based on the configuration set in the Application
+            config file, ie. app.config, web.config, etc or one defined in the
+            AppSettings <see cref="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_FILE"/>.
+            The AppSettings <see cref="F:Dotnet.Commons.Logging.Impl.Log4NetLogger.APP_SETTING_LOG_NET_CONFIG_WATCH"/> can 
+            be used for setting the Log4Net config file watcher to watch for any changes
+            to the config file.
+            </summary>
+            <param name="overrideConfig">Override the loaded log4net configuration in the current repository</param>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Impl.Log4NetLogger.Configure(System.IO.FileInfo)">
+            <summary>
+            Config the log4net Logger based on a given configuration file.		
+            </summary>
+            <param name="configFile"></param>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.Logger">
+            <summary>
+            Property to get the instance of the log4net logger. 
+            Deprecated. Use <see cref="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.InternalLogger"/> property instead.
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.InternalLogger">
+            <summary>
+            Property to get the instance of the log4net logger
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsTraceEnabled">
+            <summary>
+             Flag to determine if the TRACE priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsDebugEnabled">
+            <summary>
+            Flag to determine if the DEBUG priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsInfoEnabled">
+            <summary>
+            Flag to determine if the INFO priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsWarnEnabled">
+            <summary>
+            Flag to determine if the WARN priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsErrorEnabled">
+            <summary>
+            Flag to determine if the ERROR priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.IsFatalEnabled">
+            <summary>
+            Flag to determine if the FATAL priorty is set
+            </summary>
+        </member>
+        <member name="P:Dotnet.Commons.Logging.Impl.Log4NetLogger.CurrentLogLevel">
+            <summary>
+            Property to get the current LogLevel set in the logger
+            </summary>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Utils.PatternStringConverters.Pattern.HostNamePatternConverter">
+            <summary>
+            Write an hostname of the machine in which the log entry is made to the output
+            </summary>
+            <remarks>
+            <para>
+            Write an environment variable to the output writer.
+            The value of the <see cref="P:log4net.Util.PatternConverter.Option"/> determines 
+            the name of the variable to output.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Utils.PatternStringConverters.Pattern.HostNamePatternConverter.Convert(System.IO.TextWriter,System.Object)">
+            <summary>
+            Write the HostName to the output
+            </summary>
+            <param name="writer">the writer to write to</param>
+            <param name="state">null, state is not set</param>
+            <remarks>
+            <para>
+            Writes the <see cref="P:log4net.Util.SystemInfo.HostName"/> to the <paramref name="writer"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Utils.ExtendedPatternString">
+            <summary>
+            This class implements a patterned string by extending the log4net.Util.PatterString
+            class.
+            </summary>
+            <remarks>
+            	<para>
+            	This string has embedded patterns that are resolved and expanded
+            	when the string is formatted.
+            	</para>
+            	<para>
+            	This class functions similarly to the <see cref="T:log4net.Layout.PatternLayout"/>
+            	in that it accepts a pattern and renders it to a string. Unlike the 
+            	<see cref="T:log4net.Layout.PatternLayout"/> however the <c>PatternString</c>
+            	does does not render properties of a specific <see cref="T:log4net.Core.LoggingEvent"/> but
+            	of the process in general.
+            	</para>
+            	<para>
+            	The recognized conversion characters are:
+            	</para>
+            	<list type="table">
+            		<listheader>
+            			<term>Conversion Character</term>
+            			<description>Effect</description>
+            		</listheader>
+            		<item>
+            			<term>appdomain</term>
+            			<description>
+            				<para>
+            				Used to output the friendly name of the current AppDomain.
+            				</para>
+            			</description>
+            		</item>
+            	</list>
+            </remarks>	
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Utils.ExtendedPatternString.#ctor">
+            <summary>
+            Default Constructor.
+            </summary>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Utils.ExtendedPatternString.#ctor(System.String)">
+            <summary>
+            Constructs a PatternString
+            </summary>
+            <param name="pattern">The pattern to use with this PatternString</param>
+            <remarks><see cref="T:log4net.Util.PatternString"/></remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Utils.ExtendedPatternString.ActivateOptions">
+            <summary>
+            Overriden. <see cref="M:log4net.Util.PatternString.ActivateOptions"/>
+            </summary>
+        </member>
+        <member name="T:Dotnet.Commons.Logging.Log4net.Layout.Pattern.HostNamePatternConverter">
+            <summary>
+            Write the caller server name info to the output
+            </summary>
+            <remarks>
+            <para>
+            Writes the machine server name to the output writer.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Dotnet.Commons.Logging.Log4net.Layout.Pattern.HostNamePatternConverter.Convert(System.IO.TextWriter,log4net.Core.LoggingEvent)">
+            <summary>
+            Write the HostName to the output
+            </summary>
+            <param name="writer"><see cref="T:System.IO.TextWriter"/> that will receive the formatted result.</param>
+            <param name="loggingEvent">the event being logged</param>
+            <remarks>
+            <para>
+            Writes the <see cref="P:log4net.Util.SystemInfo.HostName"/> to the <paramref name="writer"/>.
+            </para>
+            </remarks>
+        </member>
+    </members>
+</doc>
