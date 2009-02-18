@@ -1,4 +1,4 @@
-namespace Hudson.TrayTracker
+namespace Hudson.TrayTracker.UI
 {
     partial class NamingForm
     {
@@ -75,7 +75,7 @@ namespace Hudson.TrayTracker
             resources.ApplyResources(this.questionLabel, "questionLabel");
             this.questionLabel.Name = "questionLabel";
             // 
-            // NamingForm
+            // AddServerForm
             // 
             this.AcceptButton = this.validateButton;
             resources.ApplyResources(this, "$this");
@@ -85,7 +85,7 @@ namespace Hudson.TrayTracker
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "NamingForm";
+            this.Name = "AddServerForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nameTextBox.Properties)).EndInit();

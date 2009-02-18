@@ -88,11 +88,29 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error loading projects from {0}.
+        /// </summary>
+        internal static string FailedLoadingProjects_FormatString {
+            get {
+                return ResourceManager.GetString("FailedLoadingProjects_FormatString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last check: {0}.
         /// </summary>
         internal static string LastCheck_Format {
             get {
                 return ResourceManager.GetString("LastCheck_Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading projects from {0}.
+        /// </summary>
+        internal static string LoadingProjects_FormatString {
+            get {
+                return ResourceManager.GetString("LoadingProjects_FormatString", resourceCulture);
             }
         }
     }

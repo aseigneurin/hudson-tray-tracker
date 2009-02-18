@@ -1,6 +1,6 @@
-namespace Hudson.TrayTracker
+namespace Hudson.TrayTracker.UI
 {
-    partial class HudsonTrayTrackerForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Hudson.TrayTracker
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HudsonTrayTrackerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.settingsButtonItem = new DevExpress.XtraBars.BarButtonItem();
@@ -53,19 +53,12 @@ namespace Hudson.TrayTracker
             this.lastSuccessGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPictureEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.notifyContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).BeginInit();
-            this.notifyContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager
@@ -99,6 +92,8 @@ namespace Hudson.TrayTracker
             new DevExpress.XtraBars.LinkPersistInfo(this.refreshButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.exitButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.aboutButtonItem)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
+            this.bar2.OptionsBar.DrawDragBorder = false;
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -169,7 +164,7 @@ namespace Hudson.TrayTracker
             this.repositoryItemPictureEdit1,
             this.repositoryItemPictureEdit2,
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(675, 210);
+            this.projectsGridControl.Size = new System.Drawing.Size(675, 208);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -273,61 +268,7 @@ namespace Hudson.TrayTracker
             // 
             this.repositoryItemPictureEdit1.Name = "repositoryItemPictureEdit1";
             // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "Successful.gif");
-            this.imageList.Images.SetKeyName(1, "Successful_BuildInProgress.gif");
-            this.imageList.Images.SetKeyName(2, "Indeterminate.gif");
-            this.imageList.Images.SetKeyName(3, "Indeterminate_BuildInProgress.gif");
-            this.imageList.Images.SetKeyName(4, "Unstable.gif");
-            this.imageList.Images.SetKeyName(5, "Unstable_BuildInProgress.gif");
-            this.imageList.Images.SetKeyName(6, "Failed.gif");
-            this.imageList.Images.SetKeyName(7, "Failed_BuildInProgress.gif");
-            // 
-            // notifyIcon
-            // 
-            this.notifyIcon.ContextMenuStrip = this.notifyContextMenuStrip;
-            this.notifyIcon.Text = "Hudson Tray Tracker";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
-            // 
-            // notifyContextMenuStrip
-            // 
-            this.notifyContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.showToolStripMenuItem,
-            this.refreshToolStripMenuItem,
-            this.exitToolStripMenuItem});
-            this.notifyContextMenuStrip.Name = "notifyContextMenuStrip";
-            this.notifyContextMenuStrip.Size = new System.Drawing.Size(124, 70);
-            // 
-            // showToolStripMenuItem
-            // 
-            this.showToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.showToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showToolStripMenuItem.Image")));
-            this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.showToolStripMenuItem.Text = "Show";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("refreshToolStripMenuItem.Image")));
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exitToolStripMenuItem.Image")));
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // HudsonTrayTrackerForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -337,7 +278,7 @@ namespace Hudson.TrayTracker
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Name = "HudsonTrayTrackerForm";
+            this.Name = "MainForm";
             this.Text = "Hudson Tray Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
@@ -346,7 +287,6 @@ namespace Hudson.TrayTracker
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit1)).EndInit();
-            this.notifyContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -371,16 +311,10 @@ namespace Hudson.TrayTracker
         private DevExpress.XtraGrid.Columns.GridColumn serverGridColumn;
         private DevExpress.XtraBars.BarButtonItem refreshButtonItem;
         private DevExpress.XtraBars.BarButtonItem exitButtonItem;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.ContextMenuStrip notifyContextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
         private DevExpress.XtraBars.BarStaticItem lastCheckBarStaticItem;
         private DevExpress.XtraGrid.Columns.GridColumn statusGridColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit3;
-        private System.Windows.Forms.ImageList imageList;
-        private System.Windows.Forms.ToolStripMenuItem showToolStripMenuItem;
     }
 }

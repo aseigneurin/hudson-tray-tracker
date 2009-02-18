@@ -8,11 +8,24 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Hudson.TrayTracker.BusinessComponents;
 using Hudson.TrayTracker.Entities;
+using Hudson.TrayTracker.Utils.BackgroundProcessing;
+using DevExpress.XtraBars;
 
-namespace Hudson.TrayTracker
+namespace Hudson.TrayTracker.UI
 {
-    public partial class HudsonTrayTrackerSettingsForm : DevExpress.XtraEditors.XtraForm
+    public partial class SettingsForm : DevExpress.XtraEditors.XtraForm
     {
+        static SettingsForm instance;
+        public static SettingsForm Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new SettingsForm();
+                return instance;
+            }
+        }
+
         ConfigurationService configurationService;
         HudsonService hudsonService;
         BindingList<Server> serversDataSource;
@@ -30,7 +43,7 @@ namespace Hudson.TrayTracker
             set { hudsonService = value; }
         }
 
-        public HudsonTrayTrackerSettingsForm()
+        public SettingsForm()
         {
             InitializeComponent();
         }
@@ -50,6 +63,8 @@ namespace Hudson.TrayTracker
         private void addServerButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             NamingForm namingForm = new NamingForm();
+            namingForm.CaptionText = HudsonTrayTrackerResources.AddServer_Caption;
+            namingForm.QuestionText = HudsonTrayTrackerResources.AddServer_Question;
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
@@ -64,6 +79,7 @@ namespace Hudson.TrayTracker
         private void removeServerButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Server server = GetSelectedServer();
+            serversDataSource.Remove(server);
             configurationService.RemoveServer(server);
         }
 
@@ -71,25 +87,73 @@ namespace Hudson.TrayTracker
         {
             Server server = GetSelectedServer();
 
-            // update the project list
-            UpdateProjectList(server);
-
             // update the toolbar
             removeServerButtonItem.Enabled = server != null;
+
+            // update the project list
+            UpdateProjectList(server);
         }
 
         private void UpdateProjectList(Server server)
         {
-            IList<Project> projects = hudsonService.LoadProjects(server);
-
-            projectsDataSource = new List<Project>();
+#if SYNCRHONOUS
+            List<Project> dataSource = new List<Project>();
 
             if (server != null)
             {
+                IList<Project> projects = hudsonService.LoadProjects(server);
                 foreach (Project project in projects)
-                    projectsDataSource.Add(project);
+                    dataSource.Add(project);
             }
 
+            SetProjectsDataSource(dataSource);
+#else
+            // clear the view
+            projectsGridControl.DataSource = null;
+
+            // disable the window, change the cursor, update the status
+            Cursor.Current = Cursors.WaitCursor;
+            Enabled = false;
+            statusTextItem.Caption = string.Format(HudsonTrayTrackerResources.LoadingProjects_FormatString, server.Url);
+            statusProgressItem.Visibility = BarItemVisibility.Always;
+
+            // run the process in background
+            Process process = new Process("Loading project " + server.Url);
+            IList<Project> projects = null;
+            process.DoWork += delegate
+            {
+                projects = hudsonService.LoadProjects(server);
+            };
+            process.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
+            {
+                string status = "";
+
+                if (e.Error == null)
+                {
+                    List<Project> dataSource = new List<Project>();
+                    foreach (Project project in projects)
+                        dataSource.Add(project);
+                    SetProjectsDataSource(dataSource);
+                }
+                else
+                {
+                    status = string.Format(
+                        HudsonTrayTrackerResources.FailedLoadingProjects_FormatString, server.Url);
+                }
+
+                // enable the window, change the cursor, update the status
+                Enabled = true;
+                Cursor.Current = Cursors.Default;
+                statusTextItem.Caption = status;
+                statusProgressItem.Visibility = BarItemVisibility.Never;
+            };
+            BackgroundProcessExecutor.Execute(process);
+#endif
+        }
+
+        private void SetProjectsDataSource(List<Project> dataSource)
+        {
+            projectsDataSource = dataSource;
             projectsGridControl.DataSource = projectsDataSource;
         }
 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 using DevExpress.XtraEditors;
 
-namespace Hudson.TrayTracker
+namespace Hudson.TrayTracker.UI
 {
     public partial class NamingForm : DevExpress.XtraEditors.XtraForm
     {

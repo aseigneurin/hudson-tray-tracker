@@ -65,6 +65,22 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraGrid.v8.3.Design.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraLayout.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DevExpress\DevExpress.XtraLayout.v8.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DevExpress\DevExpress.XtraLayout.v8.3.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DevExpress\DevExpress.XtraNavBar.v8.3.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DevExpress\DevExpress.XtraNavBar.v8.3.Design.dll</HintPath>
+    </Reference>
     <Reference Include="Dotnet.Commons.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Dotnet.Commons.Logging.dll</HintPath>
@@ -160,11 +176,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UI\TrayNotifier.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\TrayNotifier.Designer.cs">
+      <DependentUpon>TrayNotifier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BackgroundProcessing\BackgroundProcessExecutor.cs" />
+    <Compile Include="Utils\BackgroundProcessing\ErrorHolder.cs" />
+    <Compile Include="Utils\BackgroundProcessing\Process.cs" />
     <Compile Include="Utils\Collections\DualPropertiesContainer.cs" />
     <Compile Include="Utils\Collections\IPropertiesContainer.cs" />
     <Compile Include="Utils\Collections\PropertiesContainer.cs" />
     <Compile Include="Utils\IO\PathHelper.cs" />
     <Compile Include="Utils\IO\PropertiesFile.cs" />
+    <Compile Include="Utils\Logging\LoggingHelper.cs" />
     <Compile Include="Utils\XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Successful_BuildInProgress.gif" />
+    <EmbeddedResource Include="UI\TrayNotifier.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TrayNotifier.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="LoggingConfig.xml">

@@ -14,11 +14,22 @@ using System.Drawing.Imaging;
 using Dotnet.Commons.Logging;
 using System.Reflection;
 
-namespace Hudson.TrayTracker
+namespace Hudson.TrayTracker.UI
 {
-    public partial class HudsonTrayTrackerForm : DevExpress.XtraEditors.XtraForm
+    public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        static MainForm instance;
+        public static MainForm Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new MainForm();
+                return instance;
+            }
+        }
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
@@ -44,7 +55,7 @@ namespace Hudson.TrayTracker
             set { updateService = value; }
         }
 
-        public HudsonTrayTrackerForm()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -66,12 +77,10 @@ namespace Hudson.TrayTracker
             base.OnLoad(e);
             Initialize();
             LoadProjects();
-            UpdateGlobalStatus();
         }
 
         void configurationService_ConfigurationUpdated()
         {
-            UpdateGlobalStatus();
             LoadProjects();
         }
 
@@ -83,16 +92,12 @@ namespace Hudson.TrayTracker
         }
         private void OnProjectsUpdated()
         {
-            UpdateGlobalStatus();
             LoadProjects();
         }
 
         private void settingsButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            HudsonTrayTrackerSettingsForm settingsForm = new HudsonTrayTrackerSettingsForm();
-            settingsForm.ConfigurationService = configurationService;
-            settingsForm.HudsonService = hudsonService;
-            settingsForm.ShowDialog();
+            SettingsForm.Instance.ShowDialog();
         }
 
         private void LoadProjects()
@@ -118,51 +123,6 @@ namespace Hudson.TrayTracker
         {
             updateService.UpdateProjects();
         }
-        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            updateService.UpdateProjects();
-        }
-
-        public void UpdateGlobalStatus()
-        {
-            BuildStatus worstBuildStatus = BuildStatus.Successful;
-
-            foreach (Server server in configurationService.Servers)
-            {
-                foreach (Project project in server.Projects)
-                {
-                    if (project.Status > worstBuildStatus)
-                        worstBuildStatus = project.Status;
-                }
-            }
-
-            UpdateGlobalStatus(worstBuildStatus);
-        }
-
-        private void UpdateGlobalStatus(BuildStatus buildStatus)
-        {
-            Icon icon = GetIcon(buildStatus);
-            notifyIcon.Icon = icon;
-        }
-
-        private Icon GetIcon(BuildStatus buildStatus)
-        {
-            Bitmap bitmap;
-            try
-            {
-                bitmap = (Bitmap)Resources.ResourceManager.GetObject(buildStatus.ToString());
-                bitmap.MakeTransparent();
-            }
-            catch
-            {
-                // FIXME: log/warn
-                bitmap = Resources.Indeterminate;
-            }
-
-            IntPtr hicon = bitmap.GetHicon();
-            Icon icon = Icon.FromHandle(hicon);
-            return icon;
-        }
 
         private void HudsonTrayTrackerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -173,7 +133,7 @@ namespace Hudson.TrayTracker
             }
         }
 
-        private void Exit()
+        public void Exit()
         {
             exiting = true;
             Close();
@@ -181,10 +141,6 @@ namespace Hudson.TrayTracker
         }
 
         private void exitButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            Exit();
-        }
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Exit();
         }
@@ -204,16 +160,6 @@ namespace Hudson.TrayTracker
                     e.Value = imgBytes;
                 }
             }
-        }
-
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Show();
-        }
-
-        private void notifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            Show();
         }
 
         private class ProjectWrapper

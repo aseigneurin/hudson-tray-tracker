@@ -25,6 +25,7 @@ namespace Hudson.TrayTracker
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            ///////
             ConfigurationService configurationService = new ConfigurationService();
             HudsonService hudsonService = new HudsonService();
             UpdateService updateService = new UpdateService();
@@ -32,11 +33,22 @@ namespace Hudson.TrayTracker
             updateService.HudsonService = hudsonService;
             updateService.UpdateProjects();
 
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = MainForm.Instance;
             mainForm.ConfigurationService = configurationService;
             mainForm.HudsonService = hudsonService;
             mainForm.UpdateService = updateService;
-            mainForm.UpdateGlobalStatus();
+
+            SettingsForm settingsForm = SettingsForm.Instance;
+            settingsForm.ConfigurationService = configurationService;
+            settingsForm.HudsonService = hudsonService;
+
+            TrayNotifier notifier = new TrayNotifier();
+            notifier.ConfigurationService = configurationService;
+            notifier.HudsonService = hudsonService;
+            notifier.UpdateService = updateService;
+            notifier.Initialize();
+            notifier.UpdateGlobalStatus();
+            ///////
 
             ApplicationContext appContext = new ApplicationContext();
             Application.Run(appContext);
