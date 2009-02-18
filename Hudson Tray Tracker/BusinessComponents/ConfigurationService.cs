@@ -81,14 +81,14 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void SaveConfiguration()
         {
             // save the servers
-            int serverCount = servers.Count;
             int serverId = 0;
             foreach (Server server in servers)
             {
                 propertiesFile.SetGroupStringValue("servers", serverId, "url", server.Url);
                 serverId++;
             }
-            propertiesFile.SetGroupCount("servers", serverId);
+            if (serverId > 0)
+                propertiesFile.SetGroupCount("servers", serverId);
 
             // save the projects
             serverId = 0;
@@ -104,7 +104,8 @@ namespace Hudson.TrayTracker.BusinessComponents
                 }
                 serverId++;
             }
-            propertiesFile.SetGroupCount("projects", projectId);
+            if (projectId > 0)
+                propertiesFile.SetGroupCount("projects", projectId);
 
             propertiesFile.WriteProperties();
 

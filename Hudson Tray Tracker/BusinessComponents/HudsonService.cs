@@ -18,8 +18,13 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             String url = server.Url + "/api/xml";
 
+            logger.Info("Loading projects from " + url);
+
             WebClient webClient = new WebClient();
             String xmlStr = webClient.DownloadString(url);
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("XML: " + xmlStr);
 
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
@@ -36,8 +41,13 @@ namespace Hudson.TrayTracker.BusinessComponents
                 project.Name = projectName;
                 project.Url = projectUrl;
 
+                if (logger.IsDebugEnabled)
+                    logger.Debug("Found project " + projectName + " (" + projectUrl + ")");
+
                 projects.Add(project);
             }
+
+            logger.Info("Done loading projects");
 
             return projects;
         }
@@ -46,8 +56,13 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             String url = project.Url + "/api/xml";
 
+            logger.Info("Updating project from " + url);
+
             WebClient webClient = new WebClient();
             String xmlStr = webClient.DownloadString(url);
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("XML: " + xmlStr);
 
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
@@ -59,6 +74,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             project.Status = GetStatus(status);
             project.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
             project.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
+
+            logger.Info("Done updating project");
         }
 
         private BuildStatus GetStatus(string status)
@@ -89,8 +106,13 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             String url = buildUrl + "/api/xml";
 
+            logger.Info("Getting build details from " + url);
+
             WebClient webClient = new WebClient();
             String xmlStr = webClient.DownloadString(url);
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("XML: " + xmlStr);
 
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
@@ -105,6 +127,9 @@ namespace Hudson.TrayTracker.BusinessComponents
             BuildDetails res = new BuildDetails();
             res.Number = int.Parse(number);
             res.Time = date;
+
+            logger.Info("Done getting build details");
+
             return res;
         }
     }

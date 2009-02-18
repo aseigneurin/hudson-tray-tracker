@@ -5,6 +5,7 @@ using Hudson.TrayTracker.BusinessComponents;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using DevExpress.UserSkins;
+using Hudson.TrayTracker.UI;
 
 namespace Hudson.TrayTracker
 {
@@ -31,7 +32,7 @@ namespace Hudson.TrayTracker
             updateService.HudsonService = hudsonService;
             updateService.UpdateProjects();
 
-            HudsonTrayTrackerForm mainForm = new HudsonTrayTrackerForm();
+            MainForm mainForm = new MainForm();
             mainForm.ConfigurationService = configurationService;
             mainForm.HudsonService = hudsonService;
             mainForm.UpdateService = updateService;
@@ -39,11 +40,6 @@ namespace Hudson.TrayTracker
 
             ApplicationContext appContext = new ApplicationContext();
             Application.Run(appContext);
-        }
-
-        private class AppContext : ApplicationContext
-        {
-
         }
     }
 }

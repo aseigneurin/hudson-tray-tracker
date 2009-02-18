@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddServer_Caption" xml:space="preserve">
+    <value>Add server</value>
+  </data>
+  <data name="AddServer_Question" xml:space="preserve">
+    <value>Please type in the URL of Hudson's server:</value>
+  </data>
   <data name="BuildDetails_Format" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>

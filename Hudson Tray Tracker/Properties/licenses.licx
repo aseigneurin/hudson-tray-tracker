@@ -3,5 +3,4 @@ DevExpress.XtraGrid.GridControl, DevExpress.XtraGrid.v8.3, Version=8.3.3.0, Cult
 DevExpress.XtraBars.BarManager, DevExpress.XtraBars.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit, DevExpress.XtraEditors.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
-DevExpress.XtraTreeList.TreeList, DevExpress.XtraTreeList.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
