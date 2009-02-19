@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -24,6 +25,12 @@ namespace Hudson.TrayTracker.UI
         public AboutForm()
         {
             InitializeComponent();
+        }
+
+        private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = ((LinkLabel)sender).Text;
+            Process.Start(url);
         }
     }
 }

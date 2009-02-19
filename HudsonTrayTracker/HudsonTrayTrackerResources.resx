@@ -126,13 +126,39 @@
   <data name="BuildDetails_Format" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
+  <data name="ErrorBoxCaption" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="ErrorBoxMessage" xml:space="preserve">
+    <value>The following error occurred:
+
+Message: {0}</value>
+  </data>
   <data name="FailedLoadingProjects_FormatString" xml:space="preserve">
     <value>Error loading projects from {0}</value>
+  </data>
+  <data name="FatalError_Caption" xml:space="preserve">
+    <value>A fatal error occurred</value>
+  </data>
+  <data name="FatalError_Message" xml:space="preserve">
+    <value>Fatal error.
+
+Please refer to the log files for more details.</value>
   </data>
   <data name="LastCheck_Format" xml:space="preserve">
     <value>Last check: {0}</value>
   </data>
   <data name="LoadingProjects_FormatString" xml:space="preserve">
     <value>Loading projects from {0}</value>
+  </data>
+  <data name="SeriousErrorBoxMessage" xml:space="preserve">
+    <value>The following error occurred:
+
+Type: {0}
+Message: {1}
+
+Please refer to the log files for more details.
+
+The application will now be closed.</value>
   </data>
 </root>
