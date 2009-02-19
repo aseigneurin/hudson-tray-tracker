@@ -6,6 +6,8 @@ if not errorlevel 0 goto error
 cd scripts
 
 
+goto end
+
 :error
 @echo off
 echo ####################################################

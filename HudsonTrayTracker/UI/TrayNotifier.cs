@@ -62,6 +62,7 @@ namespace Hudson.TrayTracker.UI
             UpdateGlobalStatus();
         }
 
+#if false
         private delegate void ProjectsUpdatedDelegate();
         private void updateService_ProjectsUpdated()
         {
@@ -72,6 +73,12 @@ namespace Hudson.TrayTracker.UI
         {
             UpdateGlobalStatus();
         }
+#else
+        private void updateService_ProjectsUpdated()
+        {
+            UpdateGlobalStatus();
+        }
+#endif
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
