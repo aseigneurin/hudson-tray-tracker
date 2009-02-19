@@ -136,9 +136,9 @@ namespace Hudson.TrayTracker.UI
             if (hasProjects == false)
                 worstBuildStatus = BuildStatus.Indeterminate;
 
-#if test
+#if false // tests
             lastBuildStatus++;
-            if (testStatus > BuildStatus.Failed_BuildInProgress)
+            if (lastBuildStatus > BuildStatus.Failed_BuildInProgress)
                 lastBuildStatus = 0;
             worstBuildStatus = lastBuildStatus;
             Console.WriteLine("tray:"+lastBuildStatus);
@@ -183,7 +183,6 @@ namespace Hudson.TrayTracker.UI
                     buildStatus.ToString());
                 bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
                     resourceName, GetType().Assembly);
-                bitmap.MakeTransparent();
             }
             catch (Exception ex)
             {

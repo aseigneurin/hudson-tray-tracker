@@ -155,7 +155,7 @@ namespace Hudson.TrayTracker.UI
                 if (e.Column == statusGridColumn)
                 {
                     ProjectWrapper projectWrapper = (ProjectWrapper)projectsDataSource[e.ListSourceRowIndex];
-                    string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.gif",
+                    string resourceName = string.Format("Hudson.TrayTracker.Resources.StatusIcons.{0}.gif",
                         projectWrapper.Project.Status.ToString());
                     Image img = DevExpress.Utils.Controls.ImageHelper.CreateImageFromResources(
                         resourceName, GetType().Assembly);
