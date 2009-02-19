@@ -29,55 +29,55 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Data.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.Data.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.OfficeSkins.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.OfficeSkins.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.OfficeSkins.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.Utils.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.Utils.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.Utils.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraBars.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraBars.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraBars.v8.3.Design, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraBars.v8.3.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraEditors.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraEditors.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraEditors.v8.3.Design, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraEditors.v8.3.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraGrid.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraGrid.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraGrid.v8.3.Design, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraGrid.v8.3.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraLayout.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraLayout.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraLayout.v8.3.Design, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraLayout.v8.3.Design.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v8.3, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraNavBar.v8.3.dll</HintPath>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v8.3.Design, Version=8.3.2.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+    <Reference Include="DevExpress.XtraNavBar.v8.3.Design, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraNavBar.v8.3.Design.dll</HintPath>
     </Reference>
@@ -197,6 +197,7 @@
     <Compile Include="Utils\IO\PathHelper.cs" />
     <Compile Include="Utils\IO\PropertiesFile.cs" />
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
+    <Compile Include="Utils\ThreadExceptionHandler.cs" />
     <Compile Include="Utils\XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>

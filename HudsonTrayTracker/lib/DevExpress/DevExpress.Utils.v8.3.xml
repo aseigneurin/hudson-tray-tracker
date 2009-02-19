@@ -4627,6 +4627,34 @@ For the XtraGrid control, this option acts as the <see cref="F:DevExpress.Utils.
 
 
         </member>
+        <member name="M:DevExpress.XtraPrinting.XlsExportOptions.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+                <para>Initializes a new instance of the XlsExportOptions class with the specified native format, grid lines, and hyperlinks settings. Also specifies whether it is necessary to ignore column and row limits when exporting.
+</para>
+            </summary>
+            <param name="useNativeFormat">
+		<b>true</b> to use the data format of the exported data fields for the cells in the XLS document; otherwise, <b>false</b>. This value is assigned to the <see cref="P:DevExpress.XtraPrinting.XlsExportOptions.UseNativeFormat"/> property.
+
+            </param>
+            <param name="showGridLines">
+		<b>true</b> to show the grid lines in the resulting XLS file; otherwise, <b>false</b>. This value is assigned to the <see cref="P:DevExpress.XtraPrinting.XlsExportOptions.ShowGridLines"/> property.
+
+            </param>
+            <param name="exportHyperlinks">
+		<b>true</b> to export hyperlinks; otherwise, <b>false</b>. This value is assigned to the <see cref="P:DevExpress.XtraPrinting.XlsExportOptions.ExportHyperlinks"/> property.
+
+            </param>
+            <param name="ignore256ColumnsLimit">
+		<b>true</b> to create an XLS file with more than 256 columns, if necessary; otherwise, <b>false</b>. This value is assigned to the <see cref="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore256ColumnsLimit"/> property.
+
+            </param>
+            <param name="ignore65536RowsLimit">
+		<b>true</b> to create an XLS file with more than65536 rows, if necessary; otherwise, <b>false</b>. This value is assigned to the <see cref="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore65536RowsLimit"/> property.
+
+            </param>
+
+
+        </member>
         <member name="M:DevExpress.XtraPrinting.XlsExportOptions.Assign(DevExpress.XtraPrinting.ExportOptionsBase)">
             <summary>
                 <para>Copies all the settings from the XlsExportOptions object passed as a parameter.
@@ -4646,6 +4674,26 @@ For the XtraGrid control, this option acts as the <see cref="F:DevExpress.Utils.
 </para>
             </summary>
             <value><b>true</b> to export hyperlinks; otherwise, <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore256ColumnsLimit">
+            <summary>
+                <para>Gets or sets a value indicating whether to create an XLS file with more than <b>256</b> columns.
+</para>
+            </summary>
+            <value><b>true</b> to create an XLS file with more than 256 columns, if necessary; otherwise, <b>false</b>.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore65536RowsLimit">
+            <summary>
+                <para>Gets or sets a value indicating whether to create an XLS file with more than <b>65536</b> rows.
+</para>
+            </summary>
+            <value><b>true</b> to create an XLS file with more than 65536 rows, if necessary; otherwise, <b>false</b>.
 </value>
 
 
@@ -8604,7 +8652,8 @@ based on the specified <b>Hashtable</b> object.
         </member>
         <member name="F:DevExpress.XtraPrinting.PrintingSystemCommand.StopPageBuilding">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Identifies the <b>Stop</b>  button, which is displayed in the status bar to the right of the progress bar, and can be used to stop generating a document.
+</para>
             </summary>
 
 
@@ -9794,30 +9843,6 @@ based on the specified <b>Hashtable</b> object.
                 <para>An icon displayed within a tooltip is small. The icon type can be selected via the <see cref="P:DevExpress.Utils.ToolTipController.IconType"/> property or can be specified in a handler of the <see cref="E:DevExpress.Utils.ToolTipController.BeforeShow"/> event via <see cref="P:DevExpress.Utils.ToolTipControllerShowEventArgs.IconType"/> property.
 </para>
             </summary>
-
-
-        </member>
-        <member name="T:DevExpress.Utils.ViewStyleGetDefaultHorzAlignment">
-
-            <summary>
-                <para>Represents a method that will handle the <see cref="E:DevExpress.Utils.ViewStyle.GetDefaultHorzAlignment"/> event.
-</para>
-            </summary>
-
-        </member>
-        <member name="M:DevExpress.Utils.ViewStyleGetDefaultHorzAlignment.Invoke(System.Object,DevExpress.Utils.HorzAlignment)">
-            <summary>
-                <para>Represents a method that will handle the <see cref="E:DevExpress.Utils.ViewStyle.GetDefaultHorzAlignment"/> event.
-</para>
-            </summary>
-            <param name="sender">
-		An object representing the source of the event.
-
-            </param>
-            <param name="align">
-		A <see cref="T:DevExpress.Utils.HorzAlignment"/> object that contains event data.
-
-            </param>
 
 
         </member>
