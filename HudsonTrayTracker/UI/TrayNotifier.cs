@@ -21,6 +21,7 @@ namespace Hudson.TrayTracker.UI
         ConfigurationService configurationService;
         HudsonService hudsonService;
         UpdateService updateService;
+        BuildStatus lastBuildStatus;
 
         public ConfigurationService ConfigurationService
         {
@@ -59,7 +60,7 @@ namespace Hudson.TrayTracker.UI
 
         void configurationService_ConfigurationUpdated()
         {
-            UpdateGlobalStatus();
+            UpdateNotifier();
         }
 
 #if false
@@ -76,7 +77,7 @@ namespace Hudson.TrayTracker.UI
 #else
         private void updateService_ProjectsUpdated()
         {
-            UpdateGlobalStatus();
+            UpdateNotifier();
         }
 #endif
 
@@ -112,10 +113,11 @@ namespace Hudson.TrayTracker.UI
             AboutForm.Instance.ShowDialog();
         }
 
-        public void UpdateGlobalStatus()
+        public void UpdateNotifier()
         {
             BuildStatus worstBuildStatus = BuildStatus.Successful;
             bool hasProjects = false;
+            List<Project> errorProjects = new List<Project>();
 
             foreach (Server server in configurationService.Servers)
             {
@@ -126,6 +128,8 @@ namespace Hudson.TrayTracker.UI
                         worstBuildStatus = project.Status;
                         hasProjects = true;
                     }
+                    if (project.Status >= BuildStatus.Failed)
+                        errorProjects.Add(project);
                 }
             }
 
@@ -133,20 +137,37 @@ namespace Hudson.TrayTracker.UI
                 worstBuildStatus = BuildStatus.Indeterminate;
 
 #if test
-            testStatus++;
+            lastBuildStatus++;
             if (testStatus > BuildStatus.Failed_BuildInProgress)
-                testStatus = 0;
-            worstBuildStatus = testStatus;
-            Console.WriteLine("tray:"+testStatus);
+                lastBuildStatus = 0;
+            worstBuildStatus = lastBuildStatus;
+            Console.WriteLine("tray:"+lastBuildStatus);
 #endif
 
-            UpdateGlobalStatus(worstBuildStatus);
+            UpdateIcon(worstBuildStatus);
+            UpdateBalloonTip(errorProjects);
         }
-#if test
-        BuildStatus testStatus;
-#endif
 
-        private void UpdateGlobalStatus(BuildStatus buildStatus)
+        private void UpdateBalloonTip(List<Project> errorProjects)
+        {
+            if (lastBuildStatus < BuildStatus.Failed && errorProjects.Count > 0)
+            {
+                StringBuilder errorProjectsText = new StringBuilder();
+                string prefix = null;
+                foreach (Project project in errorProjects)
+                {
+                    if (prefix != null)
+                        errorProjectsText.Append(prefix);
+                    errorProjectsText.Append(project.Name);
+                    prefix = "\n";
+                }
+
+                notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildFailed_Caption,
+                    errorProjectsText.ToString(), ToolTipIcon.Error);
+            }
+        }
+
+        private void UpdateIcon(BuildStatus buildStatus)
         {
             Icon icon = GetIcon(buildStatus);
             if (icon != null)

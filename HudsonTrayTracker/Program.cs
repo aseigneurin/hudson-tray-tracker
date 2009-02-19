@@ -61,7 +61,7 @@ namespace Hudson.TrayTracker
                 notifier.HudsonService = hudsonService;
                 notifier.UpdateService = updateService;
                 notifier.Initialize();
-                notifier.UpdateGlobalStatus();
+                notifier.UpdateNotifier();
                 ///////
 
                 ApplicationContext appContext = new ApplicationContext();
