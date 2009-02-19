@@ -27,6 +27,9 @@ namespace Hudson.TrayTracker
         {
             try
             {
+                ThreadExceptionHandler handler = new ThreadExceptionHandler();
+                Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
+
                 // skinning         
                 SkinManager.EnableFormSkins();
                 OfficeSkins.Register();
@@ -34,9 +37,8 @@ namespace Hudson.TrayTracker
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-
-                ThreadExceptionHandler handler = new ThreadExceptionHandler();
-                Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
+                Application.ApplicationExit += new EventHandler(Application_Exit);
+                Application_Prepare();
 
                 ///////
                 ConfigurationService configurationService = new ConfigurationService();
@@ -44,7 +46,6 @@ namespace Hudson.TrayTracker
                 UpdateService updateService = new UpdateService();
                 updateService.ConfigurationService = configurationService;
                 updateService.HudsonService = hudsonService;
-                updateService.UpdateProjects();
 
                 MainForm mainForm = MainForm.Instance;
                 mainForm.ConfigurationService = configurationService;

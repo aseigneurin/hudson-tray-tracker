@@ -22,7 +22,7 @@ namespace Hudson.TrayTracker.Utils.BackgroundProcessing
 
         public static void Execute(Process process)
         {
-#if DEBUG
+#if false
             if (Thread.CurrentThread.IsBackground)
                 throw new Exception("Should not run in background!");
             int fgThreadId = Thread.CurrentThread.ManagedThreadId;
@@ -58,7 +58,7 @@ namespace Hudson.TrayTracker.Utils.BackgroundProcessing
             };
             bgWorker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
             {
-#if DEBUG
+#if false
                 if (Thread.CurrentThread.IsBackground)
                     throw new Exception("Should not run in background!");
                 if (Thread.CurrentThread.ManagedThreadId != fgThreadId)

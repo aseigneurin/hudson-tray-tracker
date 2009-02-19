@@ -6,11 +6,18 @@ using Dotnet.Commons.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Entities;
 using System.ComponentModel;
+using Hudson.TrayTracker.Utils.Logging;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
     public class UpdateService
     {
+        public enum UpdateSource
+        {
+            User,
+            Timer
+        }
+
         public delegate void ProjectsUpdatedHandler();
         public event ProjectsUpdatedHandler ProjectsUpdated;
 
@@ -40,48 +47,62 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public UpdateService()
         {
-            timer = new Timer(UpdateProjects, null, updatePeriod, updatePeriod);
+            timer = new Timer(UpdateProjects, null, 0, updatePeriod);
         }
 
         public void UpdateProjects()
         {
-            logger.Info("Running update from user");
-
             BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += delegate { DoUpdateProjects(); };
+            worker.DoWork += delegate
+            {
+                DoUpdateProjects(UpdateSource.User);
+            };
             worker.RunWorkerAsync();
-
-            logger.Info("Done");
         }
 
         private void UpdateProjects(object state)
         {
-            logger.Info("Running update from timer");
-            DoUpdateProjects();
-            logger.Info("Done");
+            DoUpdateProjects(UpdateSource.Timer);
         }
 
-        private void DoUpdateProjects()
+        private void DoUpdateProjects(UpdateSource source)
         {
+            logger.Info("Running update from " + source);
+
             lock (this)
             {
                 if (updating)
+                {
+                    logger.Info("Already in update: skipping");
                     return;
+                }
                 updating = true;
             }
 
-            foreach (Server server in configurationService.Servers)
+            try
             {
-                foreach (Project project in server.Projects)
+                foreach (Server server in configurationService.Servers)
                 {
-                    hudsonService.UpdateProject(project);
+                    foreach (Project project in server.Projects)
+                    {
+                        hudsonService.UpdateProject(project);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+                return;
+            }
+            finally
+            {
+                lock (this)
+                {
+                    updating = false;
                 }
             }
 
-            lock (this)
-            {
-                updating = false;
-            }
+            logger.Info("Done");
 
             if (ProjectsUpdated != null)
                 ProjectsUpdated();
