@@ -129,6 +129,30 @@
   <data name="BuildFailed_Caption" xml:space="preserve">
     <value>Build failed</value>
   </data>
+  <data name="BuildStatus_Failed" xml:space="preserve">
+    <value>Build failed</value>
+  </data>
+  <data name="BuildStatus_Failed_BuildInProgress" xml:space="preserve">
+    <value>Build failed. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Indeterminate" xml:space="preserve">
+    <value>Indeterminate: no build done</value>
+  </data>
+  <data name="BuildStatus_Indeterminate_BuildInProgress" xml:space="preserve">
+    <value>Indeterminate: no build done. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Successful" xml:space="preserve">
+    <value>Successful</value>
+  </data>
+  <data name="BuildStatus_Successful_BuildInProgress" xml:space="preserve">
+    <value>Successful. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Unstable" xml:space="preserve">
+    <value>Unstable: some tests failed</value>
+  </data>
+  <data name="BuildStatus_Unstable_BuildInProgress" xml:space="preserve">
+    <value>Unstable: some tests failed. Build in progress.</value>
+  </data>
   <data name="ErrorBoxCaption" xml:space="preserve">
     <value>An error occurred</value>
   </data>
@@ -163,5 +187,8 @@ Message: {1}
 Please refer to the log files for more details.
 
 The application will now be closed.</value>
+  </data>
+  <data name="Version_Format" xml:space="preserve">
+    <value>Version {0}</value>
   </data>
 </root>

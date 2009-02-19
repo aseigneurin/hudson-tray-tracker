@@ -13,6 +13,8 @@ using DevExpress.XtraGrid.Views.Base;
 using System.Drawing.Imaging;
 using Dotnet.Commons.Logging;
 using System.Reflection;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System.Diagnostics;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -36,6 +38,7 @@ namespace Hudson.TrayTracker.UI
         UpdateService updateService;
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
+        int lastHoveredDSRowIndex = -1;
 
         public ConfigurationService ConfigurationService
         {
@@ -162,6 +165,44 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
+        private void aboutButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            AboutForm.Instance.ShowDialog();
+        }
+
+        private void projectsGridView_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point pt = new Point(e.X, e.Y);
+            GridHitInfo ghi = projectsGridView.CalcHitInfo(pt);
+            if (ghi.InRow)
+            {
+                int dsRowIndex = projectsGridView.GetDataSourceRowIndex(ghi.RowHandle);
+                if (lastHoveredDSRowIndex != dsRowIndex)
+                {
+                    ProjectWrapper project = projectsDataSource[dsRowIndex];
+                    string message = HudsonTrayTrackerResources.ResourceManager
+                        .GetString("BuildStatus_" + project.Project.Status.ToString());
+                    toolTip.SetToolTip(projectsGridControl, message);
+                }
+                lastHoveredDSRowIndex = dsRowIndex;
+            }
+            else
+            {
+                lastHoveredDSRowIndex = -1;
+            }
+        }
+
+        private void projectsGridView_DoubleClick(object sender, EventArgs e)
+        {
+            Point pt = projectsGridControl.PointToClient(Cursor.Position);
+            GridHitInfo ghi = projectsGridView.CalcHitInfo(pt);
+            if (ghi.InRow == false)
+                return;
+            int dsRowIndex = projectsGridView.GetDataSourceRowIndex(ghi.RowHandle);
+            ProjectWrapper project = projectsDataSource[dsRowIndex];
+            Process.Start(project.Project.Url);
+        }
+
         private class ProjectWrapper
         {
             Project project;
@@ -204,11 +245,6 @@ namespace Hudson.TrayTracker.UI
                 return string.Format(HudsonTrayTrackerResources.BuildDetails_Format,
                     details.Number, details.Time.ToLocalTime());
             }
-        }
-
-        private void aboutButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            AboutForm.Instance.ShowDialog();
         }
     }
 }

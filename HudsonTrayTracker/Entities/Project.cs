@@ -9,7 +9,7 @@ namespace Hudson.TrayTracker.Entities
         Server server;
         string name;
         string url;
-        BuildStatus status;
+        BuildStatus status = BuildStatus.Indeterminate;
         BuildDetails lastSuccessfulBuild;
         BuildDetails lastFailedBuild;
 

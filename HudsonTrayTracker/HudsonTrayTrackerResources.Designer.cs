@@ -97,6 +97,78 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build failed.
+        /// </summary>
+        internal static string BuildStatus_Failed {
+            get {
+                return ResourceManager.GetString("BuildStatus_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build failed. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Failed_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Failed_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeterminate: no build done.
+        /// </summary>
+        internal static string BuildStatus_Indeterminate {
+            get {
+                return ResourceManager.GetString("BuildStatus_Indeterminate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeterminate: no build done. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Indeterminate_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Indeterminate_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful.
+        /// </summary>
+        internal static string BuildStatus_Successful {
+            get {
+                return ResourceManager.GetString("BuildStatus_Successful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Successful_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Successful_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unstable: some tests failed.
+        /// </summary>
+        internal static string BuildStatus_Unstable {
+            get {
+                return ResourceManager.GetString("BuildStatus_Unstable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unstable: some tests failed. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Unstable_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Unstable_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred.
         /// </summary>
         internal static string ErrorBoxCaption {
@@ -176,6 +248,15 @@ namespace Hudson.TrayTracker {
         internal static string SeriousErrorBoxMessage {
             get {
                 return ResourceManager.GetString("SeriousErrorBoxMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.
+        /// </summary>
+        internal static string Version_Format {
+            get {
+                return ResourceManager.GetString("Version_Format", resourceCulture);
             }
         }
     }

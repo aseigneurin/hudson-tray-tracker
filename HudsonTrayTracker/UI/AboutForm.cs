@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -25,6 +26,9 @@ namespace Hudson.TrayTracker.UI
         public AboutForm()
         {
             InitializeComponent();
+
+            versionLabelControl.Text = string.Format(HudsonTrayTrackerResources.Version_Format, 
+                Assembly.GetExecutingAssembly().GetName().Version);
         }
 
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
