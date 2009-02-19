@@ -1,11 +1,7 @@
 if not exist "%NSIS%" goto error_Environment
 
-cd ..
-C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\MSBuild HudsonTrayTracker\HudsonTrayTracker.sln" ^
-  /target:Rebuild ^
-  /p:Configuration=Release
+call Compile_RELEASE.bat
 if not errorlevel 0 goto error
-cd scripts
 
 cd installer
 "%NSIS%\makensis" HudsonTrayTracker.nsi

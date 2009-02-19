@@ -1,6 +1,6 @@
-!define ROOT "..\..\Hudson Tray Tracker\bin\Release"
+!define ROOT "..\..\HudsonTrayTracker\bin\Release"
 
-OutFile "HudsonTrayTrackerInstaller.exee"
+OutFile "HudsonTrayTrackerInstaller.exe"
 
 Section "Hudson Tray Tracker"
 

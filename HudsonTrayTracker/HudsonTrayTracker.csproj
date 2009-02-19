@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hudson.TrayTracker</RootNamespace>
-    <AssemblyName>Hudson Tray Tracker</AssemblyName>
+    <AssemblyName>HudsonTrayTracker</AssemblyName>
     <StartupObject>Hudson.TrayTracker.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
