@@ -111,6 +111,9 @@ namespace Hudson.TrayTracker.UI
             // clear the view
             projectsGridControl.DataSource = null;
 
+            if (server == null)
+                return;
+
             // disable the window, change the cursor, update the status
             Cursor.Current = Cursors.WaitCursor;
             Enabled = false;

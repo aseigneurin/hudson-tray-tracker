@@ -132,13 +132,25 @@ namespace Hudson.TrayTracker.UI
             if (hasProjects == false)
                 worstBuildStatus = BuildStatus.Indeterminate;
 
+#if test
+            testStatus++;
+            if (testStatus > BuildStatus.Failed_BuildInProgress)
+                testStatus = 0;
+            worstBuildStatus = testStatus;
+            Console.WriteLine("tray:"+testStatus);
+#endif
+
             UpdateGlobalStatus(worstBuildStatus);
         }
+#if test
+        BuildStatus testStatus;
+#endif
 
         private void UpdateGlobalStatus(BuildStatus buildStatus)
         {
             Icon icon = GetIcon(buildStatus);
-            notifyIcon.Icon = icon;
+            if (icon != null)
+                notifyIcon.Icon = icon;
         }
 
         private Icon GetIcon(BuildStatus buildStatus)
@@ -146,14 +158,17 @@ namespace Hudson.TrayTracker.UI
             Bitmap bitmap;
             try
             {
-                bitmap = (Bitmap)Resources.ResourceManager.GetObject(buildStatus.ToString());
+                string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.gif",
+                    buildStatus.ToString());
+                bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
+                    resourceName, GetType().Assembly);
                 bitmap.MakeTransparent();
             }
             catch (Exception ex)
             {
                 // FIXME: warn
                 LoggingHelper.LogError(logger, ex);
-                bitmap = Resources.Indeterminate;
+                return null;
             }
 
             IntPtr hicon = bitmap.GetHicon();

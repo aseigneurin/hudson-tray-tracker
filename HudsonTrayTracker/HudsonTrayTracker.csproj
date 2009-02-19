@@ -214,28 +214,28 @@
     <Compile Include="Utils\XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Indeterminate.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Indeterminate.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Indeterminate_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Indeterminate_BuildInProgress.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Failed.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Failed.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Failed_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Failed_BuildInProgress.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Unstable.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Unstable.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Unstable_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Unstable_BuildInProgress.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Successful.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Successful.gif" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Successful_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Successful_BuildInProgress.gif" />
     <EmbeddedResource Include="UI\AboutForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -249,6 +249,14 @@
     <Content Include="LoggingConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\TrayIcons\Failed.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Failed_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Indeterminate.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Indeterminate_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Successful.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Successful_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Unstable.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Unstable_BuildInProgress.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
