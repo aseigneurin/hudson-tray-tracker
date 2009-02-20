@@ -7,6 +7,7 @@ cd installer
 "%NSIS%\makensis" HudsonTrayTracker.nsi
 if not errorlevel 0 goto error
 
+pause
 goto end
 
 :error_Environment

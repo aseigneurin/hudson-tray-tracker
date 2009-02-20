@@ -12,6 +12,8 @@ using System.Diagnostics;
 using Dotnet.Commons.Logging;
 using Hudson.TrayTracker.Utils;
 using System.Threading;
+using System.Drawing;
+using System.IO;
 
 namespace Hudson.TrayTracker
 {

@@ -115,20 +115,16 @@ namespace Hudson.TrayTracker.UI
 
         public void UpdateNotifier()
         {
-            BuildStatus worstBuildStatus = BuildStatus.Successful;
+            BuildStatus? worstBuildStatus = BuildStatus.Successful;
             bool buildInProgress = false;
-            bool hasProjects = false;
             List<Project> errorProjects = new List<Project>();
 
             foreach (Server server in configurationService.Servers)
             {
                 foreach (Project project in server.Projects)
                 {
-                    if (project.Status > worstBuildStatus)
-                    {
+                    if (worstBuildStatus == null || project.Status > worstBuildStatus)
                         worstBuildStatus = project.Status;
-                        hasProjects = true;
-                    }
                     if (project.Status >= BuildStatus.Failed)
                         errorProjects.Add(project);
                     if (BuildStatusUtils.IsBuildInProgress(project.Status))
@@ -136,7 +132,7 @@ namespace Hudson.TrayTracker.UI
                 }
             }
 
-            if (hasProjects == false)
+            if (worstBuildStatus == null)
                 worstBuildStatus = BuildStatus.Indeterminate;
 
 #if false // tests
@@ -147,7 +143,7 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine("tray:"+lastBuildStatus);
 #endif
 
-            BuildStatus buildStatus = worstBuildStatus;
+            BuildStatus buildStatus = worstBuildStatus.Value;
             // if a build is in progress and the worst status is not a build-in-progress status,
             // switch to the nearest build-in-progress status
             if (buildInProgress && BuildStatusUtils.IsBuildInProgress(buildStatus) == false)

@@ -160,7 +160,7 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(879, 361);
+            this.projectsGridControl.Size = new System.Drawing.Size(879, 363);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -270,6 +270,7 @@ namespace Hudson.TrayTracker.UI
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Hudson Tray Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
