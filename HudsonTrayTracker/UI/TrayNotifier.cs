@@ -116,6 +116,7 @@ namespace Hudson.TrayTracker.UI
         public void UpdateNotifier()
         {
             BuildStatus worstBuildStatus = BuildStatus.Successful;
+            bool buildInProgress = false;
             bool hasProjects = false;
             List<Project> errorProjects = new List<Project>();
 
@@ -130,6 +131,8 @@ namespace Hudson.TrayTracker.UI
                     }
                     if (project.Status >= BuildStatus.Failed)
                         errorProjects.Add(project);
+                    if (BuildStatusUtils.IsBuildInProgress(project.Status))
+                        buildInProgress = true;
                 }
             }
 
@@ -144,8 +147,16 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine("tray:"+lastBuildStatus);
 #endif
 
-            UpdateIcon(worstBuildStatus);
+            BuildStatus buildStatus = worstBuildStatus;
+            // if a build is in progress and the worst status is not a build-in-progress status,
+            // switch to the nearest build-in-progress status
+            if (buildInProgress && BuildStatusUtils.IsBuildInProgress(buildStatus) == false)
+                buildStatus += 1;
+
+            UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects);
+
+            lastBuildStatus = buildStatus;
         }
 
         private void UpdateBalloonTip(List<Project> errorProjects)
