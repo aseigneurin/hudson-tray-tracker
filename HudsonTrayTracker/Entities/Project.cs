@@ -9,9 +9,7 @@ namespace Hudson.TrayTracker.Entities
         Server server;
         string name;
         string url;
-        BuildStatus status = BuildStatus.Indeterminate;
-        BuildDetails lastSuccessfulBuild;
-        BuildDetails lastFailedBuild;
+        AllBuildDetails allBuildDetails;
 
         public Server Server
         {
@@ -31,22 +29,46 @@ namespace Hudson.TrayTracker.Entities
             set { url = value; }
         }
 
+        public AllBuildDetails AllBuildDetails
+        {
+            get { return allBuildDetails; }
+            set { allBuildDetails = value; }
+        }
+
         public BuildStatus Status
         {
-            get { return status; }
-            set { status = value; }
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return BuildStatus.Indeterminate;
+                return details.Status;
+            }
         }
 
         public BuildDetails LastSuccessfulBuild
         {
-            get { return lastSuccessfulBuild; }
-            set { lastSuccessfulBuild = value; }
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return null;
+                return details.LastSuccessfulBuild;
+            }
         }
 
         public BuildDetails LastFailedBuild
         {
-            get { return lastFailedBuild; }
-            set { lastFailedBuild = value; }
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return null;
+                return details.LastFailedBuild;
+            }
         }
 
         public override int GetHashCode()

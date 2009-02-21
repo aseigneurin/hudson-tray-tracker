@@ -7,6 +7,7 @@ using System.Reflection;
 using Hudson.TrayTracker.Entities;
 using System.ComponentModel;
 using Hudson.TrayTracker.Utils.Logging;
+using Iesi.Collections.Generic;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -15,7 +16,8 @@ namespace Hudson.TrayTracker.BusinessComponents
         public enum UpdateSource
         {
             User,
-            Timer
+            Timer,
+            Program
         }
 
         public delegate void ProjectsUpdatedHandler();
@@ -79,14 +81,15 @@ namespace Hudson.TrayTracker.BusinessComponents
                 updating = true;
             }
 
+            ISet<Project> projects = configurationService.GetProjects();
+            IDictionary<Project, AllBuildDetails> newBuildDetails = new Dictionary<Project, AllBuildDetails>();
+
             try
             {
-                foreach (Server server in configurationService.Servers)
+                foreach (Project project in projects)
                 {
-                    foreach (Project project in server.Projects)
-                    {
-                        hudsonService.UpdateProject(project);
-                    }
+                    AllBuildDetails newBuildDetail = hudsonService.UpdateProject(project);
+                    newBuildDetails[project] = newBuildDetail;
                 }
             }
             catch (Exception ex)
@@ -96,6 +99,12 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
             finally
             {
+                foreach (Project project in projects)
+                {
+                    AllBuildDetails newStatus = newBuildDetails[project];
+                    project.AllBuildDetails = newStatus;
+                }
+
                 lock (this)
                 {
                     updating = false;

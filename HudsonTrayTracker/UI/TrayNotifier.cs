@@ -115,7 +115,7 @@ namespace Hudson.TrayTracker.UI
 
         public void UpdateNotifier()
         {
-            BuildStatus? worstBuildStatus = BuildStatus.Successful;
+            BuildStatus? worstBuildStatus = null;
             bool buildInProgress = false;
             List<Project> errorProjects = new List<Project>();
 

@@ -52,7 +52,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             return projects;
         }
 
-        public void UpdateProject(Project project)
+        public AllBuildDetails UpdateProject(Project project)
         {
             String url = project.Url + "/api/xml";
 
@@ -71,11 +71,13 @@ namespace Hudson.TrayTracker.BusinessComponents
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/mavenModuleSet/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/mavenModuleSet/lastFailedBuild/url");
 
-            project.Status = GetStatus(status);
-            project.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
-            project.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
+            AllBuildDetails res = new AllBuildDetails();
+            res.Status = GetStatus(status);
+            res.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
+            res.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
 
             logger.Info("Done updating project");
+            return res;
         }
 
         private BuildStatus GetStatus(string status)

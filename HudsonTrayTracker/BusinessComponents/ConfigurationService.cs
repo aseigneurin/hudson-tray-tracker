@@ -144,5 +144,18 @@ namespace Hudson.TrayTracker.BusinessComponents
             server.Projects.Remove(project);
             SaveConfiguration();
         }
+
+        public ISet<Project> GetProjects()
+        {
+            ISet<Project> res = new HashedSet<Project>();
+            foreach (Server server in Servers)
+            {
+                foreach (Project project in server.Projects)
+                {
+                    res.Add(project);
+                }
+            }
+            return res;
+        }
     }
 }

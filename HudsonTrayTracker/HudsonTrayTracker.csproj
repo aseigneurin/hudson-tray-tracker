@@ -124,6 +124,7 @@
     <Compile Include="BusinessComponents\UpdateService.cs" />
     <Compile Include="Entities\BuildDetails.cs" />
     <Compile Include="Entities\BuildStatus.cs" />
+    <Compile Include="Entities\AllBuildDetails.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Server.cs" />
     <Compile Include="UI\AboutForm.cs">
