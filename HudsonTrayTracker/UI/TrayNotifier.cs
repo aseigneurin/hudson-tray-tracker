@@ -115,6 +115,20 @@ namespace Hudson.TrayTracker.UI
 
         public void UpdateNotifier()
         {
+            try
+            {
+                DoUpdateNotifier();
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+                MessageBox.Show(ex.ToString(), "Program exception handler");
+                throw;
+            }
+        }
+
+        private void DoUpdateNotifier()
+        {
             BuildStatus? worstBuildStatus = null;
             bool buildInProgress = false;
             List<Project> errorProjects = new List<Project>();
