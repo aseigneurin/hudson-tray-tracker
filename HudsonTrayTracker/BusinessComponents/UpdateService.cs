@@ -94,24 +94,24 @@ namespace Hudson.TrayTracker.BusinessComponents
                 updating = true;
             }
 
-            ISet<Project> projects = configurationService.GetProjects();
-            IDictionary<Project, AllBuildDetails> newBuildDetails = new Dictionary<Project, AllBuildDetails>();
-
             try
             {
+                ISet<Project> projects = configurationService.GetProjects();
+                IDictionary<Project, AllBuildDetails> newBuildDetails = new Dictionary<Project, AllBuildDetails>();
+
                 foreach (Project project in projects)
                 {
-                    AllBuildDetails newBuildDetail = hudsonService.UpdateProject(project);
-                    newBuildDetails[project] = newBuildDetail;
+                    try
+                    {
+                        AllBuildDetails newBuildDetail = hudsonService.UpdateProject(project);
+                        newBuildDetails[project] = newBuildDetail;
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggingHelper.LogError(logger, ex);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                LoggingHelper.LogError(logger, ex);
-                return;
-            }
-            finally
-            {
+
                 foreach (Project project in projects)
                 {
                     AllBuildDetails newStatus;
@@ -119,14 +119,16 @@ namespace Hudson.TrayTracker.BusinessComponents
                     project.AllBuildDetails = newStatus;
                 }
 
+                if (ProjectsUpdated != null)
+                    ProjectsUpdated();
+            }
+            finally
+            {
                 lock (this)
                 {
                     updating = false;
                 }
             }
-
-            if (ProjectsUpdated != null)
-                ProjectsUpdated();
         }
     }
 }
