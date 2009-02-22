@@ -18,6 +18,17 @@ namespace Hudson.TrayTracker.UI
     {
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        static TrayNotifier instance;
+        public static TrayNotifier Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new TrayNotifier();
+                return instance;
+            }
+        }
+
         ConfigurationService configurationService;
         HudsonService hudsonService;
         UpdateService updateService;

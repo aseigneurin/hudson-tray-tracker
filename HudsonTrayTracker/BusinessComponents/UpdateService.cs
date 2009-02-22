@@ -70,7 +70,20 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void DoUpdateProjects(UpdateSource source)
         {
             logger.Info("Running update from " + source);
+            try
+            {
+                DoUpdateProjectsInternal(source);
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+                throw;
+            }
+            logger.Info("Done");
+        }
 
+        private void DoUpdateProjectsInternal(UpdateSource source)
+        {
             lock (this)
             {
                 if (updating)
@@ -101,7 +114,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             {
                 foreach (Project project in projects)
                 {
-                    AllBuildDetails newStatus = newBuildDetails[project];
+                    AllBuildDetails newStatus;
+                    newBuildDetails.TryGetValue(project, out newStatus);
                     project.AllBuildDetails = newStatus;
                 }
 
@@ -110,8 +124,6 @@ namespace Hudson.TrayTracker.BusinessComponents
                     updating = false;
                 }
             }
-
-            logger.Info("Done");
 
             if (ProjectsUpdated != null)
                 ProjectsUpdated();

@@ -58,7 +58,7 @@ namespace Hudson.TrayTracker
                 settingsForm.ConfigurationService = configurationService;
                 settingsForm.HudsonService = hudsonService;
 
-                TrayNotifier notifier = new TrayNotifier();
+                TrayNotifier notifier = TrayNotifier.Instance;
                 notifier.ConfigurationService = configurationService;
                 notifier.HudsonService = hudsonService;
                 notifier.UpdateService = updateService;
@@ -86,6 +86,15 @@ namespace Hudson.TrayTracker
 
         static void Application_Exit(object sender, EventArgs e)
         {
+            try
+            {
+                TrayNotifier.Instance.Dispose();
+            }
+            catch (Exception ex)
+            {
+                logger.Error("Failed dispoing tray notifier", ex);
+            }
+
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
                 + " v" + Assembly.GetExecutingAssembly().GetName().Version + " Exit");
         }
