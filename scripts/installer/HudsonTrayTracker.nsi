@@ -40,6 +40,7 @@ Section
   File "${ROOT}\HudsonTrayTracker.exe.config"
   File "${ROOT}\Iesi.Collections.dll"
   File "${ROOT}\log4net.dll"
+  File "${ROOT}\LoggingConfig.xml"
 
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
   CreateShortCut "$SMSTARTUP\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
@@ -71,6 +72,7 @@ Section "Uninstall"
   Delete "${ROOT}\HudsonTrayTracker.exe.config"
   Delete "${ROOT}\Iesi.Collections.dll"
   Delete "${ROOT}\log4net.dll"
+  Delete "${ROOT}\LoggingConfig.xml"
   
   Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
   Delete "$SMSTARTUP\${PRODUCT_NAME}.lnk"
