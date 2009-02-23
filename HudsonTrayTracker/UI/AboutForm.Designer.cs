@@ -87,7 +87,7 @@ namespace Hudson.TrayTracker.UI
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(278, 13);
             this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "Written by Alexis Seigneurin for IDM";
+            this.labelControl2.Text = "Author: Alexis Seigneurin (for IDM)";
             // 
             // linkLabel1
             // 
