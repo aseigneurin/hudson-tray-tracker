@@ -124,8 +124,8 @@
   <data name="settingsButtonItem.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
-        CwcBtnMLwAAAAeJJREFUOE+lk9tL02Ech5Xuu+iiv6GbSIJdWPfCLhSExK5qKAshCQ/ZATwU1iqcGGqw
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAeJJREFUOE+lk9tL02Ech5Xuu+iiv6GbSIJdWPfCLhSExK5qKAshCQ/ZATwU1iqcGGqw
         hcdFa7OJU5vbUFGn5ZimZWUHhWS632xBXkg5trmnva+YyaYpvfC5et/P8z2+6UDafx0BOIw81UXq7uIL
         CA3d1GYc2Fxv+36ku70mSxi/NpTw5toWJC1xQV1XSOqBJcRt0zeut6xyuTmIRq+QpwtwsV6hxuhj0F6F
         zeXj7d1yaX6oUm0BTOPQOhLHMBijcSBKnT3CnedhKs1hbpnXabPP4baV82NJz+eJYnS6KmmuzTyVIwF6
@@ -139,8 +139,8 @@
   <data name="refreshButtonItem.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
-        CwcBtnMLwAAAAg9JREFUOE9j/P//PwNFAGQAJZig5uk7//wH4f5N3/43L3/7v2zW4/9Z/beAdkIsRjGg
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAg9JREFUOE9j/P//PwNFAGQAJZig5uk7//wH4f5N3/43L3/7v2zW4/9Z/beAdkIsRjGg
         buWf4PIFH1f7Nl2VgikAae7Y8P9/2aJf/xP7nv33KDs3FdnFcAMqFv/WaVn991Rq/5P/Vqlb7sAU9az/
         8r9g3rf/MX0f/7tV3P5vm3v8iHnqIU0MF1Qu/TahYvG3/875p//rBC14B1NQu/DF/7DWe/+dS29+ssi+
         8N84ad9/vejNPRgG1Cz9fCFn+vv/psn7/+tGrp8LU5A76c5/h4LTOS6ll6fZ5p37rxez7b9u2NLzGAY0
@@ -155,8 +155,8 @@
   <data name="exitButtonItem.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
-        CwcBtnMLwAAAAjVJREFUOE9j/P//P4O3l5fBP0aGHob/DG1MjAwHtm7d9o+BWODo6MLs7OKaDqT/Ozk7
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAjVJREFUOE9j/P//P4O3l5fBP0aGHob/DG1MjAwHtm7d9o+BWODo6MLs7OKaDqT/Ozk7
         f/P28g709vFmBhmMjq1sHViCAgOU3N3d8mByDECNLECcZGfvtM3c0va/vYPLHw8Pzypfb1RDVDQNOazt
         nZyArv3u4OA0B24AiAE0QBKILRwcXbZZ2dj/t7N3+O/v673R19eHGyRvamHL6e7pucLW3um3qal5t5ae
         CQ+KATAO0BA2IC6wd3D+bWfn9N/H13eZpZW9npWV3WRbG5v/eoYmk9W0DPiRvYbhT2tbW0Z7eydNoJfO
@@ -185,6 +185,9 @@
         YvnqVXhIAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="contextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>225, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAQEAAAAEAIAAoQgAAZgAAAEBAAAABAAgAKBYAAI5CAAAgIAAAAQAgAKgQAAC2WAAAICAAAAEA

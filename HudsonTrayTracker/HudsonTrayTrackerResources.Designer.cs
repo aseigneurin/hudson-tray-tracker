@@ -236,6 +236,24 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string RunBuildFailed_Caption {
+            get {
+                return ResourceManager.GetString("RunBuildFailed_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed running build: {0}..
+        /// </summary>
+        internal static string RunBuildFailed_Text {
+            get {
+                return ResourceManager.GetString("RunBuildFailed_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The following error occurred:
         ///
         ///Type: {0}

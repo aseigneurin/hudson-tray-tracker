@@ -15,6 +15,7 @@ using Dotnet.Commons.Logging;
 using System.Reflection;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System.Diagnostics;
+using Hudson.TrayTracker.Utils.Logging;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -194,13 +195,15 @@ namespace Hudson.TrayTracker.UI
 
         private void projectsGridView_DoubleClick(object sender, EventArgs e)
         {
-            Point pt = projectsGridControl.PointToClient(Cursor.Position);
-            GridHitInfo ghi = projectsGridView.CalcHitInfo(pt);
-            if (ghi.InRow == false)
+            OpenSelectedProjectPage();
+        }
+
+        private void OpenSelectedProjectPage()
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
                 return;
-            int dsRowIndex = projectsGridView.GetDataSourceRowIndex(ghi.RowHandle);
-            ProjectWrapper project = projectsDataSource[dsRowIndex];
-            Process.Start(project.Project.Url);
+            Process.Start(project.Url);
         }
 
         private class ProjectWrapper
@@ -245,6 +248,39 @@ namespace Hudson.TrayTracker.UI
                 return string.Format(HudsonTrayTrackerResources.BuildDetails_Format,
                     details.Number, details.Time.ToLocalTime());
             }
+        }
+
+        private void openProjectPageMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenSelectedProjectPage();
+        }
+
+        private void runBuildMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            try
+            {
+                hudsonService.SafeRunBuild(project);
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+                MessageBox.Show(string.Format(HudsonTrayTrackerResources.RunBuildFailed_Text, ex.Message),
+                    HudsonTrayTrackerResources.RunBuildFailed_Caption);
+            }
+        }
+
+        private Project GetSelectedProject()
+        {
+            int[] rowHandles = projectsGridView.GetSelectedRows();
+            if (rowHandles.Length != 1)
+                return null;
+            int rowHandle = rowHandles[0];
+            int dsRowIndex = projectsGridView.GetDataSourceRowIndex(rowHandle);
+            ProjectWrapper projectWrapper = projectsDataSource[dsRowIndex];
+            return projectWrapper.Project;
         }
     }
 }

@@ -7,6 +7,7 @@ using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Utils;
 using Dotnet.Commons.Logging;
 using System.Reflection;
+using Hudson.TrayTracker.Utils.Logging;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -133,6 +134,33 @@ namespace Hudson.TrayTracker.BusinessComponents
             logger.Info("Done getting build details");
 
             return res;
+        }
+
+        public void SafeRunBuild(Project project)
+        {
+            try
+            {
+                RunBuild(project);
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+            }
+        }
+
+        public void RunBuild(Project project)
+        {
+            String url = project.Url + "/build";
+
+            logger.Info("Running build at " + url);
+
+            WebClient webClient = new WebClient();
+            String str = webClient.DownloadString(url);
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("Result: " + str);
+
+            logger.Info("Done running build");
         }
     }
 }

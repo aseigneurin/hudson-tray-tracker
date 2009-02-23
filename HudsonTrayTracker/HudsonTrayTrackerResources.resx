@@ -178,6 +178,12 @@ Please refer to the log files for more details.</value>
   <data name="LoadingProjects_FormatString" xml:space="preserve">
     <value>Loading projects from {0}</value>
   </data>
+  <data name="RunBuildFailed_Caption" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="RunBuildFailed_Text" xml:space="preserve">
+    <value>Failed running build: {0}.</value>
+  </data>
   <data name="SeriousErrorBoxMessage" xml:space="preserve">
     <value>The following error occurred:
 

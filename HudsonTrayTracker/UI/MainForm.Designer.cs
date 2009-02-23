@@ -43,6 +43,9 @@ namespace Hudson.TrayTracker.UI
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.projectsGridControl = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openProjectPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.serverGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,6 +57,7 @@ namespace Hudson.TrayTracker.UI
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit3)).BeginInit();
             this.SuspendLayout();
@@ -154,16 +158,40 @@ namespace Hudson.TrayTracker.UI
             // 
             // projectsGridControl
             // 
+            this.projectsGridControl.ContextMenuStrip = this.contextMenuStrip;
             this.projectsGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projectsGridControl.Location = new System.Drawing.Point(0, 26);
             this.projectsGridControl.MainView = this.projectsGridView;
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(879, 363);
+            this.projectsGridControl.Size = new System.Drawing.Size(879, 361);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openProjectPageMenuItem,
+            this.runBuildMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(178, 70);
+            // 
+            // openProjectPageMenuItem
+            // 
+            this.openProjectPageMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.openProjectPageMenuItem.Name = "openProjectPageMenuItem";
+            this.openProjectPageMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.openProjectPageMenuItem.Text = "Open project page";
+            this.openProjectPageMenuItem.Click += new System.EventHandler(this.openProjectPageMenuItem_Click);
+            // 
+            // runBuildMenuItem
+            // 
+            this.runBuildMenuItem.Name = "runBuildMenuItem";
+            this.runBuildMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.runBuildMenuItem.Text = "Run build";
+            this.runBuildMenuItem.Click += new System.EventHandler(this.runBuildMenuItem_Click);
             // 
             // projectsGridView
             // 
@@ -277,6 +305,7 @@ namespace Hudson.TrayTracker.UI
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemPictureEdit3)).EndInit();
             this.ResumeLayout(false);
@@ -307,5 +336,8 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraGrid.Columns.GridColumn statusGridColumn;
         private DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit repositoryItemPictureEdit3;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openProjectPageMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runBuildMenuItem;
     }
 }
