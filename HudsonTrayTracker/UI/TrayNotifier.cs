@@ -11,6 +11,7 @@ using System.Reflection;
 using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Properties;
 using Hudson.TrayTracker.Utils.Logging;
+using Iesi.Collections.Generic;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -33,6 +34,7 @@ namespace Hudson.TrayTracker.UI
         HudsonService hudsonService;
         UpdateService updateService;
         BuildStatus lastBuildStatus;
+        IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
 
         public ConfigurationService ConfigurationService
         {
@@ -92,8 +94,67 @@ namespace Hudson.TrayTracker.UI
         }
 #endif
 
-        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        // FIXME: the framework doesn't fire correctly MouseClick and MouseDoubleClick,
+        // so this is deactivated
+        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left)
+                return;
+
+            try
+            {
+                // order the projects by build status
+                IDictionary<BuildStatus, SortedSet<Project>> projectsByStatus
+                    = new Dictionary<BuildStatus, SortedSet<Project>>();
+                foreach (KeyValuePair<Project, AllBuildDetails> pair in lastProjectsBuildDetails)
+                {
+                    BuildStatus status = BuildStatus.Indeterminate;
+                    if (pair.Value != null)
+                        status = BuildStatusUtils.DegradeStatus(pair.Value.Status);
+                    SortedSet<Project> projects = new SortedSet<Project>();
+                    if (projectsByStatus.TryGetValue(status, out projects) == false)
+                    {
+                        projects = new SortedSet<Project>();
+                        projectsByStatus.Add(status, projects);
+                    }
+                    projects.Add(pair.Key);
+                }
+
+                StringBuilder text = new StringBuilder();
+                string prefix = null;
+                foreach (KeyValuePair<BuildStatus, SortedSet<Project>> pair in projectsByStatus)
+                {
+                    // don't display successful projects unless this is the only status
+                    if (pair.Key == BuildStatus.Successful || projectsByStatus.Count == 1)
+                        continue;
+
+                    if (prefix != null)
+                        text.Append(prefix);
+                    string statusText = HudsonTrayTrackerResources.ResourceManager
+                        .GetString("BuildStatus_" + pair.Key.ToString());
+                    text.Append(statusText);
+                    foreach (Project project in pair.Value)
+                        text.Append("\n  - ").Append(project.Name);
+                    prefix = "\n";
+                }
+
+                string textToDisplay = text.ToString();
+                if (string.IsNullOrEmpty(textToDisplay))
+                    textToDisplay = HudsonTrayTrackerResources.DisplayBuildStatus_NoProjects;
+                notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.DisplayBuildStatus_Caption,
+                    textToDisplay, ToolTipIcon.Info);
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+                return;
+
             MainForm.Instance.Show();
         }
 
@@ -142,7 +203,8 @@ namespace Hudson.TrayTracker.UI
         {
             BuildStatus? worstBuildStatus = null;
             bool buildInProgress = false;
-            List<Project> errorProjects = new List<Project>();
+            ISet<Project> errorProjects = new HashedSet<Project>();
+            ISet<Project> regressingProjects = new HashedSet<Project>();
 
             foreach (Server server in configurationService.Servers)
             {
@@ -154,6 +216,9 @@ namespace Hudson.TrayTracker.UI
                         errorProjects.Add(project);
                     if (BuildStatusUtils.IsBuildInProgress(project.Status))
                         buildInProgress = true;
+                    if (IsRegressing(project))
+                        regressingProjects.Add(project);
+                    lastProjectsBuildDetails[project] = project.AllBuildDetails;
                 }
             }
 
@@ -175,12 +240,25 @@ namespace Hudson.TrayTracker.UI
                 buildStatus += 1;
 
             UpdateIcon(buildStatus);
-            UpdateBalloonTip(errorProjects);
+            UpdateBalloonTip(errorProjects, regressingProjects);
 
             lastBuildStatus = buildStatus;
         }
 
-        private void UpdateBalloonTip(List<Project> errorProjects)
+        private bool IsRegressing(Project project)
+        {
+            AllBuildDetails lastBuildDetails;
+            if (lastProjectsBuildDetails.TryGetValue(project, out lastBuildDetails) == false
+                || lastBuildDetails == null)
+                return false;
+            AllBuildDetails newBuildDetails = project.AllBuildDetails;
+            if (newBuildDetails == null)
+                return true;
+            bool res = BuildStatusUtils.IsWorse(lastBuildDetails.Status, newBuildDetails.Status);
+            return res;
+        }
+
+        private void UpdateBalloonTip(ICollection<Project> errorProjects, ICollection<Project> regressingProjects)
         {
             if (lastBuildStatus < BuildStatus.Failed && errorProjects.Count > 0)
             {
@@ -196,6 +274,21 @@ namespace Hudson.TrayTracker.UI
 
                 notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildFailed_Caption,
                     errorProjectsText.ToString(), ToolTipIcon.Error);
+            }
+            else if (regressingProjects.Count > 0)
+            {
+                StringBuilder regressingProjectsText = new StringBuilder();
+                string prefix = null;
+                foreach (Project project in regressingProjects)
+                {
+                    if (prefix != null)
+                        regressingProjectsText.Append(prefix);
+                    regressingProjectsText.Append(project.Name);
+                    prefix = "\n";
+                }
+
+                notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildRegressions_Caption,
+                    regressingProjectsText.ToString(), ToolTipIcon.Warning);
             }
         }
 
@@ -226,6 +319,11 @@ namespace Hudson.TrayTracker.UI
             IntPtr hicon = bitmap.GetHicon();
             Icon icon = Icon.FromHandle(hicon);
             return icon;
+        }
+
+        private void notifyIcon_MouseUp(object sender, MouseEventArgs e)
+        {
+            Console.WriteLine(e.Clicks);
         }
     }
 }

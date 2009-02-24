@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Hudson.TrayTracker.Entities
 {
-    public class Project
+    public class Project : IComparable<Project>
     {
         Server server;
         string name;
@@ -83,6 +83,11 @@ namespace Hudson.TrayTracker.Entities
                 return false;
             return other.server.Equals(server)
                 && other.name == name;
+        }
+
+        public int CompareTo(Project other)
+        {
+            return name.CompareTo(other.name);
         }
     }
 }

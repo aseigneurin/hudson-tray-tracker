@@ -62,14 +62,11 @@ namespace Hudson.TrayTracker.UI
 
         private void addServerButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            NamingForm namingForm = new NamingForm();
-            namingForm.CaptionText = HudsonTrayTrackerResources.AddServer_Caption;
-            namingForm.QuestionText = HudsonTrayTrackerResources.AddServer_Question;
+            EditServerForm namingForm = new EditServerForm();
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
-            string url = namingForm.EditedName;
-            Server server = configurationService.AddServer(url);
+            Server server = configurationService.AddServer(namingForm.ServerAddress);
             if (server == null)
                 return;
 

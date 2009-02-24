@@ -150,11 +150,11 @@
     <Compile Include="UI\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\NamingForm.cs">
+    <Compile Include="UI\EditServerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\NamingForm.designer.cs">
-      <DependentUpon>NamingForm.cs</DependentUpon>
+    <Compile Include="UI\EditServerForm.designer.cs">
+      <DependentUpon>EditServerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,8 +171,8 @@
       <SubType>Designer</SubType>
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\NamingForm.resx">
-      <DependentUpon>NamingForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\EditServerForm.resx">
+      <DependentUpon>EditServerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />

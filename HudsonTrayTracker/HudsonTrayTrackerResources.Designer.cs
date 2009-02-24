@@ -61,24 +61,6 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add server.
-        /// </summary>
-        internal static string AddServer_Caption {
-            get {
-                return ResourceManager.GetString("AddServer_Caption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please type in the URL of Hudson&apos;s server:.
-        /// </summary>
-        internal static string AddServer_Question {
-            get {
-                return ResourceManager.GetString("AddServer_Question", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} ({1}).
         /// </summary>
         internal static string BuildDetails_Format {
@@ -93,6 +75,15 @@ namespace Hudson.TrayTracker {
         internal static string BuildFailed_Caption {
             get {
                 return ResourceManager.GetString("BuildFailed_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Projects regressed.
+        /// </summary>
+        internal static string BuildRegressions_Caption {
+            get {
+                return ResourceManager.GetString("BuildRegressions_Caption", resourceCulture);
             }
         }
         
@@ -165,6 +156,24 @@ namespace Hudson.TrayTracker {
         internal static string BuildStatus_Unstable_BuildInProgress {
             get {
                 return ResourceManager.GetString("BuildStatus_Unstable_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build status.
+        /// </summary>
+        internal static string DisplayBuildStatus_Caption {
+            get {
+                return ResourceManager.GetString("DisplayBuildStatus_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No projects configured.
+        /// </summary>
+        internal static string DisplayBuildStatus_NoProjects {
+            get {
+                return ResourceManager.GetString("DisplayBuildStatus_NoProjects", resourceCulture);
             }
         }
         

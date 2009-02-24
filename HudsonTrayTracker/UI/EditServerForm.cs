@@ -10,27 +10,15 @@ using DevExpress.XtraEditors;
 
 namespace Hudson.TrayTracker.UI
 {
-    public partial class NamingForm : DevExpress.XtraEditors.XtraForm
+    public partial class EditServerForm : DevExpress.XtraEditors.XtraForm
     {
-        public NamingForm()
+        public EditServerForm()
         {
             InitializeComponent();
             nameTextBox.TextChanged += delegate { ValidateForm(); };
         }
 
-        public string CaptionText
-        {
-            get { return Text; }
-            set { Text = value; }
-        }
-
-        public string QuestionText
-        {
-            get { return questionLabel.Text; }
-            set { questionLabel.Text = value; }
-        }
-
-        public string EditedName
+        public string ServerAddress
         {
             get { return nameTextBox.Text; }
             set { nameTextBox.Text = value; }
