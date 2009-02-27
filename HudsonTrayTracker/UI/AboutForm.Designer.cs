@@ -112,7 +112,7 @@ namespace Hudson.TrayTracker.UI
             this.linkLabel2.Size = new System.Drawing.Size(278, 13);
             this.linkLabel2.TabIndex = 2;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "http://idmfr.blogspot.com/";
+            this.linkLabel2.Text = "http://blog.idm.fr/";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 
             // versionLabelControl
