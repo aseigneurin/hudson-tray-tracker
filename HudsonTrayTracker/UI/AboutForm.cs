@@ -36,5 +36,13 @@ namespace Hudson.TrayTracker.UI
             string url = ((LinkLabel)sender).Text;
             Process.Start(url);
         }
+
+        public static void ShowDialogOrFocus()
+        {
+            if (Instance.Visible)
+                Instance.Focus();
+            else
+                Instance.ShowDialog();
+        }
     }
 }

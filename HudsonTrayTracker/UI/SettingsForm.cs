@@ -189,5 +189,13 @@ namespace Hudson.TrayTracker.UI
             ((CheckEdit)sender).DoValidate();
             projectsGridView.CloseEditor();
         }
+
+        public static void ShowDialogOrFocus()
+        {
+            if (Instance.Visible)
+                Instance.Focus();
+            else
+                Instance.ShowDialog();
+        }
     }
 }

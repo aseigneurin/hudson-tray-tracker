@@ -155,12 +155,12 @@ namespace Hudson.TrayTracker.UI
             if (e.Button != MouseButtons.Left)
                 return;
 
-            MainForm.Instance.Show();
+            MainForm.ShowOrFocus();
         }
 
         private void openMenuItem_Click(object sender, EventArgs e)
         {
-            MainForm.Instance.Show();
+            MainForm.ShowOrFocus();
         }
 
         private void refreshMenuItem_Click(object sender, EventArgs e)
@@ -171,7 +171,7 @@ namespace Hudson.TrayTracker.UI
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
             MainForm.Instance.Show();
-            SettingsForm.Instance.ShowDialog();
+            SettingsForm.ShowDialogOrFocus();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,7 +182,7 @@ namespace Hudson.TrayTracker.UI
         private void aboutMenuItem_Click(object sender, EventArgs e)
         {
             MainForm.Instance.Show();
-            AboutForm.Instance.ShowDialog();
+            AboutForm.ShowDialogOrFocus();
         }
 
         public void UpdateNotifier()
@@ -254,7 +254,7 @@ namespace Hudson.TrayTracker.UI
             AllBuildDetails newBuildDetails = project.AllBuildDetails;
             if (newBuildDetails == null)
                 return true;
-            bool res = BuildStatusUtils.IsWorse(lastBuildDetails.Status, newBuildDetails.Status);
+            bool res = BuildStatusUtils.IsWorse(newBuildDetails.Status, lastBuildDetails.Status);
             return res;
         }
 

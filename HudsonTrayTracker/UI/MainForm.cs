@@ -282,5 +282,13 @@ namespace Hudson.TrayTracker.UI
             ProjectWrapper projectWrapper = projectsDataSource[dsRowIndex];
             return projectWrapper.Project;
         }
+
+        public static void ShowOrFocus()
+        {
+            if (Instance.Visible)
+                Instance.Focus();
+            else
+                Instance.Show();
+        }
     }
 }
