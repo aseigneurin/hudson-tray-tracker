@@ -253,7 +253,7 @@ namespace Hudson.TrayTracker.UI
                 return false;
             AllBuildDetails newBuildDetails = project.AllBuildDetails;
             if (newBuildDetails == null)
-                return true;
+                return false;
             bool res = BuildStatusUtils.IsWorse(newBuildDetails.Status, lastBuildDetails.Status);
             return res;
         }
@@ -301,24 +301,22 @@ namespace Hudson.TrayTracker.UI
 
         private Icon GetIcon(BuildStatus buildStatus)
         {
-            Bitmap bitmap;
             try
             {
                 string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.gif",
                     buildStatus.ToString());
-                bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
+                Bitmap bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
                     resourceName, GetType().Assembly);
+                IntPtr hicon = bitmap.GetHicon();
+                Icon icon = Icon.FromHandle(hicon);
+                return icon;
             }
             catch (Exception ex)
             {
-                // FIXME: warn
+                // FIXME: warn?
                 LoggingHelper.LogError(logger, ex);
                 return null;
             }
-
-            IntPtr hicon = bitmap.GetHicon();
-            Icon icon = Icon.FromHandle(hicon);
-            return icon;
         }
 
         private void notifyIcon_MouseUp(object sender, MouseEventArgs e)

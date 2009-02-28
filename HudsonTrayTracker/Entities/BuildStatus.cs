@@ -6,6 +6,7 @@ namespace Hudson.TrayTracker.Entities
 {
     public enum BuildStatus
     {
+        Unknown,
         Successful,
         Successful_BuildInProgress,
         Indeterminate,
