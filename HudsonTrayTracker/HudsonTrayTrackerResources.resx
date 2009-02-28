@@ -184,6 +184,13 @@ Please refer to the log files for more details.</value>
   <data name="LoadingProjects_FormatString" xml:space="preserve">
     <value>Loading projects from {0}</value>
   </data>
+  <data name="NewVersionAvailable_Caption" xml:space="preserve">
+    <value>Hudson Tray Tracker updates</value>
+  </data>
+  <data name="NewVersionAvailable_Text" xml:space="preserve">
+    <value>A new version is available: v{0}.
+Do you want to download it now?</value>
+  </data>
   <data name="RunBuildFailed_Caption" xml:space="preserve">
     <value>Error</value>
   </data>

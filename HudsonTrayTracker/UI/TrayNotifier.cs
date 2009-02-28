@@ -32,7 +32,7 @@ namespace Hudson.TrayTracker.UI
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
-        UpdateService updateService;
+        ProjectsUpdateService updateService;
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
 
@@ -48,7 +48,7 @@ namespace Hudson.TrayTracker.UI
             set { hudsonService = value; }
         }
 
-        public UpdateService UpdateService
+        public ProjectsUpdateService UpdateService
         {
             get { return updateService; }
             set { updateService = value; }

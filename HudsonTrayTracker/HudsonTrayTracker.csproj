@@ -119,9 +119,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessComponents\ApplicationUpdateService.cs" />
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
-    <Compile Include="BusinessComponents\UpdateService.cs" />
+    <Compile Include="BusinessComponents\ProjectsUpdateService.cs" />
     <Compile Include="Entities\BuildDetails.cs" />
     <Compile Include="Entities\BuildStatus.cs" />
     <Compile Include="Entities\AllBuildDetails.cs" />

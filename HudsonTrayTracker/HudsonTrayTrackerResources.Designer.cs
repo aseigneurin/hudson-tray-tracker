@@ -254,6 +254,25 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hudson Tray Tracker updates.
+        /// </summary>
+        internal static string NewVersionAvailable_Caption {
+            get {
+                return ResourceManager.GetString("NewVersionAvailable_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new version is available: v{0}.
+        ///Do you want to download it now?.
+        /// </summary>
+        internal static string NewVersionAvailable_Text {
+            get {
+                return ResourceManager.GetString("NewVersionAvailable_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string RunBuildFailed_Caption {

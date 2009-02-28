@@ -36,7 +36,7 @@ namespace Hudson.TrayTracker.UI
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
-        UpdateService updateService;
+        ProjectsUpdateService updateService;
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
         int lastHoveredDSRowIndex = -1;
@@ -53,7 +53,7 @@ namespace Hudson.TrayTracker.UI
             set { hudsonService = value; }
         }
 
-        public UpdateService UpdateService
+        public ProjectsUpdateService UpdateService
         {
             get { return updateService; }
             set { updateService = value; }

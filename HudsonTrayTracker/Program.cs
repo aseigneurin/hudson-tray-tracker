@@ -45,14 +45,15 @@ namespace Hudson.TrayTracker
                 ///////
                 ConfigurationService configurationService = new ConfigurationService();
                 HudsonService hudsonService = new HudsonService();
-                UpdateService updateService = new UpdateService();
-                updateService.ConfigurationService = configurationService;
-                updateService.HudsonService = hudsonService;
+                ProjectsUpdateService projectsUpdateService = new ProjectsUpdateService();
+                ApplicationUpdateService applicationUpdateService = new ApplicationUpdateService();
+                projectsUpdateService.ConfigurationService = configurationService;
+                projectsUpdateService.HudsonService = hudsonService;
 
                 MainForm mainForm = MainForm.Instance;
                 mainForm.ConfigurationService = configurationService;
                 mainForm.HudsonService = hudsonService;
-                mainForm.UpdateService = updateService;
+                mainForm.UpdateService = projectsUpdateService;
 
                 SettingsForm settingsForm = SettingsForm.Instance;
                 settingsForm.ConfigurationService = configurationService;
@@ -61,9 +62,14 @@ namespace Hudson.TrayTracker
                 TrayNotifier notifier = TrayNotifier.Instance;
                 notifier.ConfigurationService = configurationService;
                 notifier.HudsonService = hudsonService;
-                notifier.UpdateService = updateService;
+                notifier.UpdateService = projectsUpdateService;
                 notifier.Initialize();
                 notifier.UpdateNotifier();
+
+                applicationUpdateService.NewVersionAvailable += applicationUpdateService_NewVersionAvailable;
+
+                projectsUpdateService.Initialize();
+                applicationUpdateService.Initialize();
                 ///////
 
                 ApplicationContext appContext = new ApplicationContext();
@@ -97,6 +103,20 @@ namespace Hudson.TrayTracker
 
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
                 + " v" + Assembly.GetExecutingAssembly().GetName().Version + " Exit");
+        }
+
+        static void applicationUpdateService_NewVersionAvailable(string version, string installerUrl)
+        {
+            string message = string.Format(HudsonTrayTrackerResources.NewVersionAvailable_Text, version);
+            DialogResult res = MessageBox.Show(message, HudsonTrayTrackerResources.NewVersionAvailable_Caption,
+                MessageBoxButtons.YesNo);
+            if (res != DialogResult.Yes)
+            {
+                logger.Info("Update refused by user");
+                return;
+            }
+            logger.Info("Update accepted by user");
+            Process.Start(installerUrl);
         }
     }
 }
