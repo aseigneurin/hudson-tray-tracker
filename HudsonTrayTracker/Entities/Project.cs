@@ -42,7 +42,7 @@ namespace Hudson.TrayTracker.Entities
                 // get a copy of the reference to avoid a race condition
                 AllBuildDetails details = this.AllBuildDetails;
                 if (details == null)
-                    return BuildStatus.Indeterminate;
+                    return BuildStatus.Unknown;
                 return details.Status;
             }
         }

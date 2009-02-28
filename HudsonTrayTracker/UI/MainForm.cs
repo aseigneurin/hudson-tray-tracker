@@ -230,7 +230,7 @@ namespace Hudson.TrayTracker.UI
             }
             public string Url
             {
-                get { return project.Url; }
+                get { return Uri.UnescapeDataString(project.Url); }
             }
             public string LastSuccessBuild
             {

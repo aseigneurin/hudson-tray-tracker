@@ -133,7 +133,7 @@
     <value>Build failed. Build in progress.</value>
   </data>
   <data name="BuildStatus_Indeterminate" xml:space="preserve">
-    <value>Indeterminate: no build done</value>
+    <value>Indeterminate: no build done.</value>
   </data>
   <data name="BuildStatus_Indeterminate_BuildInProgress" xml:space="preserve">
     <value>Indeterminate: no build done. Build in progress.</value>
@@ -144,8 +144,11 @@
   <data name="BuildStatus_Successful_BuildInProgress" xml:space="preserve">
     <value>Successful. Build in progress.</value>
   </data>
+  <data name="BuildStatus_Unknown" xml:space="preserve">
+    <value>Unknown status</value>
+  </data>
   <data name="BuildStatus_Unstable" xml:space="preserve">
-    <value>Unstable: some tests failed</value>
+    <value>Unstable: some tests failed.</value>
   </data>
   <data name="BuildStatus_Unstable_BuildInProgress" xml:space="preserve">
     <value>Unstable: some tests failed. Build in progress.</value>

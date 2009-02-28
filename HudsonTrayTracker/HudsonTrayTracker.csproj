@@ -253,6 +253,8 @@
     <Content Include="LoggingConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\StatusIcons\Unknown.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Unknown.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Failed.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Failed_BuildInProgress.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Indeterminate.gif" />

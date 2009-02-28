@@ -99,7 +99,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 return BuildStatus.Failed;
             if (status == "red_anime")
                 return BuildStatus.Failed_BuildInProgress;
-            return BuildStatus.Indeterminate;
+            return BuildStatus.Unknown;
         }
 
         private BuildDetails GetBuildDetails(string buildUrl)

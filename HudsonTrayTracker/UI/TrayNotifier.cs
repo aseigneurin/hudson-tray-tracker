@@ -108,7 +108,7 @@ namespace Hudson.TrayTracker.UI
                     = new Dictionary<BuildStatus, SortedSet<Project>>();
                 foreach (KeyValuePair<Project, AllBuildDetails> pair in lastProjectsBuildDetails)
                 {
-                    BuildStatus status = BuildStatus.Indeterminate;
+                    BuildStatus status = BuildStatus.Unknown;
                     if (pair.Value != null)
                         status = BuildStatusUtils.DegradeStatus(pair.Value.Status);
                     SortedSet<Project> projects = new SortedSet<Project>();
@@ -223,7 +223,7 @@ namespace Hudson.TrayTracker.UI
             }
 
             if (worstBuildStatus == null)
-                worstBuildStatus = BuildStatus.Indeterminate;
+                worstBuildStatus = BuildStatus.Unknown;
 
 #if false // tests
             lastBuildStatus++;

@@ -106,7 +106,7 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indeterminate: no build done.
+        ///   Looks up a localized string similar to Indeterminate: no build done..
         /// </summary>
         internal static string BuildStatus_Indeterminate {
             get {
@@ -142,7 +142,16 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unstable: some tests failed.
+        ///   Looks up a localized string similar to Unknown status.
+        /// </summary>
+        internal static string BuildStatus_Unknown {
+            get {
+                return ResourceManager.GetString("BuildStatus_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unstable: some tests failed..
         /// </summary>
         internal static string BuildStatus_Unstable {
             get {

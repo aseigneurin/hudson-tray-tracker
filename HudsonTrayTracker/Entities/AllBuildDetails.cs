@@ -6,7 +6,7 @@ namespace Hudson.TrayTracker.Entities
 {
     public class AllBuildDetails
     {
-        BuildStatus status = BuildStatus.Indeterminate;
+        BuildStatus status = BuildStatus.Unknown;
         BuildDetails lastSuccessfulBuild;
         BuildDetails lastFailedBuild;
 
