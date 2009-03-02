@@ -11,6 +11,14 @@ InstallDirRegKey HKLM "Software\${PRODUCT_NAME}" "InstallDirectory"
 
 !define MUI_ABORTWARNING
 
+# settings for MUI_PAGE_FINISH
+!define MUI_FINISHPAGE_NOAUTOCLOSE
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_CHECKED
+!define MUI_FINISHPAGE_RUN_TEXT "Run ${PRODUCT_NAME}"
+!define MUI_FINISHPAGE_RUN_FUNCTION "LaunchApplication"
+
+
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_PAGE_INSTFILES
@@ -80,3 +88,7 @@ Section "Uninstall"
   RmDir "$INSTDIR"
  
 SectionEnd
+
+Function LaunchApplication
+  ExecShell "" "$INSTDIR\HudsonTrayTracker.exe"
+FunctionEnd
