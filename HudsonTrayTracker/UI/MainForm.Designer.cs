@@ -35,6 +35,7 @@ namespace Hudson.TrayTracker.UI
             this.settingsButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.refreshButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.exitButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.checkUpdatesButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.aboutButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.lastCheckBarStaticItem = new DevExpress.XtraBars.BarStaticItem();
@@ -46,6 +47,9 @@ namespace Hudson.TrayTracker.UI
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openProjectPageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.acknowledgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stopAcknowledgingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.serverGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,7 +59,6 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.checkUpdatesButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -129,6 +132,15 @@ namespace Hudson.TrayTracker.UI
             this.exitButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.exitButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exitButtonItem_ItemClick);
             // 
+            // checkUpdatesButtonItem
+            // 
+            this.checkUpdatesButtonItem.Caption = "Check for updates";
+            this.checkUpdatesButtonItem.Glyph = ((System.Drawing.Image)(resources.GetObject("checkUpdatesButtonItem.Glyph")));
+            this.checkUpdatesButtonItem.Id = 5;
+            this.checkUpdatesButtonItem.Name = "checkUpdatesButtonItem";
+            this.checkUpdatesButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.checkUpdatesButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.checkUpdatesButtonItem_ItemClick);
+            // 
             // aboutButtonItem
             // 
             this.aboutButtonItem.Caption = "About";
@@ -168,7 +180,7 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(879, 363);
+            this.projectsGridControl.Size = new System.Drawing.Size(879, 361);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -177,16 +189,20 @@ namespace Hudson.TrayTracker.UI
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openProjectPageMenuItem,
-            this.runBuildMenuItem});
+            this.runBuildMenuItem,
+            this.toolStripSeparator1,
+            this.acknowledgeToolStripMenuItem,
+            this.stopAcknowledgingToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(189, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(230, 120);
+            this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // openProjectPageMenuItem
             // 
             this.openProjectPageMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.openProjectPageMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openProjectPageMenuItem.Image")));
             this.openProjectPageMenuItem.Name = "openProjectPageMenuItem";
-            this.openProjectPageMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.openProjectPageMenuItem.Size = new System.Drawing.Size(229, 22);
             this.openProjectPageMenuItem.Text = "Open project page";
             this.openProjectPageMenuItem.Click += new System.EventHandler(this.openProjectPageMenuItem_Click);
             // 
@@ -194,9 +210,28 @@ namespace Hudson.TrayTracker.UI
             // 
             this.runBuildMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("runBuildMenuItem.Image")));
             this.runBuildMenuItem.Name = "runBuildMenuItem";
-            this.runBuildMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.runBuildMenuItem.Size = new System.Drawing.Size(229, 22);
             this.runBuildMenuItem.Text = "Run build";
             this.runBuildMenuItem.Click += new System.EventHandler(this.runBuildMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
+            // 
+            // acknowledgeToolStripMenuItem
+            // 
+            this.acknowledgeToolStripMenuItem.Name = "acknowledgeToolStripMenuItem";
+            this.acknowledgeToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.acknowledgeToolStripMenuItem.Text = "Acknowledge (tray icon only)";
+            this.acknowledgeToolStripMenuItem.Click += new System.EventHandler(this.acknowledgeToolStripMenuItem_Click);
+            // 
+            // stopAcknowledgingToolStripMenuItem
+            // 
+            this.stopAcknowledgingToolStripMenuItem.Name = "stopAcknowledgingToolStripMenuItem";
+            this.stopAcknowledgingToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.stopAcknowledgingToolStripMenuItem.Text = "Stop acknowledging";
+            this.stopAcknowledgingToolStripMenuItem.Click += new System.EventHandler(this.stopAcknowledgingToolStripMenuItem_Click);
             // 
             // projectsGridView
             // 
@@ -294,15 +329,6 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureGridColumn.VisibleIndex = 4;
             this.lastFailureGridColumn.Width = 161;
             // 
-            // checkUpdatesButtonItem
-            // 
-            this.checkUpdatesButtonItem.Caption = "Check for updates";
-            this.checkUpdatesButtonItem.Glyph = ((System.Drawing.Image)(resources.GetObject("checkUpdatesButtonItem.Glyph")));
-            this.checkUpdatesButtonItem.Id = 5;
-            this.checkUpdatesButtonItem.Name = "checkUpdatesButtonItem";
-            this.checkUpdatesButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.checkUpdatesButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.checkUpdatesButtonItem_ItemClick);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,5 +380,8 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ToolStripMenuItem openProjectPageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem runBuildMenuItem;
         private DevExpress.XtraBars.BarButtonItem checkUpdatesButtonItem;
+        private System.Windows.Forms.ToolStripMenuItem acknowledgeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem stopAcknowledgingToolStripMenuItem;
     }
 }

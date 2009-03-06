@@ -85,6 +85,11 @@ namespace Hudson.TrayTracker.Entities
                 && other.name == name;
         }
 
+        public override string ToString()
+        {
+            return name;
+        }
+
         public int CompareTo(Project other)
         {
             return name.CompareTo(other.name);

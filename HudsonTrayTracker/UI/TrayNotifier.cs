@@ -35,6 +35,7 @@ namespace Hudson.TrayTracker.UI
         ProjectsUpdateService updateService;
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
+        IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
 
         public ConfigurationService ConfigurationService
         {
@@ -210,8 +211,9 @@ namespace Hudson.TrayTracker.UI
             {
                 foreach (Project project in server.Projects)
                 {
-                    if (worstBuildStatus == null || project.Status > worstBuildStatus)
-                        worstBuildStatus = project.Status;
+                    BuildStatus status = GetProjectStatus(project);
+                    if (worstBuildStatus == null || status > worstBuildStatus)
+                        worstBuildStatus = status;
                     if (project.Status >= BuildStatus.Failed)
                         errorProjects.Add(project);
                     if (BuildStatusUtils.IsBuildInProgress(project.Status))
@@ -243,6 +245,15 @@ namespace Hudson.TrayTracker.UI
             UpdateBalloonTip(errorProjects, regressingProjects);
 
             lastBuildStatus = buildStatus;
+        }
+
+        private BuildStatus GetProjectStatus(Project project)
+        {
+            BuildStatus status = project.Status;
+            BuildStatus acknowledgedStatus = GetAcknowledgedStatus(project);
+            if (status == acknowledgedStatus)
+                return BuildStatus.Successful;
+            return status;
         }
 
         private bool IsRegressing(Project project)
@@ -322,6 +333,43 @@ namespace Hudson.TrayTracker.UI
         private void notifyIcon_MouseUp(object sender, MouseEventArgs e)
         {
             Console.WriteLine(e.Clicks);
+        }
+
+        public void AcknowledgeStatus(Project project, BuildStatus currentStatus)
+        {
+            lock (acknowledgedStatusByProject)
+            {
+                acknowledgedStatusByProject[project] = currentStatus;
+            }
+            UpdateNotifier();
+        }
+
+        public void ClearAcknowledgedStatus(Project project)
+        {
+            lock (acknowledgedStatusByProject)
+            {
+                acknowledgedStatusByProject.Remove(project);
+            }
+            UpdateNotifier();
+        }
+
+        private BuildStatus GetAcknowledgedStatus(Project project)
+        {
+            BuildStatus status;
+            lock (acknowledgedStatusByProject)
+            {
+                if (acknowledgedStatusByProject.TryGetValue(project, out status) == false)
+                    status = BuildStatus.Unknown;
+            }
+            return status;
+        }
+
+        public bool IsAcknowledged(Project project)
+        {
+            lock (acknowledgedStatusByProject)
+            {
+                return acknowledgedStatusByProject.ContainsKey(project);
+            }
         }
     }
 }

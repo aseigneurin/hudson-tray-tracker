@@ -309,5 +309,43 @@ namespace Hudson.TrayTracker.UI
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void acknowledgeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            BuildStatus currentStatus = project.Status;
+            if (currentStatus < BuildStatus.Indeterminate)
+                return;
+            TrayNotifier.Instance.AcknowledgeStatus(project, currentStatus);
+        }
+
+        private void stopAcknowledgingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            TrayNotifier.Instance.ClearAcknowledgedStatus(project);
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            Project project = GetSelectedProject();
+            bool isProjectSelected = project != null;
+
+            if (project == null)
+            {
+                openProjectPageMenuItem.Enabled
+                    = runBuildMenuItem.Enabled
+                    = acknowledgeToolStripMenuItem.Enabled
+                    = stopAcknowledgingToolStripMenuItem.Enabled
+                    = false;
+                return;
+            }
+
+            acknowledgeToolStripMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
+            stopAcknowledgingToolStripMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
+        }
     }
 }

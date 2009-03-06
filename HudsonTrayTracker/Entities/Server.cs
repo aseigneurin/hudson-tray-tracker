@@ -33,5 +33,10 @@ namespace Hudson.TrayTracker.Entities
                 return false;
             return other.url == url;
         }
+
+        public override string ToString()
+        {
+            return url;
+        }
     }
 }
