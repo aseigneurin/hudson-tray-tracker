@@ -47,14 +47,19 @@ namespace Hudson.TrayTracker.BusinessComponents
             timer = new Timer(CheckForUpdates, null, 0, updatePeriod);
         }
 
-        public void CheckForUpdates()
+        public void CheckForUpdates_Asynchronous(UpdateSource source)
         {
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += delegate
             {
-                DoCheckForUpdates(UpdateSource.User);
+                DoCheckForUpdates(source);
             };
             worker.RunWorkerAsync();
+        }
+
+        public bool CheckForUpdates_Synchronous(UpdateSource source)
+        {
+            return DoCheckForUpdates(source);
         }
 
         private void CheckForUpdates(object state)
@@ -62,7 +67,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             DoCheckForUpdates(UpdateSource.Timer);
         }
 
-        private void DoCheckForUpdates(UpdateSource source)
+        // returns true if an update was found, false otherwise
+        private bool DoCheckForUpdates(UpdateSource source)
         {
             logger.Info("Running update check from " + source);
 
@@ -71,14 +77,15 @@ namespace Hudson.TrayTracker.BusinessComponents
                 if (updating)
                 {
                     logger.Info("Already in update: skipping");
-                    return;
+                    return false;
                 }
                 updating = true;
             }
 
+            bool res;
             try
             {
-                DoCheckForUpdatesInternal();
+                res = DoCheckForUpdatesInternal();
             }
             catch (Exception ex)
             {
@@ -94,9 +101,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             logger.Info("Done");
+            return res;
         }
 
-        private void DoCheckForUpdatesInternal()
+        // returns true if an update was found, false otherwise
+        private bool DoCheckForUpdatesInternal()
         {
             logger.Info("Checking for updates from " + URL);
 
@@ -118,7 +127,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (version == currentVersion)
             {
                 logger.Info("No updates");
-                return;
+                return false;
             }
 
             logger.Info("An update is available");
@@ -128,6 +137,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             if (NewVersionAvailable != null)
                 NewVersionAvailable(version, installerUrl);
+
+            return true;
         }
 
         private string GetCurrentVersion()

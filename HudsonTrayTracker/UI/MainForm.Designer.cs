@@ -55,6 +55,7 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.checkUpdatesButtonItem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -77,9 +78,10 @@ namespace Hudson.TrayTracker.UI
             this.aboutButtonItem,
             this.refreshButtonItem,
             this.exitButtonItem,
-            this.lastCheckBarStaticItem});
+            this.lastCheckBarStaticItem,
+            this.checkUpdatesButtonItem});
             this.barManager.MainMenu = this.bar2;
-            this.barManager.MaxItemId = 5;
+            this.barManager.MaxItemId = 6;
             this.barManager.StatusBar = this.bar3;
             // 
             // bar2
@@ -92,6 +94,7 @@ namespace Hudson.TrayTracker.UI
             new DevExpress.XtraBars.LinkPersistInfo(this.settingsButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.refreshButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.exitButtonItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.checkUpdatesButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(this.aboutButtonItem)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawDragBorder = false;
@@ -165,7 +168,7 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(879, 361);
+            this.projectsGridControl.Size = new System.Drawing.Size(879, 363);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -176,20 +179,22 @@ namespace Hudson.TrayTracker.UI
             this.openProjectPageMenuItem,
             this.runBuildMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(178, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(189, 48);
             // 
             // openProjectPageMenuItem
             // 
             this.openProjectPageMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.openProjectPageMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openProjectPageMenuItem.Image")));
             this.openProjectPageMenuItem.Name = "openProjectPageMenuItem";
-            this.openProjectPageMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.openProjectPageMenuItem.Size = new System.Drawing.Size(188, 22);
             this.openProjectPageMenuItem.Text = "Open project page";
             this.openProjectPageMenuItem.Click += new System.EventHandler(this.openProjectPageMenuItem_Click);
             // 
             // runBuildMenuItem
             // 
+            this.runBuildMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("runBuildMenuItem.Image")));
             this.runBuildMenuItem.Name = "runBuildMenuItem";
-            this.runBuildMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.runBuildMenuItem.Size = new System.Drawing.Size(188, 22);
             this.runBuildMenuItem.Text = "Run build";
             this.runBuildMenuItem.Click += new System.EventHandler(this.runBuildMenuItem_Click);
             // 
@@ -289,6 +294,15 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureGridColumn.VisibleIndex = 4;
             this.lastFailureGridColumn.Width = 161;
             // 
+            // checkUpdatesButtonItem
+            // 
+            this.checkUpdatesButtonItem.Caption = "Check for updates";
+            this.checkUpdatesButtonItem.Glyph = ((System.Drawing.Image)(resources.GetObject("checkUpdatesButtonItem.Glyph")));
+            this.checkUpdatesButtonItem.Id = 5;
+            this.checkUpdatesButtonItem.Name = "checkUpdatesButtonItem";
+            this.checkUpdatesButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.checkUpdatesButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.checkUpdatesButtonItem_ItemClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,5 +353,6 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem openProjectPageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem runBuildMenuItem;
+        private DevExpress.XtraBars.BarButtonItem checkUpdatesButtonItem;
     }
 }

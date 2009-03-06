@@ -117,6 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationUpdates_Caption" xml:space="preserve">
+    <value>Hudson Tray Tracker updates</value>
+  </data>
+  <data name="ApplicationUpdates_NewVersion_Text" xml:space="preserve">
+    <value>A new version is available: v{0}.
+Do you want to download it now?</value>
+  </data>
+  <data name="ApplicationUpdates_NoUpdate_Text" xml:space="preserve">
+    <value>No update available.</value>
+  </data>
   <data name="BuildDetails_Format" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
@@ -183,13 +193,6 @@ Please refer to the log files for more details.</value>
   </data>
   <data name="LoadingProjects_FormatString" xml:space="preserve">
     <value>Loading projects from {0}</value>
-  </data>
-  <data name="NewVersionAvailable_Caption" xml:space="preserve">
-    <value>Hudson Tray Tracker updates</value>
-  </data>
-  <data name="NewVersionAvailable_Text" xml:space="preserve">
-    <value>A new version is available: v{0}.
-Do you want to download it now?</value>
   </data>
   <data name="RunBuildFailed_Caption" xml:space="preserve">
     <value>Error</value>

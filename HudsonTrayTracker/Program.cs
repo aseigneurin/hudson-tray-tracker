@@ -53,7 +53,8 @@ namespace Hudson.TrayTracker
                 MainForm mainForm = MainForm.Instance;
                 mainForm.ConfigurationService = configurationService;
                 mainForm.HudsonService = hudsonService;
-                mainForm.UpdateService = projectsUpdateService;
+                mainForm.ProjectsUpdateService = projectsUpdateService;
+                mainForm.ApplicationUpdateService = applicationUpdateService;
 
                 SettingsForm settingsForm = SettingsForm.Instance;
                 settingsForm.ConfigurationService = configurationService;
@@ -107,8 +108,8 @@ namespace Hudson.TrayTracker
 
         static void applicationUpdateService_NewVersionAvailable(string version, string installerUrl)
         {
-            string message = string.Format(HudsonTrayTrackerResources.NewVersionAvailable_Text, version);
-            DialogResult res = MessageBox.Show(message, HudsonTrayTrackerResources.NewVersionAvailable_Caption,
+            string message = string.Format(HudsonTrayTrackerResources.ApplicationUpdates_NewVersion_Text, version);
+            DialogResult res = MessageBox.Show(message, HudsonTrayTrackerResources.ApplicationUpdates_Caption,
                 MessageBoxButtons.YesNo);
             if (res != DialogResult.Yes)
             {

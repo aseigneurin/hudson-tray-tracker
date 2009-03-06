@@ -36,7 +36,8 @@ namespace Hudson.TrayTracker.UI
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
-        ProjectsUpdateService updateService;
+        ProjectsUpdateService projectsUpdateService;
+        ApplicationUpdateService applicationUpdateService;
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
         int lastHoveredDSRowIndex = -1;
@@ -53,10 +54,16 @@ namespace Hudson.TrayTracker.UI
             set { hudsonService = value; }
         }
 
-        public ProjectsUpdateService UpdateService
+        public ProjectsUpdateService ProjectsUpdateService
         {
-            get { return updateService; }
-            set { updateService = value; }
+            get { return projectsUpdateService; }
+            set { projectsUpdateService = value; }
+        }
+
+        public ApplicationUpdateService ApplicationUpdateService
+        {
+            get { return applicationUpdateService; }
+            set { applicationUpdateService = value; }
         }
 
         public MainForm()
@@ -67,12 +74,12 @@ namespace Hudson.TrayTracker.UI
         private void Initialize()
         {
             configurationService.ConfigurationUpdated += configurationService_ConfigurationUpdated;
-            updateService.ProjectsUpdated += updateService_ProjectsUpdated;
+            projectsUpdateService.ProjectsUpdated += updateService_ProjectsUpdated;
 
             Disposed += delegate
             {
                 configurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
-                updateService.ProjectsUpdated -= updateService_ProjectsUpdated;
+                projectsUpdateService.ProjectsUpdated -= updateService_ProjectsUpdated;
             };
         }
 
@@ -125,7 +132,7 @@ namespace Hudson.TrayTracker.UI
 
         private void refreshButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            updateService.UpdateProjects();
+            projectsUpdateService.UpdateProjects();
         }
 
         private void HudsonTrayTrackerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -289,6 +296,18 @@ namespace Hudson.TrayTracker.UI
                 Instance.Focus();
             else
                 Instance.Show();
+        }
+
+        private void checkUpdatesButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            bool hasUpdates = applicationUpdateService.CheckForUpdates_Synchronous(
+                ApplicationUpdateService.UpdateSource.User);
+            if (hasUpdates == false)
+            {
+                MessageBox.Show(HudsonTrayTrackerResources.ApplicationUpdates_NoUpdate_Text,
+                    HudsonTrayTrackerResources.ApplicationUpdates_Caption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
