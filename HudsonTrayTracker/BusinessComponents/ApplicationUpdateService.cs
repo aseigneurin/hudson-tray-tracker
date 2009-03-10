@@ -64,7 +64,12 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void CheckForUpdates(object state)
         {
-            DoCheckForUpdates(UpdateSource.Timer);
+            // ignore errors
+            try
+            {
+                DoCheckForUpdates(UpdateSource.Timer);
+            }
+            catch { }
         }
 
         // returns true if an update was found, false otherwise

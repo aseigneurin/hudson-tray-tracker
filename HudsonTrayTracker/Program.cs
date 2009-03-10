@@ -14,6 +14,7 @@ using Hudson.TrayTracker.Utils;
 using System.Threading;
 using System.Drawing;
 using System.IO;
+using DevExpress.XtraEditors;
 
 namespace Hudson.TrayTracker
 {
@@ -109,7 +110,7 @@ namespace Hudson.TrayTracker
         static void applicationUpdateService_NewVersionAvailable(string version, string installerUrl)
         {
             string message = string.Format(HudsonTrayTrackerResources.ApplicationUpdates_NewVersion_Text, version);
-            DialogResult res = MessageBox.Show(message, HudsonTrayTrackerResources.ApplicationUpdates_Caption,
+            DialogResult res = XtraMessageBox.Show(message, HudsonTrayTrackerResources.ApplicationUpdates_Caption,
                 MessageBoxButtons.YesNo);
             if (res != DialogResult.Yes)
             {

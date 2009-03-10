@@ -274,7 +274,7 @@ namespace Hudson.TrayTracker.UI
             catch (Exception ex)
             {
                 LoggingHelper.LogError(logger, ex);
-                MessageBox.Show(string.Format(HudsonTrayTrackerResources.RunBuildFailed_Text, ex.Message),
+                XtraMessageBox.Show(string.Format(HudsonTrayTrackerResources.RunBuildFailed_Text, ex.Message),
                     HudsonTrayTrackerResources.RunBuildFailed_Caption);
             }
         }
@@ -300,11 +300,22 @@ namespace Hudson.TrayTracker.UI
 
         private void checkUpdatesButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bool hasUpdates = applicationUpdateService.CheckForUpdates_Synchronous(
-                ApplicationUpdateService.UpdateSource.User);
+            bool hasUpdates;
+            try
+            {
+                hasUpdates = applicationUpdateService.CheckForUpdates_Synchronous(
+                    ApplicationUpdateService.UpdateSource.User);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = String.Format(HudsonTrayTrackerResources.ErrorBoxMessage, ex.Message);
+                XtraMessageBox.Show(errorMessage, HudsonTrayTrackerResources.ErrorBoxCaption,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (hasUpdates == false)
             {
-                MessageBox.Show(HudsonTrayTrackerResources.ApplicationUpdates_NoUpdate_Text,
+                XtraMessageBox.Show(HudsonTrayTrackerResources.ApplicationUpdates_NoUpdate_Text,
                     HudsonTrayTrackerResources.ApplicationUpdates_Caption,
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
