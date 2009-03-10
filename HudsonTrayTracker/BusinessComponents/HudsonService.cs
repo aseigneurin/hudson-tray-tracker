@@ -68,9 +68,9 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
-            string status = xml.SelectSingleNode("/mavenModuleSet/color").InnerText;
-            string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/mavenModuleSet/lastSuccessfulBuild/url");
-            string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/mavenModuleSet/lastFailedBuild/url");
+            string status = xml.SelectSingleNode("/*/color").InnerText;
+            string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
+            string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status);
@@ -120,8 +120,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
-            string number = xml.SelectSingleNode("/mavenModuleSetBuild/number").InnerText;
-            string timestamp = xml.SelectSingleNode("/mavenModuleSetBuild/timestamp").InnerText;
+            string number = xml.SelectSingleNode("/*/number").InnerText;
+            string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
