@@ -214,9 +214,9 @@ namespace Hudson.TrayTracker.UI
                     BuildStatus status = GetProjectStatus(project);
                     if (worstBuildStatus == null || status > worstBuildStatus)
                         worstBuildStatus = status;
-                    if (project.Status >= BuildStatus.Failed)
+                    if (status >= BuildStatus.Failed)
                         errorProjects.Add(project);
-                    if (BuildStatusUtils.IsBuildInProgress(project.Status))
+                    if (BuildStatusUtils.IsBuildInProgress(status))
                         buildInProgress = true;
                     if (IsRegressing(project))
                         regressingProjects.Add(project);
