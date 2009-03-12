@@ -250,8 +250,8 @@ namespace Hudson.TrayTracker.UI
         private BuildStatus GetProjectStatus(Project project)
         {
             BuildStatus status = project.Status;
-            BuildStatus acknowledgedStatus = GetAcknowledgedStatus(project);
-            if (status == acknowledgedStatus)
+            BuildStatus? acknowledgedStatus = GetAcknowledgedStatus(project);
+            if (acknowledgedStatus != null && status == acknowledgedStatus)
                 return BuildStatus.Successful;
             return status;
         }
@@ -353,13 +353,13 @@ namespace Hudson.TrayTracker.UI
             UpdateNotifier();
         }
 
-        private BuildStatus GetAcknowledgedStatus(Project project)
+        private BuildStatus? GetAcknowledgedStatus(Project project)
         {
             BuildStatus status;
             lock (acknowledgedStatusByProject)
             {
                 if (acknowledgedStatusByProject.TryGetValue(project, out status) == false)
-                    status = BuildStatus.Unknown;
+                    return null;
             }
             return status;
         }
