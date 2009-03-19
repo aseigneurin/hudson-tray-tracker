@@ -358,5 +358,13 @@ namespace Hudson.TrayTracker.UI
             acknowledgeToolStripMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
             stopAcknowledgingToolStripMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
         }
+
+        private void removeProjectMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            configurationService.RemoveProject(project);
+        }
     }
 }

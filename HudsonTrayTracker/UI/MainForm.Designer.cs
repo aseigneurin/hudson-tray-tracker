@@ -59,6 +59,8 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.removeProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -192,9 +194,11 @@ namespace Hudson.TrayTracker.UI
             this.runBuildMenuItem,
             this.toolStripSeparator1,
             this.acknowledgeToolStripMenuItem,
-            this.stopAcknowledgingToolStripMenuItem});
+            this.stopAcknowledgingToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.removeProjectMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(230, 120);
+            this.contextMenuStrip.Size = new System.Drawing.Size(230, 148);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // openProjectPageMenuItem
@@ -329,6 +333,19 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureGridColumn.VisibleIndex = 4;
             this.lastFailureGridColumn.Width = 161;
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
+            // 
+            // removeProjectMenuItem
+            // 
+            this.removeProjectMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("removeProjectMenuItem.Image")));
+            this.removeProjectMenuItem.Name = "removeProjectMenuItem";
+            this.removeProjectMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.removeProjectMenuItem.Text = "Remove project";
+            this.removeProjectMenuItem.Click += new System.EventHandler(this.removeProjectMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,5 +400,7 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ToolStripMenuItem acknowledgeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem stopAcknowledgingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem removeProjectMenuItem;
     }
 }
