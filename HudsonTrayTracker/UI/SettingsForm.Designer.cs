@@ -51,6 +51,9 @@ namespace Hudson.TrayTracker.UI
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.projectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deselectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).BeginInit();
@@ -59,6 +62,7 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.serversGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
+            this.projectContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,18 +77,19 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 291);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 289);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // projectsGridControl
             // 
+            this.projectsGridControl.ContextMenuStrip = this.projectContextMenuStrip;
             this.projectsGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.projectsGridControl.Location = new System.Drawing.Point(342, 3);
             this.projectsGridControl.MainView = this.projectsGridView;
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.projectSelectedCheckEdit});
-            this.projectsGridControl.Size = new System.Drawing.Size(334, 285);
+            this.projectsGridControl.Size = new System.Drawing.Size(334, 283);
             this.projectsGridControl.TabIndex = 1;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -137,7 +142,7 @@ namespace Hudson.TrayTracker.UI
             this.serversGridControl.Location = new System.Drawing.Point(3, 3);
             this.serversGridControl.MainView = this.serversGridView;
             this.serversGridControl.Name = "serversGridControl";
-            this.serversGridControl.Size = new System.Drawing.Size(333, 285);
+            this.serversGridControl.Size = new System.Drawing.Size(333, 283);
             this.serversGridControl.TabIndex = 0;
             this.serversGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.serversGridView});
@@ -252,6 +257,28 @@ namespace Hudson.TrayTracker.UI
             this.statusTextItem.Name = "statusTextItem";
             this.statusTextItem.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
+            // projectContextMenuStrip
+            // 
+            this.projectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllProjectsMenuItem,
+            this.deselectAllProjectsMenuItem});
+            this.projectContextMenuStrip.Name = "projectContextMenuStrip";
+            this.projectContextMenuStrip.Size = new System.Drawing.Size(179, 70);
+            // 
+            // selectAllProjectsMenuItem
+            // 
+            this.selectAllProjectsMenuItem.Name = "selectAllProjectsMenuItem";
+            this.selectAllProjectsMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.selectAllProjectsMenuItem.Text = "Select all projects";
+            this.selectAllProjectsMenuItem.Click += new System.EventHandler(this.selectAllProjectsMenuItem_Click);
+            // 
+            // deselectAllProjectsMenuItem
+            // 
+            this.deselectAllProjectsMenuItem.Name = "deselectAllProjectsMenuItem";
+            this.deselectAllProjectsMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.deselectAllProjectsMenuItem.Text = "Deselect all projects";
+            this.deselectAllProjectsMenuItem.Click += new System.EventHandler(this.deselectAllProjectsMenuItem_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +300,7 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.serversGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
+            this.projectContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -300,5 +328,8 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraBars.BarStaticItem statusTextItem;
         private DevExpress.XtraBars.BarEditItem statusProgressItem;
         private DevExpress.XtraEditors.Repository.RepositoryItemMarqueeProgressBar repositoryItemMarqueeProgressBar1;
+        private System.Windows.Forms.ContextMenuStrip projectContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem selectAllProjectsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deselectAllProjectsMenuItem;
     }
 }

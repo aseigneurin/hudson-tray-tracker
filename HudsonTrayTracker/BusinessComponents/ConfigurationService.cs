@@ -133,16 +133,40 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void AddProject(Project project)
         {
+            DoAddProject(project);
+            SaveConfiguration();
+        }
+
+        public void AddProjects(IList<Project> projects)
+        {
+            foreach (Project project in projects)
+                DoAddProject(project);
+            SaveConfiguration();
+        }
+
+        private void DoAddProject(Project project)
+        {
             Server server = project.Server;
             server.Projects.Add(project);
-            SaveConfiguration();
         }
 
         public void RemoveProject(Project project)
         {
+            DoRemoveProject(project);
+            SaveConfiguration();
+        }
+
+        public void RemoveProjects(IList<Project> projects)
+        {
+            foreach (Project project in projects)
+                DoRemoveProject(project);
+            SaveConfiguration();
+        }
+
+        private void DoRemoveProject(Project project)
+        {
             Server server = project.Server;
             server.Projects.Remove(project);
-            SaveConfiguration();
         }
 
         public ISet<Project> GetProjects()

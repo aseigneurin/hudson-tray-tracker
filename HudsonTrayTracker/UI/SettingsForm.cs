@@ -197,5 +197,21 @@ namespace Hudson.TrayTracker.UI
             else
                 Instance.ShowDialog();
         }
+
+        private void selectAllProjectsMenuItem_Click(object sender, EventArgs e)
+        {
+            if (projectsDataSource == null)
+                return;
+            configurationService.AddProjects(projectsDataSource);
+            projectsGridView.RefreshData();
+        }
+
+        private void deselectAllProjectsMenuItem_Click(object sender, EventArgs e)
+        {
+            if (projectsDataSource == null)
+                return;
+            configurationService.RemoveProjects(projectsDataSource);
+            projectsGridView.RefreshData();
+        }
     }
 }
