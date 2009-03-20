@@ -109,7 +109,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             String url = buildUrl + "/api/xml";
 
-            logger.Info("Getting build details from " + url);
+            if (logger.IsDebugEnabled)
+                logger.Debug("Getting build details from " + url);
 
             String xmlStr = DownloadString(url, true);
 
@@ -130,7 +131,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Number = int.Parse(number);
             res.Time = date;
 
-            logger.Info("Done getting build details");
+            if (logger.IsDebugEnabled)
+                logger.Debug("Done getting build details");
 
             return res;
         }
