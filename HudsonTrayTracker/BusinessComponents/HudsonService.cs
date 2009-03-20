@@ -15,14 +15,15 @@ namespace Hudson.TrayTracker.BusinessComponents
     {
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        IDictionary<string, string> cache = new Dictionary<string, string>();
+
         public IList<Project> LoadProjects(Server server)
         {
             String url = server.Url + "/api/xml";
 
             logger.Info("Loading projects from " + url);
 
-            WebClient webClient = new WebClient();
-            String xmlStr = webClient.DownloadString(url);
+            String xmlStr = DownloadString(url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -59,8 +60,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Updating project from " + url);
 
-            WebClient webClient = new WebClient();
-            String xmlStr = webClient.DownloadString(url);
+            String xmlStr = DownloadString(url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -111,8 +111,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Getting build details from " + url);
 
-            WebClient webClient = new WebClient();
-            String xmlStr = webClient.DownloadString(url);
+            String xmlStr = DownloadString(url, true);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -154,13 +153,52 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Running build at " + url);
 
-            WebClient webClient = new WebClient();
-            String str = webClient.DownloadString(url);
+            String str = DownloadString(url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("Result: " + str);
 
             logger.Info("Done running build");
+        }
+
+        private String DownloadString(string url, bool cacheable)
+        {
+            string res;
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("Downloading: " + url);
+
+            if (cacheable)
+            {
+                lock (this)
+                {
+                    if (cache.TryGetValue(url, out res))
+                    {
+                        if (logger.IsTraceEnabled)
+                            logger.Trace("Cache hit: " + url);
+                        return res;
+                    }
+                }
+
+                if (logger.IsTraceEnabled)
+                    logger.Trace("Cache miss: " + url);
+            }
+
+            WebClient webClient = new WebClient();
+            res = webClient.DownloadString(url);
+
+            if (logger.IsTraceEnabled)
+                logger.Trace("Downloaded: " + res);
+
+            if (cacheable)
+            {
+                lock (this)
+                {
+                    cache[url] = res;
+                }
+            }
+
+            return res;
         }
     }
 }
