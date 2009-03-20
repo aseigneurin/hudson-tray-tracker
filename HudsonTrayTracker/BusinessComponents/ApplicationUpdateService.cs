@@ -21,7 +21,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             Program
         }
 
-        public delegate void NewVersionAvailableHandler(string version, string installerUrl);
+        public delegate void NewVersionAvailableHandler(Version version, string installerUrl);
         public event NewVersionAvailableHandler NewVersionAvailable;
 
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -120,16 +120,17 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             // extract version details
             IPropertiesContainer properties = PropertiesFile.ReadProperties(versionProperties, "version.properties");
-            string version = properties[PROPERTY_VERSION_NUMBER];
+            string versionStr = properties[PROPERTY_VERSION_NUMBER];
             string installerUrl = properties[PROPERTY_INSTALLER_URL];
 
-            string currentVersion = GetCurrentVersion();
+            Version version = new Version(versionStr);
+            Version currentVersion = GetCurrentVersion();
 
             logger.Info("Current version: " + currentVersion);
             logger.Info("Last version: " + version);
             logger.Info("Installer URL: " + installerUrl);
 
-            if (version == currentVersion)
+            if (version <= currentVersion)
             {
                 logger.Info("No updates");
                 return false;
@@ -146,9 +147,9 @@ namespace Hudson.TrayTracker.BusinessComponents
             return true;
         }
 
-        private string GetCurrentVersion()
+        private Version GetCurrentVersion()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return Assembly.GetExecutingAssembly().GetName().Version;
         }
     }
 }

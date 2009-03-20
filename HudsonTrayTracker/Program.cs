@@ -107,7 +107,7 @@ namespace Hudson.TrayTracker
                 + " v" + Assembly.GetExecutingAssembly().GetName().Version + " Exit");
         }
 
-        static void applicationUpdateService_NewVersionAvailable(string version, string installerUrl)
+        static void applicationUpdateService_NewVersionAvailable(Version version, string installerUrl)
         {
             string message = string.Format(HudsonTrayTrackerResources.ApplicationUpdates_NewVersion_Text, version);
             DialogResult res = XtraMessageBox.Show(message, HudsonTrayTrackerResources.ApplicationUpdates_Caption,
