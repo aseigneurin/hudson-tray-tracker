@@ -196,6 +196,10 @@ namespace Hudson.TrayTracker.BusinessComponents
             {
                 lock (this)
                 {
+                    // clear the cache if there are too many elements (could be improved)
+                    if (cache.Count > 500)
+                        cache.Clear();
+                    // store in cache
                     cache[url] = res;
                 }
             }
