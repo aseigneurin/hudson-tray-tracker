@@ -16,6 +16,7 @@ using System.Reflection;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System.Diagnostics;
 using Hudson.TrayTracker.Utils.Logging;
+using DevExpress.Utils.Controls;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -41,6 +42,7 @@ namespace Hudson.TrayTracker.UI
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
         int lastHoveredDSRowIndex = -1;
+        IDictionary<BuildStatus, byte[]> icons;
 
         public ConfigurationService ConfigurationService
         {
@@ -87,6 +89,7 @@ namespace Hudson.TrayTracker.UI
         {
             base.OnLoad(e);
             Initialize();
+            LoadIcons();
             LoadProjects();
         }
 
@@ -163,12 +166,34 @@ namespace Hudson.TrayTracker.UI
                 if (e.Column == statusGridColumn)
                 {
                     ProjectWrapper projectWrapper = (ProjectWrapper)projectsDataSource[e.ListSourceRowIndex];
+                    byte[] imgBytes = icons[projectWrapper.Project.Status];
+                    e.Value = imgBytes;
+                }
+            }
+        }
+
+        private void LoadIcons()
+        {
+            icons = new Dictionary<BuildStatus, byte[]>();
+
+            foreach (BuildStatus buildStatus in Enum.GetValues(typeof(BuildStatus)))
+            {
+                try
+                {
                     string resourceName = string.Format("Hudson.TrayTracker.Resources.StatusIcons.{0}.gif",
-                        projectWrapper.Project.Status.ToString());
-                    Image img = DevExpress.Utils.Controls.ImageHelper.CreateImageFromResources(
+                        buildStatus.ToString());
+                    Image img = ImageHelper.CreateImageFromResources(
                         resourceName, GetType().Assembly);
                     byte[] imgBytes = DevExpress.XtraEditors.Controls.ByteImageConverter.ToByteArray(img, ImageFormat.Gif);
-                    e.Value = imgBytes;
+                    icons.Add(buildStatus, imgBytes);
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(HudsonTrayTrackerResources.FailedLoadingIcons_Text,
+                        HudsonTrayTrackerResources.FailedLoadingIcons_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoggingHelper.LogError(logger, ex);
+                    throw new Exception("Failed loading icon: " + buildStatus, ex);
                 }
             }
         }

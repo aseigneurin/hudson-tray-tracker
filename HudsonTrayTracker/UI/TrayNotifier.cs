@@ -12,6 +12,7 @@ using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Properties;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
+using DevExpress.XtraEditors;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -36,6 +37,7 @@ namespace Hudson.TrayTracker.UI
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
         IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
+        IDictionary<BuildStatus, Icon> icons;
 
         public ConfigurationService ConfigurationService
         {
@@ -58,6 +60,7 @@ namespace Hudson.TrayTracker.UI
         public TrayNotifier()
         {
             InitializeComponent();
+            LoadIcons();
         }
 
         public void Initialize()
@@ -305,28 +308,34 @@ namespace Hudson.TrayTracker.UI
 
         private void UpdateIcon(BuildStatus buildStatus)
         {
-            Icon icon = GetIcon(buildStatus);
-            if (icon != null)
-                notifyIcon.Icon = icon;
+            Icon icon = icons[buildStatus];
+            notifyIcon.Icon = icon;
         }
 
-        private Icon GetIcon(BuildStatus buildStatus)
+        private void LoadIcons()
         {
-            try
+            icons = new Dictionary<BuildStatus, Icon>();
+
+            foreach (BuildStatus buildStatus in Enum.GetValues(typeof(BuildStatus)))
             {
-                string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.gif",
-                    buildStatus.ToString());
-                Bitmap bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
-                    resourceName, GetType().Assembly);
-                IntPtr hicon = bitmap.GetHicon();
-                Icon icon = Icon.FromHandle(hicon);
-                return icon;
-            }
-            catch (Exception ex)
-            {
-                // FIXME: warn?
-                LoggingHelper.LogError(logger, ex);
-                return null;
+                try
+                {
+                    string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.gif",
+                        buildStatus.ToString());
+                    Bitmap bitmap = DevExpress.Utils.Controls.ImageHelper.CreateBitmapFromResources(
+                        resourceName, GetType().Assembly);
+                    IntPtr hicon = bitmap.GetHicon();
+                    Icon icon = Icon.FromHandle(hicon);
+                    icons.Add(buildStatus, icon);
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show(HudsonTrayTrackerResources.FailedLoadingIcons_Text,
+                        HudsonTrayTrackerResources.FailedLoadingIcons_Caption,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoggingHelper.LogError(logger, ex);
+                    throw new Exception("Failed loading icon: " + buildStatus, ex);
+                }
             }
         }
 
