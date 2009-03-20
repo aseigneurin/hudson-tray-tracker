@@ -49,6 +49,7 @@ Section
   File "${ROOT}\Iesi.Collections.dll"
   File "${ROOT}\log4net.dll"
   File "${ROOT}\LoggingConfig.xml"
+  File "${ROOT}\SmartThreadPool.dll"
 
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
   CreateShortCut "$SMSTARTUP\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
@@ -81,6 +82,7 @@ Section "Uninstall"
   Delete "${ROOT}\Iesi.Collections.dll"
   Delete "${ROOT}\log4net.dll"
   Delete "${ROOT}\LoggingConfig.xml"
+  Delete "${ROOT}\SmartThreadPool.dll"
   
   Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
   Delete "$SMSTARTUP\${PRODUCT_NAME}.lnk"
