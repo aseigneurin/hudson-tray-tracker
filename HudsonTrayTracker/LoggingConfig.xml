@@ -5,7 +5,7 @@
     <appender-ref ref="GeneralLog" />
   </root>
   <logger name="Hudson.TrayTracker.BusinessComponents">
-    <level value="TRACE"/>
+    <level value="INFO"/>
   </logger>
   <appender name="GeneralLog" type="log4net.Appender.RollingFileAppender">
     <file value="${APPDATA}/Hudson Tray Tracker/Logs/general.txt" />

@@ -169,15 +169,15 @@ namespace Hudson.TrayTracker.BusinessComponents
             server.Projects.Remove(project);
         }
 
-        public ISet<Project> GetProjects()
+        public IDictionary<Server, ISet<Project>> GetProjects()
         {
-            ISet<Project> res = new HashedSet<Project>();
+            IDictionary<Server, ISet<Project>> res = new Dictionary<Server, ISet<Project>>();
             foreach (Server server in Servers)
             {
+                ISet<Project> projects = new HashedSet<Project>();
                 foreach (Project project in server.Projects)
-                {
-                    res.Add(project);
-                }
+                    projects.Add(project);
+                res[server] = projects;
             }
             return res;
         }

@@ -8,6 +8,8 @@ using Hudson.TrayTracker.Entities;
 using System.ComponentModel;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
+using Hudson.TrayTracker.Utils.Threading;
+using Amib.Threading;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -28,8 +30,12 @@ namespace Hudson.TrayTracker.BusinessComponents
         // every 15 seconds
         static readonly int DEFAULT_UPDATE_PERIOD = 15 * 1000;
 
+        const int TOTAL_THREAD_COUNT = 8;
+        const int THREAD_COUNT_BY_DOMAIN = 4;
+
         ConfigurationService configurationService;
         HudsonService hudsonService;
+        SmartThreadPool threadPool = new SmartThreadPool(60, TOTAL_THREAD_COUNT);
 
         Timer timer;
         int updatePeriod = DEFAULT_UPDATE_PERIOD;
@@ -107,27 +113,52 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void DoUpdateProjectsInternal()
         {
-            ISet<Project> projects = configurationService.GetProjects();
-            IDictionary<Project, AllBuildDetails> newBuildDetails = new Dictionary<Project, AllBuildDetails>();
+            IDictionary<Server, ISet<Project>> projectsByServer = configurationService.GetProjects();
+            IList<IWorkItemsGroup> allWorkItemsGroup = new List<IWorkItemsGroup>();
+            IDictionary<Project, IWorkItemResult> allFutureBuildDetails
+                = new Dictionary<Project, IWorkItemResult>();
 
-            foreach (Project project in projects)
+            foreach (KeyValuePair<Server, ISet<Project>> pair in projectsByServer)
             {
-                try
+                Server server = pair.Key;
+                ISet<Project> projects = pair.Value;
+
+                IWorkItemsGroup workItemsGroup = threadPool.CreateWorkItemsGroup(THREAD_COUNT_BY_DOMAIN);
+                allWorkItemsGroup.Add(workItemsGroup);
+
+                foreach (Project project in projects)
                 {
-                    AllBuildDetails newBuildDetail = hudsonService.UpdateProject(project);
-                    newBuildDetails[project] = newBuildDetail;
-                }
-                catch (Exception ex)
-                {
-                    LoggingHelper.LogError(logger, ex);
+                    WorkItemCallback work = delegate
+                    {
+                        AllBuildDetails newBuildDetail = null;
+                        try
+                        {
+                            newBuildDetail = hudsonService.UpdateProject(project);
+                        }
+                        catch (Exception ex)
+                        {
+                            LoggingHelper.LogError(logger, ex);
+                        }
+                        return newBuildDetail;
+                    };
+                    IWorkItemResult futureRes = workItemsGroup.QueueWorkItem(work);
+                    allFutureBuildDetails[project] = futureRes;
                 }
             }
 
-            foreach (Project project in projects)
+            foreach (IWorkItemsGroup workItemsGroup in allWorkItemsGroup)
             {
-                AllBuildDetails newStatus;
-                newBuildDetails.TryGetValue(project, out newStatus);
-                project.AllBuildDetails = newStatus;
+                workItemsGroup.WaitForIdle();
+            }
+
+            foreach (ISet<Project> projects in projectsByServer.Values)
+            {
+                foreach (Project project in projects)
+                {
+                    IWorkItemResult newStatus;
+                    allFutureBuildDetails.TryGetValue(project, out newStatus);
+                    project.AllBuildDetails = newStatus != null ? (AllBuildDetails)newStatus.Result : null;
+                }
             }
 
             if (ProjectsUpdated != null)
