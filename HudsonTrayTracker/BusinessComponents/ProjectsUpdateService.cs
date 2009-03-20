@@ -8,7 +8,6 @@ using Hudson.TrayTracker.Entities;
 using System.ComponentModel;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
-using Hudson.TrayTracker.Utils.Threading;
 using Amib.Threading;
 
 namespace Hudson.TrayTracker.BusinessComponents
