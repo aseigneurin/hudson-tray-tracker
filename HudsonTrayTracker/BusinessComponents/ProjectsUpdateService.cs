@@ -29,8 +29,13 @@ namespace Hudson.TrayTracker.BusinessComponents
         // every 15 seconds
         static readonly int DEFAULT_UPDATE_PERIOD = 15 * 1000;
 
+#if !DEBUG
         const int TOTAL_THREAD_COUNT = 8;
         const int THREAD_COUNT_BY_DOMAIN = 4;
+#else
+        const int TOTAL_THREAD_COUNT = 1;
+        const int THREAD_COUNT_BY_DOMAIN = 1;
+#endif
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
@@ -127,12 +132,13 @@ namespace Hudson.TrayTracker.BusinessComponents
 
                 foreach (Project project in projects)
                 {
-                    WorkItemCallback work = delegate
+                    WorkItemCallback work = delegate(object state)
                     {
                         AllBuildDetails newBuildDetail = null;
                         try
                         {
-                            newBuildDetail = hudsonService.UpdateProject(project);
+                            Project project_ = (Project)state;
+                            newBuildDetail = hudsonService.UpdateProject(project_);
                         }
                         catch (Exception ex)
                         {
@@ -140,7 +146,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                         }
                         return newBuildDetail;
                     };
-                    IWorkItemResult futureRes = workItemsGroup.QueueWorkItem(work);
+                    IWorkItemResult futureRes = workItemsGroup.QueueWorkItem(work, project);
                     allFutureBuildDetails[project] = futureRes;
                 }
             }
