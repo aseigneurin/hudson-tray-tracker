@@ -99,7 +99,7 @@ namespace Hudson.TrayTracker.UI
             this.linkLabel1.Size = new System.Drawing.Size(278, 13);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "http://code.google.com/p/hudson-tray-tracker/";
+            this.linkLabel1.Text = "http://hudson-tray-tracker.googlecode.com/";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_LinkClicked);
             // 
             // linkLabel2
