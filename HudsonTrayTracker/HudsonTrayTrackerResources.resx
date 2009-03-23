@@ -127,8 +127,14 @@ Do you want to download it now?</value>
   <data name="ApplicationUpdates_NoUpdate_Text" xml:space="preserve">
     <value>No update available.</value>
   </data>
-  <data name="BuildDetails_Format" xml:space="preserve">
+  <data name="BuildDetails_Format_NumberDate" xml:space="preserve">
     <value>{0} ({1})</value>
+  </data>
+  <data name="BuildDetails_Format_NumberDateUsers" xml:space="preserve">
+    <value>{0} ({1}, {2})</value>
+  </data>
+  <data name="BuildDetails_UserSeparator" xml:space="preserve">
+    <value>, </value>
   </data>
   <data name="BuildFailed_Caption" xml:space="preserve">
     <value>Build failed</value>

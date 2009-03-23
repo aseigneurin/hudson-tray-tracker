@@ -8,6 +8,7 @@ using Hudson.TrayTracker.Utils;
 using Dotnet.Commons.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Utils.Logging;
+using Iesi.Collections.Generic;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -122,14 +123,20 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             string number = xml.SelectSingleNode("/*/number").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
+            XmlNodeList userNodes = xml.SelectNodes("/*/changeSet/item/user");
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             date = date.Add(ts);
 
+            ISet<string> users = new HashedSet<string>();
+            foreach (XmlNode userNode in userNodes)
+                users.Add(userNode.InnerText);
+
             BuildDetails res = new BuildDetails();
             res.Number = int.Parse(number);
             res.Time = date;
+            res.Users = users;
 
             if (logger.IsDebugEnabled)
                 logger.Debug("Done getting build details");

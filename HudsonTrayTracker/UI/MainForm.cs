@@ -17,6 +17,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System.Diagnostics;
 using Hudson.TrayTracker.Utils.Logging;
 using DevExpress.Utils.Controls;
+using Hudson.TrayTracker.Utils;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -272,13 +273,29 @@ namespace Hudson.TrayTracker.UI
             {
                 get { return FormatBuildDetails(project.LastFailedBuild); }
             }
+            public string LastSuccessUsers
+            {
+                get { return FormatUsers(project.LastSuccessfulBuild); }
+            }
+            public string LastFailureUsers
+            {
+                get { return FormatUsers(project.LastFailedBuild); }
+            }
 
             private string FormatBuildDetails(BuildDetails details)
             {
                 if (details == null)
                     return "-";
-                return string.Format(HudsonTrayTrackerResources.BuildDetails_Format,
-                    details.Number, details.Time.ToLocalTime());
+                string res = string.Format(HudsonTrayTrackerResources.BuildDetails_Format_NumberDate,
+                       details.Number, details.Time.ToLocalTime());
+                return res;
+            }
+            private string FormatUsers(BuildDetails details)
+            {
+                if (details == null)
+                    return "-";
+                string res = StringUtils.Join(details.Users, HudsonTrayTrackerResources.BuildDetails_UserSeparator);
+                return res;
             }
         }
 

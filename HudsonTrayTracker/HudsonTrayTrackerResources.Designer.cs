@@ -91,9 +91,27 @@ namespace Hudson.TrayTracker {
         /// <summary>
         ///   Looks up a localized string similar to {0} ({1}).
         /// </summary>
-        internal static string BuildDetails_Format {
+        internal static string BuildDetails_Format_NumberDate {
             get {
-                return ResourceManager.GetString("BuildDetails_Format", resourceCulture);
+                return ResourceManager.GetString("BuildDetails_Format_NumberDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ({1}, {2}).
+        /// </summary>
+        internal static string BuildDetails_Format_NumberDateUsers {
+            get {
+                return ResourceManager.GetString("BuildDetails_Format_NumberDateUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        internal static string BuildDetails_UserSeparator {
+            get {
+                return ResourceManager.GetString("BuildDetails_UserSeparator", resourceCulture);
             }
         }
         
