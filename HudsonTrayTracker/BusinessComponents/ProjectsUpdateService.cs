@@ -99,6 +99,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             try
             {
                 DoUpdateProjectsInternal();
+                hudsonService.RecycleCache();
             }
             catch (Exception ex)
             {

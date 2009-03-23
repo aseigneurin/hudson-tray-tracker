@@ -16,7 +16,10 @@ namespace Hudson.TrayTracker.BusinessComponents
     {
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        // cache: key=url, value=xml
         IDictionary<string, string> cache = new Dictionary<string, string>();
+        // URLs visited between 2 calls to RecycleCache()
+        ISet<string> visitedURLs = new HashedSet<string>();
 
         public IList<Project> LoadProjects(Server server)
         {
@@ -181,6 +184,9 @@ namespace Hudson.TrayTracker.BusinessComponents
             {
                 lock (this)
                 {
+                    // mark the URL as visited
+                    visitedURLs.Add(url);
+                    // perform a lookup in the cache
                     if (cache.TryGetValue(url, out res))
                     {
                         if (logger.IsTraceEnabled)
@@ -203,15 +209,36 @@ namespace Hudson.TrayTracker.BusinessComponents
             {
                 lock (this)
                 {
-                    // clear the cache if there are too many elements (could be improved)
-                    if (cache.Count > 500)
-                        cache.Clear();
                     // store in cache
                     cache[url] = res;
                 }
             }
 
             return res;
+        }
+
+        public void RecycleCache()
+        {
+            lock (this)
+            {
+                if (logger.IsTraceEnabled)
+                    logger.Trace("Recycling cache: " + cache.Keys.Count + " items in cache");
+
+                IDictionary<string, string> newCache = new Dictionary<string, string>();
+
+                foreach (string visitedURL in visitedURLs)
+                {
+                    string value;
+                    if (cache.TryGetValue(visitedURL, out value))
+                        newCache.Add(visitedURL, value);
+                }
+
+                cache = newCache;
+                visitedURLs.Clear();
+
+                if (logger.IsTraceEnabled)
+                    logger.Trace("Recycling cache: " + cache.Keys.Count + " items in cache");
+            }
         }
     }
 }
