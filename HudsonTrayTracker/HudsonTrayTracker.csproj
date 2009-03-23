@@ -127,6 +127,7 @@
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
     <Compile Include="BusinessComponents\ProjectsUpdateService.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Entities\BuildDetails.cs" />
     <Compile Include="Entities\BuildStatus.cs" />
     <Compile Include="Entities\AllBuildDetails.cs" />
