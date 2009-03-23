@@ -13,6 +13,7 @@ using Hudson.TrayTracker.Properties;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
 using DevExpress.XtraEditors;
+using Hudson.TrayTracker.Utils;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -138,7 +139,16 @@ namespace Hudson.TrayTracker.UI
                         .GetString("BuildStatus_" + pair.Key.ToString());
                     text.Append(statusText);
                     foreach (Project project in pair.Value)
+                    {
                         text.Append("\n  - ").Append(project.Name);
+
+                        BuildDetails lastFailedBuild = project.LastFailedBuild;
+                        if (lastFailedBuild != null && lastFailedBuild.Users != null && lastFailedBuild.Users.Count > 0)
+                        {
+                            string users = StringUtils.Join(lastFailedBuild.Users, ", ");
+                            text.Append(" (").Append(users).Append(")");
+                        }
+                    }
                     prefix = "\n";
                 }
 
