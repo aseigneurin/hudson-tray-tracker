@@ -292,7 +292,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         errorProjectsText.Append(prefix);
-                    errorProjectsText.Append(project.Name);
+                    FormatProjectFailure(project, errorProjectsText);
                     prefix = "\n";
                 }
 
@@ -307,12 +307,24 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         regressingProjectsText.Append(prefix);
-                    regressingProjectsText.Append(project.Name);
+                    FormatProjectFailure(project, regressingProjectsText);
                     prefix = "\n";
                 }
 
                 notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildRegressions_Caption,
                     regressingProjectsText.ToString(), ToolTipIcon.Warning);
+            }
+        }
+
+        private void FormatProjectFailure(Project project, StringBuilder builder)
+        {
+            builder.Append(project.Name);
+
+            BuildDetails details = project.LastFailedBuild;
+            if (details != null && details.Users != null && details.Users.Count > 0)
+            {
+                string users = StringUtils.Join(details.Users, ", ");
+                builder.Append(" (").Append(users).Append(")");
             }
         }
 
