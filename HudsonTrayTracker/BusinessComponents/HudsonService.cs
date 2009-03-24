@@ -75,9 +75,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             string status = xml.SelectSingleNode("/*/color").InnerText;
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
+            bool? blocked = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/blocked");
+            bool? stuck = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/stuck");
 
             AllBuildDetails res = new AllBuildDetails();
-            res.Status = GetStatus(status);
+            res.Status = GetStatus(status, blocked, stuck);
             res.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
             res.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
 
@@ -85,8 +87,13 @@ namespace Hudson.TrayTracker.BusinessComponents
             return res;
         }
 
-        private BuildStatus GetStatus(string status)
+        private BuildStatus GetStatus(string status, bool? blocked, bool? stuck)
         {
+            if (blocked.HasValue && blocked.Value == true)
+                return BuildStatus.Blocked;
+            if (stuck.HasValue && stuck.Value == true)
+                return BuildStatus.Stuck;
+
             if (status == "grey")
                 return BuildStatus.Indeterminate;
             if (status == "grey_anime")
@@ -103,6 +110,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 return BuildStatus.Failed;
             if (status == "red_anime")
                 return BuildStatus.Failed_BuildInProgress;
+
             return BuildStatus.Unknown;
         }
 

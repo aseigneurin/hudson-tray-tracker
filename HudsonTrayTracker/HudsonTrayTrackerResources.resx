@@ -142,6 +142,9 @@ Do you want to download it now?</value>
   <data name="BuildRegressions_Caption" xml:space="preserve">
     <value>Projects regressed</value>
   </data>
+  <data name="BuildStatus_Blocked" xml:space="preserve">
+    <value>Build is blocked</value>
+  </data>
   <data name="BuildStatus_Failed" xml:space="preserve">
     <value>Build failed</value>
   </data>
@@ -153,6 +156,9 @@ Do you want to download it now?</value>
   </data>
   <data name="BuildStatus_Indeterminate_BuildInProgress" xml:space="preserve">
     <value>Indeterminate: no build done. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Stuck" xml:space="preserve">
+    <value>Build is stuck</value>
   </data>
   <data name="BuildStatus_Successful" xml:space="preserve">
     <value>Successful</value>

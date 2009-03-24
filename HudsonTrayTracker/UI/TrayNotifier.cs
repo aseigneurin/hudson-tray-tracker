@@ -249,10 +249,9 @@ namespace Hudson.TrayTracker.UI
 #endif
 
             BuildStatus buildStatus = worstBuildStatus.Value;
-            // if a build is in progress and the worst status is not a build-in-progress status,
-            // switch to the nearest build-in-progress status
-            if (buildInProgress && BuildStatusUtils.IsBuildInProgress(buildStatus) == false)
-                buildStatus += 1;
+            // if a build is in progress, switch to the nearest build-in-progress status
+            if (buildInProgress)
+                buildStatus = BuildStatusUtils.GetBuildInProgress(buildStatus);
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);

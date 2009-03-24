@@ -14,7 +14,9 @@ namespace Hudson.TrayTracker.Entities
         Unstable,
         Unstable_BuildInProgress,
         Failed,
-        Failed_BuildInProgress
+        Failed_BuildInProgress,
+        Blocked,
+        Stuck
     }
 
     public static class BuildStatusUtils
@@ -25,6 +27,17 @@ namespace Hudson.TrayTracker.Entities
                 || status == BuildStatus.Indeterminate_BuildInProgress
                 || status == BuildStatus.Unstable_BuildInProgress
                 || status == BuildStatus.Failed_BuildInProgress);
+        }
+
+        public static BuildStatus GetBuildInProgress(BuildStatus status)
+        {
+            // don't switch if the status is already a build-in-progress status
+            if (BuildStatusUtils.IsBuildInProgress(status)
+                || status == BuildStatus.Unknown
+                || status == BuildStatus.Blocked
+                || status == BuildStatus.Stuck)
+                return status;
+            return status + 1;
         }
 
         public static bool IsWorse(BuildStatus newBuildStatus, BuildStatus oldBuildStatus)
