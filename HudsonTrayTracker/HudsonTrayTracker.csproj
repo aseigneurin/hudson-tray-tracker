@@ -260,9 +260,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Resources\TrayIcons\Stuck.gif" />
-    <EmbeddedResource Include="Resources\TrayIcons\Blocked.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Stuck.gif" />
-    <EmbeddedResource Include="Resources\StatusIcons\Blocked.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Unknown.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Unknown.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Failed.gif" />
