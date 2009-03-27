@@ -73,12 +73,16 @@ namespace Hudson.TrayTracker.BusinessComponents
             xml.LoadXml(xmlStr);
 
             string status = xml.SelectSingleNode("/*/color").InnerText;
+            string lastBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastBuild/url");
+            string lastCompletedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastCompletedBuild/url");
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
             bool? stuck = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/stuck");
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
+            res.LastBuild = GetBuildDetails(lastBuildUrl);
+            res.LastCompletedBuild = GetBuildDetails(lastCompletedBuildUrl);
             res.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
             res.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
 
@@ -244,6 +248,15 @@ namespace Hudson.TrayTracker.BusinessComponents
                 if (logger.IsTraceEnabled)
                     logger.Trace("Recycling cache: " + cache.Keys.Count + " items in cache");
             }
+        }
+
+        public string GetConsolePage(Project project)
+        {
+            AllBuildDetails allBuildDetails = project.AllBuildDetails;
+            string res = project.Url;
+            if (allBuildDetails != null && allBuildDetails.LastBuild != null)
+                res += "lastBuild/console";
+            return res;
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Hudson.TrayTracker.Entities
     public class AllBuildDetails
     {
         BuildStatus status = BuildStatus.Unknown;
+        BuildDetails lastBuild;
+        BuildDetails lastCompletedBuild;
         BuildDetails lastSuccessfulBuild;
         BuildDetails lastFailedBuild;
 
@@ -14,6 +16,18 @@ namespace Hudson.TrayTracker.Entities
         {
             get { return status; }
             set { status = value; }
+        }
+
+        public BuildDetails LastBuild
+        {
+            get { return lastBuild; }
+            set { lastBuild = value; }
+        }
+
+        public BuildDetails LastCompletedBuild
+        {
+            get { return lastCompletedBuild; }
+            set { lastCompletedBuild = value; }
         }
 
         public BuildDetails LastSuccessfulBuild

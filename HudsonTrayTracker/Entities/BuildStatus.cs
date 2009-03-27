@@ -58,5 +58,10 @@ namespace Hudson.TrayTracker.Entities
                 return BuildStatus.Failed;
             return status;
         }
+
+        public static bool IsErrorBuild(BuildStatus status)
+        {
+            return status == BuildStatus.Failed || status == BuildStatus.Failed_BuildInProgress;
+        }
     }
 }

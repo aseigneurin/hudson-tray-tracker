@@ -44,6 +44,8 @@ namespace Hudson.TrayTracker.UI
         bool exiting;
         int lastHoveredDSRowIndex = -1;
         IDictionary<BuildStatus, byte[]> icons;
+        Font normalMenuItemFont;
+        Font mainMenuItemFont;
 
         public ConfigurationService ConfigurationService
         {
@@ -72,6 +74,8 @@ namespace Hudson.TrayTracker.UI
         public MainForm()
         {
             InitializeComponent();
+            normalMenuItemFont = openProjectPageMenuItem.Font;
+            mainMenuItemFont = new Font(openProjectPageMenuItem.Font, FontStyle.Bold);
         }
 
         private void Initialize()
@@ -228,15 +232,40 @@ namespace Hudson.TrayTracker.UI
 
         private void projectsGridView_DoubleClick(object sender, EventArgs e)
         {
-            OpenSelectedProjectPage();
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            if (BuildStatusUtils.IsErrorBuild(project.Status))
+                OpenProjectConsolePage(project);
+            else
+                OpenProjectPage(project);
         }
 
         private void OpenSelectedProjectPage()
         {
             Project project = GetSelectedProject();
+            OpenProjectPage(project);
+        }
+
+        private void OpenProjectPage(Project project)
+        {
             if (project == null)
                 return;
             Process.Start(project.Url);
+        }
+
+        private void OpenSelectedProjectConsolePage()
+        {
+            Project project = GetSelectedProject();
+            OpenProjectConsolePage(project);
+        }
+
+        private void OpenProjectConsolePage(Project project)
+        {
+            if (project == null)
+                return;
+            string url = hudsonService.GetConsolePage(project);
+            Process.Start(url);
         }
 
         private class ProjectWrapper
@@ -302,6 +331,11 @@ namespace Hudson.TrayTracker.UI
         private void openProjectPageMenuItem_Click(object sender, EventArgs e)
         {
             OpenSelectedProjectPage();
+        }
+
+        private void openConsolePageMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenSelectedProjectConsolePage();
         }
 
         private void runBuildMenuItem_Click(object sender, EventArgs e)
@@ -390,6 +424,7 @@ namespace Hudson.TrayTracker.UI
             if (project == null)
             {
                 openProjectPageMenuItem.Enabled
+                    = openConsolePageMenuItem.Enabled
                     = runBuildMenuItem.Enabled
                     = acknowledgeToolStripMenuItem.Enabled
                     = stopAcknowledgingToolStripMenuItem.Enabled
@@ -399,6 +434,18 @@ namespace Hudson.TrayTracker.UI
 
             acknowledgeToolStripMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
             stopAcknowledgingToolStripMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
+
+            bool inError = BuildStatusUtils.IsErrorBuild(project.Status);
+            if (inError)
+            {
+                openProjectPageMenuItem.Font = normalMenuItemFont;
+                openConsolePageMenuItem.Font = mainMenuItemFont;
+            }
+            else
+            {
+                openConsolePageMenuItem.Font = normalMenuItemFont;
+                openProjectPageMenuItem.Font = mainMenuItemFont;
+            }
         }
 
         private void removeProjectMenuItem_Click(object sender, EventArgs e)
