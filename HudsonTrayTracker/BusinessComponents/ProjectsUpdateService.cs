@@ -39,7 +39,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         ConfigurationService configurationService;
         HudsonService hudsonService;
-        SmartThreadPool threadPool = new SmartThreadPool(60, TOTAL_THREAD_COUNT);
+        SmartThreadPool threadPool = new SmartThreadPool(3600, TOTAL_THREAD_COUNT, TOTAL_THREAD_COUNT);
 
         Timer timer;
         int timeBetweenUpdates = DEFAULT_TIME_BETWEEN_UPDATES;
