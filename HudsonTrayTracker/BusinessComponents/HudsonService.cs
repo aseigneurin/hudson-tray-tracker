@@ -10,6 +10,7 @@ using System.Reflection;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
 using Hudson.TrayTracker.Utils.Web;
+using System.Threading;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -233,7 +234,11 @@ namespace Hudson.TrayTracker.BusinessComponents
         private WebClient GetWebClient()
         {
             if (threadWebClient == null)
+            {
+                logger.Info("Creating web client in thread " + Thread.CurrentThread.ManagedThreadId
+                    + " (" + Thread.CurrentThread.Name + ")");
                 threadWebClient = new CookieAwareWebClient();
+            }
             return threadWebClient;
         }
 
