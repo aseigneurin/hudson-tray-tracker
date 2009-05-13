@@ -119,6 +119,7 @@ namespace Hudson.TrayTracker
             }
             logger.Info("Update accepted by user");
             Process.Start(installerUrl);
+            Application.Exit();
         }
     }
 }

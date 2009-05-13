@@ -122,7 +122,7 @@
   </data>
   <data name="ApplicationUpdates_NewVersion_Text" xml:space="preserve">
     <value>A new version is available: v{0}.
-Do you want to download it now?</value>
+Do you want to download it now (the application will be closed)?</value>
   </data>
   <data name="ApplicationUpdates_NoUpdate_Text" xml:space="preserve">
     <value>No update available.</value>
