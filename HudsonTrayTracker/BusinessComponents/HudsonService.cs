@@ -9,12 +9,16 @@ using Dotnet.Commons.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
+using Hudson.TrayTracker.Utils.Web;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
     public class HudsonService
     {
         static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        [ThreadStatic]
+        static WebClient threadWebClient;
 
         // cache: key=url, value=xml
         IDictionary<string, string> cache = new Dictionary<string, string>();
@@ -208,7 +212,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                     logger.Trace("Cache miss: " + url);
             }
 
-            WebClient webClient = new WebClient();
+            WebClient webClient = GetWebClient();
             res = webClient.DownloadString(url);
 
             if (logger.IsTraceEnabled)
@@ -224,6 +228,13 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             return res;
+        }
+
+        private WebClient GetWebClient()
+        {
+            if (threadWebClient == null)
+                threadWebClient = new CookieAwareWebClient();
+            return threadWebClient;
         }
 
         public void RecycleCache()

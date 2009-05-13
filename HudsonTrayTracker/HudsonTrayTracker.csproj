@@ -218,6 +218,9 @@
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ThreadExceptionHandler.cs" />
+    <Compile Include="Utils\Web\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Utils\XmlUtils.cs" />
   </ItemGroup>
   <ItemGroup>
