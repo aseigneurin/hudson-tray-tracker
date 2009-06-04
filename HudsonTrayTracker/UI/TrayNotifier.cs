@@ -291,7 +291,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         errorProjectsText.Append(prefix);
-                    FormatProjectFailure(project, errorProjectsText);
+                    FormatProjectDetails(project.Name, project.LastFailedBuild.Users, errorProjectsText);
                     prefix = "\n";
                 }
 
@@ -306,7 +306,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         regressingProjectsText.Append(prefix);
-                    FormatProjectFailure(project, regressingProjectsText);
+                    FormatProjectDetails(project.Name, project.AllBuildDetails.LastBuild.Users, regressingProjectsText);
                     prefix = "\n";
                 }
 
@@ -315,15 +315,14 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        private void FormatProjectFailure(Project project, StringBuilder builder)
+        private void FormatProjectDetails(string projectName, ISet<string> users, StringBuilder builder)
         {
-            builder.Append(project.Name);
+            builder.Append(projectName);
 
-            BuildDetails details = project.LastFailedBuild;
-            if (details != null && details.Users != null && details.Users.Count > 0)
+            if (users != null && users.Count > 0)
             {
-                string users = StringUtils.Join(details.Users, ", ");
-                builder.Append(" (").Append(users).Append(")");
+                string userString = StringUtils.Join(users, ", ");
+                builder.Append(" (").Append(userString).Append(")");
             }
         }
 
