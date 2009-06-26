@@ -18,6 +18,7 @@ using System.Diagnostics;
 using Hudson.TrayTracker.Utils.Logging;
 using DevExpress.Utils.Controls;
 using Hudson.TrayTracker.Utils;
+using DevExpress.XtraGrid.Columns;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -294,13 +295,21 @@ namespace Hudson.TrayTracker.UI
             {
                 get { return Uri.UnescapeDataString(project.Url); }
             }
-            public string LastSuccessBuild
+            public BuildDetails LastSuccessBuild
             {
-                get { return FormatBuildDetails(project.LastSuccessfulBuild); }
+                get { return project.LastSuccessfulBuild; }
             }
-            public string LastFailureBuild
+            public string LastSuccessBuildStr
             {
-                get { return FormatBuildDetails(project.LastFailedBuild); }
+                get { return FormatBuildDetails(LastSuccessBuild); }
+            }
+            public BuildDetails LastFailureBuild
+            {
+                get { return project.LastFailedBuild; }
+            }
+            public string LastFailureBuildStr
+            {
+                get { return FormatBuildDetails(LastFailureBuild); }
             }
             public string LastSuccessUsers
             {
@@ -454,6 +463,47 @@ namespace Hudson.TrayTracker.UI
             if (project == null)
                 return;
             configurationService.RemoveProject(project);
+        }
+
+        private void projectsGridView_CustomColumnSort(object sender, CustomColumnSortEventArgs e)
+        {
+            int? res = DoCustomColumnSort(sender, e);
+            if (res == null)
+                return;
+            e.Handled = true;
+            e.Result = res.Value;
+        }
+
+        private int? DoCustomColumnSort(object sender, CustomColumnSortEventArgs e)
+        {
+            DateTime? date1 = GetBuildDate(e.Column, e.ListSourceRowIndex1);
+            DateTime? date2 = GetBuildDate(e.Column, e.ListSourceRowIndex2);
+            if (date1 == null && date2 == null)
+                return null;
+            if (date1 == null)
+                return -1;
+            if (date2 == null)
+                return 1;
+            int res = date1.Value.CompareTo(date2.Value);
+            return res;
+        }
+
+        private DateTime? GetBuildDate(GridColumn column, int listSourceRowIndex)
+        {
+            BuildDetails buildDetails = GetBuildDetails(column, listSourceRowIndex);
+            if (buildDetails == null)
+                return null;
+            return buildDetails.Time;
+        }
+
+        private BuildDetails GetBuildDetails(GridColumn column, int listSourceRowIndex)
+        {
+            ProjectWrapper projectWrapper = (ProjectWrapper)projectsDataSource[listSourceRowIndex];
+            if (column == lastSuccessGridColumn)
+                return projectWrapper.LastSuccessBuild;
+            if (column == lastFailureGridColumn)
+                return projectWrapper.LastFailureBuild;
+            throw new Exception("Column not supported: " + column.Caption);
         }
     }
 }

@@ -185,7 +185,7 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemPictureEdit3});
-            this.projectsGridControl.Size = new System.Drawing.Size(879, 361);
+            this.projectsGridControl.Size = new System.Drawing.Size(879, 363);
             this.projectsGridControl.TabIndex = 4;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
@@ -202,21 +202,21 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator2,
             this.removeProjectMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(230, 170);
+            this.contextMenuStrip.Size = new System.Drawing.Size(225, 148);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // openProjectPageMenuItem
             // 
             this.openProjectPageMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openProjectPageMenuItem.Image")));
             this.openProjectPageMenuItem.Name = "openProjectPageMenuItem";
-            this.openProjectPageMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.openProjectPageMenuItem.Size = new System.Drawing.Size(224, 22);
             this.openProjectPageMenuItem.Text = "Open project page";
             this.openProjectPageMenuItem.Click += new System.EventHandler(this.openProjectPageMenuItem_Click);
             // 
             // openConsolePageMenuItem
             // 
             this.openConsolePageMenuItem.Name = "openConsolePageMenuItem";
-            this.openConsolePageMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.openConsolePageMenuItem.Size = new System.Drawing.Size(224, 22);
             this.openConsolePageMenuItem.Text = "View console output";
             this.openConsolePageMenuItem.Click += new System.EventHandler(this.openConsolePageMenuItem_Click);
             // 
@@ -224,39 +224,39 @@ namespace Hudson.TrayTracker.UI
             // 
             this.runBuildMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("runBuildMenuItem.Image")));
             this.runBuildMenuItem.Name = "runBuildMenuItem";
-            this.runBuildMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.runBuildMenuItem.Size = new System.Drawing.Size(224, 22);
             this.runBuildMenuItem.Text = "Run build";
             this.runBuildMenuItem.Click += new System.EventHandler(this.runBuildMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // acknowledgeToolStripMenuItem
             // 
             this.acknowledgeToolStripMenuItem.Name = "acknowledgeToolStripMenuItem";
-            this.acknowledgeToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.acknowledgeToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.acknowledgeToolStripMenuItem.Text = "Acknowledge (tray icon only)";
             this.acknowledgeToolStripMenuItem.Click += new System.EventHandler(this.acknowledgeToolStripMenuItem_Click);
             // 
             // stopAcknowledgingToolStripMenuItem
             // 
             this.stopAcknowledgingToolStripMenuItem.Name = "stopAcknowledgingToolStripMenuItem";
-            this.stopAcknowledgingToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.stopAcknowledgingToolStripMenuItem.Size = new System.Drawing.Size(224, 22);
             this.stopAcknowledgingToolStripMenuItem.Text = "Stop acknowledging";
             this.stopAcknowledgingToolStripMenuItem.Click += new System.EventHandler(this.stopAcknowledgingToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(226, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
             // 
             // removeProjectMenuItem
             // 
             this.removeProjectMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("removeProjectMenuItem.Image")));
             this.removeProjectMenuItem.Name = "removeProjectMenuItem";
-            this.removeProjectMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.removeProjectMenuItem.Size = new System.Drawing.Size(224, 22);
             this.removeProjectMenuItem.Text = "Remove project";
             this.removeProjectMenuItem.Click += new System.EventHandler(this.removeProjectMenuItem_Click);
             // 
@@ -286,6 +286,7 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.projectsGridView_CustomUnboundColumnData);
             this.projectsGridView.DoubleClick += new System.EventHandler(this.projectsGridView_DoubleClick);
             this.projectsGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.projectsGridView_MouseMove);
+            this.projectsGridView.CustomColumnSort += new DevExpress.XtraGrid.Views.Base.CustomColumnSortEventHandler(this.projectsGridView_CustomColumnSort);
             // 
             // serverGridColumn
             // 
@@ -339,9 +340,10 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn.AppearanceCell.Options.UseTextOptions = true;
             this.lastSuccessGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lastSuccessGridColumn.Caption = "Last success";
-            this.lastSuccessGridColumn.FieldName = "LastSuccessBuild";
+            this.lastSuccessGridColumn.FieldName = "LastSuccessBuildStr";
             this.lastSuccessGridColumn.Name = "lastSuccessGridColumn";
             this.lastSuccessGridColumn.OptionsColumn.AllowEdit = false;
+            this.lastSuccessGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             this.lastSuccessGridColumn.Visible = true;
             this.lastSuccessGridColumn.VisibleIndex = 3;
             this.lastSuccessGridColumn.Width = 157;
@@ -360,9 +362,10 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureGridColumn.AppearanceCell.Options.UseTextOptions = true;
             this.lastFailureGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.lastFailureGridColumn.Caption = "Last failure";
-            this.lastFailureGridColumn.FieldName = "LastFailureBuild";
+            this.lastFailureGridColumn.FieldName = "LastFailureBuildStr";
             this.lastFailureGridColumn.Name = "lastFailureGridColumn";
             this.lastFailureGridColumn.OptionsColumn.AllowEdit = false;
+            this.lastFailureGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             this.lastFailureGridColumn.Visible = true;
             this.lastFailureGridColumn.VisibleIndex = 5;
             this.lastFailureGridColumn.Width = 161;
