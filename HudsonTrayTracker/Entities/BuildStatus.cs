@@ -38,11 +38,11 @@ namespace Hudson.TrayTracker.Entities
             return status + 1;
         }
 
-        public static bool IsWorse(BuildStatus newBuildStatus, BuildStatus oldBuildStatus)
+        public static bool IsWorse(BuildStatus status, BuildStatus thanStatus)
         {
-            BuildStatus newDegradedStatus = DegradeStatus(newBuildStatus);
-            BuildStatus oldDegradedStatus = DegradeStatus(oldBuildStatus);
-            bool res = newDegradedStatus > oldDegradedStatus;
+            BuildStatus degradedStatus = DegradeStatus(status);
+            BuildStatus thanDegradedStatus = DegradeStatus(thanStatus);
+            bool res = degradedStatus > thanDegradedStatus;
             return res;
         }
 
