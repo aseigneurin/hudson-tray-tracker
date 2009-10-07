@@ -378,7 +378,7 @@ namespace Hudson.TrayTracker.UI
         public static void ShowOrFocus()
         {
             if (Instance.Visible)
-                Instance.Focus();
+                Instance.Activate();
             else
                 Instance.Show();
         }
