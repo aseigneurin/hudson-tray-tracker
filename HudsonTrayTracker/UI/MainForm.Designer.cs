@@ -390,8 +390,10 @@ namespace Hudson.TrayTracker.UI
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Hudson Tray Tracker";
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).EndInit();

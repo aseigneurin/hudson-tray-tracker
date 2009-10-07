@@ -505,5 +505,11 @@ namespace Hudson.TrayTracker.UI
                 return projectWrapper.LastFailureBuild;
             throw new Exception("Column not supported: " + column.Caption);
         }
+
+        private void MainForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F5)
+                projectsUpdateService.UpdateProjects();
+        }
     }
 }
