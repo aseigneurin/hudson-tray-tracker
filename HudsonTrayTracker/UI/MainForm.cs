@@ -112,7 +112,7 @@ namespace Hudson.TrayTracker.UI
         }
         private void OnProjectsUpdated()
         {
-            LoadProjects();
+            UpdateProjects();
         }
 
         private void settingsButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -136,6 +136,18 @@ namespace Hudson.TrayTracker.UI
             projectsGridControl.DataSource = projectsDataSource;
             projectsGridView.BestFitColumns();
 
+            UpdateStatusBar();
+        }
+
+        private void UpdateProjects()
+        {
+            projectsGridView.RefreshData();
+
+            UpdateStatusBar();
+        }
+
+        private void UpdateStatusBar()
+        {
             lastCheckBarStaticItem.Caption = string.Format(HudsonTrayTrackerResources.LastCheck_Format, DateTime.Now);
         }
 
