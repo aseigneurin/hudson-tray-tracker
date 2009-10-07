@@ -248,10 +248,20 @@ namespace Hudson.TrayTracker.UI
             Project project = GetSelectedProject();
             if (project == null)
                 return;
-            if (BuildStatusUtils.IsErrorBuild(project.Status))
+            bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
+            if (shouldOpenConsolePage)
                 OpenProjectConsolePage(project);
             else
                 OpenProjectPage(project);
+        }
+
+        private bool ShouldOpenConsolePage(Project project)
+        {
+            if (project == null)
+                return false;
+            BuildStatus status = project.Status;
+            bool res = BuildStatusUtils.IsErrorBuild(status) || BuildStatusUtils.IsBuildInProgress(status);
+            return res;
         }
 
         private void OpenSelectedProjectPage()
@@ -456,8 +466,8 @@ namespace Hudson.TrayTracker.UI
             acknowledgeToolStripMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
             stopAcknowledgingToolStripMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
 
-            bool inError = BuildStatusUtils.IsErrorBuild(project.Status);
-            if (inError)
+            bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
+            if (shouldOpenConsolePage)
             {
                 openProjectPageMenuItem.Font = normalMenuItemFont;
                 openConsolePageMenuItem.Font = mainMenuItemFont;
