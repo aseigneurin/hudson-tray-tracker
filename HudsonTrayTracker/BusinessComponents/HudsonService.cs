@@ -78,7 +78,6 @@ namespace Hudson.TrayTracker.BusinessComponents
             xml.LoadXml(xmlStr);
 
             string status = xml.SelectSingleNode("/*/color").InnerText;
-            string lastBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastBuild/url");
             string lastCompletedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastCompletedBuild/url");
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
@@ -86,7 +85,6 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
-            res.LastBuild = GetBuildDetails(lastBuildUrl);
             res.LastCompletedBuild = GetBuildDetails(lastCompletedBuildUrl);
             res.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
             res.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
@@ -268,11 +266,24 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public string GetConsolePage(Project project)
         {
-            AllBuildDetails allBuildDetails = project.AllBuildDetails;
             string res = project.Url;
-            if (allBuildDetails != null && allBuildDetails.LastBuild != null)
+            bool hasBuild = HasBuild(project.AllBuildDetails);
+            if (hasBuild)
                 res += "lastBuild/console";
             return res;
+        }
+
+        private bool HasBuild(AllBuildDetails allBuildDetails)
+        {
+            // no details, there is no build
+            if (allBuildDetails == null)
+                return false;
+            // if there is a completed build, there is a build
+            if (allBuildDetails.LastCompletedBuild != null)
+                return true;
+            // if there is a build in progress, there is a build
+            bool buildInProgress = BuildStatusUtils.IsBuildInProgress(allBuildDetails.Status);
+            return buildInProgress;
         }
     }
 }

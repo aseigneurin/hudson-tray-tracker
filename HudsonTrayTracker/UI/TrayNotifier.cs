@@ -306,7 +306,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         regressingProjectsText.Append(prefix);
-                    FormatProjectDetails(project.Name, project.AllBuildDetails.LastBuild.Users, regressingProjectsText);
+                    FormatProjectDetails(project.Name, project.AllBuildDetails.LastCompletedBuild.Users, regressingProjectsText);
                     prefix = "\n";
                 }
 

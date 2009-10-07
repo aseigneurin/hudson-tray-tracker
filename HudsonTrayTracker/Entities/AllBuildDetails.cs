@@ -18,12 +18,6 @@ namespace Hudson.TrayTracker.Entities
             set { status = value; }
         }
 
-        public BuildDetails LastBuild
-        {
-            get { return lastBuild; }
-            set { lastBuild = value; }
-        }
-
         public BuildDetails LastCompletedBuild
         {
             get { return lastCompletedBuild; }
