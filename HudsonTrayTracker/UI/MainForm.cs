@@ -158,7 +158,7 @@ namespace Hudson.TrayTracker.UI
 
         private void HudsonTrayTrackerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (exiting == false)
+            if (exiting == false && e.CloseReason == CloseReason.UserClosing)
             {
                 Hide();
                 e.Cancel = true;
