@@ -399,7 +399,9 @@ namespace Hudson.TrayTracker.UI
 
         public static void ShowOrFocus()
         {
-            if (Instance.Visible)
+            if (Instance.WindowState == FormWindowState.Minimized)
+                PInvokeUtils.RestoreForm(Instance);
+            else if (Instance.Visible)
                 Instance.Activate();
             else
                 Instance.Show();
