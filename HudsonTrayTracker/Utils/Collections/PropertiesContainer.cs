@@ -302,5 +302,12 @@ namespace Hudson.TrayTracker.Utils.Collections
             foreach (KeyValuePair<string, string> pair in properties)
                 this[pair.Key] = pair.Value;
         }
+
+        public void Clear()
+        {
+            if (readOnly)
+                throw new Exception("Cannot write to a read-only container");
+            properties.Clear();
+        }
     }
 }

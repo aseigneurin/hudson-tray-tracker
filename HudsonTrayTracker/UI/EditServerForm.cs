@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using DevExpress.XtraEditors;
+using Hudson.TrayTracker.Entities;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -15,13 +16,53 @@ namespace Hudson.TrayTracker.UI
         public EditServerForm()
         {
             InitializeComponent();
-            nameTextBox.TextChanged += delegate { ValidateForm(); };
+            urlTextBox.TextChanged += delegate { ValidateForm(); };
+        }
+
+        public EditServerForm(Server server)
+            : this()
+        {
+            ServerAddress = server.Url;
+            if (server.Credentials != null)
+            {
+                RequiresAuthentication = true;
+                Username = server.Credentials.Username;
+                Password = server.Credentials.Password;
+            }
         }
 
         public string ServerAddress
         {
-            get { return nameTextBox.Text; }
-            set { nameTextBox.Text = value; }
+            get { return urlTextBox.Text; }
+            set { urlTextBox.Text = value; }
+        }
+
+        public bool RequiresAuthentication
+        {
+            get { return authenticationCheckBox.CheckState == CheckState.Checked; }
+            set { authenticationCheckBox.CheckState = value ? CheckState.Checked : CheckState.Unchecked; }
+        }
+
+        public string Username
+        {
+            get
+            {
+                if (RequiresAuthentication == false)
+                    return null;
+                return usernameTextBox.Text;
+            }
+            set { usernameTextBox.Text = value; }
+        }
+
+        public string Password
+        {
+            get
+            {
+                if (RequiresAuthentication == false)
+                    return null;
+                return passwordTextBox.Text;
+            }
+            set { passwordTextBox.Text = value; }
         }
 
         protected virtual bool IsNameValid(string name)
@@ -31,11 +72,20 @@ namespace Hudson.TrayTracker.UI
 
         private void ValidateForm()
         {
-            string name = nameTextBox.Text;
+            string name = urlTextBox.Text;
             bool nameValid = IsNameValid(name);
             //ValidationTools.SetValid(nameTextBox, nameValid);
 
             validateButton.Enabled = nameValid;
+        }
+
+        private void authenticationCheckBox_CheckStateChanged(object sender, EventArgs e)
+        {
+            usernameLabel.Enabled
+                = usernameTextBox.Enabled
+                = passwordLabel.Enabled
+                = passwordTextBox.Enabled
+                = RequiresAuthentication;
         }
     }
 }

@@ -47,5 +47,7 @@ namespace Hudson.TrayTracker.Utils.Collections
         void SetGroupBoolValue(string group, int groupId, string key, bool value);
 
         void CopyPropertiesFrom(IPropertiesContainer properties);
+
+        void Clear();
     }
 }

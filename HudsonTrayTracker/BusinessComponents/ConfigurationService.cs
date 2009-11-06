@@ -54,6 +54,15 @@ namespace Hudson.TrayTracker.BusinessComponents
                 Server server = new Server();
                 server.Url = propertiesFile.GetGroupRequiredStringValue("servers", serverId, "url");
 
+                // credentials
+                string username = propertiesFile.GetGroupStringValue("servers", serverId, "username");
+                if (username != null)
+                {
+                    string passwordBase64 = propertiesFile.GetGroupRequiredStringValue("servers", serverId, "passwordBase64");
+                    string password = Encoding.UTF8.GetString(Convert.FromBase64String(passwordBase64));
+                    server.Credentials = new Credentials(username, password);
+                }
+
                 // keep the server
                 servers.Add(server);
 
@@ -80,11 +89,21 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void SaveConfiguration()
         {
+            // clear to remove old values
+            propertiesFile.Clear();
+
             // save the servers
             int serverId = 0;
             foreach (Server server in servers)
             {
                 propertiesFile.SetGroupStringValue("servers", serverId, "url", server.Url);
+                Credentials credentials = server.Credentials;
+                if (credentials != null)
+                {
+                    propertiesFile.SetGroupStringValue("servers", serverId, "username", credentials.Username);
+                    string passwordBase64 = Convert.ToBase64String(Encoding.ASCII.GetBytes(credentials.Password));
+                    propertiesFile.SetGroupStringValue("servers", serverId, "passwordBase64", passwordBase64);
+                }
                 serverId++;
             }
             if (serverId > 0)
@@ -113,16 +132,31 @@ namespace Hudson.TrayTracker.BusinessComponents
                 ConfigurationUpdated();
         }
 
-        public Server AddServer(string url)
+        public Server AddServer(string url, string username, string password)
         {
             Server server = new Server();
-            server.Url = url;
-            bool added = servers.Add(server);
-            if (added == false)
-                return null;
-
+            BindData(server, url, username, password);
+            servers.Add(server);
             SaveConfiguration();
             return server;
+        }
+
+        public void UpdateServer(Server server, string url, string username, string password)
+        {
+            // note: we need remove and re-add the server because its hash-code might change
+            servers.Remove(server);
+            BindData(server, url, username, password);
+            servers.Add(server);
+            SaveConfiguration();
+        }
+
+        private void BindData(Server server, string url, string username, string password)
+        {
+            server.Url = url;
+            if (String.IsNullOrEmpty(username) == false)
+                server.Credentials = new Credentials(username, password);
+            else
+                server.Credentials = null;
         }
 
         public void RemoveServer(Server server)

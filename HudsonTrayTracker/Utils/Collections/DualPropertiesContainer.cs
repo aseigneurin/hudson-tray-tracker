@@ -220,5 +220,13 @@ namespace Hudson.TrayTracker.Utils.Collections
             get { throw new Exception("The method or operation is not implemented."); }
             set { throw new Exception("The method or operation is not implemented."); }
         }
+
+        public void Clear()
+        {
+            Apply(delegate(IPropertiesContainer properties)
+            {
+                properties.Clear();
+            });
+        }
     }
 }

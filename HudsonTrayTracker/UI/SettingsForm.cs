@@ -66,11 +66,28 @@ namespace Hudson.TrayTracker.UI
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
-            Server server = configurationService.AddServer(namingForm.ServerAddress);
+            Server server = configurationService.AddServer(namingForm.ServerAddress,
+                namingForm.Username, namingForm.Password);
             if (server == null)
                 return;
 
             serversDataSource.Add(server);
+        }
+
+        private void editServerButtonItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Server server = GetSelectedServer();
+            if (server == null)
+                return;
+
+            EditServerForm namingForm = new EditServerForm(server);
+            if (namingForm.ShowDialog() != DialogResult.OK)
+                return;
+
+            configurationService.UpdateServer(server,
+                   namingForm.ServerAddress, namingForm.Username, namingForm.Password);
+
+            UpdateProjectList(server);
         }
 
         private void removeServerButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -85,7 +102,9 @@ namespace Hudson.TrayTracker.UI
             Server server = GetSelectedServer();
 
             // update the toolbar
-            removeServerButtonItem.Enabled = server != null;
+            editServerButtonItem.Enabled
+                = removeServerButtonItem.Enabled
+                = server != null;
 
             // update the project list
             UpdateProjectList(server);

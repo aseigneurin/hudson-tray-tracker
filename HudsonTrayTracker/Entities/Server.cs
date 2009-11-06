@@ -8,12 +8,19 @@ namespace Hudson.TrayTracker.Entities
     public class Server
     {
         string url;
+        Credentials credentials;
         ISet<Project> projects = new HashedSet<Project>();
 
         public string Url
         {
             get { return url; }
             set { url = value; }
+        }
+
+        public Credentials Credentials
+        {
+            get { return credentials; }
+            set { credentials = value; }
         }
 
         public ISet<Project> Projects

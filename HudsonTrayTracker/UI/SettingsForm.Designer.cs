@@ -32,6 +32,9 @@ namespace Hudson.TrayTracker.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.projectsGridControl = new DevExpress.XtraGrid.GridControl();
+            this.projectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deselectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.projectSelectedGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.projectSelectedCheckEdit = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -42,6 +45,7 @@ namespace Hudson.TrayTracker.UI
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.addServerButtonItem = new DevExpress.XtraBars.BarButtonItem();
+            this.editServerButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.removeServerButtonItem = new DevExpress.XtraBars.BarButtonItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.statusProgressItem = new DevExpress.XtraBars.BarEditItem();
@@ -51,18 +55,15 @@ namespace Hudson.TrayTracker.UI
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.projectContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.selectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deselectAllProjectsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
+            this.projectContextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectSelectedCheckEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serversGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serversGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
-            this.projectContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -77,7 +78,7 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 289);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 291);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // projectsGridControl
@@ -89,10 +90,32 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridControl.Name = "projectsGridControl";
             this.projectsGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.projectSelectedCheckEdit});
-            this.projectsGridControl.Size = new System.Drawing.Size(334, 283);
+            this.projectsGridControl.Size = new System.Drawing.Size(334, 285);
             this.projectsGridControl.TabIndex = 1;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
+            // 
+            // projectContextMenuStrip
+            // 
+            this.projectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllProjectsMenuItem,
+            this.deselectAllProjectsMenuItem});
+            this.projectContextMenuStrip.Name = "projectContextMenuStrip";
+            this.projectContextMenuStrip.Size = new System.Drawing.Size(182, 48);
+            // 
+            // selectAllProjectsMenuItem
+            // 
+            this.selectAllProjectsMenuItem.Name = "selectAllProjectsMenuItem";
+            this.selectAllProjectsMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.selectAllProjectsMenuItem.Text = "Select all projects";
+            this.selectAllProjectsMenuItem.Click += new System.EventHandler(this.selectAllProjectsMenuItem_Click);
+            // 
+            // deselectAllProjectsMenuItem
+            // 
+            this.deselectAllProjectsMenuItem.Name = "deselectAllProjectsMenuItem";
+            this.deselectAllProjectsMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.deselectAllProjectsMenuItem.Text = "Deselect all projects";
+            this.deselectAllProjectsMenuItem.Click += new System.EventHandler(this.deselectAllProjectsMenuItem_Click);
             // 
             // projectsGridView
             // 
@@ -142,7 +165,7 @@ namespace Hudson.TrayTracker.UI
             this.serversGridControl.Location = new System.Drawing.Point(3, 3);
             this.serversGridControl.MainView = this.serversGridView;
             this.serversGridControl.Name = "serversGridControl";
-            this.serversGridControl.Size = new System.Drawing.Size(333, 283);
+            this.serversGridControl.Size = new System.Drawing.Size(333, 285);
             this.serversGridControl.TabIndex = 0;
             this.serversGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.serversGridView});
@@ -185,9 +208,10 @@ namespace Hudson.TrayTracker.UI
             this.addServerButtonItem,
             this.removeServerButtonItem,
             this.statusTextItem,
-            this.statusProgressItem});
+            this.statusProgressItem,
+            this.editServerButtonItem});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 4;
+            this.barManager1.MaxItemId = 5;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMarqueeProgressBar1});
             this.barManager1.StatusBar = this.bar1;
@@ -201,6 +225,7 @@ namespace Hudson.TrayTracker.UI
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.addServerButtonItem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.editServerButtonItem),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.removeServerButtonItem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawDragBorder = false;
@@ -215,6 +240,16 @@ namespace Hudson.TrayTracker.UI
             this.addServerButtonItem.Id = 0;
             this.addServerButtonItem.Name = "addServerButtonItem";
             this.addServerButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.addServerButtonItem_ItemClick);
+            // 
+            // editServerButtonItem
+            // 
+            this.editServerButtonItem.Caption = "Edit server";
+            this.editServerButtonItem.Enabled = false;
+            this.editServerButtonItem.Glyph = ((System.Drawing.Image)(resources.GetObject("editServerButtonItem.Glyph")));
+            this.editServerButtonItem.Id = 4;
+            this.editServerButtonItem.Name = "editServerButtonItem";
+            this.editServerButtonItem.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.editServerButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.editServerButtonItem_ItemClick);
             // 
             // removeServerButtonItem
             // 
@@ -257,28 +292,6 @@ namespace Hudson.TrayTracker.UI
             this.statusTextItem.Name = "statusTextItem";
             this.statusTextItem.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
-            // projectContextMenuStrip
-            // 
-            this.projectContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectAllProjectsMenuItem,
-            this.deselectAllProjectsMenuItem});
-            this.projectContextMenuStrip.Name = "projectContextMenuStrip";
-            this.projectContextMenuStrip.Size = new System.Drawing.Size(179, 70);
-            // 
-            // selectAllProjectsMenuItem
-            // 
-            this.selectAllProjectsMenuItem.Name = "selectAllProjectsMenuItem";
-            this.selectAllProjectsMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.selectAllProjectsMenuItem.Text = "Select all projects";
-            this.selectAllProjectsMenuItem.Click += new System.EventHandler(this.selectAllProjectsMenuItem_Click);
-            // 
-            // deselectAllProjectsMenuItem
-            // 
-            this.deselectAllProjectsMenuItem.Name = "deselectAllProjectsMenuItem";
-            this.deselectAllProjectsMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.deselectAllProjectsMenuItem.Text = "Deselect all projects";
-            this.deselectAllProjectsMenuItem.Click += new System.EventHandler(this.deselectAllProjectsMenuItem_Click);
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,13 +307,13 @@ namespace Hudson.TrayTracker.UI
             this.Text = "Hudson Tray Tracker - Settings";
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).EndInit();
+            this.projectContextMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectSelectedCheckEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serversGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serversGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).EndInit();
-            this.projectContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,5 +344,6 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ContextMenuStrip projectContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem selectAllProjectsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deselectAllProjectsMenuItem;
+        private DevExpress.XtraBars.BarButtonItem editServerButtonItem;
     }
 }

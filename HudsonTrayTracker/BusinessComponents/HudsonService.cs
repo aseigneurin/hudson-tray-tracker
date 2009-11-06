@@ -32,7 +32,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Loading projects from " + url);
 
-            String xmlStr = DownloadString(url, false);
+            String xmlStr = DownloadString(server.Credentials, url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -69,7 +69,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Updating project from " + url);
 
-            String xmlStr = DownloadString(url, false);
+            Credentials credentials = project.Server.Credentials;
+            String xmlStr = DownloadString(credentials, url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -85,9 +86,9 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
-            res.LastCompletedBuild = GetBuildDetails(lastCompletedBuildUrl);
-            res.LastSuccessfulBuild = GetBuildDetails(lastSuccessfulBuildUrl);
-            res.LastFailedBuild = GetBuildDetails(lastFailedBuildUrl);
+            res.LastCompletedBuild = GetBuildDetails(credentials, lastCompletedBuildUrl);
+            res.LastSuccessfulBuild = GetBuildDetails(credentials, lastSuccessfulBuildUrl);
+            res.LastFailedBuild = GetBuildDetails(credentials, lastFailedBuildUrl);
 
             logger.Info("Done updating project");
             return res;
@@ -118,7 +119,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             return BuildStatus.Unknown;
         }
 
-        private BuildDetails GetBuildDetails(string buildUrl)
+        private BuildDetails GetBuildDetails(Credentials credentials, string buildUrl)
         {
             if (buildUrl == null)
                 return null;
@@ -128,7 +129,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (logger.IsDebugEnabled)
                 logger.Debug("Getting build details from " + url);
 
-            String xmlStr = DownloadString(url, true);
+            String xmlStr = DownloadString(credentials, url, true);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -177,7 +178,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             logger.Info("Running build at " + url);
 
-            String str = DownloadString(url, false);
+            Credentials credentials = project.Server.Credentials;
+            String str = DownloadString(credentials, url, false);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("Result: " + str);
@@ -185,7 +187,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             logger.Info("Done running build");
         }
 
-        private String DownloadString(string url, bool cacheable)
+        private String DownloadString(Credentials credentials, string url, bool cacheable)
         {
             string res;
 
@@ -211,7 +213,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                     logger.Trace("Cache miss: " + url);
             }
 
-            WebClient webClient = GetWebClient();
+            WebClient webClient = GetWebClient(credentials);
             res = webClient.DownloadString(url);
 
             if (logger.IsTraceEnabled)
@@ -229,15 +231,27 @@ namespace Hudson.TrayTracker.BusinessComponents
             return res;
         }
 
-        private WebClient GetWebClient()
+        private WebClient GetWebClient(Credentials credentials)
         {
             if (threadWebClient == null)
             {
                 logger.Info("Creating web client in thread " + Thread.CurrentThread.ManagedThreadId
                     + " (" + Thread.CurrentThread.Name + ")");
                 threadWebClient = new CookieAwareWebClient();
-                threadWebClient.Encoding = new UTF8Encoding();
+                threadWebClient.Encoding = Encoding.UTF8;
             }
+
+            // reinitialize HTTP headers
+            threadWebClient.Headers = new WebHeaderCollection();
+
+            // credentials
+            if (credentials != null)
+            {
+                string authentication = "Basic " + Convert.ToBase64String(
+                    Encoding.ASCII.GetBytes(credentials.Username + ":" + credentials.Password));
+                threadWebClient.Headers.Add("Authorization", authentication);
+            }
+
             return threadWebClient;
         }
 
