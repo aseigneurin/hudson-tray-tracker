@@ -236,6 +236,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 logger.Info("Creating web client in thread " + Thread.CurrentThread.ManagedThreadId
                     + " (" + Thread.CurrentThread.Name + ")");
                 threadWebClient = new CookieAwareWebClient();
+                threadWebClient.Encoding = new UTF8Encoding();
             }
             return threadWebClient;
         }
