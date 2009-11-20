@@ -295,7 +295,11 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         errorProjectsText.Append(prefix);
-                    FormatProjectDetails(project.Name, project.LastFailedBuild.Users, errorProjectsText);
+                    BuildDetails buildDetails = project.LastFailedBuild;
+                    if (buildDetails == null)
+                        logger.Warn("No details for the last failed build of project in error: " + project.Url);
+                    ISet<string> users = buildDetails != null ? buildDetails.Users : null;
+                    FormatProjectDetails(project.Name, users, errorProjectsText);
                     prefix = "\n";
                 }
 
@@ -310,7 +314,11 @@ namespace Hudson.TrayTracker.UI
                 {
                     if (prefix != null)
                         regressingProjectsText.Append(prefix);
-                    FormatProjectDetails(project.Name, project.AllBuildDetails.LastCompletedBuild.Users, regressingProjectsText);
+                    BuildDetails buildDetails = project.AllBuildDetails.LastCompletedBuild;
+                    if (buildDetails == null)
+                        logger.Warn("No details for the last failed build of project in error: " + project.Url);
+                    ISet<string> users = buildDetails != null ? buildDetails.Users : null;
+                    FormatProjectDetails(project.Name, users, regressingProjectsText);
                     prefix = "\n";
                 }
 
