@@ -208,8 +208,7 @@ namespace Hudson.TrayTracker.UI
             catch (Exception ex)
             {
                 LoggingHelper.LogError(logger, ex);
-                MessageBox.Show(ex.ToString(), "Program exception handler");
-                throw;
+                UpdateIcon(BuildStatus.Unknown);
             }
         }
 
@@ -288,7 +287,7 @@ namespace Hudson.TrayTracker.UI
 
         private void UpdateBalloonTip(ICollection<Project> errorProjects, ICollection<Project> regressingProjects)
         {
-            if (lastBuildStatus < BuildStatus.Failed && errorProjects.Count > 0)
+            if (lastBuildStatus < BuildStatus.Failed && errorProjects != null && errorProjects.Count > 0)
             {
                 StringBuilder errorProjectsText = new StringBuilder();
                 string prefix = null;
@@ -303,7 +302,7 @@ namespace Hudson.TrayTracker.UI
                 notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildFailed_Caption,
                     errorProjectsText.ToString(), ToolTipIcon.Error);
             }
-            else if (regressingProjects.Count > 0)
+            else if (regressingProjects != null && regressingProjects.Count > 0)
             {
                 StringBuilder regressingProjectsText = new StringBuilder();
                 string prefix = null;
