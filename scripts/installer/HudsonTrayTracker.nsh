@@ -1,6 +1,5 @@
 !include "MUI2.nsh"
 
-!define ROOT "..\..\HudsonTrayTracker\bin\Release"
 !define PRODUCT_NAME "Hudson Tray Tracker"
 
 Name "${PRODUCT_NAME}"
