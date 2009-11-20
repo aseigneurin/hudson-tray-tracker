@@ -4,7 +4,7 @@ call Compile_RELEASE.bat
 if not errorlevel 0 goto error
 
 cd installer
-"%NSIS%\makensis" HudsonTrayTracker.nsi
+"%NSIS%\makensis" HudsonTrayTracker_RELEASE.nsi
 if not errorlevel 0 goto error
 
 pause

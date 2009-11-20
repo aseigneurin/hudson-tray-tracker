@@ -4,7 +4,7 @@ call Compile_DEBUG.bat
 if not errorlevel 0 goto error
 
 cd installer
-"%NSIS%\makensis" HudsonTrayTracker.nsi /D"ROOT ..\..\HudsonTrayTracker\bin\Debug"
+"%NSIS%\makensis" HudsonTrayTracker_DEBUG.nsi
 if not errorlevel 0 goto error
 
 pause
