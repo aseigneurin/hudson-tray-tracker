@@ -336,6 +336,42 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Build failed.
+        /// </summary>
+        internal static string NotificationSettings_Failed {
+            get {
+                return ResourceManager.GetString("NotificationSettings_Failed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build fixed.
+        /// </summary>
+        internal static string NotificationSettings_Fixed {
+            get {
+                return ResourceManager.GetString("NotificationSettings_Fixed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build still failing.
+        /// </summary>
+        internal static string NotificationSettings_StillFailing {
+            get {
+                return ResourceManager.GetString("NotificationSettings_StillFailing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Build succeeded.
+        /// </summary>
+        internal static string NotificationSettings_Succeeded {
+            get {
+                return ResourceManager.GetString("NotificationSettings_Succeeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string RunBuildFailed_Caption {

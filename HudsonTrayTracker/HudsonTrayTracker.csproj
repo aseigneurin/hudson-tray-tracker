@@ -142,6 +142,24 @@
     <Compile Include="UI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\NotificationSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\NotificationSettingsControl.Designer.cs">
+      <DependentUpon>NotificationSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\NotificationsSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\NotificationsSettingsControl.Designer.cs">
+      <DependentUpon>NotificationsSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ServersSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ServersSettingsControl.Designer.cs">
+      <DependentUpon>ServersSettingsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -279,6 +297,18 @@
     <EmbeddedResource Include="Resources\TrayIcons\Successful_BuildInProgress.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable_BuildInProgress.gif" />
+    <EmbeddedResource Include="UI\Controls\NotificationSettingsControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotificationSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\NotificationsSettingsControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotificationsSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\ServersSettingsControl.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ServersSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

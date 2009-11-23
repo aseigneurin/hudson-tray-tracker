@@ -98,10 +98,10 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void LoadNotificationSounds()
         {
             notificationSounds = new NotificationSounds();
-            notificationSounds.FailedSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "failed");
-            notificationSounds.FixedSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "fixed");
-            notificationSounds.StillFailingSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "stillfailing");
-            notificationSounds.SucceededSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "succeeded");
+            notificationSounds.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
+            notificationSounds.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
+            notificationSounds.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
+            notificationSounds.SucceededSoundPath = propertiesFile.GetStringValue("sounds.Succeeded");
         }
 
         private void SaveConfiguration()
@@ -153,15 +153,10 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void SaveNotificationSounds()
         {
-            SaveNotificationSound("failed", notificationSounds.FailedSoundPath);
-            SaveNotificationSound("fixed", notificationSounds.FixedSoundPath);
-            SaveNotificationSound("stillfailing", notificationSounds.StillFailingSoundPath);
-            SaveNotificationSound("succeeded", notificationSounds.SucceededSoundPath);
-        }
-
-        private void SaveNotificationSound(string key, string value)
-        {
-            propertiesFile.SetGroupStringValue("sound", 0, key, value);
+            propertiesFile["sounds.Failed"] = notificationSounds.FailedSoundPath;
+            propertiesFile["sounds.Fixed"] = notificationSounds.FixedSoundPath;
+            propertiesFile["sounds.StillFailing"] = notificationSounds.StillFailingSoundPath;
+            propertiesFile["sounds.Succeeded"] = notificationSounds.SucceededSoundPath;
         }
 
         public Server AddServer(string url, string username, string password)
@@ -246,6 +241,21 @@ namespace Hudson.TrayTracker.BusinessComponents
                 res[server] = projects;
             }
             return res;
+        }
+
+        public string GetSoundPath(string status)
+        {
+            PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
+            string res = (string)prop.GetValue(notificationSounds, null);
+            return res;
+        }
+
+        public void SetSoundPath(string status, string path)
+        {
+            PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
+            prop.SetValue(notificationSounds, path, null);
+
+            SaveConfiguration();
         }
     }
 }

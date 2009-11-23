@@ -61,6 +61,7 @@ namespace Hudson.TrayTracker
                 SettingsForm settingsForm = SettingsForm.Instance;
                 settingsForm.ConfigurationService = configurationService;
                 settingsForm.HudsonService = hudsonService;
+                settingsForm.Initialize();
 
                 TrayNotifier notifier = TrayNotifier.Instance;
                 notifier.ConfigurationService = configurationService;

@@ -1,5 +1,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
+using Dotnet.Commons.Logging;
+using System.Reflection;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -23,11 +25,15 @@ namespace Hudson.TrayTracker.BusinessComponents
         [DllImport("winmm.dll")]
         static extern bool PlaySound(string file, int module, int flags);
 
+        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public static void PlayFile(string filePath)
         {
+            logger.Debug("Playing sound: " + filePath);
+
             if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
-                PlaySound(filePath, 0, (int) (Flags.SND_ASYNC | Flags.SND_FILENAME));
+                PlaySound(filePath, 0, (int)(Flags.SND_ASYNC | Flags.SND_FILENAME));
             }
         }
     }
