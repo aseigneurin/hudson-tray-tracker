@@ -4,8 +4,6 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-using Common.Logging;
-
 namespace Hudson.TrayTracker.Utils.Collections
 {
     // reads a properties file
