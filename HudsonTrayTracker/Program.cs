@@ -80,3 +80,4 @@ namespace Hudson.TrayTracker
                 + " v" + Assembly.GetExecutingAssembly().GetName().Version + " Exit");
         }
     }
+}
