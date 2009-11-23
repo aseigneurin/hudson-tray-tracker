@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 using System.Threading;
 using Hudson.TrayTracker.Utils.Logging;
@@ -24,7 +24,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         public delegate void NewVersionAvailableHandler(Version version, string installerUrl);
         public event NewVersionAvailableHandler NewVersionAvailable;
 
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         // every 10 minutes
         static readonly int DEFAULT_UPDATE_PERIOD = 10 * 60 * 1000;

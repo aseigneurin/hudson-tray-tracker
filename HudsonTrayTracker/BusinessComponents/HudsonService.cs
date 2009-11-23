@@ -5,7 +5,7 @@ using System.Net;
 using System.Xml;
 using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Utils;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
@@ -16,7 +16,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 {
     public class HudsonService
     {
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         [ThreadStatic]
         static WebClient threadWebClient;

@@ -1,6 +1,6 @@
 using System.IO;
 using System.Runtime.InteropServices;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 
 namespace Hudson.TrayTracker.BusinessComponents
@@ -25,7 +25,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         [DllImport("winmm.dll")]
         static extern bool PlaySound(string file, int module, int flags);
 
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static void PlayFile(string filePath)
         {

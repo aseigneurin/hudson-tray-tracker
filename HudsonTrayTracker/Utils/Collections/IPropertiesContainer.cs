@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 namespace Hudson.TrayTracker.Utils.Collections
 {

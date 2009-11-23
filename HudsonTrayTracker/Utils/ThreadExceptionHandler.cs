@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 using Hudson.TrayTracker.Utils.Logging;
 using DevExpress.XtraEditors;
@@ -14,7 +14,7 @@ namespace Hudson.TrayTracker.Utils
 {
     internal class ThreadExceptionHandler
     {
-        private static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// 
         /// Handles the thread exception.

@@ -9,7 +9,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Reflection;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 using Hudson.TrayTracker.Utils.Logging;
 using System.Threading;
@@ -18,7 +18,7 @@ namespace Hudson.TrayTracker.Utils.BackgroundProcessing
 {
     public static class BackgroundProcessExecutor
     {
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public static void Execute(Process process)
         {

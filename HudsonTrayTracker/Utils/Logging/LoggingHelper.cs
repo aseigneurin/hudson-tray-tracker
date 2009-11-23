@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 namespace Hudson.TrayTracker.Utils.Logging
 {

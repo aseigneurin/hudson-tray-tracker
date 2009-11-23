@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 using Hudson.TrayTracker.Utils.Collections;
 
@@ -13,7 +13,7 @@ namespace Hudson.TrayTracker.Utils.IO
     // reads a properties file
     public class PropertiesFile : DualPropertiesContainer
     {
-        private static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         string filename;
 

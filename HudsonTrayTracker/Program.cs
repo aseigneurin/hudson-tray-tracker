@@ -9,7 +9,7 @@ using Hudson.TrayTracker.UI;
 using Hudson.TrayTracker.Utils.Logging;
 using System.Reflection;
 using System.Diagnostics;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using Hudson.TrayTracker.Utils;
 using System.Threading;
 using System.Drawing;
@@ -20,7 +20,7 @@ namespace Hudson.TrayTracker
 {
     static class Program
     {
-        private static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// The main entry point for the application.

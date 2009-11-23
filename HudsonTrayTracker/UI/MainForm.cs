@@ -11,7 +11,7 @@ using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Properties;
 using DevExpress.XtraGrid.Views.Base;
 using System.Drawing.Imaging;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System.Diagnostics;
@@ -24,7 +24,7 @@ namespace Hudson.TrayTracker.UI
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         static MainForm instance;
         public static MainForm Instance

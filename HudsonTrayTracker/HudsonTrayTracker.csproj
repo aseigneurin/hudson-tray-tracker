@@ -29,6 +29,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Spring\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v8.3, Version=8.3.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.Data.v8.3.dll</HintPath>
@@ -93,14 +97,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DevExpress\DevExpress.XtraNavBar.v8.3.Design.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Dotnet.Commons.Logging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Dotnet.Commons.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Dotnet.Commons.Logging.Log4net, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Dotnet.Commons.Logging.Log4net.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections, Version=1.0.0.3, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

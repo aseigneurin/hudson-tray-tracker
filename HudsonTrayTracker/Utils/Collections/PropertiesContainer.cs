@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -13,7 +13,7 @@ namespace Hudson.TrayTracker.Utils.Collections
     // reads a properties file
     public class PropertiesContainer : IPropertiesContainer
     {
-        private static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private static readonly Regex REGEX_BOOLEAN_TRUE = new Regex("^( *)(true|1|yes)( *)$", RegexOptions.IgnoreCase);
 
         string id;

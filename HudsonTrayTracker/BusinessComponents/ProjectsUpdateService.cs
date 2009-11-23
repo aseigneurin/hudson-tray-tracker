@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Entities;
 using System.ComponentModel;
@@ -24,7 +24,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         public delegate void ProjectsUpdatedHandler();
         public event ProjectsUpdatedHandler ProjectsUpdated;
 
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         // 15 seconds
         static readonly int DEFAULT_TIME_BETWEEN_UPDATES = 15 * 1000;

@@ -6,7 +6,7 @@ using Iesi.Collections.Generic;
 using Hudson.TrayTracker.Utils.IO;
 using System.IO;
 using System.Reflection;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -15,7 +15,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         public delegate void ConfigurationUpdatedHandler();
         public event ConfigurationUpdatedHandler ConfigurationUpdated;
 
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
         private const string PROPERTIES_FILE = "hudson.properties";

@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Hudson.TrayTracker.BusinessComponents;
-using Dotnet.Commons.Logging;
+using Common.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Properties;
@@ -19,7 +19,7 @@ namespace Hudson.TrayTracker.UI
 {
     public partial class TrayNotifier : Component
     {
-        static readonly ILog logger = LogFactory.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         static TrayNotifier instance;
         public static TrayNotifier Instance
