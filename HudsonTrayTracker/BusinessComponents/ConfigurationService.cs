@@ -35,7 +35,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             set { notificationSounds = value; }
         }
 
-        public ConfigurationService()
+        public void Initialize()
         {
             LoadConfiguration();
         }
@@ -98,7 +98,6 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void LoadNotificationSounds()
         {
-            notificationSounds = new NotificationSounds();
             notificationSounds.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
             notificationSounds.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
             notificationSounds.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
