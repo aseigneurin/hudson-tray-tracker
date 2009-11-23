@@ -36,6 +36,7 @@ Section
 
   File "${ROOT}\antlr.runtime.dll"
   File "${ROOT}\Common.Logging.dll"
+  File "${ROOT}\Common.Logging.Log4Net.dll"
   File "${ROOT}\DevExpress.Data.v8.3.dll"
   File "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   File "${ROOT}\DevExpress.Utils.v8.3.dll"
@@ -70,6 +71,7 @@ Section "Uninstall"
  
   Delete "${ROOT}\antlr.runtime.dll"
   Delete "${ROOT}\Common.Logging.dll"
+  Delete "${ROOT}\Common.Logging.Log4Net.dll"
   Delete "${ROOT}\DevExpress.Data.v8.3.dll"
   Delete "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   Delete "${ROOT}\DevExpress.Utils.v8.3.dll"
