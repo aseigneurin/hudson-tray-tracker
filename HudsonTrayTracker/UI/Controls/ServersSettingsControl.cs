@@ -10,6 +10,7 @@ using Hudson.TrayTracker.BusinessComponents;
 using Hudson.TrayTracker.Entities;
 using DevExpress.XtraBars;
 using Hudson.TrayTracker.Utils.BackgroundProcessing;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI.Controls
 {
@@ -19,18 +20,6 @@ namespace Hudson.TrayTracker.UI.Controls
         HudsonService hudsonService;
         BindingList<Server> serversDataSource;
         List<Project> projectsDataSource;
-
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
-
-        public HudsonService HudsonService
-        {
-            get { return hudsonService; }
-            set { hudsonService = value; }
-        }
 
         public ServersSettingsControl()
         {
@@ -44,6 +33,9 @@ namespace Hudson.TrayTracker.UI.Controls
             // designer mode
             if (configurationService == null)
                 return;
+
+            configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            hudsonService = (HudsonService)ContextRegistry.GetContext().GetObject("HudsonService");
 
             serversDataSource = new BindingList<Server>();
             foreach (Server server in configurationService.Servers)

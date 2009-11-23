@@ -81,6 +81,8 @@ namespace Hudson.TrayTracker.UI
                 configurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
                 updateService.ProjectsUpdated -= updateService_ProjectsUpdated;
             };
+
+            UpdateNotifier();
         }
 
         void configurationService_ConfigurationUpdated()

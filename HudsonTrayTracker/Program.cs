@@ -15,6 +15,7 @@ using System.Threading;
 using System.Drawing;
 using System.IO;
 using DevExpress.XtraEditors;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker
 {
@@ -43,39 +44,8 @@ namespace Hudson.TrayTracker
                 Application.ApplicationExit += new EventHandler(Application_Exit);
                 Application_Prepare();
 
-                ///////
-                ConfigurationService configurationService = new ConfigurationService();
-                HudsonService hudsonService = new HudsonService();
-                ProjectsUpdateService projectsUpdateService = new ProjectsUpdateService();
-                ApplicationUpdateService applicationUpdateService = new ApplicationUpdateService();
-                NotificationService notificationService = new NotificationService(configurationService.NotificationSounds);
-                projectsUpdateService.ConfigurationService = configurationService;
-                projectsUpdateService.HudsonService = hudsonService;
-
-                MainForm mainForm = MainForm.Instance;
-                mainForm.ConfigurationService = configurationService;
-                mainForm.HudsonService = hudsonService;
-                mainForm.ProjectsUpdateService = projectsUpdateService;
-                mainForm.ApplicationUpdateService = applicationUpdateService;
-
-                SettingsForm settingsForm = SettingsForm.Instance;
-                settingsForm.ConfigurationService = configurationService;
-                settingsForm.HudsonService = hudsonService;
-                settingsForm.Initialize();
-
-                TrayNotifier notifier = TrayNotifier.Instance;
-                notifier.ConfigurationService = configurationService;
-                notifier.HudsonService = hudsonService;
-                notifier.UpdateService = projectsUpdateService;
-                notifier.NotificationService = notificationService;
-                notifier.Initialize();
-                notifier.UpdateNotifier();
-
-                applicationUpdateService.NewVersionAvailable += applicationUpdateService_NewVersionAvailable;
-
-                projectsUpdateService.Initialize();
-                applicationUpdateService.Initialize();
-                ///////
+                // Spring
+                ContextRegistry.GetContext();
 
                 ApplicationContext appContext = new ApplicationContext();
                 Application.Run(appContext);
@@ -109,20 +79,4 @@ namespace Hudson.TrayTracker
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
                 + " v" + Assembly.GetExecutingAssembly().GetName().Version + " Exit");
         }
-
-        static void applicationUpdateService_NewVersionAvailable(Version version, string installerUrl)
-        {
-            string message = string.Format(HudsonTrayTrackerResources.ApplicationUpdates_NewVersion_Text, version);
-            DialogResult res = XtraMessageBox.Show(message, HudsonTrayTrackerResources.ApplicationUpdates_Caption,
-                MessageBoxButtons.YesNo);
-            if (res != DialogResult.Yes)
-            {
-                logger.Info("Update refused by user");
-                return;
-            }
-            logger.Info("Update accepted by user");
-            Process.Start(installerUrl);
-            Application.Exit();
-        }
     }
-}

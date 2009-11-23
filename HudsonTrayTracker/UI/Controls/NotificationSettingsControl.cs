@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using Hudson.TrayTracker.BusinessComponents;
 using DevExpress.XtraEditors.Controls;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI.Controls
 {
@@ -16,12 +17,6 @@ namespace Hudson.TrayTracker.UI.Controls
         ConfigurationService configurationService;
         string status;
         string path;
-
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
 
         public string Status
         {
@@ -52,8 +47,9 @@ namespace Hudson.TrayTracker.UI.Controls
             if (status == null)
                 return;
 
-            statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + status);
+            configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
 
+            statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + status);
             SoundPath = configurationService.GetSoundPath(status);
         }
 

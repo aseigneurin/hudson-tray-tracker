@@ -29,6 +29,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="antlr.runtime, Version=2.7.6.2, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Spring\antlr.runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Common.Logging, Version=1.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Spring\Common.Logging.dll</HintPath>
@@ -109,6 +113,10 @@
     <Reference Include="SmartThreadPool, Version=1.0.2235.39078, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\SmartThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.2.0.20313, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Spring\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -225,6 +233,7 @@
     <Compile Include="UI\TrayNotifier.Designer.cs">
       <DependentUpon>TrayNotifier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ApplicationUpdateHandler.cs" />
     <Compile Include="Utils\BackgroundProcessing\BackgroundProcessExecutor.cs" />
     <Compile Include="Utils\BackgroundProcessing\ErrorHolder.cs" />
     <Compile Include="Utils\BackgroundProcessing\Process.cs" />
@@ -275,6 +284,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuration.xml" />
     <Content Include="HudsonTrayTracker.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

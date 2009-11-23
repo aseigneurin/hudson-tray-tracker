@@ -19,6 +19,7 @@ using Hudson.TrayTracker.Utils.Logging;
 using DevExpress.Utils.Controls;
 using Hudson.TrayTracker.Utils;
 using DevExpress.XtraGrid.Columns;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -26,13 +27,11 @@ namespace Hudson.TrayTracker.UI
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        static MainForm instance;
         public static MainForm Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new MainForm();
+                MainForm instance = (MainForm)ContextRegistry.GetContext().GetObject("MainForm");
                 return instance;
             }
         }

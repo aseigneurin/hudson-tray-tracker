@@ -7,18 +7,17 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Reflection;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI
 {
     public partial class AboutForm : DevExpress.XtraEditors.XtraForm
     {
-        static AboutForm instance;
         public static AboutForm Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new AboutForm();
+                AboutForm instance = (AboutForm)ContextRegistry.GetContext().GetObject("AboutForm");
                 return instance;
             }
         }
@@ -27,7 +26,7 @@ namespace Hudson.TrayTracker.UI
         {
             InitializeComponent();
 
-            versionLabelControl.Text = string.Format(HudsonTrayTrackerResources.Version_Format, 
+            versionLabelControl.Text = string.Format(HudsonTrayTrackerResources.Version_Format,
                 Assembly.GetExecutingAssembly().GetName().Version);
         }
 

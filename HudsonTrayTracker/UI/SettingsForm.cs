@@ -10,18 +10,17 @@ using Hudson.TrayTracker.BusinessComponents;
 using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Utils.BackgroundProcessing;
 using DevExpress.XtraBars;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI
 {
     public partial class SettingsForm : DevExpress.XtraEditors.XtraForm
     {
-        static SettingsForm instance;
         public static SettingsForm Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new SettingsForm();
+                SettingsForm instance = (SettingsForm)ContextRegistry.GetContext().GetObject("SettingsForm");
                 return instance;
             }
         }
@@ -44,15 +43,6 @@ namespace Hudson.TrayTracker.UI
         public SettingsForm()
         {
             InitializeComponent();
-        }
-
-        public void Initialize()
-        {
-            serversSettingsControl.ConfigurationService = ConfigurationService;
-            serversSettingsControl.HudsonService = HudsonService;
-
-            notificationsSettingsControl.ConfigurationService = ConfigurationService;
-            notificationsSettingsControl.Initialize();
         }
 
         public static void ShowDialogOrFocus()

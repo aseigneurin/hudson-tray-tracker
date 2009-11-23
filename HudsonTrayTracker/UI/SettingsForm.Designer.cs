@@ -64,9 +64,7 @@ namespace Hudson.TrayTracker.UI
             // 
             this.serversSettingsControl.AutoSize = true;
             this.serversSettingsControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.serversSettingsControl.ConfigurationService = null;
             this.serversSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.serversSettingsControl.HudsonService = null;
             this.serversSettingsControl.Location = new System.Drawing.Point(0, 0);
             this.serversSettingsControl.Name = "serversSettingsControl";
             this.serversSettingsControl.Size = new System.Drawing.Size(715, 402);
