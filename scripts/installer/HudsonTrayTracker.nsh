@@ -35,7 +35,7 @@ Section
   SetOutPath "$INSTDIR"
 
   File "${ROOT}\antlr.runtime.dll"
-  File "${ROOT}\Commons.Logging.dll"
+  File "${ROOT}\Common.Logging.dll"
   File "${ROOT}\DevExpress.Data.v8.3.dll"
   File "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   File "${ROOT}\DevExpress.Utils.v8.3.dll"
@@ -69,7 +69,7 @@ Section "Uninstall"
   Delete $INSTDIR\uninstaller.exe
  
   Delete "${ROOT}\antlr.runtime.dll"
-  Delete "${ROOT}\Commons.Logging.dll"
+  Delete "${ROOT}\Common.Logging.dll"
   Delete "${ROOT}\DevExpress.Data.v8.3.dll"
   Delete "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   Delete "${ROOT}\DevExpress.Utils.v8.3.dll"
@@ -83,7 +83,7 @@ Section "Uninstall"
   Delete "${ROOT}\log4net.dll"
   Delete "${ROOT}\LoggingConfig.xml"
   Delete "${ROOT}\SmartThreadPool.dll"
-  Delete "${ROOT}\Spring.Core.dll
+  Delete "${ROOT}\Spring.Core.dll"
   
   Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
   Delete "$SMSTARTUP\${PRODUCT_NAME}.lnk"
