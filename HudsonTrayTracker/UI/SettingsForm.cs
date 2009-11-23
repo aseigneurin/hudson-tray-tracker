@@ -62,5 +62,11 @@ namespace Hudson.TrayTracker.UI
             else
                 Instance.ShowDialog();
         }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            tabControl.SelectedTabPageIndex = 0;
+        }
     }
 }
