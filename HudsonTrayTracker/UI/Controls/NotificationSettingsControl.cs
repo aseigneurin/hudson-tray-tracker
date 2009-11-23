@@ -16,7 +16,6 @@ namespace Hudson.TrayTracker.UI.Controls
     {
         ConfigurationService configurationService;
         string status;
-        string path;
 
         public string Status
         {
