@@ -34,14 +34,14 @@ Section
   SetOverwrite on
   SetOutPath "$INSTDIR"
 
+  File "${ROOT}\antlr.runtime.dll"
+  File "${ROOT}\Commons.Logging.dll"
   File "${ROOT}\DevExpress.Data.v8.3.dll"
   File "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   File "${ROOT}\DevExpress.Utils.v8.3.dll"
   File "${ROOT}\DevExpress.XtraBars.v8.3.dll"
   File "${ROOT}\DevExpress.XtraEditors.v8.3.dll"
   File "${ROOT}\DevExpress.XtraGrid.v8.3.dll"
-  File "${ROOT}\Dotnet.Commons.Logging.Log4net.dll"
-  File "${ROOT}\Dotnet.Commons.Logging.dll"
   File "${ROOT}\HudsonTrayTracker.ico"
   File "${ROOT}\HudsonTrayTracker.exe"
   File "${ROOT}\HudsonTrayTracker.exe.config"
@@ -49,6 +49,7 @@ Section
   File "${ROOT}\log4net.dll"
   File "${ROOT}\LoggingConfig.xml"
   File "${ROOT}\SmartThreadPool.dll"
+  File "${ROOT}\Spring.Core.dll"
 
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
   CreateShortCut "$SMSTARTUP\${PRODUCT_NAME}.lnk" "$INSTDIR\HudsonTrayTracker.exe" "" "$INSTDIR\HudsonTrayTracker.ico"
@@ -67,14 +68,14 @@ Section "Uninstall"
   # Always delete uninstaller first
   Delete $INSTDIR\uninstaller.exe
  
+  Delete "${ROOT}\antlr.runtime.dll"
+  Delete "${ROOT}\Commons.Logging.dll"
   Delete "${ROOT}\DevExpress.Data.v8.3.dll"
   Delete "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
   Delete "${ROOT}\DevExpress.Utils.v8.3.dll"
   Delete "${ROOT}\DevExpress.XtraBars.v8.3.dll"
   Delete "${ROOT}\DevExpress.XtraEditors.v8.3.dll"
   Delete "${ROOT}\DevExpress.XtraGrid.v8.3.dll"
-  Delete "${ROOT}\Dotnet.Commons.Logging.Log4net.dll"
-  Delete "${ROOT}\Dotnet.Commons.Logging.dll"
   Delete "${ROOT}\HudsonTrayTracker.ico"
   Delete "${ROOT}\HudsonTrayTracker.exe"
   Delete "${ROOT}\HudsonTrayTracker.exe.config"
@@ -82,6 +83,7 @@ Section "Uninstall"
   Delete "${ROOT}\log4net.dll"
   Delete "${ROOT}\LoggingConfig.xml"
   Delete "${ROOT}\SmartThreadPool.dll"
+  Delete "${ROOT}\Spring.Core.dll
   
   Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
   Delete "$SMSTARTUP\${PRODUCT_NAME}.lnk"
