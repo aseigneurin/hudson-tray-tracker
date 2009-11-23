@@ -27,4 +27,6 @@
     <property name="NotificationService" ref="NotificationService"/>
   </object>
 
+  <object id="NotificationSounds" type="Hudson.TrayTracker.Entities.NotificationSounds"/>
+
 </objects>

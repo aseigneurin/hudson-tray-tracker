@@ -31,7 +31,7 @@ namespace Hudson.TrayTracker.UI.Controls
             base.OnLoad(e);
 
             // designer mode
-            if (configurationService == null)
+            if (DesignMode)
                 return;
 
             configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");

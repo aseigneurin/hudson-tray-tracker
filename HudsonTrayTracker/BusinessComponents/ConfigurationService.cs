@@ -32,6 +32,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         public NotificationSounds NotificationSounds
         {
             get { return notificationSounds; }
+            set { notificationSounds = value; }
         }
 
         public ConfigurationService()
