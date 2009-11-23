@@ -5,12 +5,13 @@ namespace Hudson.TrayTracker.BusinessComponents
 {
     public class NotificationService
     {
-        private readonly NotificationSounds sounds;
+        private NotificationSounds sounds;
         private BuildStatus lastStatus = BuildStatus.Unknown;
 
-        public NotificationService(NotificationSounds sounds)
+        public NotificationSounds Sounds
         {
-            this.sounds = sounds;
+            get { return sounds; }
+            set { sounds = value; }
         }
 
         public void Execute(BuildStatus status)
