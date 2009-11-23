@@ -48,6 +48,7 @@ namespace Hudson.TrayTracker
                 HudsonService hudsonService = new HudsonService();
                 ProjectsUpdateService projectsUpdateService = new ProjectsUpdateService();
                 ApplicationUpdateService applicationUpdateService = new ApplicationUpdateService();
+                NotificationService notificationService = new NotificationService(configurationService.NotificationSounds);
                 projectsUpdateService.ConfigurationService = configurationService;
                 projectsUpdateService.HudsonService = hudsonService;
 
@@ -65,6 +66,7 @@ namespace Hudson.TrayTracker
                 notifier.ConfigurationService = configurationService;
                 notifier.HudsonService = hudsonService;
                 notifier.UpdateService = projectsUpdateService;
+                notifier.NotificationService = notificationService;
                 notifier.Initialize();
                 notifier.UpdateNotifier();
 

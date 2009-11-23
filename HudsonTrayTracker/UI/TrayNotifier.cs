@@ -35,6 +35,7 @@ namespace Hudson.TrayTracker.UI
         ConfigurationService configurationService;
         HudsonService hudsonService;
         ProjectsUpdateService updateService;
+        NotificationService notificationService;
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
         IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
@@ -56,6 +57,12 @@ namespace Hudson.TrayTracker.UI
         {
             get { return updateService; }
             set { updateService = value; }
+        }
+
+        public NotificationService NotificationService
+        {
+            get { return notificationService; }
+            set { notificationService = value; }
         }
 
         public TrayNotifier()
@@ -254,6 +261,7 @@ namespace Hudson.TrayTracker.UI
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
+            NotificationService.Execute(buildStatus);
 
             lastBuildStatus = buildStatus;
         }

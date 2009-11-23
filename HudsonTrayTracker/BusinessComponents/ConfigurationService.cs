@@ -22,10 +22,16 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         PropertiesFile propertiesFile;
         ISet<Server> servers = new HashedSet<Server>();
+        NotificationSounds notificationSounds;
 
         public ISet<Server> Servers
         {
             get { return servers; }
+        }
+
+        public NotificationSounds NotificationSounds
+        {
+            get { return notificationSounds; }
         }
 
         public ConfigurationService()
@@ -85,6 +91,17 @@ namespace Hudson.TrayTracker.BusinessComponents
                 // keep the project
                 server.Projects.Add(project);
             }
+
+            LoadNotificationSounds();
+        }
+
+        private void LoadNotificationSounds()
+        {
+            notificationSounds = new NotificationSounds();
+            notificationSounds.FailedSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "failed");
+            notificationSounds.FixedSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "fixed");
+            notificationSounds.StillFailingSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "stillfailing");
+            notificationSounds.SucceededSoundPath = propertiesFile.GetGroupStringValue("sound", 0, "succeeded");
         }
 
         private void SaveConfiguration()
@@ -126,10 +143,25 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (projectId > 0)
                 propertiesFile.SetGroupCount("projects", projectId);
 
+            SaveNotificationSounds();
+
             propertiesFile.WriteProperties();
 
             if (ConfigurationUpdated != null)
                 ConfigurationUpdated();
+        }
+
+        private void SaveNotificationSounds()
+        {
+            SaveNotificationSound("failed", notificationSounds.FailedSoundPath);
+            SaveNotificationSound("fixed", notificationSounds.FixedSoundPath);
+            SaveNotificationSound("stillfailing", notificationSounds.StillFailingSoundPath);
+            SaveNotificationSound("succeeded", notificationSounds.SucceededSoundPath);
+        }
+
+        private void SaveNotificationSound(string key, string value)
+        {
+            propertiesFile.SetGroupStringValue("sound", 0, key, value);
         }
 
         public Server AddServer(string url, string username, string password)
