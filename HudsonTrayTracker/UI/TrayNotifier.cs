@@ -14,6 +14,7 @@ using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
 using DevExpress.XtraEditors;
 using Hudson.TrayTracker.Utils;
+using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -26,8 +27,7 @@ namespace Hudson.TrayTracker.UI
         {
             get
             {
-                if (instance == null)
-                    instance = new TrayNotifier();
+                TrayNotifier instance = (TrayNotifier)ContextRegistry.GetContext().GetObject("TrayNotifier");
                 return instance;
             }
         }
