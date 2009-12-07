@@ -174,7 +174,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void RunBuild(Project project)
         {
-            String url = project.Url + "/build";
+            String url = project.Url + "/build?delay=0sec";
 
             logger.Info("Running build at " + url);
 
