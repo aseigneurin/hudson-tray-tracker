@@ -1,58 +1,56 @@
-using System.IO;
+using System;
+using System.ComponentModel;
 using Hudson.TrayTracker.Entities;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
-    public class NotificationService
+    public class NotificationService : Component
     {
-        private BuildStatus lastStatus = BuildStatus.Unknown;
+        private AllServersStatus allServersStatus;
+        protected ConfigurationService ConfigurationService { private get; set; }
+        protected ProjectsUpdateService UpdateService { private get; set; }
+        protected NotificationSettings Settings { private get; set; }
 
-        public NotificationSounds Sounds { get; set; }
-
-        public void Execute(BuildStatus status)
+        public void Initialize()
         {
-            switch (status)
+            ConfigurationService.ConfigurationUpdated += Execute;
+            UpdateService.ProjectsUpdated += Execute;
+            Disposed += delegate
             {
-                case BuildStatus.Successful:
-                    HandleSucceeded();
-                    break;
-                case BuildStatus.Failed:
-                    HandleFailed();
-                    break;
-            }
-            lastStatus = status;
+                ConfigurationService.ConfigurationUpdated -= Execute;
+                UpdateService.ProjectsUpdated -= Execute;
+            };
+            allServersStatus = new AllServersStatus();
+            Execute();
         }
 
-        private void HandleSucceeded()
+        public void Execute()
         {
-            if (lastStatus == BuildStatus.Successful || lastStatus == BuildStatus.Unknown)
+            allServersStatus.Update(ConfigurationService.Servers);
+
+            if (allServersStatus.StillFailingProjects.Count > 0)
             {
-                return;
+                SoundPlayer.PlayFile(Settings.StillFailingSoundPath);
             }
-            if (lastStatus == BuildStatus.Failed_BuildInProgress)
+            else if (allServersStatus.FailingProjects.Count > 0)
             {
-                SoundPlayer.PlayFile(Sounds.FixedSoundPath);
+                SoundPlayer.PlayFile(Settings.FailedSoundPath);
             }
-            else
+            else if (allServersStatus.FixedProjects.Count > 0)
             {
-                SoundPlayer.PlayFile(Sounds.SucceededSoundPath);
+                SoundPlayer.PlayFile(Settings.FixedSoundPath);
+            }
+            else if (allServersStatus.SucceedingProjects.Count > 0)
+            {
+                SoundPlayer.PlayFile(Settings.SucceededSoundPath);
             }
         }
 
-        private void HandleFailed()
+        private bool TreatAsFailure(BuildStatus status)
         {
-            if (lastStatus == BuildStatus.Failed || lastStatus == BuildStatus.Unknown)
-            {
-                return;
-            }
-            if (lastStatus == BuildStatus.Failed_BuildInProgress)
-            {
-                SoundPlayer.PlayFile(Sounds.StillFailingSoundPath);
-            }
-            else
-            {
-                SoundPlayer.PlayFile(Sounds.FailedSoundPath);
-            }
+            return status == BuildStatus.Failed ||
+                   status == BuildStatus.Stuck ||
+                   (Settings.TreatUnstableAsFailed && status == BuildStatus.Unstable);
         }
     }
 }

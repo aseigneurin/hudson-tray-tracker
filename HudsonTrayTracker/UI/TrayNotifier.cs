@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using Hudson.TrayTracker.BusinessComponents;
 using Common.Logging;
 using System.Reflection;
 using Hudson.TrayTracker.Entities;
-using Hudson.TrayTracker.Properties;
 using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
 using DevExpress.XtraEditors;
@@ -22,7 +20,6 @@ namespace Hudson.TrayTracker.UI
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        static TrayNotifier instance;
         public static TrayNotifier Instance
         {
             get
@@ -239,7 +236,6 @@ namespace Hudson.TrayTracker.UI
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
-            NotificationService.Execute(buildStatus);
 
             lastBuildStatus = buildStatus;
         }

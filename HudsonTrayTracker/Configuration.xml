@@ -5,7 +5,7 @@
   <object id="HudsonService" type="Hudson.TrayTracker.BusinessComponents.HudsonService" autowire="byType"/>
   <object id="ProjectsUpdateService" type="Hudson.TrayTracker.BusinessComponents.ProjectsUpdateService" autowire="byType" init-method="Initialize"/>
   <object id="ApplicationUpdateService" type="Hudson.TrayTracker.BusinessComponents.ApplicationUpdateService" autowire="byType" init-method="Initialize"/>
-  <object id="NotificationService" type="Hudson.TrayTracker.BusinessComponents.NotificationService" autowire="byType"/>
+  <object id="NotificationService" type="Hudson.TrayTracker.BusinessComponents.NotificationService" autowire="byType" init-method="Initialize"/>
 
   <object id="ApplicationUpdateHandler" type="Hudson.TrayTracker.Utils.ApplicationUpdateHandler" autowire="byType" init-method="Initialize"/>
 
@@ -25,8 +25,8 @@
     <property name="HudsonService" ref="HudsonService"/>
     <property name="UpdateService" ref="ProjectsUpdateService"/>
     <property name="NotificationService" ref="NotificationService"/>
+    <property name="ConfigurationService" ref="ConfigurationService"/>
   </object>
 
-  <object id="NotificationSounds" type="Hudson.TrayTracker.Entities.NotificationSounds"/>
 
 </objects>

@@ -155,17 +155,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessComponents\AllServersStatus.cs" />
     <Compile Include="BusinessComponents\ApplicationUpdateService.cs" />
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
-    <Compile Include="BusinessComponents\NotificationService.cs" />
+    <Compile Include="BusinessComponents\NotificationService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BusinessComponents\ProjectsUpdateService.cs" />
     <Compile Include="BusinessComponents\SoundPlayer.cs" />
     <Compile Include="Entities\BuildDetails.cs" />
     <Compile Include="Entities\BuildStatus.cs" />
     <Compile Include="Entities\AllBuildDetails.cs" />
     <Compile Include="Entities\Credentials.cs" />
-    <Compile Include="Entities\NotificationSounds.cs" />
+    <Compile Include="Entities\NotificationSettings.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Server.cs" />
     <Compile Include="UI\AboutForm.cs">
@@ -274,6 +277,7 @@
     <Compile Include="Utils\PInvokeUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ThreadExceptionHandler.cs" />
+    <Compile Include="Utils\Collections\ThreadSafeDictionary.cs" />
     <Compile Include="Utils\Web\CookieAwareWebClient.cs">
       <SubType>Component</SubType>
     </Compile>

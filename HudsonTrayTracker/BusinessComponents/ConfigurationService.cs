@@ -23,7 +23,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         PropertiesFile propertiesFile;
 
         public ISet<Server> Servers { get; private set; }
-        public NotificationSounds NotificationSounds { get; set; }
+        public NotificationSettings NotificationSettings { get; set; }
 
         public void Initialize()
         {
@@ -84,15 +84,16 @@ namespace Hudson.TrayTracker.BusinessComponents
                 server.Projects.Add(project);
             }
 
-            LoadNotificationSounds();
+            LoadNotificationSettings();
         }
 
-        private void LoadNotificationSounds()
+        private void LoadNotificationSettings()
         {
-            NotificationSounds.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
-            NotificationSounds.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
-            NotificationSounds.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
-            NotificationSounds.SucceededSoundPath = propertiesFile.GetStringValue("sounds.Succeeded");
+            NotificationSettings.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
+            NotificationSettings.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
+            NotificationSettings.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
+            NotificationSettings.SucceededSoundPath = propertiesFile.GetStringValue("sounds.Succeeded");
+            NotificationSettings.TreatUnstableAsFailed = propertiesFile.GetBoolValue("sounds.TreatUnstableAsFailed") ?? true;
         }
 
         private void SaveConfiguration()
@@ -134,7 +135,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (projectId > 0)
                 propertiesFile.SetGroupCount("projects", projectId);
 
-            SaveNotificationSounds();
+            SaveNotificationSettings();
 
             propertiesFile.WriteProperties();
 
@@ -142,12 +143,13 @@ namespace Hudson.TrayTracker.BusinessComponents
                 ConfigurationUpdated();
         }
 
-        private void SaveNotificationSounds()
+        private void SaveNotificationSettings()
         {
-            propertiesFile["sounds.Failed"] = NotificationSounds.FailedSoundPath;
-            propertiesFile["sounds.Fixed"] = NotificationSounds.FixedSoundPath;
-            propertiesFile["sounds.StillFailing"] = NotificationSounds.StillFailingSoundPath;
-            propertiesFile["sounds.Succeeded"] = NotificationSounds.SucceededSoundPath;
+            propertiesFile["sounds.Failed"] = NotificationSettings.FailedSoundPath;
+            propertiesFile["sounds.Fixed"] = NotificationSettings.FixedSoundPath;
+            propertiesFile["sounds.StillFailing"] = NotificationSettings.StillFailingSoundPath;
+            propertiesFile["sounds.Succeeded"] = NotificationSettings.SucceededSoundPath;
+            propertiesFile.SetBoolValue("sounds.TreatUnstableAsFailed", NotificationSettings.TreatUnstableAsFailed);
         }
 
         public Server AddServer(string url, string username, string password)
@@ -236,15 +238,15 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public string GetSoundPath(string status)
         {
-            PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
-            string res = (string)prop.GetValue(NotificationSounds, null);
+            PropertyInfo prop = NotificationSettings.GetType().GetProperty(status + "SoundPath");
+            string res = (string)prop.GetValue(NotificationSettings, null);
             return res;
         }
 
         public void SetSoundPath(string status, string path)
         {
-            PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
-            prop.SetValue(NotificationSounds, path, null);
+            PropertyInfo prop = NotificationSettings.GetType().GetProperty(status + "SoundPath");
+            prop.SetValue(NotificationSettings, path, null);
 
             SaveConfiguration();
         }
