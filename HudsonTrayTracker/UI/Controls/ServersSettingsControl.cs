@@ -21,6 +21,8 @@ namespace Hudson.TrayTracker.UI.Controls
         BindingList<Server> serversDataSource;
         List<Project> projectsDataSource;
 
+        bool initialized;
+
         public ServersSettingsControl()
         {
             InitializeComponent();
@@ -34,13 +36,19 @@ namespace Hudson.TrayTracker.UI.Controls
             if (DesignMode)
                 return;
 
-            configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
-            hudsonService = (HudsonService)ContextRegistry.GetContext().GetObject("HudsonService");
+            if (configurationService == null)
+                configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            if (hudsonService == null)
+                hudsonService = (HudsonService)ContextRegistry.GetContext().GetObject("HudsonService");
+
+            initialized = false;
 
             serversDataSource = new BindingList<Server>();
             foreach (Server server in configurationService.Servers)
                 serversDataSource.Add(server);
             serversGridControl.DataSource = serversDataSource;
+
+            initialized = true;
 
             serversGridView_FocusedRowChanged(null, null);
         }
@@ -84,6 +92,9 @@ namespace Hudson.TrayTracker.UI.Controls
 
         private void serversGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
+            if (initialized == false)
+                return;
+
             Server server = GetSelectedServer();
 
             // update the toolbar
