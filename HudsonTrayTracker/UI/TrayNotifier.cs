@@ -32,38 +32,15 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        ConfigurationService configurationService;
-        HudsonService hudsonService;
-        ProjectsUpdateService updateService;
-        NotificationService notificationService;
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
         IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
         IDictionary<BuildStatus, Icon> icons;
 
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
-
-        public HudsonService HudsonService
-        {
-            get { return hudsonService; }
-            set { hudsonService = value; }
-        }
-
-        public ProjectsUpdateService UpdateService
-        {
-            get { return updateService; }
-            set { updateService = value; }
-        }
-
-        public NotificationService NotificationService
-        {
-            get { return notificationService; }
-            set { notificationService = value; }
-        }
+        public ConfigurationService ConfigurationService { get; set; }
+        public HudsonService HudsonService { get; set; }
+        public ProjectsUpdateService UpdateService { get; set; }
+        public NotificationService NotificationService { get; set; }
 
         public TrayNotifier()
         {
@@ -73,13 +50,13 @@ namespace Hudson.TrayTracker.UI
 
         public void Initialize()
         {
-            configurationService.ConfigurationUpdated += configurationService_ConfigurationUpdated;
-            updateService.ProjectsUpdated += updateService_ProjectsUpdated;
+            ConfigurationService.ConfigurationUpdated += configurationService_ConfigurationUpdated;
+            UpdateService.ProjectsUpdated += updateService_ProjectsUpdated;
 
             Disposed += delegate
             {
-                configurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
-                updateService.ProjectsUpdated -= updateService_ProjectsUpdated;
+                ConfigurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
+                UpdateService.ProjectsUpdated -= updateService_ProjectsUpdated;
             };
 
             UpdateNotifier();
@@ -118,8 +95,7 @@ namespace Hudson.TrayTracker.UI
             try
             {
                 // order the projects by build status
-                IDictionary<BuildStatus, SortedSet<Project>> projectsByStatus
-                    = new Dictionary<BuildStatus, SortedSet<Project>>();
+                var projectsByStatus = new Dictionary<BuildStatus, SortedSet<Project>>();
                 foreach (KeyValuePair<Project, AllBuildDetails> pair in lastProjectsBuildDetails)
                 {
                     BuildStatus status = BuildStatus.Unknown;
@@ -188,7 +164,7 @@ namespace Hudson.TrayTracker.UI
 
         private void refreshMenuItem_Click(object sender, EventArgs e)
         {
-            updateService.UpdateProjects();
+            UpdateService.UpdateProjects();
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
@@ -225,10 +201,10 @@ namespace Hudson.TrayTracker.UI
         {
             BuildStatus? worstBuildStatus = null;
             bool buildInProgress = false;
-            ISet<Project> errorProjects = new HashedSet<Project>();
-            ISet<Project> regressingProjects = new HashedSet<Project>();
+            var errorProjects = new HashedSet<Project>();
+            var regressingProjects = new HashedSet<Project>();
 
-            foreach (Server server in configurationService.Servers)
+            foreach (Server server in ConfigurationService.Servers)
             {
                 foreach (Project project in server.Projects)
                 {

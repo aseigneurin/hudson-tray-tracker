@@ -25,20 +25,8 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        ConfigurationService configurationService;
-        HudsonService hudsonService;
-
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
-
-        public HudsonService HudsonService
-        {
-            get { return hudsonService; }
-            set { hudsonService = value; }
-        }
+        public ConfigurationService ConfigurationService { get; set; }
+        public HudsonService HudsonService { get; set; }
 
         public SettingsForm()
         {

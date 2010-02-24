@@ -36,10 +36,6 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        ConfigurationService configurationService;
-        HudsonService hudsonService;
-        ProjectsUpdateService projectsUpdateService;
-        ApplicationUpdateService applicationUpdateService;
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
         int lastHoveredDSRowIndex = -1;
@@ -47,29 +43,10 @@ namespace Hudson.TrayTracker.UI
         Font normalMenuItemFont;
         Font mainMenuItemFont;
 
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
-
-        public HudsonService HudsonService
-        {
-            get { return hudsonService; }
-            set { hudsonService = value; }
-        }
-
-        public ProjectsUpdateService ProjectsUpdateService
-        {
-            get { return projectsUpdateService; }
-            set { projectsUpdateService = value; }
-        }
-
-        public ApplicationUpdateService ApplicationUpdateService
-        {
-            get { return applicationUpdateService; }
-            set { applicationUpdateService = value; }
-        }
+        public ConfigurationService ConfigurationService { get; set; }
+        public HudsonService HudsonService { get; set; }
+        public ProjectsUpdateService ProjectsUpdateService { get; set; }
+        public ApplicationUpdateService ApplicationUpdateService { get; set; }
 
         public MainForm()
         {
@@ -80,13 +57,13 @@ namespace Hudson.TrayTracker.UI
 
         private void Initialize()
         {
-            configurationService.ConfigurationUpdated += configurationService_ConfigurationUpdated;
-            projectsUpdateService.ProjectsUpdated += updateService_ProjectsUpdated;
+            ConfigurationService.ConfigurationUpdated += configurationService_ConfigurationUpdated;
+            ProjectsUpdateService.ProjectsUpdated += updateService_ProjectsUpdated;
 
             Disposed += delegate
             {
-                configurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
-                projectsUpdateService.ProjectsUpdated -= updateService_ProjectsUpdated;
+                ConfigurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
+                ProjectsUpdateService.ProjectsUpdated -= updateService_ProjectsUpdated;
             };
         }
 
@@ -123,7 +100,7 @@ namespace Hudson.TrayTracker.UI
         {
             projectsDataSource = new BindingList<ProjectWrapper>();
 
-            foreach (Server server in configurationService.Servers)
+            foreach (Server server in ConfigurationService.Servers)
             {
                 foreach (Project project in server.Projects)
                 {
@@ -152,7 +129,7 @@ namespace Hudson.TrayTracker.UI
 
         private void refreshButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            projectsUpdateService.UpdateProjects();
+            ProjectsUpdateService.UpdateProjects();
         }
 
         private void HudsonTrayTrackerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -286,39 +263,34 @@ namespace Hudson.TrayTracker.UI
         {
             if (project == null)
                 return;
-            string url = hudsonService.GetConsolePage(project);
+            string url = HudsonService.GetConsolePage(project);
             Process.Start(url);
         }
 
         private class ProjectWrapper
         {
-            Project project;
-
             public ProjectWrapper(Project project)
             {
-                this.project = project;
+                this.Project = project;
             }
 
-            public Project Project
-            {
-                get { return project; }
-            }
+            public Project Project { get; private set; }
 
             public string Server
             {
-                get { return project.Server.Url; }
+                get { return Project.Server.Url; }
             }
             public string Name
             {
-                get { return project.Name; }
+                get { return Project.Name; }
             }
             public string Url
             {
-                get { return Uri.UnescapeDataString(project.Url); }
+                get { return Uri.UnescapeDataString(Project.Url); }
             }
             public BuildDetails LastSuccessBuild
             {
-                get { return project.LastSuccessfulBuild; }
+                get { return Project.LastSuccessfulBuild; }
             }
             public string LastSuccessBuildStr
             {
@@ -326,7 +298,7 @@ namespace Hudson.TrayTracker.UI
             }
             public BuildDetails LastFailureBuild
             {
-                get { return project.LastFailedBuild; }
+                get { return Project.LastFailedBuild; }
             }
             public string LastFailureBuildStr
             {
@@ -334,11 +306,11 @@ namespace Hudson.TrayTracker.UI
             }
             public string LastSuccessUsers
             {
-                get { return FormatUsers(project.LastSuccessfulBuild); }
+                get { return FormatUsers(Project.LastSuccessfulBuild); }
             }
             public string LastFailureUsers
             {
-                get { return FormatUsers(project.LastFailedBuild); }
+                get { return FormatUsers(Project.LastFailedBuild); }
             }
 
             private string FormatBuildDetails(BuildDetails details)
@@ -375,7 +347,7 @@ namespace Hudson.TrayTracker.UI
                 return;
             try
             {
-                hudsonService.SafeRunBuild(project);
+                HudsonService.SafeRunBuild(project);
             }
             catch (Exception ex)
             {
@@ -411,7 +383,7 @@ namespace Hudson.TrayTracker.UI
             bool hasUpdates;
             try
             {
-                hasUpdates = applicationUpdateService.CheckForUpdates_Synchronous(
+                hasUpdates = ApplicationUpdateService.CheckForUpdates_Synchronous(
                     ApplicationUpdateService.UpdateSource.User);
             }
             catch (Exception ex)
@@ -485,7 +457,7 @@ namespace Hudson.TrayTracker.UI
             Project project = GetSelectedProject();
             if (project == null)
                 return;
-            configurationService.RemoveProject(project);
+            ConfigurationService.RemoveProject(project);
         }
 
         private void projectsGridView_CustomColumnSort(object sender, CustomColumnSortEventArgs e)
@@ -532,7 +504,7 @@ namespace Hudson.TrayTracker.UI
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F5)
-                projectsUpdateService.UpdateProjects();
+                ProjectsUpdateService.UpdateProjects();
         }
     }
 }

@@ -6,20 +6,8 @@ namespace Hudson.TrayTracker.Entities
 {
     public class Credentials
     {
-        string username;
-        string password;
-
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
         public Credentials()
         {
@@ -31,8 +19,8 @@ namespace Hudson.TrayTracker.Entities
                 throw new ArgumentNullException("username");
             if (password == null)
                 password = "";
-            this.username = username;
-            this.password = password;
+            this.Username = username;
+            this.Password = password;
         }
     }
 }

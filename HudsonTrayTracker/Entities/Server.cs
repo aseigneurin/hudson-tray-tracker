@@ -7,30 +7,18 @@ namespace Hudson.TrayTracker.Entities
 {
     public class Server
     {
-        string url;
-        Credentials credentials;
-        ISet<Project> projects = new HashedSet<Project>();
+        public string Url { get; set; }
+        public Credentials Credentials { get; set; }
+        public ISet<Project> Projects { get; private set; }
 
-        public string Url
+        public Server()
         {
-            get { return url; }
-            set { url = value; }
-        }
-
-        public Credentials Credentials
-        {
-            get { return credentials; }
-            set { credentials = value; }
-        }
-
-        public ISet<Project> Projects
-        {
-            get { return projects; }
+            Projects = new HashedSet<Project>();
         }
 
         public override int GetHashCode()
         {
-            return url.GetHashCode();
+            return Url.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -38,12 +26,12 @@ namespace Hudson.TrayTracker.Entities
             Server other = obj as Server;
             if (other == null)
                 return false;
-            return other.url == url;
+            return other.Url == Url;
         }
 
         public override string ToString()
         {
-            return url;
+            return Url;
         }
     }
 }

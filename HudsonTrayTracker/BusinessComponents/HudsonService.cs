@@ -41,7 +41,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             xml.LoadXml(xmlStr);
 
             XmlNodeList jobElements = xml.SelectNodes("/hudson/job");
-            IList<Project> projects = new List<Project>();
+            var projects = new List<Project>();
             foreach (XmlNode jobElement in jobElements)
             {
                 string projectName = jobElement.SelectSingleNode("name").InnerText;
@@ -262,7 +262,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 if (logger.IsTraceEnabled)
                     logger.Trace("Recycling cache: " + cache.Keys.Count + " items in cache");
 
-                IDictionary<string, string> newCache = new Dictionary<string, string>();
+                var newCache = new Dictionary<string, string>();
 
                 foreach (string visitedURL in visitedURLs)
                 {

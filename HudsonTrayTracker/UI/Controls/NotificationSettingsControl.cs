@@ -15,13 +15,8 @@ namespace Hudson.TrayTracker.UI.Controls
     public partial class NotificationSettingsControl : DevExpress.XtraEditors.XtraUserControl
     {
         ConfigurationService configurationService;
-        string status;
 
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
+        public string Status { get; set; }
 
         public string SoundPath
         {
@@ -29,7 +24,7 @@ namespace Hudson.TrayTracker.UI.Controls
             set
             {
                 pathEdit.Text = value;
-                testSoundButton.Enabled = string.IsNullOrEmpty(value)==false;
+                testSoundButton.Enabled = string.IsNullOrEmpty(value) == false;
             }
         }
 
@@ -48,8 +43,8 @@ namespace Hudson.TrayTracker.UI.Controls
 
             configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
 
-            statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + status);
-            SoundPath = configurationService.GetSoundPath(status);
+            statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + Status);
+            SoundPath = configurationService.GetSoundPath(Status);
         }
 
         private void pathEdit_ButtonClick(object sender, ButtonPressedEventArgs e)
@@ -69,13 +64,13 @@ namespace Hudson.TrayTracker.UI.Controls
             DialogResult res = fileDialog.ShowDialog();
             if (res != DialogResult.OK)
                 return;
-            
+
             SetPath(fileDialog.FileName);
         }
 
         private void SetPath(string path)
         {
-            configurationService.SetSoundPath(status, path);
+            configurationService.SetSoundPath(Status, path);
             SoundPath = path;
         }
 

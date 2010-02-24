@@ -6,34 +6,10 @@ namespace Hudson.TrayTracker.Entities
 {
     public class Project : IComparable<Project>
     {
-        Server server;
-        string name;
-        string url;
-        AllBuildDetails allBuildDetails;
-
-        public Server Server
-        {
-            get { return server; }
-            set { server = value; }
-        }
-
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public string Url
-        {
-            get { return url; }
-            set { url = value; }
-        }
-
-        public AllBuildDetails AllBuildDetails
-        {
-            get { return allBuildDetails; }
-            set { allBuildDetails = value; }
-        }
+        public Server Server{ get; set; }
+        public string Name { get; set; }
+        public string Url { get; set; }
+        public AllBuildDetails AllBuildDetails { get; set; }
 
         public BuildStatus Status
         {
@@ -73,7 +49,7 @@ namespace Hudson.TrayTracker.Entities
 
         public override int GetHashCode()
         {
-            return name.GetHashCode();
+            return Name.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -81,18 +57,18 @@ namespace Hudson.TrayTracker.Entities
             Project other = obj as Project;
             if (other == null)
                 return false;
-            return other.server.Equals(server)
-                && other.name == name;
+            return other.Server.Equals(Server)
+                && other.Name == Name;
         }
 
         public override string ToString()
         {
-            return name;
+            return Name;
         }
 
         public int CompareTo(Project other)
         {
-            return name.CompareTo(other.name);
+            return Name.CompareTo(other.Name);
         }
     }
 }

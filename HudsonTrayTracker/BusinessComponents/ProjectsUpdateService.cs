@@ -37,25 +37,14 @@ namespace Hudson.TrayTracker.BusinessComponents
         const int THREAD_COUNT_BY_DOMAIN = 1;
 #endif
 
-        ConfigurationService configurationService;
-        HudsonService hudsonService;
         SmartThreadPool threadPool = new SmartThreadPool(3600, TOTAL_THREAD_COUNT, TOTAL_THREAD_COUNT);
 
         Timer timer;
         int timeBetweenUpdates = DEFAULT_TIME_BETWEEN_UPDATES;
         bool updating;
 
-        public ConfigurationService ConfigurationService
-        {
-            get { return configurationService; }
-            set { configurationService = value; }
-        }
-
-        public HudsonService HudsonService
-        {
-            get { return hudsonService; }
-            set { hudsonService = value; }
-        }
+        public ConfigurationService ConfigurationService { get; set; }
+        public HudsonService HudsonService { get; set; }
 
         public ProjectsUpdateService()
         {
@@ -68,7 +57,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void UpdateProjects()
         {
-            BackgroundWorker worker = new BackgroundWorker();
+            var worker = new BackgroundWorker();
             worker.DoWork += delegate
             {
                 DoUpdateProjects(UpdateSource.User);
@@ -99,7 +88,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             try
             {
                 DoUpdateProjectsInternal();
-                hudsonService.RecycleCache();
+                HudsonService.RecycleCache();
             }
             catch (Exception ex)
             {
@@ -119,10 +108,9 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void DoUpdateProjectsInternal()
         {
-            IDictionary<Server, ISet<Project>> projectsByServer = configurationService.GetProjects();
-            IList<IWorkItemsGroup> allWorkItemsGroup = new List<IWorkItemsGroup>();
-            IDictionary<Project, IWorkItemResult> allFutureBuildDetails
-                = new Dictionary<Project, IWorkItemResult>();
+            IDictionary<Server, ISet<Project>> projectsByServer = ConfigurationService.GetProjects();
+            var allWorkItemsGroup = new List<IWorkItemsGroup>();
+            var allFutureBuildDetails = new Dictionary<Project, IWorkItemResult>();
 
             foreach (KeyValuePair<Server, ISet<Project>> pair in projectsByServer)
             {
@@ -140,7 +128,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                         try
                         {
                             Project project_ = (Project)state;
-                            newBuildDetail = hudsonService.UpdateProject(project_);
+                            newBuildDetail = HudsonService.UpdateProject(project_);
                         }
                         catch (Exception ex)
                         {

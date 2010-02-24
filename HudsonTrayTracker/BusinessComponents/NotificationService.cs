@@ -5,14 +5,9 @@ namespace Hudson.TrayTracker.BusinessComponents
 {
     public class NotificationService
     {
-        private NotificationSounds sounds;
         private BuildStatus lastStatus = BuildStatus.Unknown;
 
-        public NotificationSounds Sounds
-        {
-            get { return sounds; }
-            set { sounds = value; }
-        }
+        public NotificationSounds Sounds { get; set; }
 
         public void Execute(BuildStatus status)
         {
@@ -36,11 +31,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
             if (lastStatus == BuildStatus.Failed_BuildInProgress)
             {
-                SoundPlayer.PlayFile(sounds.FixedSoundPath);
+                SoundPlayer.PlayFile(Sounds.FixedSoundPath);
             }
             else
             {
-                SoundPlayer.PlayFile(sounds.SucceededSoundPath);
+                SoundPlayer.PlayFile(Sounds.SucceededSoundPath);
             }
         }
 
@@ -52,11 +47,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
             if (lastStatus == BuildStatus.Failed_BuildInProgress)
             {
-                SoundPlayer.PlayFile(sounds.StillFailingSoundPath);
+                SoundPlayer.PlayFile(Sounds.StillFailingSoundPath);
             }
             else
             {
-                SoundPlayer.PlayFile(sounds.FailedSoundPath);
+                SoundPlayer.PlayFile(Sounds.FailedSoundPath);
             }
         }
     }

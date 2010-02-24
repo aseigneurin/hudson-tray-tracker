@@ -21,19 +21,9 @@ namespace Hudson.TrayTracker.BusinessComponents
         private const string PROPERTIES_FILE = "hudson.properties";
 
         PropertiesFile propertiesFile;
-        ISet<Server> servers = new HashedSet<Server>();
-        NotificationSounds notificationSounds;
 
-        public ISet<Server> Servers
-        {
-            get { return servers; }
-        }
-
-        public NotificationSounds NotificationSounds
-        {
-            get { return notificationSounds; }
-            set { notificationSounds = value; }
-        }
+        public ISet<Server> Servers { get; private set; }
+        public NotificationSounds NotificationSounds { get; set; }
 
         public void Initialize()
         {
@@ -53,7 +43,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             propertiesFile = PropertiesFile.ReadPropertiesFile(userConfigurationFile);
 
             // load the servers
-            Dictionary<int, Server> serverMap = new Dictionary<int, Server>();
+            Servers = new HashedSet<Server>();
+            var serverMap = new Dictionary<int, Server>();
             int serverCount = propertiesFile.GetGroupCount("servers");
             for (int serverId = 0; serverId < serverCount; serverId++)
             {
@@ -71,7 +62,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 }
 
                 // keep the server
-                servers.Add(server);
+                Servers.Add(server);
 
                 // temporary keep for projects loading
                 serverMap.Add(serverId, server);
@@ -98,10 +89,10 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void LoadNotificationSounds()
         {
-            notificationSounds.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
-            notificationSounds.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
-            notificationSounds.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
-            notificationSounds.SucceededSoundPath = propertiesFile.GetStringValue("sounds.Succeeded");
+            NotificationSounds.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
+            NotificationSounds.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
+            NotificationSounds.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
+            NotificationSounds.SucceededSoundPath = propertiesFile.GetStringValue("sounds.Succeeded");
         }
 
         private void SaveConfiguration()
@@ -111,7 +102,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             // save the servers
             int serverId = 0;
-            foreach (Server server in servers)
+            foreach (Server server in Servers)
             {
                 propertiesFile.SetGroupStringValue("servers", serverId, "url", server.Url);
                 Credentials credentials = server.Credentials;
@@ -129,7 +120,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             // save the projects
             serverId = 0;
             int projectId = 0;
-            foreach (Server server in servers)
+            foreach (Server server in Servers)
             {
                 foreach (Project project in server.Projects)
                 {
@@ -153,17 +144,17 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void SaveNotificationSounds()
         {
-            propertiesFile["sounds.Failed"] = notificationSounds.FailedSoundPath;
-            propertiesFile["sounds.Fixed"] = notificationSounds.FixedSoundPath;
-            propertiesFile["sounds.StillFailing"] = notificationSounds.StillFailingSoundPath;
-            propertiesFile["sounds.Succeeded"] = notificationSounds.SucceededSoundPath;
+            propertiesFile["sounds.Failed"] = NotificationSounds.FailedSoundPath;
+            propertiesFile["sounds.Fixed"] = NotificationSounds.FixedSoundPath;
+            propertiesFile["sounds.StillFailing"] = NotificationSounds.StillFailingSoundPath;
+            propertiesFile["sounds.Succeeded"] = NotificationSounds.SucceededSoundPath;
         }
 
         public Server AddServer(string url, string username, string password)
         {
             Server server = new Server();
             BindData(server, url, username, password);
-            servers.Add(server);
+            Servers.Add(server);
             SaveConfiguration();
             return server;
         }
@@ -171,9 +162,9 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void UpdateServer(Server server, string url, string username, string password)
         {
             // note: we need remove and re-add the server because its hash-code might change
-            servers.Remove(server);
+            Servers.Remove(server);
             BindData(server, url, username, password);
-            servers.Add(server);
+            Servers.Add(server);
             SaveConfiguration();
         }
 
@@ -188,7 +179,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void RemoveServer(Server server)
         {
-            servers.Remove(server);
+            Servers.Remove(server);
             SaveConfiguration();
         }
 
@@ -232,10 +223,10 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public IDictionary<Server, ISet<Project>> GetProjects()
         {
-            IDictionary<Server, ISet<Project>> res = new Dictionary<Server, ISet<Project>>();
+            var res = new Dictionary<Server, ISet<Project>>();
             foreach (Server server in Servers)
             {
-                ISet<Project> projects = new HashedSet<Project>();
+                var projects = new HashedSet<Project>();
                 foreach (Project project in server.Projects)
                     projects.Add(project);
                 res[server] = projects;
@@ -246,14 +237,14 @@ namespace Hudson.TrayTracker.BusinessComponents
         public string GetSoundPath(string status)
         {
             PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
-            string res = (string)prop.GetValue(notificationSounds, null);
+            string res = (string)prop.GetValue(NotificationSounds, null);
             return res;
         }
 
         public void SetSoundPath(string status, string path)
         {
             PropertyInfo prop = NotificationSounds.GetType().GetProperty(status + "SoundPath");
-            prop.SetValue(notificationSounds, path, null);
+            prop.SetValue(NotificationSounds, path, null);
 
             SaveConfiguration();
         }

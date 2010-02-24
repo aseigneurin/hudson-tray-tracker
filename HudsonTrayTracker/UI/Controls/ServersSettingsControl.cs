@@ -145,7 +145,7 @@ namespace Hudson.TrayTracker.UI.Controls
 
                 if (e.Error == null)
                 {
-                    List<Project> dataSource = new List<Project>();
+                    var dataSource = new List<Project>();
                     foreach (Project project in projects)
                         dataSource.Add(project);
                     SetProjectsDataSource(dataSource);
