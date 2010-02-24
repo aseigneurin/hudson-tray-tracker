@@ -34,7 +34,9 @@ namespace Hudson.TrayTracker.UI.Controls
             this.notificationSettingsControl3 = new Hudson.TrayTracker.UI.Controls.NotificationSettingsControl();
             this.notificationSettingsControl4 = new Hudson.TrayTracker.UI.Controls.NotificationSettingsControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.treatUnstableAsFailedCheckBox = new DevExpress.XtraEditors.CheckEdit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treatUnstableAsFailedCheckBox.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -46,17 +48,19 @@ namespace Hudson.TrayTracker.UI.Controls
             this.tableLayoutPanel1.Controls.Add(this.notificationSettingsControl3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.notificationSettingsControl4, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.labelControl1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.treatUnstableAsFailedCheckBox, 0, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(477, 229);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(477, 340);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // notificationSettingsControl1
@@ -118,15 +122,25 @@ namespace Hudson.TrayTracker.UI.Controls
             this.labelControl1.TabIndex = 4;
             this.labelControl1.Text = "Configure the sound to play when an event occur";
             // 
+            // treatUnstableAsFailedCheckBox
+            // 
+            this.treatUnstableAsFailedCheckBox.Location = new System.Drawing.Point(3, 250);
+            this.treatUnstableAsFailedCheckBox.Name = "treatUnstableAsFailedCheckBox";
+            this.treatUnstableAsFailedCheckBox.Properties.Caption = "Treat unstable as failed";
+            this.treatUnstableAsFailedCheckBox.Size = new System.Drawing.Size(139, 19);
+            this.treatUnstableAsFailedCheckBox.TabIndex = 5;
+            this.treatUnstableAsFailedCheckBox.CheckedChanged += new System.EventHandler(this.treatUnstableAsFailedCheckBox_CheckedChanged);
+            // 
             // NotificationsSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "NotificationsSettingsControl";
-            this.Size = new System.Drawing.Size(477, 229);
+            this.Size = new System.Drawing.Size(477, 340);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treatUnstableAsFailedCheckBox.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -139,5 +153,6 @@ namespace Hudson.TrayTracker.UI.Controls
         private NotificationSettingsControl notificationSettingsControl3;
         private NotificationSettingsControl notificationSettingsControl4;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.CheckEdit treatUnstableAsFailedCheckBox;
     }
 }

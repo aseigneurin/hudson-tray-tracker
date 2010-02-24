@@ -89,6 +89,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private void LoadNotificationSettings()
         {
+            NotificationSettings = new NotificationSettings();
             NotificationSettings.FailedSoundPath = propertiesFile.GetStringValue("sounds.Failed");
             NotificationSettings.FixedSoundPath = propertiesFile.GetStringValue("sounds.Fixed");
             NotificationSettings.StillFailingSoundPath = propertiesFile.GetStringValue("sounds.StillFailing");
@@ -248,6 +249,17 @@ namespace Hudson.TrayTracker.BusinessComponents
             PropertyInfo prop = NotificationSettings.GetType().GetProperty(status + "SoundPath");
             prop.SetValue(NotificationSettings, path, null);
 
+            SaveConfiguration();
+        }
+
+        public bool IsTreadUnstableAsFailed()
+        {
+            return NotificationSettings.TreatUnstableAsFailed;
+        }
+
+        public void SetTreadUnstableAsFailed(bool value)
+        {
+            NotificationSettings.TreatUnstableAsFailed = value;
             SaveConfiguration();
         }
     }

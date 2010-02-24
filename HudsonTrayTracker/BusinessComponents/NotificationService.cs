@@ -7,9 +7,10 @@ namespace Hudson.TrayTracker.BusinessComponents
     public class NotificationService : Component
     {
         private AllServersStatus allServersStatus;
-        protected ConfigurationService ConfigurationService { private get; set; }
-        protected ProjectsUpdateService UpdateService { private get; set; }
-        protected NotificationSettings Settings { private get; set; }
+
+        public ConfigurationService ConfigurationService { get; set; }
+        public ProjectsUpdateService UpdateService { private get; set; }
+        public NotificationSettings Settings { private get; set; }
 
         public void Initialize()
         {
