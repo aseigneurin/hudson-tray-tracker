@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
 
+  <object id="NotificationSettings" type="Hudson.TrayTracker.Entities.NotificationSettings"/>
+  
   <object id="ConfigurationService" type="Hudson.TrayTracker.BusinessComponents.ConfigurationService" autowire="byType" init-method="Initialize"/>
   <object id="HudsonService" type="Hudson.TrayTracker.BusinessComponents.HudsonService" autowire="byType"/>
   <object id="ProjectsUpdateService" type="Hudson.TrayTracker.BusinessComponents.ProjectsUpdateService" autowire="byType" init-method="Initialize"/>
