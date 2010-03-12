@@ -248,7 +248,7 @@ namespace Hudson.TrayTracker.UI
             {
                 if (status == acknowledgedStatus)
                     return BuildStatus.Successful;
-                else if (BuildStatusUtils.IsWorse(acknowledgedStatus.Value, status))
+                else if (status != BuildStatus.Unknown && BuildStatusUtils.IsWorse(acknowledgedStatus.Value, status))
                     ClearAcknowledgedStatus(project);
             }
             return status;
