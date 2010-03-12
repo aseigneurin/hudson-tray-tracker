@@ -8,3 +8,4 @@
   - Upload the installer on the Google Code project page
   - Update the version.properties file (scripts\version.properties) with the new version number and the URL of the newly uploaded installer
   - Commit the version.properties file
+  - Tag the trunk to something like https://hudson-tray-tracker.googlecode.com/svn/tags/v0.9.1.0
