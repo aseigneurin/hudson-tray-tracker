@@ -31,6 +31,7 @@
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>HudsonTrayTracker.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -165,6 +166,7 @@
     <Compile Include="BusinessComponents\ProjectsUpdateService.cs" />
     <Compile Include="BusinessComponents\SoundPlayer.cs" />
     <Compile Include="Entities\BuildDetails.cs" />
+    <Compile Include="Entities\GeneralSettings.cs" />
     <Compile Include="Entities\BuildStatus.cs" />
     <Compile Include="Entities\AllBuildDetails.cs" />
     <Compile Include="Entities\Credentials.cs" />
