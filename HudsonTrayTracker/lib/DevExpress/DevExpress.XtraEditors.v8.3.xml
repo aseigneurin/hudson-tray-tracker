@@ -979,6 +979,35 @@ In standalone editors, because of the .NET binding mechanism, the <b>Ignore</b> 
 
 
         </member>
+        <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.GetDisplayText(DevExpress.Utils.FormatInfo,System.Object)">
+            <summary>
+                <para>Returns the text representation of the specified value, formatted according to the specified settings.
+</para>
+            </summary>
+            <param name="format">
+		A <see cref="T:DevExpress.Utils.FormatInfo"/> object that specifies formatting settings.
+
+            </param>
+            <param name="editValue">
+		A value to be formatted.
+
+            </param>
+            <returns>A string that specifies the value's formatted text representation.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.GetItems">
+            <summary>
+                <para>Returns items from the <see cref="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.Items"/> collection. 
+In bound mode, this method populates the item collection before returning it.
+</para>
+            </summary>
+            <returns>A <see cref="T:DevExpress.XtraEditors.Controls.CheckedListBoxItemCollection"/> object that contains items.
+</returns>
+
+
+        </member>
         <member name="P:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.HighlightedItemStyle">
             <summary>
                 <para>Specifies how selected items are highlighted within the control's popup window.
@@ -1006,6 +1035,22 @@ In standalone editors, because of the .NET binding mechanism, the <b>Ignore</b> 
             </summary>
             <value>A <see cref="T:DevExpress.XtraEditors.PopupContainerControl"/> object.
 </value>
+
+
+        </member>
+        <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.QueryDisplayText">
+            <summary>
+                <para>This event is not supported by the RepositoryItemCheckedComboBoxEdit class.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="E:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit.QueryResultValue">
+            <summary>
+                <para>This event is not supported by the RepositoryItemCheckedComboBoxEdit class.
+</para>
+            </summary>
 
 
         </member>
@@ -1137,6 +1182,22 @@ In standalone editors, because of the .NET binding mechanism, the <b>Ignore</b> 
             </summary>
             <value>A <see cref="T:DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit"/> object that contains a <see cref="T:DevExpress.XtraEditors.CheckedComboBoxEdit"/> control's settings.
 </value>
+
+
+        </member>
+        <member name="E:DevExpress.XtraEditors.CheckedComboBoxEdit.QueryDisplayText">
+            <summary>
+                <para>This event is not supported by the CheckedComboBoxEdit class.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="E:DevExpress.XtraEditors.CheckedComboBoxEdit.QueryResultValue">
+            <summary>
+                <para>This event is not supported by the CheckedComboBoxEdit class.
+</para>
+            </summary>
 
 
         </member>
@@ -1492,6 +1553,50 @@ Close buttons in individual pages are hidden.
                 <para>The Close button is displayed in the tab control's header, as specified by the control's <b>HeaderButtonsShowMode</b> property.
 </para>
             </summary>
+
+
+        </member>
+        <member name="T:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs">
+
+            <summary>
+                <para>Provides data for the <see cref="E:DevExpress.XtraTab.XtraTabControl.CloseButtonClick"/> event.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.#ctor(DevExpress.XtraTab.IXtraTabPage,DevExpress.XtraTab.IXtraTabPage)">
+            <summary>
+                <para>Initializes a new instance of the ClosePageButtonEventArgs class with the specified settings.
+</para>
+            </summary>
+            <param name="prevPage">
+		<b>null</b> if the TabControl's Close button has been clicked. Otherwise, this refers to the page whose Close button has been clicked. This value is assigned to the <see cref="P:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.PrevPage"/> property.
+
+            </param>
+            <param name="page">
+		The page whose Close button has been clicked. This value is assigned to the <see cref="P:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.Page"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.Page">
+            <summary>
+                <para>Gets the page whose Close button has been clicked.
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.XtraTab.XtraTabPage"/> object whose Close button has been clicked.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.PrevPage">
+            <summary>
+                <para>Returns <b>null</b> if the TabControl's Close button has been clicked. Otherwise, this property returns the same value as the <see cref="P:DevExpress.XtraTab.ViewInfo.ClosePageButtonEventArgs.Page"/> property.
+</para>
+            </summary>
+            <value>An <see cref="T:DevExpress.XtraTab.XtraTabPage"/> object.
+</value>
 
 
         </member>

@@ -1282,6 +1282,16 @@
 
 
         </member>
+        <member name="P:DevExpress.XtraGrid.Views.Grid.GridOptionsBehavior.SummariesIgnoreNullValues">
+            <summary>
+                <para>Gets or sets whether null values must be ignored when calculating summaries.
+</para>
+            </summary>
+            <value><b>true</b> if null values must be ignored when calculating summaries; otherwise, <b>false</b>.
+</value>
+
+
+        </member>
         <member name="T:DevExpress.XtraGrid.Views.Layout.Events.LayoutViewVisibleRecordIndexChangedEventHandler">
 
             <summary>
@@ -7819,6 +7829,16 @@
 
 
         </member>
+        <member name="P:DevExpress.XtraGrid.Views.Layout.LayoutViewCard.ExpandOnDoubleClick">
+            <summary>
+                <para>Gets or sets whether double-clicking on a card's caption toggles the expansion state of the card.
+</para>
+            </summary>
+            <value><b>true</b> if double-clicking on a card's caption toggles the expansion state of the card; otherwise, <b>false</b>.
+</value>
+
+
+        </member>
         <member name="M:DevExpress.XtraGrid.Views.Layout.LayoutViewCard.Invalidate">
             <summary>
                 <para>Invalidates the card. 
@@ -9544,10 +9564,10 @@ For the <see cref="E:DevExpress.XtraGrid.Views.Grid.GridView.MasterRowGetRelatio
         </member>
         <member name="P:DevExpress.XtraGrid.Views.Layout.ViewInfo.LayoutViewHitInfo.InCardsArea">
             <summary>
-                <para>Gets whether the test point is within a View's empty area not occupied by cards.
+                <para>Gets whether the test point is within a View's area where cards can be arranged.
 </para>
             </summary>
-            <value><b>true</b> if the test point is within a View's empty area; otherwise, <b>false</b>.
+            <value><b>true</b> if the test point is within a View's area; otherwise, <b>false</b>.
 </value>
 
 
@@ -25703,11 +25723,11 @@ If this parameter has a value (it's not <b>null</b> or an empty string) the <i>v
         </member>
         <member name="M:DevExpress.XtraGrid.Columns.ColumnFilterInfo.GetValueDisplayText">
             <summary>
-                <para>Returns a string that represents the current filter condition in the filter dropdown list.
+                <para>Returns the same value as the <see cref="M:DevExpress.XtraGrid.Columns.ColumnFilterInfo.GetDisplayText"/> method.
 
 </para>
             </summary>
-            <returns>A string representing the current filter condition in the filter dropdown list.
+            <returns>A string returned by the <see cref="M:DevExpress.XtraGrid.Columns.ColumnFilterInfo.GetDisplayText"/> method.
 
 </returns>
 
@@ -25747,11 +25767,11 @@ If this parameter has a value (it's not <b>null</b> or an empty string) the <i>v
         </member>
         <member name="P:DevExpress.XtraGrid.Columns.ColumnFilterInfo.ValueDisplayText">
             <summary>
-                <para>Gets a string that represents the current filter condition in the filter dropdown list.
+                <para>This member is obsolete.
 
 </para>
             </summary>
-            <value>A string representing the current filter condition in the filter dropdown list.
+            <value>An empty string.
 
 </value>
 
@@ -26236,6 +26256,87 @@ Currently this option is the same as the <b>GridView</b> option
 </para>
             </summary>
             <value>An integer value that specifies the distance between the field's label and image, in pixels. 
+</value>
+
+
+        </member>
+        <member name="T:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode">
+
+            <summary>
+                <para>Contains values that specify the region where a field's sort and filter buttons are displayed.
+
+</para>
+            </summary>
+
+        </member>
+        <member name="F:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.Default">
+            <summary>
+                <para>The same option as the <see cref="F:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.InFieldValue"/> option.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.InFieldCaption">
+            <summary>
+                <para>Sort and filter buttons are displayed in a field caption region.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="F:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode.InFieldValue">
+            <summary>
+                <para>Sort and filter buttons are displayed in a field value region.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="T:DevExpress.XtraGrid.Views.Layout.OptionsField">
+
+            <summary>
+                <para>Provides access to options that control the display of a field's sort and filter buttons.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraGrid.Views.Layout.OptionsField.#ctor">
+            <summary>
+                <para>Initializes a new instance of the OptionsField class.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="M:DevExpress.XtraGrid.Views.Layout.OptionsField.Assign(DevExpress.Utils.Controls.BaseOptions)">
+            <summary>
+                <para>Copies the properties of the specified object to the current object.
+</para>
+            </summary>
+            <param name="options">
+		A <see cref="T:DevExpress.Utils.Controls.BaseOptions"/> descendant whose settings are assigned to the current object.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.XtraGrid.Views.Layout.OptionsField.SortFilterButtonLocation">
+            <summary>
+                <para>Gets or sets the location of sort and filter buttons within the region where these buttons are displayed.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraGrid.Views.Layout.SortFilterButtonLocation"/> value that specifies the location of sort and filter buttons.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraGrid.Views.Layout.OptionsField.SortFilterButtonShowMode">
+            <summary>
+                <para>Gets or sets the region where sort and filter buttons are displayed.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraGrid.Views.Layout.SortFilterButtonShowMode"/> value.
 </value>
 
 

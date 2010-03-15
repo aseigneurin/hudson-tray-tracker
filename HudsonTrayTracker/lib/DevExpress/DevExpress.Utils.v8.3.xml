@@ -4680,20 +4680,20 @@ For the XtraGrid control, this option acts as the <see cref="F:DevExpress.Utils.
         </member>
         <member name="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore256ColumnsLimit">
             <summary>
-                <para>Gets or sets a value indicating whether to create an XLS file with more than <b>256</b> columns.
+                <para>Gets or sets a value indicating whether to raise an exception when the created XLS file contains more than <b>256</b> columns.
 </para>
             </summary>
-            <value><b>true</b> to create an XLS file with more than 256 columns, if necessary; otherwise, <b>false</b>.
+            <value><b>true</b> to ignore the warning about more than 256 columns in the created XLS file; <b>false</b> to raise an exception in this case.
 </value>
 
 
         </member>
         <member name="P:DevExpress.XtraPrinting.XlsExportOptions.Ignore65536RowsLimit">
             <summary>
-                <para>Gets or sets a value indicating whether to create an XLS file with more than <b>65536</b> rows.
+                <para>Gets or sets a value indicating whether to raise an exception when the created XLS file contains more than <b>65536</b> rows.
 </para>
             </summary>
-            <value><b>true</b> to create an XLS file with more than 65536 rows, if necessary; otherwise, <b>false</b>.
+            <value><b>true</b> to ignore the warning about more than 65536 rows in the created XLS file; <b>false</b> to raise an exception in this case.
 </value>
 
 
@@ -5565,10 +5565,10 @@ For the XtraGrid control, this option acts as the <see cref="F:DevExpress.Utils.
         </member>
         <member name="P:DevExpress.LookAndFeel.UserLookAndFeel.Default">
             <summary>
-                <para>Gets the default LookAndFeel object which should be used for painting controls when the <see cref="P:DevExpress.LookAndFeel.UserLookAndFeel.UseDefaultLookAndFeel"/> property is set to <b>true</b>.
+                <para>Gets the Default LookAndFeel object which should be used for painting controls when the <see cref="P:DevExpress.LookAndFeel.UserLookAndFeel.UseDefaultLookAndFeel"/> property is set to <b>true</b>.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object referring to the default LookAndFeel object.
+            <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object referring to the Default LookAndFeel object.
 </value>
 
 
@@ -11186,7 +11186,7 @@ based on the specified <b>Hashtable</b> object.
         <member name="T:DevExpress.LookAndFeel.DefaultLookAndFeel">
 
             <summary>
-                <para>A component providing access to default LookAndFeel settings.
+                <para>A component providing access to Default LookAndFeel settings.
 </para>
             </summary>
 
@@ -11205,7 +11205,7 @@ based on the specified <b>Hashtable</b> object.
 </para>
             </summary>
             <param name="container">
-		A <see cref="T:System.ComponentModel.IContainer"/> that represents the container for the default LookAndFeel object.
+		A <see cref="T:System.ComponentModel.IContainer"/> that represents the container for the Default LookAndFeel object.
 
             </param>
 
@@ -11213,10 +11213,10 @@ based on the specified <b>Hashtable</b> object.
         </member>
         <member name="P:DevExpress.LookAndFeel.DefaultLookAndFeel.LookAndFeel">
             <summary>
-                <para>Gets or sets the <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object defining default LookAndFeel settings.
+                <para>Gets or sets the <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object defining Default LookAndFeel settings.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object defining default LookAndFeel settings.
+            <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object defining Default LookAndFeel settings.
 </value>
 
 

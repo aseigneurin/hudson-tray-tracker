@@ -1125,6 +1125,15 @@ For the root group, its parent is the LayoutControl itself (the LayoutControl's 
 
 
         </member>
+        <member name="M:DevExpress.XtraDataLayout.DataLayoutControl.ForceInitialize">
+            <summary>
+                <para>Forces the control to finish its initialization. 
+
+</para>
+            </summary>
+
+
+        </member>
         <member name="M:DevExpress.XtraDataLayout.DataLayoutControl.RetrieveFields">
             <summary>
                 <para>Creates layout items for all fields in the bound data source.
@@ -3915,6 +3924,18 @@ For the root group, its parent is the LayoutControl itself (the LayoutControl's 
             </param>
             <param name="fAllowUseTabbedGroup">
 		<b>true</b> to allow use tabbed groups; otherwise, <b>false</b>.
+
+            </param>
+
+
+        </member>
+        <member name="M:DevExpress.XtraLayout.LayoutControl.#ctor(System.Boolean)">
+            <summary>
+                <para>Initializes a new instance of the LayoutControl class.
+</para>
+            </summary>
+            <param name="createFast">
+		A Boolean value.
 
             </param>
 

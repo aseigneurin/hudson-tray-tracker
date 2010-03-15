@@ -815,9 +815,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Xpo.DB.DBTable.Columns">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provedes access to the current DBTable's column collection.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A list of <see cref="T:DevExpress.Xpo.DB.DBColumn"/> objects that represent the columns defined in the current <b>DBTable</b>.
+</value>
 
 
         </member>
@@ -838,9 +840,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Xpo.DB.DBTable.ForeignKeys">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provedes access to the current DBTable's foreign keys collection.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A list of <see cref="T:DevExpress.Xpo.DB.DBForeignKey"/> objects that represent the foreign keys defined in the current <b>DBTable</b>.
+</value>
 
 
         </member>
@@ -871,9 +875,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Xpo.DB.DBTable.Indexes">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provedes access to the current DBTable's indexes collection.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A list of <see cref="T:DevExpress.Xpo.DB.DBIndex"/> objects that represent the indexes defined for the current <b>DBTable</b>.
+</value>
 
 
         </member>
@@ -1557,46 +1563,57 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="M:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Initializes a new instance of the CriteriaParserException class.
+</para>
             </summary>
             <param name="explanation">
-		 [To be supplied] 
+		A string that specifies the error description.
+
             </param>
             <param name="line">
-		 [To be supplied] 
+		A value of the <b>CriteriaLexer.Line</b> property that specifies the line where an exception occured. This value is used to initialize the <see cref="P:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.Line"/> property.
+
             </param>
             <param name="column">
-		 [To be supplied] 
+		A value of the <b>CriteriaLexer.Col</b> property that specifies the column where an exception occured. This value is used to initialize the <see cref="P:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.Column"/> property.
+
             </param>
 
 
         </member>
         <member name="P:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.Column">
             <summary>
-                <para> [To be supplied] </para>
+                <para>The value of the <b>CriteriaLexer.Col</b> property that specifies the column where an exception occured.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>The value of the <b>CriteriaLexer.Col</b> property that specifies the column where an exception occured.
+</value>
 
 
         </member>
         <member name="M:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Sets the <b>System.Runtime.Serialization.SerializationInfo</b> with information about the exception. 
+</para>
             </summary>
             <param name="info">
-		 [To be supplied] 
+		The <b>System.Runtime.Serialization.SerializationInfo</b> that holds the serialized object data about the exception being thrown. 
+
             </param>
             <param name="context">
-		 [To be supplied] 
+		The <b>System.Runtime.Serialization.StreamingContext</b> that contains contextual information about the source or destination. 
+
             </param>
 
 
         </member>
         <member name="P:DevExpress.Data.Filtering.Exceptions.CriteriaParserException.Line">
             <summary>
-                <para> [To be supplied] </para>
+                <para>A value of the <b>CriteriaLexer.Line</b> property that specifies the line where an exception occured.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A value of the <b>CriteriaLexer.Line</b> property that specifies the line where an exception occured.
+</value>
 
 
         </member>
@@ -1963,10 +1980,10 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Data.Filtering.OperandValue.XmlValue">
             <summary>
-                <para>Gets or sets the value.
+                <para>Gets or sets the current operand's formatted value.
 </para>
             </summary>
-            <value>An object that represents the value.
+            <value>An object that represents the current operand's formatted value.
 </value>
 
 
@@ -2273,9 +2290,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Data.Filtering.InOperator.Operands">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provides access to the <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current InOperator.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current InOperator.
+</value>
 
 
         </member>
@@ -2326,13 +2345,16 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="M:DevExpress.Data.Filtering.GroupOperator.#ctor(DevExpress.Data.Filtering.GroupOperatorType,System.Collections.Generic.IEnumerable`1)">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Initializes a new instance of the GroupOperator with the specified parameters.
+</para>
             </summary>
             <param name="type">
-		 [To be supplied] 
+		A <see cref="T:DevExpress.Data.Filtering.GroupOperatorType"/> enumeration value that specifies the type of the group operator. This value is assigned to the <see cref="F:DevExpress.Data.Filtering.GroupOperator.OperatorType"/> property.
+
             </param>
             <param name="operands">
-		 [To be supplied] 
+		An object that implements the <b>IEnumerable</b> interface and represents a collection of <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> objects which specify the operands required by the selected function. This value is used to initialize the <see cref="P:DevExpress.Data.Filtering.FunctionOperator.Operands"/> property.
+
             </param>
 
 
@@ -2429,9 +2451,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Data.Filtering.GroupOperator.Operands">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provides access to the <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current GroupOperator.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current GroupOperator.
+</value>
 
 
         </member>
@@ -2494,13 +2518,16 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="M:DevExpress.Data.Filtering.FunctionOperator.#ctor(DevExpress.Data.Filtering.FunctionOperatorType,System.Collections.Generic.IEnumerable`1)">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Initializes a new instance of the FunctionOperator class with the specified parameters.
+</para>
             </summary>
             <param name="type">
-		 [To be supplied] 
+		A <see cref="T:DevExpress.Data.Filtering.FunctionOperatorType"/> enumeration value that specifies the type of function. This value is used to initialize the <see cref="F:DevExpress.Data.Filtering.FunctionOperator.OperatorType"/> property.
+
             </param>
             <param name="operands">
-		 [To be supplied] 
+		An object that implements the <b>IEnumerable</b> interface and represents a collection of <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> objects which specify the operands required by the selected function. This value is used to initialize the <see cref="P:DevExpress.Data.Filtering.FunctionOperator.Operands"/> property.
+
             </param>
 
 
@@ -2557,9 +2584,11 @@ The <see cref="E:DevExpress.XtraEditors.DXErrorProvider.DXErrorProvider.GetError
         </member>
         <member name="P:DevExpress.Data.Filtering.FunctionOperator.Operands">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provides access to the <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current FunctionOperator.
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> object that represents a collection of the operands used to construct the current FunctionOperator.
+</value>
 
 
         </member>
@@ -2706,33 +2735,35 @@ The operands are specified by the <see cref="P:DevExpress.Data.Filtering.Functio
         </member>
         <member name="M:DevExpress.Data.Filtering.CriteriaOperator.LegacyToString">
             <summary>
-                <para>Converts the specified expression into its equivalent string.
+                <para>Returns the string representation of the criterion defined by the current CriteriaOperator.
 </para>
             </summary>
-            <returns>A string representation of the specified expression.
+            <returns>A string representation of the criterion defined by the current <b>CriteriaOperator</b>.
 </returns>
 
 
         </member>
         <member name="M:DevExpress.Data.Filtering.CriteriaOperator.LegacyToString(DevExpress.Data.Filtering.CriteriaOperator)">
             <summary>
-                <para>Converts the specified expression into its equivalent string.
+                <para>Returns the string representation of the criterion defined by the specified CriteriaOperator.
 </para>
             </summary>
             <param name="criteria">
-		A <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> object that represents the expression to convert.
+		A <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> object that represents the criterion to convert to its string representation.
 
             </param>
-            <returns>A string representation of the specified expression.
+            <returns>A string representation of the criterion defined by the specified CriteriaOperator.
 </returns>
 
 
         </member>
         <member name="M:DevExpress.Data.Filtering.CriteriaOperator.Not">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Returns an instance of the <see cref="T:DevExpress.Data.Filtering.UnaryOperator"/> that represents the criterion resulting from the logical inversion of the criterion the current CriteriaOperator represents.
+</para>
             </summary>
-            <returns> [To be supplied] </returns>
+            <returns>An instance of the <see cref="T:DevExpress.Data.Filtering.UnaryOperator"/> that represents the criterion resulting from the logical inversion of the criterion the current CriteriaOperator represents.
+</returns>
 
 
         </member>
@@ -2963,15 +2994,20 @@ The operands are specified by the <see cref="P:DevExpress.Data.Filtering.Functio
         </member>
         <member name="M:DevExpress.Data.Filtering.CriteriaOperator.TryParse(System.String,System.Object[])">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Tries to convert the specified string representation of an expression to its <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> equivalent.
+
+</para>
             </summary>
             <param name="criteria">
-		 [To be supplied] 
+		A <see cref="T:System.String"/> value that represents the expression to convert.
+
             </param>
             <param name="parameters">
-		 [To be supplied] 
+		The values that are substituted into the expression in place of question mark characters. These parameters can be omitted.
+
             </param>
-            <returns> [To be supplied] </returns>
+            <returns>A <see cref="T:DevExpress.Data.Filtering.CriteriaOperator"/> equivalent to the expression contained in <i>criteria</i>.
+</returns>
 
 
         </member>
@@ -5024,24 +5060,138 @@ The default position of the text is specified via the <B>RightToLeft</B> propert
 
 
         </member>
+        <member name="T:DevExpress.Data.IRelationListEx">
+
+            <summary>
+                <para>An extended version of the <see cref="T:DevExpress.Data.IRelationList"/> interface, that can be implemented by a data source to support master-detail relationships.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Data.IRelationListEx.GetRelationCount(System.Int32)">
+            <summary>
+                <para>When implemented by a class, returns the number of relationships for a master row.
+</para>
+            </summary>
+            <param name="index">
+		An integer value that specifies the master row.
+
+            </param>
+            <returns>An integer value that specifies the number of relationships for a master row.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Data.IRelationListEx.GetRelationDisplayName(System.Int32,System.Int32)">
+            <summary>
+                <para>When implemented by a class, returns the display caption of a particular relationship in a specific master row. 
+</para>
+            </summary>
+            <param name="index">
+		An integer value that specifies the master row.
+
+            </param>
+            <param name="relationIndex">
+		An integer value that specifies the relationship.
+
+            </param>
+            <returns>A string value that specifies the display caption of a particular relationship in a specific master row. 
+</returns>
+
+
+        </member>
+        <member name="T:DevExpress.Data.IRelationList">
+
+            <summary>
+                <para>An interface that can be implemented by a data source to support master-detail relationships.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.Data.IRelationList.GetDetailList(System.Int32,System.Int32)">
+            <summary>
+                <para>When implemented by a class, returns detail data for a relationship.
+</para>
+            </summary>
+            <param name="index">
+		An integer value that specifies the index of a master row in the data source.
+
+            </param>
+            <param name="relationIndex">
+		An integer value that specifies the relationship.
+
+            </param>
+            <returns>An object that implements the <b>IList</b> interface and represents detail data for a relationship.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Data.IRelationList.GetRelationName(System.Int32,System.Int32)">
+            <summary>
+                <para>When implemented by a class, returns the name of a master-detail relationship.
+</para>
+            </summary>
+            <param name="index">
+		An integer value that specifies the index of a master row in the data source.
+
+            </param>
+            <param name="relationIndex">
+		An integer value that specifies the relationship.
+
+            </param>
+            <returns>The name of a master-detail relationship.
+</returns>
+
+
+        </member>
+        <member name="M:DevExpress.Data.IRelationList.IsMasterRowEmpty(System.Int32,System.Int32)">
+            <summary>
+                <para>When implemented by a class, returns a Boolean value that specifies whether a specific detail of a particular master row contains data.
+</para>
+            </summary>
+            <param name="index">
+		An integer value that specifies the index of a master row in the data source.
+
+            </param>
+            <param name="relationIndex">
+		An integer value that specifies the relationship.
+
+            </param>
+            <returns>A Boolean value that specifies whether a specific detail of a particular master row contains data.
+</returns>
+
+
+        </member>
+        <member name="P:DevExpress.Data.IRelationList.RelationCount">
+            <summary>
+                <para>When implemented by a class, returns the number of master-detail relationships for the current master data source.
+</para>
+            </summary>
+            <value>An integer value that specifies the number of master-detail relationships for the current master data source.
+</value>
+
+
+        </member>
         <member name="T:DevExpress.Data.ExceptionAction">
 
             <summary>
-                <para>This enumeration is intended for internal use only.
+                <para>Specifies how to resolve exceptions while performing an action.
 </para>
             </summary>
 
         </member>
         <member name="F:DevExpress.Data.ExceptionAction.CancelAction">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Cancel the action that caused an exception.
+</para>
             </summary>
 
 
         </member>
         <member name="F:DevExpress.Data.ExceptionAction.RetryAction">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Retry the action that caused an exception.
+</para>
             </summary>
 
 
@@ -6559,9 +6709,14 @@ Note that <see cref="T:System.DateTime"/> objects which have the same date porti
         </member>
         <member name="P:DevExpress.Xpo.DB.SelectStatement.GroupProperties">
             <summary>
-                <para> [To be supplied] </para>
+                <para>Provides access to the <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> that specifies the columns by which the result of the current SelectStatement should be grouped.
+
+</para>
             </summary>
-            <value> [To be supplied] </value>
+            <value>A <see cref="T:DevExpress.Data.Filtering.CriteriaOperatorCollection"/> that specifies the columns by which the result of the current <b>SelectStatement</b> should be grouped.
+
+
+</value>
 
 
         </member>

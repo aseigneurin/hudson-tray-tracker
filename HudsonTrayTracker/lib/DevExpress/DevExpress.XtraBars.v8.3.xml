@@ -275,10 +275,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.DefaultBarAndDockingController.Controller">
             <summary>
-                <para>Gets the Default BarAndDockingController.
+                <para>Gets the DefaultBarAndDockingController.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object representing the Default BarAndDockingController.
+            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object representing the DefaultBarAndDockingController.
 </value>
 
 
@@ -402,11 +402,11 @@
         </member>
         <member name="M:DevExpress.XtraBars.BarButtonGroup.#ctor(DevExpress.XtraBars.BarManager)">
             <summary>
-                <para>Initializes a new instance of the BarButtonGroup class with the specified bar manager.
+                <para>Initializes a new instance of the BarButtonGroup class with the specified BarManager.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that represents the bar manager that will manage the created bar button group.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that represents the BarManager that will manage the created bar button group.
 
             </param>
 
@@ -426,7 +426,7 @@
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that represents the bar manager that will control the created bar button group.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that represents the BarManager that will control the created bar button group.
 
 
             </param>
@@ -617,6 +617,74 @@
 
 
         </member>
+        <member name="T:DevExpress.XtraBars.Alerter.AlertClickEventHandler">
+
+            <summary>
+                <para>Represents a method that will handle the <see cref="E:DevExpress.XtraBars.Alerter.AlertControl.AlertClick"/> event.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraBars.Alerter.AlertClickEventHandler.Invoke(System.Object,DevExpress.XtraBars.Alerter.AlertClickEventArgs)">
+            <summary>
+                <para>Represents a method that will handle the <see cref="E:DevExpress.XtraBars.Alerter.AlertControl.AlertClick"/> event.
+</para>
+            </summary>
+            <param name="sender">
+		The event source. Identifies the <see cref="T:DevExpress.XtraBars.Alerter.AlertControl"/> that raised the event.
+
+            </param>
+            <param name="e">
+		A <see cref="T:DevExpress.XtraBars.Alerter.AlertClickEventArgs"/> object containing event data.
+
+            </param>
+
+
+        </member>
+        <member name="T:DevExpress.XtraBars.Alerter.AlertClickEventArgs">
+
+            <summary>
+                <para>Provides data for the <see cref="E:DevExpress.XtraBars.Alerter.AlertControl.AlertClick"/> event.
+</para>
+            </summary>
+
+        </member>
+        <member name="M:DevExpress.XtraBars.Alerter.AlertClickEventArgs.#ctor(DevExpress.XtraBars.Alerter.AlertInfo,DevExpress.XtraBars.Alerter.AlertForm)">
+            <summary>
+                <para>Initializes a new instance of the AlertClickEventArgs class with the specified settings.
+</para>
+            </summary>
+            <param name="info">
+		An <see cref="T:DevExpress.XtraBars.Alerter.AlertInfo"/> object. This value is assigned to the <see cref="P:DevExpress.XtraBars.Alerter.AlertClickEventArgs.Info"/> property.
+
+            </param>
+            <param name="form">
+		An <b>AlertForm</b> object. This value is assigned to the <see cref="P:DevExpress.XtraBars.Alerter.AlertClickEventArgs.AlertForm"/> property.
+
+            </param>
+
+
+        </member>
+        <member name="P:DevExpress.XtraBars.Alerter.AlertClickEventArgs.AlertForm">
+            <summary>
+                <para>Gets the currently processed alert window.
+</para>
+            </summary>
+            <value>An AlertForm object that represents the currently processed alert window.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraBars.Alerter.AlertClickEventArgs.Info">
+            <summary>
+                <para>Gets an object that contains information displayed in the currently processed alert window.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.XtraBars.Alerter.AlertInfo"/> object that contains information displayed in an alert window. 
+</value>
+
+
+        </member>
         <member name="T:DevExpress.XtraBars.Ribbon.GalleryItemCustomDrawEventHandler">
 
             <summary>
@@ -656,7 +724,7 @@
 </para>
             </summary>
             <param name="sender">
-		The event source. Identifies the bar manager that raised the event. 
+		The event source. Identifies the BarManager that raised the event. 
 
             </param>
             <param name="e">
@@ -790,10 +858,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.BarOptions.AllowDelete">
             <summary>
-                <para>Gets whether the bar can be deleted via the customization window at runtime.
+                <para>Gets whether the bar can be deleted via the Customization Window at runtime.
 </para>
             </summary>
-            <value><b>true</b> if the bar can be deleted from the customization window at runtime; otherwise, <b>false</b>.
+            <value><b>true</b> if the bar can be deleted from the Customization Window at runtime; otherwise, <b>false</b>.
 </value>
 
 
@@ -810,10 +878,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.BarOptions.AllowRename">
             <summary>
-                <para>Gets whether the bar can be renamed via the customization window at runtime.
+                <para>Gets whether the bar can be renamed via the Customization Window at runtime.
 </para>
             </summary>
-            <value><b>true</b> if the bar can be renamed in the customization window at runtime; otherwise, <b>false</b>.
+            <value><b>true</b> if the bar can be renamed in the Customization Window at runtime; otherwise, <b>false</b>.
 </value>
 
 
@@ -882,10 +950,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.BarOptions.Hidden">
             <summary>
-                <para>Gets or sets whether the bar is hidden in the customization window, customization menu and <see cref="T:DevExpress.XtraBars.BarToolbarsListItem"/>'s list. 
+                <para>Gets or sets whether the bar is hidden in the Customization Window, customization menu and <see cref="T:DevExpress.XtraBars.BarToolbarsListItem"/>'s list. 
 </para>
             </summary>
-            <value><b>true</b> if the bar is hidden in the customization window, customization menu and <see cref="T:DevExpress.XtraBars.BarToolbarsListItem"/>'s list; otherwise, <b>false</b>.
+            <value><b>true</b> if the bar is hidden in the Customization Window, customization menu and <see cref="T:DevExpress.XtraBars.BarToolbarsListItem"/>'s list; otherwise, <b>false</b>.
 </value>
 
 
@@ -1063,7 +1131,7 @@
 </para>
             </summary>
             <param name="sender">
-		The event source. Identifies the bar manager that raised the event.
+		The event source. Identifies the BarManager that raised the event.
 
             </param>
             <param name="e">
@@ -1087,7 +1155,7 @@
 </para>
             </summary>
             <param name="childManager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager of the child MDI form. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarManagerMergeEventArgs.ChildManager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager of the child MDI form. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarManagerMergeEventArgs.ChildManager"/> property.
 
             </param>
 
@@ -1098,7 +1166,7 @@
                 <para>Gets the Bar Manager of a child MDI form for which the merge mechanism is invoked. 
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> instance representing the bar manager of the child MDI form.
+            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> instance representing the BarManager of the child MDI form.
 </value>
 
 
@@ -1106,7 +1174,7 @@
         <member name="T:DevExpress.XtraBars.BarManagerCategoryCollection">
 
             <summary>
-                <para>Represents a category collection in the bar manager.
+                <para>Represents a category collection in the BarManager.
 </para>
             </summary>
 
@@ -1259,10 +1327,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.BarManagerCategoryCollection.Manager">
             <summary>
-                <para>Gets the bar manager that owns the collection. 
+                <para>Gets the BarManager that owns the collection. 
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager that owns the category collection. 
+            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager that owns the category collection. 
 </value>
 
 
@@ -1345,10 +1413,10 @@
         </member>
         <member name="P:DevExpress.XtraBars.BarManagerCategory.DefaultCategory">
             <summary>
-                <para>Gets the bar manager's default category.
+                <para>Gets the BarManager's default category.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarManagerCategory"/> object representing the bar manager's default category.
+            <value>A <see cref="T:DevExpress.XtraBars.BarManagerCategory"/> object representing the BarManager's default category.
 </value>
 
 
@@ -2669,7 +2737,7 @@ For <see cref="T:DevExpress.XtraBars.Ribbon.ApplicationMenu"/> objects, the defa
 </para>
             </summary>
             <param name="sender">
-		The event source. Identifies the bar manager that raised the event. 
+		The event source. Identifies the BarManager that raised the event. 
 
             </param>
             <param name="e">
@@ -3398,10 +3466,10 @@ For <see cref="T:DevExpress.XtraBars.Ribbon.ApplicationMenu"/> objects, the defa
         </member>
         <member name="P:DevExpress.XtraBars.BarAndDockingController.Default">
             <summary>
-                <para>Provides access to the Default BarAndDockingController.
+                <para>Provides access to the DefaultBarAndDockingController.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object specifying the Default BarAndDockingController.
+            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object specifying the DefaultBarAndDockingController.
 </value>
 
 
@@ -3833,10 +3901,10 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.Ribbon.RibbonStatusBar.Manager">
             <summary>
-                <para>Gets the ribbon bar manager. This member supports the .NET Framework infrastructure and is not intended to be used directly from your code. 
+                <para>Gets the ribbon BarManager. This member supports the .NET Framework infrastructure and is not intended to be used directly from your code. 
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents the ribbon bar manager.
+            <value>A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents the ribbon BarManager.
 </value>
 
 
@@ -4195,6 +4263,14 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 
 
         </member>
+        <member name="M:DevExpress.XtraBars.Ribbon.RibbonPageGroup.AddGroupToToolbar">
+            <summary>
+                <para>Creates a link to the current group and adds it to the Ribbon Quick Access Toolbar.
+</para>
+            </summary>
+
+
+        </member>
         <member name="P:DevExpress.XtraBars.Ribbon.RibbonPageGroup.AllowMinimize">
             <summary>
                 <para>Gets or sets whether the page group can be collapsed.
@@ -4303,6 +4379,14 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 
 
         </member>
+        <member name="M:DevExpress.XtraBars.Ribbon.RibbonPageGroup.RemoveGroupFromToolbar">
+            <summary>
+                <para>Removes a link to the current group from the Ribbon Quick Access Toolbar.
+</para>
+            </summary>
+
+
+        </member>
         <member name="P:DevExpress.XtraBars.Ribbon.RibbonPageGroup.Ribbon">
             <summary>
                 <para>Gets the <see cref="T:DevExpress.XtraBars.Ribbon.RibbonControl"/> which owns the current group.
@@ -4349,6 +4433,16 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <value>A string which specifies the text displayed within the group.
+</value>
+
+
+        </member>
+        <member name="P:DevExpress.XtraBars.Ribbon.RibbonPageGroup.ToolbarContentButtonLink">
+            <summary>
+                <para>Gets a link to the current group within the Ribbon Quick Access Toolbar.
+</para>
+            </summary>
+            <value>A link to the current group within the Ribbon Quick Access Toolbar.
 </value>
 
 
@@ -6842,7 +6936,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object which represents the bar manager responsible for managing the Dropdown control.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object which represents the BarManager responsible for managing the Dropdown control.
 
             </param>
             <param name="p">
@@ -7206,11 +7300,11 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.PopupMenu.#ctor(DevExpress.XtraBars.BarManager)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.PopupMenu"/> class with the specified bar manager.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.PopupMenu"/> class with the specified BarManager.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager which will manage the created popup menu. This value is assigned to the <see cref="P:DevExpress.XtraBars.PopupMenu.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager which will manage the created popup menu. This value is assigned to the <see cref="P:DevExpress.XtraBars.PopupMenu.Manager"/> property.
 
             </param>
 
@@ -7546,7 +7640,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager responsible for managing the context menu. 
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager responsible for managing the context menu. 
 
             </param>
             <param name="p">
@@ -7659,10 +7753,10 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.AllowCustomization">
             <summary>
-                <para>Gets or sets whether the customization window can be activated by the end-user.
+                <para>Gets or sets whether the Customization Window can be activated by the end-user.
 </para>
             </summary>
-            <value><b>true</b>, if the customization window can be opened by the end-user; otherwise, <b>false</b>.
+            <value><b>true</b>, if the Customization Window can be opened by the end-user; otherwise, <b>false</b>.
 </value>
 
 
@@ -7699,7 +7793,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.AllowShowToolbarsPopup">
             <summary>
-                <para>Gets or sets a value indicating whether bars belonging to the bar manager allow the customization menu to be displayed.
+                <para>Gets or sets a value indicating whether bars belonging to the BarManager allow the customization menu to be displayed.
 </para>
             </summary>
             <value><b>true</b>, if the <see cref="T:DevExpress.XtraBars.BarManager"/> customization menu can be displayed; otherwise, <b>false</b>;
@@ -7719,7 +7813,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.BarBackColor">
             <summary>
-                <para>Gets or sets the default background color for all bars that belong to the bar manager.
+                <para>Gets or sets the default background color for all bars that belong to the BarManager.
 </para>
             </summary>
             <value>The default background color for all bars within the <see cref="T:DevExpress.XtraBars.BarManager"/> component.
@@ -7777,7 +7871,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.BeginUpdate">
             <summary>
-                <para>Prevents the bars that belong to the bar manager from being painted until the <see cref="M:DevExpress.XtraBars.BarManager.EndUpdate"/> method is called.
+                <para>Prevents the bars that belong to the BarManager from being painted until the <see cref="M:DevExpress.XtraBars.BarManager.EndUpdate"/> method is called.
 </para>
             </summary>
 
@@ -7823,7 +7917,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.CloseMenus">
             <summary>
-                <para>Closes all dropdown and popup windows that belong to this bar manager.
+                <para>Closes all dropdown and popup windows that belong to this BarManager.
 </para>
             </summary>
 
@@ -7831,7 +7925,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.Controller">
             <summary>
-                <para>Gets or sets the Bar and Docking Controller that will provide default appearance and customization options for the bars  belonging to the current bar manager.
+                <para>Gets or sets the Bar and Docking Controller that will provide default appearance and customization options for the bars  belonging to the current BarManager.
 </para>
             </summary>
             <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object providing appearance options.
@@ -7841,7 +7935,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="E:DevExpress.XtraBars.BarManager.CreateCustomizationForm">
             <summary>
-                <para>Occurs before the customization window is displayed.
+                <para>Occurs before the Customization Window is displayed.
 </para>
             </summary>
 
@@ -7857,7 +7951,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.Customize">
             <summary>
-                <para>Displays the <see cref="T:DevExpress.XtraBars.BarManager"/>'s customization window.
+                <para>Displays the <see cref="T:DevExpress.XtraBars.BarManager"/>'s Customization Window.
 </para>
             </summary>
 
@@ -7955,7 +8049,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.ForceInitialize">
             <summary>
-                <para>Forces the  bar manager to create bar item links within the bar manager's bars and menus.
+                <para>Forces the  BarManager to create bar item links within the BarManager's bars and menus.
 </para>
             </summary>
 
@@ -7963,7 +8057,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.ForceLinkCreate">
             <summary>
-                <para>Forces the  bar manager to create bar item links within the bar manager's bars and menus.
+                <para>Forces the  BarManager to create bar item links within the BarManager's bars and menus.
 </para>
             </summary>
 
@@ -7971,7 +8065,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.Form">
             <summary>
-                <para>Gets or sets the container for bar controls that are managed by the current bar manager.
+                <para>Gets or sets the container for bar controls that are managed by the current BarManager.
 </para>
             </summary>
             <value>The container control.
@@ -8005,7 +8099,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 
 </para>
             </summary>
-            <returns>An integer value representing the unique identifier of an item within the bar manager.
+            <returns>An integer value representing the unique identifier of an item within the BarManager.
 
 </returns>
 
@@ -8041,7 +8135,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarManager.HideCustomization">
             <summary>
-                <para>Hides the customization window.
+                <para>Hides the Customization Window.
 </para>
             </summary>
 
@@ -8184,7 +8278,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="E:DevExpress.XtraBars.BarManager.ItemPress">
             <summary>
-                <para>Fires immediately after any of the links associated with the bar manager has been pressed.
+                <para>Fires immediately after any of the links associated with the BarManager has been pressed.
 </para>
             </summary>
 
@@ -8192,10 +8286,10 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.Items">
             <summary>
-                <para>Provides access to the bar manager's collection of items.
+                <para>Provides access to the BarManager's collection of items.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarItems"/> object representing the bar manager's collection of bar items.
+            <value>A <see cref="T:DevExpress.XtraBars.BarItems"/> object representing the BarManager's collection of bar items.
 </value>
 
 
@@ -8253,7 +8347,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
                 <para>Gets or sets the main menu bar.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.Bar"/> object representing the main menu bar. <B>null</B> (<B>Nothing</B> in Visual Basic) if no main menu is owned by this bar manager.
+            <value>A <see cref="T:DevExpress.XtraBars.Bar"/> object representing the main menu bar. <B>null</B> (<B>Nothing</B> in Visual Basic) if no main menu is owned by this BarManager.
 </value>
 
 
@@ -8726,7 +8820,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.BarManager.StatusBarBackColor">
             <summary>
-                <para>Gets or sets the background color of the status bar owned by this bar manager.
+                <para>Gets or sets the background color of the status bar owned by this BarManager.
 </para>
             </summary>
             <value>A <see cref="T:System.Drawing.Color"/> structure that specifies the background color of the status bar.
@@ -9064,11 +9158,11 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarEditItem.#ctor(DevExpress.XtraBars.BarManager)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarEditItem"/> class with the specified bar manager.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarEditItem"/> class with the specified BarManager.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
 
@@ -9076,11 +9170,11 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="M:DevExpress.XtraBars.BarEditItem.#ctor(DevExpress.XtraBars.BarManager,DevExpress.XtraEditors.Repository.RepositoryItem)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarEditItem"/> class with the specified bar manager and editor.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarEditItem"/> class with the specified BarManager and editor.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="edit">
@@ -9273,7 +9367,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         <member name="T:DevExpress.XtraBars.BarToolbarsListItem">
 
             <summary>
-                <para>A bar item that represents a check list of bars owned by a bar manager, and dock panels owned by a dock manager.
+                <para>A bar item that represents a check list of bars owned by a BarManager, and dock panels owned by a dock manager.
 
 </para>
             </summary>
@@ -9409,7 +9503,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -9429,7 +9523,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -9445,7 +9539,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -9465,7 +9559,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -9642,7 +9736,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager that will own the generated bar collection. This value is assigned to the <see cref="P:DevExpress.XtraBars.Bars.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager that will own the generated bar collection. This value is assigned to the <see cref="P:DevExpress.XtraBars.Bars.Manager"/> property.
 
             </param>
 
@@ -9732,7 +9826,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.Bars.Manager">
             <summary>
-                <para>Gets the bar manager to which the bar collection belongs.
+                <para>Gets the BarManager to which the bar collection belongs.
 </para>
             </summary>
             <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> object that owns this bar collection.
@@ -9822,7 +9916,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
                 <para>Gets or sets a category where the bar item is displayed.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarManagerCategory"/> object representing a category where the item is displayed. <b>null</b> (<b>Nothing</b> in Visual Basic) if the item has no owning bar manager.
+            <value>A <see cref="T:DevExpress.XtraBars.BarManagerCategory"/> object representing a category where the item is displayed. <b>null</b> (<b>Nothing</b> in Visual Basic) if the item has no owning BarManager.
 </value>
 
 
@@ -10986,7 +11080,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="item">
-		A container item whose subitems are added to the current container item. The types of the two container items should be identical. In addition, the container items must belong to different bar managers. 
+		A container item whose subitems are added to the current container item. The types of the two container items should be identical. In addition, the container items must belong to different BarManagers. 
 
             </param>
 
@@ -11981,7 +12075,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents ribbon bar manager.
+		A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents ribbon BarManager.
 
             </param>
 
@@ -12486,7 +12580,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the bar manager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object specifying the BarManager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -12506,7 +12600,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -13248,10 +13342,10 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.Bar.IsLoading">
             <summary>
-                <para>Indicates that the bar manager is being loaded.
+                <para>Indicates that the BarManager is being loaded.
 </para>
             </summary>
-            <value><b>true</b> if the bar manager is being loaded; otherwise, <b>false</b>.
+            <value><b>true</b> if the BarManager is being loaded; otherwise, <b>false</b>.
 </value>
 
 
@@ -13313,10 +13407,10 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
         </member>
         <member name="P:DevExpress.XtraBars.Bar.Manager">
             <summary>
-                <para>Gets or sets a value representing the bar manager that owns this bar.
+                <para>Gets or sets a value representing the BarManager that owns this bar.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager owning this bar.
+            <value>A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager owning this bar.
 </value>
 
 
@@ -13327,7 +13421,7 @@ If such an item is not found in the parent form's bar/RibbonControl, the child f
 </para>
             </summary>
             <param name="bar">
-		A bar whose links will be added onto the current bar. The current and the specified bar must belong to different bar managers.
+		A bar whose links will be added onto the current bar. The current and the specified bar must belong to different BarManagers.
 
             </param>
 
@@ -13552,7 +13646,7 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="F:DevExpress.XtraBars.BarOptionFlags.DrawSizeGrip">
             <summary>
-                <para><para>If active and the bar is the status bar, the size grip is painted in its right-bottom corner. The image below displays the size grip painted in the status bar when the Windows XP painting style is applied to the bar manager. (The <B>IsStatusBar</B> option must be enabled to make a bar the status bar).</para>
+                <para><para>If active and the bar is the status bar, the size grip is painted in its right-bottom corner. The image below displays the size grip painted in the status bar when the Windows XP painting style is applied to the BarManager. (The <B>IsStatusBar</B> option must be enabled to make a bar the status bar).</para>
 
 
 </para>
@@ -14524,7 +14618,7 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="M:DevExpress.XtraBars.Docking.DockManagerAppearances.#ctor(DevExpress.XtraBars.BarAndDockingController)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.Docking.DockManagerAppearances"/> class with the specified bar and docking controller.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.Docking.DockManagerAppearances"/> class with the specified BarAndDockingController.
 </para>
             </summary>
             <param name="controller">
@@ -14562,10 +14656,10 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="P:DevExpress.XtraBars.Docking.DockManagerAppearances.Controller">
             <summary>
-                <para>Gets the bar and docking controller which the current collection belongs to.
+                <para>Gets the BarAndDockingController which the current collection belongs to.
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object representing the bar and docking controller that owns the current collection.
+            <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object representing the BarAndDockingController that owns the current collection.
 </value>
 
 
@@ -15347,10 +15441,10 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="P:DevExpress.XtraBars.Ribbon.RibbonControl.Manager">
             <summary>
-                <para>Gets the ribbon bar manager. 
+                <para>Gets the ribbon BarManager. 
 </para>
             </summary>
-            <value>A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents the ribbon bar manager.
+            <value>A <see cref="T:DevExpress.XtraBars.Ribbon.RibbonBarManager"/> object that represents the ribbon BarManager.
 </value>
 
 
@@ -15767,11 +15861,11 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="M:DevExpress.XtraBars.BarCheckItem.#ctor(DevExpress.XtraBars.BarManager)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarCheckItem"/> class with the specified bar manager.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarCheckItem"/> class with the specified BarManager.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
 
@@ -15779,11 +15873,11 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="M:DevExpress.XtraBars.BarCheckItem.#ctor(DevExpress.XtraBars.BarManager,System.Boolean)">
             <summary>
-                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarCheckItem"/> class with the specified bar manager and state.
+                <para>Initializes a new instance of the <see cref="T:DevExpress.XtraBars.BarCheckItem"/> class with the specified BarManager and state.
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager responsible for managing the current item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="check">
@@ -16905,6 +16999,16 @@ This option is only in effect when the link is positioned within a status bar sp
 
 
         </member>
+        <member name="P:DevExpress.XtraBars.Docking.DockPanel.DockVertical">
+            <summary>
+                <para>Gets or sets whether the current panel's children should be arranged vertically or horizontally when the panel is docked to a form/user control.
+</para>
+            </summary>
+            <value>A <see cref="T:DevExpress.Utils.DefaultBoolean"/> value that specifies the orientation of dock panels in a split container.
+</value>
+
+
+        </member>
         <member name="P:DevExpress.XtraBars.Docking.DockPanel.FloatForm">
             <summary>
                 <para>Gets the floating form which the panel resides on.
@@ -17665,7 +17769,7 @@ This option is only in effect when the link is positioned within a status bar sp
         </member>
         <member name="P:DevExpress.XtraBars.Docking.DockManager.Controller">
             <summary>
-                <para>Gets or sets the bar and docking controller that will provide the default appearance options for the dock panels belonging to the current dock manager.
+                <para>Gets or sets the BarAndDockingController that will provide the default appearance options for the dock panels belonging to the current dock manager.
 </para>
             </summary>
             <value>A <see cref="T:DevExpress.XtraBars.BarAndDockingController"/> object providing appearance options.
@@ -18865,7 +18969,7 @@ It's not possible to make a dock panel fill the form (user control).
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that specifies the bar manager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that specifies the BarManager owning the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -18889,7 +18993,7 @@ It's not possible to make a dock panel fill the form (user control).
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the bar manager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object representing the BarManager that will own the created item. This value is assigned to the <see cref="P:DevExpress.XtraBars.BarItem.Manager"/> property.
 
             </param>
             <param name="caption">
@@ -18909,7 +19013,7 @@ It's not possible to make a dock panel fill the form (user control).
 </para>
             </summary>
             <param name="manager">
-		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that specifies the bar manager that will own the created item.
+		A <see cref="T:DevExpress.XtraBars.BarManager"/> object that specifies the BarManager that will own the created item.
 
             </param>
             <param name="caption">
@@ -19031,7 +19135,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.CustomizeWindowCaption">
             <summary>
-                <para><para>The caption of the customization window.</para>
+                <para><para>The caption of the Customization Window.</para>
 
 <para>Default return value of the <B>GetLocalizedString</B> method: "Customization".</para>
 
@@ -19042,7 +19146,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationFade">
             <summary>
-                <para><para>Represents the <b>Fade</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>Fade</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: Fade</para>
 </para>
@@ -19052,7 +19156,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationNone">
             <summary>
-                <para><para>Represents the <b>None</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>None</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: None</para>
 </para>
@@ -19062,7 +19166,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationRandom">
             <summary>
-                <para><para>Represents the <b>Random</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>Random</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: Random</para>
 </para>
@@ -19072,7 +19176,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationSlide">
             <summary>
-                <para><para>Represents the <b>Slide</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>Slide</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: Slide</para>
 </para>
@@ -19082,7 +19186,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationSystem">
             <summary>
-                <para><para>Represents the <b>System</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>System</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: (System default)</para>
 </para>
@@ -19092,7 +19196,7 @@ It's not possible to make a dock panel fill the form (user control).
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.MenuAnimationUnfold">
             <summary>
-                <para><para>Represents the <b>Unfold</b> menu animation option in the customization window.</para>
+                <para><para>Represents the <b>Unfold</b> menu animation option in the Customization Window.</para>
 
 <para><b>Return Value</b>: Unfold</para>
 </para>
@@ -19179,7 +19283,7 @@ The default return value of the <b>GetLocalizedString</b> method: "Custom {0}".
         </member>
         <member name="F:DevExpress.XtraBars.Localization.BarString.RenameToolbarCaption">
             <summary>
-                <para><para>The caption of the dialog invoked when renaming the bar via the customization window.</para>
+                <para><para>The caption of the dialog invoked when renaming the bar via the Customization Window.</para>
 
 <para>Default return value of the <B>GetLocalizedString</B> method: "Rename Toolbar".</para>
 </para>
@@ -21211,6 +21315,14 @@ The default return value of the <b>GetLocalizedString</b> method: "Custom {0}".
 
 
         </member>
+        <member name="E:DevExpress.XtraBars.Alerter.AlertControl.FormClosing">
+            <summary>
+                <para>Fires when an alert window is about to be closed.
+</para>
+            </summary>
+
+
+        </member>
         <member name="P:DevExpress.XtraBars.Alerter.AlertControl.FormDisplaySpeed">
             <summary>
                 <para>Gets or sets the speed of the appearance of an alert window.
@@ -21260,6 +21372,22 @@ The default return value of the <b>GetLocalizedString</b> method: "Custom {0}".
             </summary>
             <value>A <see cref="T:DevExpress.LookAndFeel.UserLookAndFeel"/> object whose properties specify the look and feel of alert windows.
 </value>
+
+
+        </member>
+        <member name="E:DevExpress.XtraBars.Alerter.AlertControl.MouseFormEnter">
+            <summary>
+                <para>Fires when the mouse pointer enters an alert window.
+</para>
+            </summary>
+
+
+        </member>
+        <member name="E:DevExpress.XtraBars.Alerter.AlertControl.MouseFormLeave">
+            <summary>
+                <para>Fires when the mouse pointer leaves an alert window.
+</para>
+            </summary>
 
 
         </member>
