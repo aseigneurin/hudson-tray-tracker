@@ -9,6 +9,7 @@ using DevExpress.XtraEditors;
 using Hudson.TrayTracker.BusinessComponents;
 using DevExpress.XtraEditors.Controls;
 using Spring.Context.Support;
+using System.Diagnostics;
 
 namespace Hudson.TrayTracker.UI.Controls
 {
@@ -37,8 +38,8 @@ namespace Hudson.TrayTracker.UI.Controls
         {
             base.OnLoad(e);
 
-            // designer mode
-            if (DesignMode)
+            // designer mode (workaround: DesignMode is not chained to child controls)
+            if (DesignMode || Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
             configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
