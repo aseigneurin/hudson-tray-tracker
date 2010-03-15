@@ -83,6 +83,13 @@ namespace Hudson.TrayTracker.Utils.Collections
         {
             return allProperties.GetIntValue(key, defaultValue);
         }
+        public void SetIntValue(string key, int value)
+        {
+            Apply(delegate(IPropertiesContainer properties)
+            {
+                properties.SetIntValue(key, value);
+            });
+        }
         public Int32 GetRequiredIntValue(string key)
         {
             return allProperties.GetRequiredIntValue(key);

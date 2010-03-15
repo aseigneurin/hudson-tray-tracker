@@ -19,6 +19,7 @@ namespace Hudson.TrayTracker.Utils.Collections
         Int32? GetIntValue(string key);
         Int32 GetIntValue(string key, Int32 defaultValue);
         Int32 GetRequiredIntValue(string key);
+        void SetIntValue(string key, int value);
         float? GetFloatValue(string key);
         float? GetFloatValue(string key, float defaultValue);
         float GetRequiredFloatValue(string key);
