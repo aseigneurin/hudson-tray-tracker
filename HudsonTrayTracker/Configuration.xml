@@ -2,6 +2,7 @@
 <objects xmlns="http://www.springframework.net">
 
   <object id="NotificationSettings" type="Hudson.TrayTracker.Entities.NotificationSettings"/>
+  <object id="GeneralSettings" type="Hudson.TrayTracker.Entities.GeneralSettings"/>
   
   <object id="ConfigurationService" type="Hudson.TrayTracker.BusinessComponents.ConfigurationService" autowire="byType" init-method="Initialize"/>
   <object id="HudsonService" type="Hudson.TrayTracker.BusinessComponents.HudsonService" autowire="byType"/>
