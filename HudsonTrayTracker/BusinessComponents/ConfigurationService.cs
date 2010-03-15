@@ -17,13 +17,16 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        private const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
-        private const string PROPERTIES_FILE = "hudson.properties";
+        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
+        const string PROPERTIES_FILE = "hudson.properties";
+        // 15 seconds
+        const int DEFAULT_TIME_BETWEEN_UPDATES = 15;
 
         PropertiesFile propertiesFile;
 
         public ISet<Server> Servers { get; private set; }
         public NotificationSettings NotificationSettings { get; set; }
+        public GeneralSettings GeneralSettings { get; set; }
 
         public void Initialize()
         {
@@ -85,6 +88,12 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             LoadNotificationSettings();
+            LoadGeneralSettings();
+        }
+
+        private void LoadGeneralSettings()
+        {
+            GeneralSettings.RefreshIntervalInSeconds = propertiesFile.GetIntValue("general.RefreshTimeInSeconds", DEFAULT_TIME_BETWEEN_UPDATES);
         }
 
         private void LoadNotificationSettings()
@@ -136,11 +145,17 @@ namespace Hudson.TrayTracker.BusinessComponents
                 propertiesFile.SetGroupCount("projects", projectId);
 
             SaveNotificationSettings();
+            SaveGeneralSettings();
 
             propertiesFile.WriteProperties();
 
             if (ConfigurationUpdated != null)
                 ConfigurationUpdated();
+        }
+
+        private void SaveGeneralSettings()
+        {
+            propertiesFile.SetIntValue("general.RefreshTimeInSeconds", GeneralSettings.RefreshIntervalInSeconds);
         }
 
         private void SaveNotificationSettings()
@@ -259,6 +274,12 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetTreadUnstableAsFailed(bool value)
         {
             NotificationSettings.TreatUnstableAsFailed = value;
+            SaveConfiguration();
+        }
+
+        public void SetRefreshIntervalInSeconds(int value)
+        {
+            GeneralSettings.RefreshIntervalInSeconds = value;
             SaveConfiguration();
         }
     }

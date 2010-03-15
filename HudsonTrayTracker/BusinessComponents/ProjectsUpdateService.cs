@@ -26,9 +26,6 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        // 15 seconds
-        static readonly int DEFAULT_TIME_BETWEEN_UPDATES = 15 * 1000;
-
 #if !DEBUG
         const int TOTAL_THREAD_COUNT = 8;
         const int THREAD_COUNT_BY_DOMAIN = 4;
@@ -40,7 +37,6 @@ namespace Hudson.TrayTracker.BusinessComponents
         SmartThreadPool threadPool = new SmartThreadPool(3600, TOTAL_THREAD_COUNT, TOTAL_THREAD_COUNT);
 
         Timer timer;
-        int timeBetweenUpdates = DEFAULT_TIME_BETWEEN_UPDATES;
         bool updating;
 
         public ConfigurationService ConfigurationService { get; set; }
@@ -68,6 +64,8 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void UpdateProjects(object state)
         {
             DoUpdateProjects(UpdateSource.Timer);
+
+            int timeBetweenUpdates = ConfigurationService.GeneralSettings.RefreshIntervalInSeconds * 1000;
             timer.Change(timeBetweenUpdates, Timeout.Infinite);
         }
 
