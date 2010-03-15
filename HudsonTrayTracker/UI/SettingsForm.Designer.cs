@@ -35,21 +35,21 @@ namespace Hudson.TrayTracker.UI
             this.notificationsTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.notificationsSettingsControl = new Hudson.TrayTracker.UI.Controls.NotificationsSettingsControl();
             this.generalTabPage = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.refreshLabel = new DevExpress.XtraEditors.LabelControl();
             this.refreshSpinEdit = new DevExpress.XtraEditors.SpinEdit();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serversTabPage.SuspendLayout();
             this.notificationsTabPage.SuspendLayout();
             this.generalTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -107,6 +107,18 @@ namespace Hudson.TrayTracker.UI
             this.generalTabPage.Size = new System.Drawing.Size(715, 402);
             this.generalTabPage.Text = "General";
             // 
+            // groupControl1
+            // 
+            this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.tableLayoutPanel2);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(715, 402);
+            this.groupControl1.TabIndex = 1;
+            this.groupControl1.Text = "General options";
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
@@ -158,6 +170,7 @@ namespace Hudson.TrayTracker.UI
             this.refreshSpinEdit.Name = "refreshSpinEdit";
             this.refreshSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.refreshSpinEdit.Properties.Mask.EditMask = "N0";
             this.refreshSpinEdit.Properties.MaxValue = new decimal(new int[] {
             1000000,
             0,
@@ -165,16 +178,6 @@ namespace Hudson.TrayTracker.UI
             0});
             this.refreshSpinEdit.Size = new System.Drawing.Size(100, 20);
             this.refreshSpinEdit.TabIndex = 1;
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.tableLayoutPanel2);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(715, 402);
-            this.groupControl1.TabIndex = 1;
-            this.groupControl1.Text = "General options";
             // 
             // SettingsForm
             // 
@@ -193,13 +196,13 @@ namespace Hudson.TrayTracker.UI
             this.serversTabPage.PerformLayout();
             this.notificationsTabPage.ResumeLayout(false);
             this.generalTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
