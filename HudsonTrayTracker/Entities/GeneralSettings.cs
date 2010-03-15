@@ -7,6 +7,6 @@ namespace Hudson.TrayTracker.Entities
 {
     public class GeneralSettings
     {
-        public int RefreshTimeInSeconds { get; set; }
+        public int RefreshIntervalInSeconds { get; set; }
     }
 }
