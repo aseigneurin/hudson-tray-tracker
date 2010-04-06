@@ -6,7 +6,7 @@ Name "${PRODUCT_NAME}"
 OutFile "HudsonTrayTrackerInstaller.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "Software\${PRODUCT_NAME}" "InstallDirectory"
-RequestExecutionLevel user
+RequestExecutionLevel highest
 
 
 !define MUI_ABORTWARNING
