@@ -250,7 +250,7 @@ namespace Hudson.TrayTracker.UI
         {
             if (project == null)
                 return;
-            Process.Start(project.Url);
+            UIUtils.OpenWebPage(project.Url, logger);
         }
 
         private void OpenSelectedProjectConsolePage()
@@ -264,7 +264,7 @@ namespace Hudson.TrayTracker.UI
             if (project == null)
                 return;
             string url = HudsonService.GetConsolePage(project);
-            Process.Start(url);
+            UIUtils.OpenWebPage(url, logger);
         }
 
         private class ProjectWrapper

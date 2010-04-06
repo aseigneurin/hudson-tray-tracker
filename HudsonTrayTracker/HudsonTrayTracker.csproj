@@ -280,6 +280,7 @@
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ThreadExceptionHandler.cs" />
     <Compile Include="Utils\Collections\ThreadSafeDictionary.cs" />
+    <Compile Include="Utils\UIUtils.cs" />
     <Compile Include="Utils\Web\CookieAwareWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
