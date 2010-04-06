@@ -6,6 +6,7 @@ Name "${PRODUCT_NAME}"
 OutFile "HudsonTrayTrackerInstaller.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "Software\${PRODUCT_NAME}" "InstallDirectory"
+RequestExecutionLevel user
 
 
 !define MUI_ABORTWARNING
@@ -67,25 +68,25 @@ SectionEnd
 Section "Uninstall"
  
   # Always delete uninstaller first
-  Delete $INSTDIR\uninstaller.exe
+  Delete "$INSTDIR\uninstall.exe"
  
-  Delete "${ROOT}\antlr.runtime.dll"
-  Delete "${ROOT}\Common.Logging.dll"
-  Delete "${ROOT}\Common.Logging.Log4Net.dll"
-  Delete "${ROOT}\DevExpress.Data.v8.3.dll"
-  Delete "${ROOT}\DevExpress.OfficeSkins.v8.3.dll"
-  Delete "${ROOT}\DevExpress.Utils.v8.3.dll"
-  Delete "${ROOT}\DevExpress.XtraBars.v8.3.dll"
-  Delete "${ROOT}\DevExpress.XtraEditors.v8.3.dll"
-  Delete "${ROOT}\DevExpress.XtraGrid.v8.3.dll"
-  Delete "${ROOT}\HudsonTrayTracker.ico"
-  Delete "${ROOT}\HudsonTrayTracker.exe"
-  Delete "${ROOT}\HudsonTrayTracker.exe.config"
-  Delete "${ROOT}\Iesi.Collections.dll"
-  Delete "${ROOT}\log4net.dll"
-  Delete "${ROOT}\LoggingConfig.xml"
-  Delete "${ROOT}\SmartThreadPool.dll"
-  Delete "${ROOT}\Spring.Core.dll"
+  Delete "$INSTDIR\antlr.runtime.dll"
+  Delete "$INSTDIR\Common.Logging.dll"
+  Delete "$INSTDIR\Common.Logging.Log4Net.dll"
+  Delete "$INSTDIR\DevExpress.Data.v8.3.dll"
+  Delete "$INSTDIR\DevExpress.OfficeSkins.v8.3.dll"
+  Delete "$INSTDIR\DevExpress.Utils.v8.3.dll"
+  Delete "$INSTDIR\DevExpress.XtraBars.v8.3.dll"
+  Delete "$INSTDIR\DevExpress.XtraEditors.v8.3.dll"
+  Delete "$INSTDIR\DevExpress.XtraGrid.v8.3.dll"
+  Delete "$INSTDIR\HudsonTrayTracker.ico"
+  Delete "$INSTDIR\HudsonTrayTracker.exe"
+  Delete "$INSTDIR\HudsonTrayTracker.exe.config"
+  Delete "$INSTDIR\Iesi.Collections.dll"
+  Delete "$INSTDIR\log4net.dll"
+  Delete "$INSTDIR\LoggingConfig.xml"
+  Delete "$INSTDIR\SmartThreadPool.dll"
+  Delete "$INSTDIR\Spring.Core.dll"
   
   Delete "$SMPROGRAMS\${PRODUCT_NAME}.lnk"
   Delete "$SMSTARTUP\${PRODUCT_NAME}.lnk"
