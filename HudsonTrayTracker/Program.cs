@@ -73,7 +73,7 @@ namespace Hudson.TrayTracker
             }
             catch (Exception ex)
             {
-                logger.Error("Failed dispoing tray notifier", ex);
+                logger.Error("Failed disposing tray notifier", ex);
             }
 
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
