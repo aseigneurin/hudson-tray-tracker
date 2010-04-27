@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HudsonTrayTracker", "HudsonTrayTracker.csproj", "{A54602CA-6823-4F2C-870F-1D464D9F4814}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HudsonTrayTracker", "HudsonTrayTracker\HudsonTrayTracker.csproj", "{A54602CA-6823-4F2C-870F-1D464D9F4814}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HudsonTrayTracker.Setup", "HudsonTrayTracker.Setup\HudsonTrayTracker.Setup.vdproj", "{5072AA78-3426-42AD-ACC3-63F71B3D5DF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,8 @@ Global
 		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5072AA78-3426-42AD-ACC3-63F71B3D5DF3}.Debug|Any CPU.ActiveCfg = Debug
+		{5072AA78-3426-42AD-ACC3-63F71B3D5DF3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
