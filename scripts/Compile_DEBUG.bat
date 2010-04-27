@@ -1,5 +1,5 @@
 cd ..
-C:\WINDOWS\Microsoft.NET\Framework\v3.5\MSBuild HudsonTrayTracker\HudsonTrayTracker.sln ^
+C:\WINDOWS\Microsoft.NET\Framework\v3.5\MSBuild HudsonTrayTracker.sln ^
   /target:Rebuild ^
   /p:Configuration=Debug
 if not errorlevel 0 goto error
