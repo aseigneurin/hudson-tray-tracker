@@ -26,8 +26,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        // every 10 minutes
-        static readonly int DEFAULT_UPDATE_PERIOD = 10 * 60 * 1000;
+        // every hour
+        static readonly int DEFAULT_UPDATE_PERIOD = 60 * 60 * 1000;
 
         static readonly String URL = "http://hudson-tray-tracker.googlecode.com/svn/trunk/scripts/version.properties";
 
