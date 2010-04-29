@@ -50,12 +50,14 @@ namespace Hudson.TrayTracker.UI
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             refreshSpinEdit.Value = ConfigurationService.GeneralSettings.RefreshIntervalInSeconds;
+            updateMainWindowIconCheckEdit.Checked = ConfigurationService.GeneralSettings.UpdateMainWindowIcon;
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             int refreshInterval = (int)refreshSpinEdit.Value;
             ConfigurationService.SetRefreshIntervalInSeconds(refreshInterval);
+            ConfigurationService.SetUpdateMainWindowIcon(updateMainWindowIconCheckEdit.Checked);
         }
     }
 }

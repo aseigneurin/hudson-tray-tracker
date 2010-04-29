@@ -40,6 +40,8 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.refreshLabel = new DevExpress.XtraEditors.LabelControl();
             this.refreshSpinEdit = new DevExpress.XtraEditors.SpinEdit();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.updateMainWindowIconCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serversTabPage.SuspendLayout();
@@ -50,6 +52,8 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -124,10 +128,12 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 20);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(711, 380);
@@ -179,6 +185,31 @@ namespace Hudson.TrayTracker.UI
             this.refreshSpinEdit.Size = new System.Drawing.Size(100, 20);
             this.refreshSpinEdit.TabIndex = 1;
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.updateMainWindowIconCheckEdit, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 35);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(705, 25);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // updateMainWindowIconCheckEdit
+            // 
+            this.updateMainWindowIconCheckEdit.Location = new System.Drawing.Point(3, 3);
+            this.updateMainWindowIconCheckEdit.Name = "updateMainWindowIconCheckEdit";
+            this.updateMainWindowIconCheckEdit.Properties.AutoWidth = true;
+            this.updateMainWindowIconCheckEdit.Properties.Caption = "Update the main window\'s icon";
+            this.updateMainWindowIconCheckEdit.Size = new System.Drawing.Size(170, 19);
+            this.updateMainWindowIconCheckEdit.TabIndex = 5;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,6 +234,8 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -220,6 +253,8 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private DevExpress.XtraEditors.LabelControl refreshLabel;
         private DevExpress.XtraEditors.GroupControl groupControl1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private DevExpress.XtraEditors.CheckEdit updateMainWindowIconCheckEdit;
 
     }
 }

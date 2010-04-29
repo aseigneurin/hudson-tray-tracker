@@ -78,6 +78,8 @@ namespace Hudson.TrayTracker.UI
         void configurationService_ConfigurationUpdated()
         {
             LoadProjects();
+            if (ConfigurationService.GeneralSettings.UpdateMainWindowIcon == false)
+                ResetIcon();
         }
 
         private delegate void ProjectsUpdatedDelegate();
@@ -505,6 +507,20 @@ namespace Hudson.TrayTracker.UI
         {
             if (e.KeyCode == Keys.F5)
                 ProjectsUpdateService.UpdateProjects();
+        }
+
+        public void UpdateIcon(Icon icon)
+        {
+            if (ConfigurationService.GeneralSettings.UpdateMainWindowIcon == false)
+                return;
+            this.Icon = icon;
+        }
+
+        private void ResetIcon()
+        {
+            // copied from the designer code
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
+            this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
         }
     }
 }

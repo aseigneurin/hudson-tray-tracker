@@ -94,6 +94,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void LoadGeneralSettings()
         {
             GeneralSettings.RefreshIntervalInSeconds = propertiesFile.GetIntValue("general.RefreshTimeInSeconds", DEFAULT_TIME_BETWEEN_UPDATES);
+            GeneralSettings.UpdateMainWindowIcon = propertiesFile.GetBoolValue("general.UpdateMainWindowIcon", true);
         }
 
         private void LoadNotificationSettings()
@@ -280,6 +281,12 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetRefreshIntervalInSeconds(int value)
         {
             GeneralSettings.RefreshIntervalInSeconds = value;
+            SaveConfiguration();
+        }
+
+        public void SetUpdateMainWindowIcon(bool value)
+        {
+            GeneralSettings.UpdateMainWindowIcon = value;
             SaveConfiguration();
         }
     }

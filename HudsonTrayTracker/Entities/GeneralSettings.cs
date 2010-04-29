@@ -8,5 +8,6 @@ namespace Hudson.TrayTracker.Entities
     public class GeneralSettings
     {
         public int RefreshIntervalInSeconds { get; set; }
+        public bool UpdateMainWindowIcon { get; set; }
     }
 }

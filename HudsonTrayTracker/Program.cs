@@ -46,6 +46,7 @@ namespace Hudson.TrayTracker
 
                 // Spring
                 ContextRegistry.GetContext();
+                TrayNotifier.Instance.UpdateNotifier();
 
                 ApplicationContext appContext = new ApplicationContext();
                 Application.Run(appContext);
