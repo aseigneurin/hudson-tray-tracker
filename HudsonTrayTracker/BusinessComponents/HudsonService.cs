@@ -139,7 +139,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             string number = xml.SelectSingleNode("/*/number").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
-            XmlNodeList userNodes = xml.SelectNodes("/*/changeSet/item/user");
+            XmlNodeList userNodes = xml.SelectNodes("/*/culprit/fullName");
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -147,7 +147,10 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
-                users.Add(userNode.InnerText);
+            {
+                string userName = CleanUserName(userNode.InnerText);
+                users.Add(userName);
+            }
 
             BuildDetails res = new BuildDetails();
             res.Number = int.Parse(number);
@@ -299,6 +302,20 @@ namespace Hudson.TrayTracker.BusinessComponents
             // if there is a build in progress, there is a build
             bool buildInProgress = BuildStatusUtils.IsBuildInProgress(allBuildDetails.Status);
             return buildInProgress;
+        }
+
+        private string CleanUserName(string fullName)
+        {
+            char[] filterArray = { '<', '(', '-' };
+            int bracketIndex = fullName.IndexOfAny(filterArray);
+
+            String name;
+            if (bracketIndex > 0)
+                name = fullName.Substring(0, bracketIndex);
+            else
+                name = fullName;
+
+            return name.Trim();
         }
     }
 }
