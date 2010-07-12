@@ -179,6 +179,18 @@
     <Compile Include="UI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\ProjectListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ProjectListControl.Designer.cs">
+      <DependentUpon>ProjectListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ServerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ServerListControl.Designer.cs">
+      <DependentUpon>ServerListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\NotificationSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +209,7 @@
     <Compile Include="UI\Controls\ServersSettingsControl.Designer.cs">
       <DependentUpon>ServersSettingsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\ServersSettingsController.cs" />
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +351,14 @@
     <EmbeddedResource Include="Resources\TrayIcons\Successful_BuildInProgress.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable_BuildInProgress.gif" />
+    <EmbeddedResource Include="UI\Controls\ProjectListControl.resx">
+      <DependentUpon>ProjectListControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\ServerListControl.resx">
+      <DependentUpon>ServerListControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\NotificationSettingsControl.resx">
       <SubType>Designer</SubType>
       <DependentUpon>NotificationSettingsControl.cs</DependentUpon>

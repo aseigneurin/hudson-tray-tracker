@@ -117,7 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="projectContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>142, 17</value>
+  </metadata>
   <metadata name="barManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toggleSelectionButtonItem.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
+        CxEBf2RfkQAAAeBJREFUOE+lk99LWmEYx9tf00W3ghcGgm2ti60RLJgMuhEMxn7A2EXddLWLiHCNXYw1
+        29iIzNTKbWxppufo/NHQ+WM6XcyWU6kw0WQXY5jffJ5xgreoizrwcHgP5/t53vf7fd5LADou9BDgnT8H
+        KqecxZIvA8faN9hWk7C6vsLyMYrZD+t46wzj9dJnzNj9eLnga8vQwc0VwO2HT6B/MInBu+MYGH6M64Yx
+        9A2NoufWI2hv3ofmxh2orxkxNmWBFNsUAcvSdxY3W80z6++/JhbcCfjjv0TAojfNnc8CbP0uofHnPyCY
+        LIgAuyfF2z4NsOJy42q/HhOmZ+xLJF0UAVZXnM9MgHqjLoAkOQCVSs3iUvkAlk9RRLNlEUBOk2EkNhjv
+        8c+1/RpsNgc03dojcT7faifyBYmNbREw+36d3aYdkPiy7gpMpinodL2COJNpcZyZzV0R8GY5xFEpHhCk
+        s7PrhDgWa/Es/ChURMArR4BzJgBFRW4rZ6ZtU2cSh0OA2S4jX6qKALNN4iFRxHvVAzbsuFiWgGmrF1vb
+        NRHwYt4L48hTzpiKR7jtNhmmjDB1JvHzOQ+Ku/sigD6uBHPwRDYgx/KIpAqI58ps1s9iFYWdOsqVhlDC
+        XVAW53nzZbpIHQI+X/wERE0BJQAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>
