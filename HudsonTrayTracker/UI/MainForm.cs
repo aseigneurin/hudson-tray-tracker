@@ -509,10 +509,19 @@ namespace Hudson.TrayTracker.UI
                 ProjectsUpdateService.UpdateProjects();
         }
 
+        private delegate void UpdateIconDelegate(Icon icon);
         public void UpdateIcon(Icon icon)
         {
             if (ConfigurationService.GeneralSettings.UpdateMainWindowIcon == false)
                 return;
+
+            if (InvokeRequired)
+            {
+                Delegate del = new UpdateIconDelegate(UpdateIcon);
+                MainForm.Instance.BeginInvoke(del, icon);
+                return;
+            }
+
             this.Icon = icon;
         }
 
