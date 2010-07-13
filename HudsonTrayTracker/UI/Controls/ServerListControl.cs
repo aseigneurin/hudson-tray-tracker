@@ -16,24 +16,22 @@ namespace Hudson.TrayTracker.UI.Controls
 {
     public partial class ServerListControl : DevExpress.XtraEditors.XtraUserControl
     {
-        ConfigurationService configurationService;
         BindingList<Server> serversDataSource;
 
         bool initialized;
 
         public ServersSettingsController Controller { get; set; }
+        public ConfigurationService ConfigurationService { get; set; }
         
         public ServerListControl()
         {
             InitializeComponent();
         }
 
-        public void Initialize(ConfigurationService configurationService)
+        public void Initialize()
         {
-            this.configurationService = configurationService;
-
             serversDataSource = new BindingList<Server>();
-            foreach (Server server in configurationService.Servers)
+            foreach (Server server in ConfigurationService.Servers)
                 serversDataSource.Add(server);
             serversGridControl.DataSource = serversDataSource;
 
@@ -48,7 +46,7 @@ namespace Hudson.TrayTracker.UI.Controls
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
-            Server server = configurationService.AddServer(namingForm.ServerAddress,
+            Server server = ConfigurationService.AddServer(namingForm.ServerAddress,
                 namingForm.Username, namingForm.Password);
             if (server == null)
                 return;
@@ -66,7 +64,7 @@ namespace Hudson.TrayTracker.UI.Controls
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
-            configurationService.UpdateServer(server,
+            ConfigurationService.UpdateServer(server,
                    namingForm.ServerAddress, namingForm.Username, namingForm.Password);
 
             Controller.UpdateProjectList(server);
@@ -76,7 +74,7 @@ namespace Hudson.TrayTracker.UI.Controls
         {
             Server server = GetSelectedServer();
             serversDataSource.Remove(server);
-            configurationService.RemoveServer(server);
+            ConfigurationService.RemoveServer(server);
         }
 
         private void serversGridView_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

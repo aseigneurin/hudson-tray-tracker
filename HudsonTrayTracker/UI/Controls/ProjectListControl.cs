@@ -16,22 +16,20 @@ namespace Hudson.TrayTracker.UI.Controls
 {
     public partial class ProjectListControl : DevExpress.XtraEditors.XtraUserControl
     {
-        ConfigurationService configurationService;
-        HudsonService hudsonService;
         Server server;
         List<Project> projectsDataSource;
 
         public ServersSettingsController Controller { get; set; }
+        public ConfigurationService ConfigurationService { get; set; }
+        public HudsonService HudsonService { get; set; }
 
         public ProjectListControl()
         {
             InitializeComponent();
         }
 
-        public void Initialize(ConfigurationService configurationService, HudsonService hudsonService)
+        public void Initialize()
         {
-            this.configurationService = configurationService;
-            this.hudsonService = hudsonService;
         }
 
         public void UpdateProjectList(Server server)
@@ -66,7 +64,7 @@ namespace Hudson.TrayTracker.UI.Controls
             IList<Project> projects = null;
             process.DoWork += delegate
             {
-                projects = hudsonService.LoadProjects(server);
+                projects = HudsonService.LoadProjects(server);
             };
             process.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
             {
@@ -113,9 +111,9 @@ namespace Hudson.TrayTracker.UI.Controls
                 Project project = projectsDataSource[e.ListSourceRowIndex];
                 bool selected = (bool)e.Value;
                 if (selected)
-                    configurationService.AddProject(project);
+                    ConfigurationService.AddProject(project);
                 else
-                    configurationService.RemoveProject(project);
+                    ConfigurationService.RemoveProject(project);
             }
         }
 
@@ -152,13 +150,13 @@ namespace Hudson.TrayTracker.UI.Controls
 
         private void SelectAllProjects()
         {
-            configurationService.AddProjects(projectsDataSource);
+            ConfigurationService.AddProjects(projectsDataSource);
             projectsGridView.RefreshData();
         }
 
         private void UnselectAllProjects()
         {
-            configurationService.RemoveProjects(projectsDataSource);
+            ConfigurationService.RemoveProjects(projectsDataSource);
             projectsGridView.RefreshData();
         }
     }

@@ -31,12 +31,15 @@ namespace Hudson.TrayTracker.UI.Controls
 
             configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
             hudsonService = (HudsonService)ContextRegistry.GetContext().GetObject("HudsonService");
+            serverListControl.ConfigurationService = configurationService;
+            projectListControl.ConfigurationService = configurationService;
+            projectListControl.HudsonService = hudsonService;
         }
 
         public void Initialize()
         {
-            serverListControl.Initialize(configurationService);
-            projectListControl.Initialize(configurationService, hudsonService);
+            serverListControl.Initialize();
+            projectListControl.Initialize();
         }
 
         public void UpdateProjectList(Server server)
