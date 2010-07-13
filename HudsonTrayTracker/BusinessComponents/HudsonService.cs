@@ -157,6 +157,15 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Time = date;
             res.Users = users;
 
+            XmlNode claimedNode = xml.SelectSingleNode("/*/action[claimed/text() = 'true']");
+            if (claimedNode != null)
+            {
+                ClaimDetails claimDetails = new ClaimDetails();
+                claimDetails.User = claimedNode.SelectSingleNode("claimedBy").InnerText;
+                claimDetails.Reason = claimedNode.SelectSingleNode("reason").InnerText;
+                res.ClaimDetails = claimDetails;
+            }
+
             if (logger.IsDebugEnabled)
                 logger.Debug("Done getting build details");
 

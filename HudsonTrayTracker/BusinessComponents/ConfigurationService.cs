@@ -95,6 +95,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             GeneralSettings.RefreshIntervalInSeconds = propertiesFile.GetIntValue("general.RefreshTimeInSeconds", DEFAULT_TIME_BETWEEN_UPDATES);
             GeneralSettings.UpdateMainWindowIcon = propertiesFile.GetBoolValue("general.UpdateMainWindowIcon", true);
+            GeneralSettings.IntegrateWithClaimPlugin = propertiesFile.GetBoolValue("general.IntegrateWithClaimPlugin", true);
         }
 
         private void LoadNotificationSettings()
@@ -157,6 +158,8 @@ namespace Hudson.TrayTracker.BusinessComponents
         private void SaveGeneralSettings()
         {
             propertiesFile.SetIntValue("general.RefreshTimeInSeconds", GeneralSettings.RefreshIntervalInSeconds);
+            propertiesFile.SetBoolValue("general.UpdateMainWindowIcon", GeneralSettings.UpdateMainWindowIcon);
+            propertiesFile.SetBoolValue("general.IntegrateWithClaimPlugin", GeneralSettings.IntegrateWithClaimPlugin);
         }
 
         private void SaveNotificationSettings()
@@ -287,6 +290,12 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetUpdateMainWindowIcon(bool value)
         {
             GeneralSettings.UpdateMainWindowIcon = value;
+            SaveConfiguration();
+        }
+
+        public void SetIntegrateWithClaimPlugin(bool value)
+        {
+            GeneralSettings.IntegrateWithClaimPlugin = value;
             SaveConfiguration();
         }
     }

@@ -42,6 +42,8 @@ namespace Hudson.TrayTracker.UI
             this.refreshSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.updateMainWindowIconCheckEdit = new DevExpress.XtraEditors.CheckEdit();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.integrateWithClaimPluginCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serversTabPage.SuspendLayout();
@@ -54,6 +56,8 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.integrateWithClaimPluginCheckEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -129,10 +133,12 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 20);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -210,6 +216,30 @@ namespace Hudson.TrayTracker.UI
             this.updateMainWindowIconCheckEdit.Size = new System.Drawing.Size(170, 19);
             this.updateMainWindowIconCheckEdit.TabIndex = 5;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.AutoSize = true;
+            this.tableLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.integrateWithClaimPluginCheckEdit, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 66);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(705, 25);
+            this.tableLayoutPanel4.TabIndex = 5;
+            // 
+            // integrateWithClaimPluginCheckEdit
+            // 
+            this.integrateWithClaimPluginCheckEdit.Location = new System.Drawing.Point(3, 3);
+            this.integrateWithClaimPluginCheckEdit.Name = "integrateWithClaimPluginCheckEdit";
+            this.integrateWithClaimPluginCheckEdit.Properties.AutoWidth = true;
+            this.integrateWithClaimPluginCheckEdit.Properties.Caption = "Integrate with Claim plugin";
+            this.integrateWithClaimPluginCheckEdit.Size = new System.Drawing.Size(151, 19);
+            this.integrateWithClaimPluginCheckEdit.TabIndex = 0;
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,6 +266,8 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.refreshSpinEdit.Properties)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.integrateWithClaimPluginCheckEdit.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,6 +287,8 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private DevExpress.XtraEditors.CheckEdit updateMainWindowIconCheckEdit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private DevExpress.XtraEditors.CheckEdit integrateWithClaimPluginCheckEdit;
 
     }
 }

@@ -9,5 +9,6 @@ namespace Hudson.TrayTracker.Entities
     {
         public int RefreshIntervalInSeconds { get; set; }
         public bool UpdateMainWindowIcon { get; set; }
+        public bool IntegrateWithClaimPlugin { get; set; }
     }
 }

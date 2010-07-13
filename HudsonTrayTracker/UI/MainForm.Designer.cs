@@ -63,6 +63,8 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessUserGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureUserGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.claimedByGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.claimReasonGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
@@ -270,7 +272,9 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn,
             this.lastSuccessUserGridColumn,
             this.lastFailureGridColumn,
-            this.lastFailureUserGridColumn});
+            this.lastFailureUserGridColumn,
+            this.claimedByGridColumn,
+            this.claimReasonGridColumn});
             this.projectsGridView.GridControl = this.projectsGridControl;
             this.projectsGridView.GroupCount = 1;
             this.projectsGridView.Name = "projectsGridView";
@@ -379,6 +383,20 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureUserGridColumn.Visible = true;
             this.lastFailureUserGridColumn.VisibleIndex = 6;
             // 
+            // claimedByGridColumn
+            // 
+            this.claimedByGridColumn.Caption = "Claimed by";
+            this.claimedByGridColumn.FieldName = "ClaimedBy";
+            this.claimedByGridColumn.Name = "claimedByGridColumn";
+            this.claimedByGridColumn.OptionsColumn.AllowEdit = false;
+            // 
+            // claimReasonGridColumn
+            // 
+            this.claimReasonGridColumn.Caption = "Claim reason";
+            this.claimReasonGridColumn.FieldName = "ClaimReason";
+            this.claimReasonGridColumn.Name = "claimReasonGridColumn";
+            this.claimReasonGridColumn.OptionsColumn.AllowEdit = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -440,5 +458,7 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraGrid.Columns.GridColumn lastSuccessUserGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn lastFailureUserGridColumn;
         private System.Windows.Forms.ToolStripMenuItem openConsolePageMenuItem;
+        private DevExpress.XtraGrid.Columns.GridColumn claimedByGridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn claimReasonGridColumn;
     }
 }

@@ -11,5 +11,6 @@ namespace Hudson.TrayTracker.Entities
         public string Url { get; set; }
         public DateTime Time { get; set; }
         public ISet<string> Users { get; set; }
+        public ClaimDetails ClaimDetails { get; set; }
     }
 }

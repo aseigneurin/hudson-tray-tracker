@@ -71,12 +71,14 @@ namespace Hudson.TrayTracker.UI
         {
             base.OnLoad(e);
             Initialize();
+            UpdateClaimPluginIntegration();
             LoadIcons();
             LoadProjects();
         }
 
         void configurationService_ConfigurationUpdated()
         {
+            UpdateClaimPluginIntegration();
             LoadProjects();
             if (ConfigurationService.GeneralSettings.UpdateMainWindowIcon == false)
                 ResetIcon();
@@ -314,6 +316,28 @@ namespace Hudson.TrayTracker.UI
             {
                 get { return FormatUsers(Project.LastFailedBuild); }
             }
+            public string ClaimedBy
+            {
+                get
+                {
+                    // get a copy of the reference to avoid a race condition
+                    var lastFailedBuild = Project.LastFailedBuild;
+                    if (lastFailedBuild == null || lastFailedBuild.ClaimDetails == null)
+                        return "";
+                    return Project.LastFailedBuild.ClaimDetails.User;
+                }
+            }
+            public string ClaimReason
+            {
+                get
+                {
+                    // get a copy of the reference to avoid a race condition
+                    var lastFailedBuild = Project.LastFailedBuild;
+                    if (lastFailedBuild == null || lastFailedBuild.ClaimDetails == null)
+                        return "";
+                    return Project.LastFailedBuild.ClaimDetails.Reason;
+                }
+            }
 
             private string FormatBuildDetails(BuildDetails details)
             {
@@ -530,6 +554,29 @@ namespace Hudson.TrayTracker.UI
             // copied from the designer code
             ComponentResourceManager resources = new ComponentResourceManager(typeof(MainForm));
             this.Icon = ((Icon)(resources.GetObject("$this.Icon")));
+        }
+
+        private void UpdateClaimPluginIntegration()
+        {
+            bool integrate = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            if (integrate)
+            {
+                if (claimedByGridColumn.VisibleIndex == -1)
+                {
+                    claimedByGridColumn.Visible = true;
+                    claimedByGridColumn.VisibleIndex = projectsGridView.Columns.Count - 2;
+                }
+                if (claimReasonGridColumn.VisibleIndex == -1)
+                {
+                    claimReasonGridColumn.Visible = true;
+                    claimReasonGridColumn.VisibleIndex = 8;
+                }
+            }
+            else
+            {
+                claimedByGridColumn.Visible = false;
+                claimReasonGridColumn.Visible = false;
+            }
         }
     }
 }
