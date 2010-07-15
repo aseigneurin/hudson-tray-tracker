@@ -260,6 +260,7 @@ namespace Hudson.TrayTracker.UI
             // 
             // claimBuildMenuItem
             // 
+            this.claimBuildMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("claimBuildMenuItem.Image")));
             this.claimBuildMenuItem.Name = "claimBuildMenuItem";
             this.claimBuildMenuItem.Size = new System.Drawing.Size(224, 22);
             this.claimBuildMenuItem.Text = "Claim this build";

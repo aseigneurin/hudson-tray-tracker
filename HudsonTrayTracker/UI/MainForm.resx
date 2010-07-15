@@ -171,8 +171,8 @@
   <data name="checkUpdatesButtonItem.Glyph" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAAArRJREFUOE99kntIU1Ecx6//9Fd/9kd/FSU9rD+0hxIoPcjcyppBRJZIiqlDA7HIFohl
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAArRJREFUOE99kntIU1Ecx6//9Fd/9kd/FSU9rD+0hxIoPcjcyppBRJZIiqlDA7HIFohl
         mr0081Gr+aD5mI/Kx3TO1po5zbmcaahIiKBkOvGBqTnndu+3cw45kmYHvpx7Lvf3Oed87s8DAFep7SYT
         OJ53kghrZ4Hn4sNEHhwZ1wqsYjJpn0RvZms2aGFFkwUCeFd4gceyQ8C8TYDvySgGT1RMiElwIX2QrVfD
         HlSaLlasNvThdXMvytVdKH5jQv/QOAOsFpcZlxGXM4Tw7GlEvVjZSmsZoKzR7Np9xcnjl13AzKKA7sFx
@@ -210,8 +210,8 @@
   <data name="openProjectPageMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAAAq9JREFUOE+lk9tLk3EYx+uPqKtCKC8KS4qCrM1jioWHSO2gtfI0zUNTyyi1maJz06Et
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAq9JREFUOE+lk9tLk3EYx+uPqKtCKC8KS4qCrM1jioWHSO2gtfI0zUNTyyi1maJz06Et
         zelaontpU5LIUl9TqSy1LNFCNDtoqahJoUEU1tUn34HOdRX0wu/ihef7+R2ez7MWWPNfnwRYvaY+f6Oj
         9x2mhmdoTJ3oax5SVd9La9cwEzPzS6XO9U7h568nMAhdCE+76RwbQJxuQxjPJ11M5KimlstlTTx5+d4J
         sgKQwiXWdu6MtDL4fZjRX7NcaCrC8EFN8r1Q/LR6Tmj6iLki8LhvdAViB0jHLrM8wtRfTtucha6FfgZ+
@@ -228,12 +228,30 @@
   <data name="runBuildMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAAAQBJREFUOE9j/P//PwNFAGQAJZgizWDXU2I7TgOOJ7s4APFMIH5wNMn5waEEp5n74xwd
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBAAA
+        CwQBG8oqrQAAAQBJREFUOE9j/P//PwNFAGQAJZgizWDXU2I7TgOOJ7s4APFMIH5wNMn5waEEp5n74xwd
         sFmG4QKQ5vO5/peeTij5/3F+6/+X7Zn/zyY7/t8abHFxfYg1hiHYDJgJ0vz/6Kb/v7bM/f9petX/Z8W+
         //f4aP+f42EyE90V2Ax4ALIZpPn7ygn/P/QX/H+S6/r/lIf8/3Zr3QcEDQD5GeRskM0gzS+qQv/fizH6
         f8RB7H+RniphA0ABBvIzyNkgm0Gar7lL/J9pIPI/XkmOsBdAoQ0KMJCfQc4G2QzSnCIvftFPQoJwIIL8
         CAptUICB/AxyNshmbJppl5BISZ20ScqkuAAAFsSib5C+pggAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="claimBuildMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAp5JREFUOE+Nk21I
+        U1EYx2ef+hBBsVlaGFgfIuhDVL70RiqBmUrRpwikLM2w8IOIlC8TM/qQNs05psnVrZVkkFsva4bUNEXx
+        Nq+1MoIwEepuOnXObffuzt1/584otDQPPBx4+D+/53/OeU6EbJkFc6Gcm/7yJmLdFtna+IKkiKhdruW0
+        f+XF5wUK4Vk+zeqTwFIHwJvyaHG0V7EqAOkcGXh0hpnrr8V4w3Z8u70eDuogeGMeA3YkckWIaLocyRsy
+        bA7dUUxZyzBluYLx+miMqeRwthwiTnJs4teuf0Okzrwh3eak4jFWF42Z10Vw6hPBqjbgu2ojftTKMdmS
+        SCCXbGCHFkPEp/kK3nCCmaT2gb0rh0OzDb5eJWYJxKHdQXKb4WiIAauOwtSDZHCmHEYctS7ciXTbvCGN
+        nqD2EOGmsNilTwA3cBOuezsxqYnBTMdJzJrPw23JhcdaDLcpC4L5Kk2cyGW87ph9gtobLnSqozHdGAuf
+        tRD+wVvwdGRgrjMb/iEVOFstuHdkp2vgG6wmmhIILwvtMt6YbZ+m9mNCvRUubSw8FlIwcAOe9hR4O8+B
+        G64joV4Ipv4PqLtM5O+nV8kkG7wxh/a0Z8Lbcw3+/kpwb4vhfRiHwFA1Ah/U4O2k+L0aAUYCNYDvLgfX
+        mlz6+0nF0T6F0FXCcPQdeB8nw2fYDe5VFsSPmnDME4BAQKFhDYQeZYjXp1Zy+rQ1i2ZCGhLBUmTztx0B
+        RwBB82lgpAn43Ez2RuBTI4LdFRB0qcplh0kaEqEj18a1HUbwRSYp0v4CNCPUWxESWlOVHLWk81Ja2Inx
+        IjP/5DgwXEMAOoT6yuHTpVSu6i9IIunjCKYLdNB0CgHrddGtTSjlmhIXn/l/NOJELrSftbvVcVUraX8C
+        +NrhqzLZH8wAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="removeProjectMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

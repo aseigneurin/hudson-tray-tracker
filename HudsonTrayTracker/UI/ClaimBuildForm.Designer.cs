@@ -28,6 +28,7 @@ namespace Hudson.TrayTracker.UI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClaimBuildForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.buildNumberLabel = new DevExpress.XtraEditors.LabelControl();
@@ -208,6 +209,7 @@ namespace Hudson.TrayTracker.UI
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(329, 191);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ClaimBuildForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Claim build";

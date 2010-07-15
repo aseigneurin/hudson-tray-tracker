@@ -482,6 +482,9 @@ namespace Hudson.TrayTracker.UI
             claimBuildMenuItem.Visible
                 = toolStripSeparator2.Visible
                 = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            claimBuildMenuItem.Enabled
+                = toolStripSeparator2.Enabled
+                = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin && project.LastFailedBuild != null;
         }
 
         private void removeProjectMenuItem_Click(object sender, EventArgs e)
@@ -500,7 +503,7 @@ namespace Hudson.TrayTracker.UI
             BuildDetails lastFailedBuild = project.LastFailedBuild;
             if (lastFailedBuild == null)
                 return;
-            
+
             var form = new ClaimBuildForm();
             form.Initialize(project, lastFailedBuild);
 
