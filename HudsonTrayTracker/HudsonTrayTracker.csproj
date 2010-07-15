@@ -290,6 +290,7 @@
     <Compile Include="Utils\IO\PathHelper.cs" />
     <Compile Include="Utils\IO\PropertiesFile.cs" />
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
+    <Compile Include="Utils\NetUtils.cs" />
     <Compile Include="Utils\PInvokeUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ThreadExceptionHandler.cs" />

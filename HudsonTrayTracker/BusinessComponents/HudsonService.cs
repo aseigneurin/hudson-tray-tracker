@@ -28,7 +28,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public IList<Project> LoadProjects(Server server)
         {
-            String url = server.Url + "/api/xml";
+            String url = NetUtils.ConcatUrls(server.Url, "/api/xml");
 
             logger.Info("Loading projects from " + url);
 
@@ -65,7 +65,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public AllBuildDetails UpdateProject(Project project)
         {
-            String url = project.Url + "/api/xml";
+            String url = NetUtils.ConcatUrls(project.Url, "/api/xml");
 
             logger.Info("Updating project from " + url);
 
@@ -124,7 +124,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (buildUrl == null)
                 return null;
 
-            String url = buildUrl + "/api/xml";
+            String url = NetUtils.ConcatUrls(buildUrl, "/api/xml");
 
             if (logger.IsDebugEnabled)
                 logger.Debug("Getting build details from " + url);
@@ -186,7 +186,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void RunBuild(Project project)
         {
-            String url = project.Url + "/build?delay=0sec";
+            String url = NetUtils.ConcatUrls(project.Url, "/build?delay=0sec");
 
             logger.Info("Running build at " + url);
 
