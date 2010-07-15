@@ -236,8 +236,8 @@ namespace Hudson.TrayTracker.UI
             this.integrateWithClaimPluginCheckEdit.Location = new System.Drawing.Point(3, 3);
             this.integrateWithClaimPluginCheckEdit.Name = "integrateWithClaimPluginCheckEdit";
             this.integrateWithClaimPluginCheckEdit.Properties.AutoWidth = true;
-            this.integrateWithClaimPluginCheckEdit.Properties.Caption = "Integrate with Claim plugin";
-            this.integrateWithClaimPluginCheckEdit.Size = new System.Drawing.Size(151, 19);
+            this.integrateWithClaimPluginCheckEdit.Properties.Caption = "Integrate with Claim plugin (experimental)";
+            this.integrateWithClaimPluginCheckEdit.Size = new System.Drawing.Size(224, 19);
             this.integrateWithClaimPluginCheckEdit.TabIndex = 0;
             // 
             // SettingsForm
