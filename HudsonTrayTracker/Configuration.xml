@@ -9,6 +9,7 @@
   <object id="ProjectsUpdateService" type="Hudson.TrayTracker.BusinessComponents.ProjectsUpdateService" autowire="byType" init-method="Initialize"/>
   <object id="ApplicationUpdateService" type="Hudson.TrayTracker.BusinessComponents.ApplicationUpdateService" autowire="byType" init-method="Initialize"/>
   <object id="NotificationService" type="Hudson.TrayTracker.BusinessComponents.NotificationService" autowire="byType" init-method="Initialize"/>
+  <object id="ClaimService" type="Hudson.TrayTracker.BusinessComponents.ClaimService" autowire="byType"/>
 
   <object id="ApplicationUpdateHandler" type="Hudson.TrayTracker.Utils.ApplicationUpdateHandler" autowire="byType" init-method="Initialize"/>
 

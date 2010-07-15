@@ -458,6 +458,7 @@ namespace Hudson.TrayTracker.UI
                     = runBuildMenuItem.Enabled
                     = acknowledgeMenuItem.Enabled
                     = stopAcknowledgingMenuItem.Enabled
+                    = claimBuildMenuItem.Enabled
                     = false;
                 return;
             }
@@ -476,6 +477,11 @@ namespace Hudson.TrayTracker.UI
                 openConsolePageMenuItem.Font = normalMenuItemFont;
                 openProjectPageMenuItem.Font = mainMenuItemFont;
             }
+
+            // Claim
+            claimBuildMenuItem.Visible
+                = toolStripSeparator2.Visible
+                = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
         }
 
         private void removeProjectMenuItem_Click(object sender, EventArgs e)
@@ -484,6 +490,23 @@ namespace Hudson.TrayTracker.UI
             if (project == null)
                 return;
             ConfigurationService.RemoveProject(project);
+        }
+
+        private void claimBuildMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            BuildDetails lastFailedBuild = project.LastFailedBuild;
+            if (lastFailedBuild == null)
+                return;
+            
+            var form = new ClaimBuildForm();
+            form.Initialize(project, lastFailedBuild);
+
+            var res = form.ShowDialog();
+            if (res != DialogResult.OK)
+                return;
         }
 
         private void projectsGridView_CustomColumnSort(object sender, CustomColumnSortEventArgs e)

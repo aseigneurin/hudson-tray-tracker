@@ -52,6 +52,8 @@ namespace Hudson.TrayTracker.UI
             this.acknowledgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopAcknowledgingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.claimBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.removeProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.serverGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -202,9 +204,11 @@ namespace Hudson.TrayTracker.UI
             this.acknowledgeMenuItem,
             this.stopAcknowledgingMenuItem,
             this.toolStripSeparator2,
+            this.claimBuildMenuItem,
+            this.toolStripSeparator3,
             this.removeProjectMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(225, 148);
+            this.contextMenuStrip.Size = new System.Drawing.Size(225, 198);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // openProjectPageMenuItem
@@ -253,6 +257,18 @@ namespace Hudson.TrayTracker.UI
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            // 
+            // claimBuildMenuItem
+            // 
+            this.claimBuildMenuItem.Name = "claimBuildMenuItem";
+            this.claimBuildMenuItem.Size = new System.Drawing.Size(224, 22);
+            this.claimBuildMenuItem.Text = "Claim this build";
+            this.claimBuildMenuItem.Click += new System.EventHandler(this.claimBuildMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
             // 
             // removeProjectMenuItem
             // 
@@ -460,5 +476,7 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ToolStripMenuItem openConsolePageMenuItem;
         private DevExpress.XtraGrid.Columns.GridColumn claimedByGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn claimReasonGridColumn;
+        private System.Windows.Forms.ToolStripMenuItem claimBuildMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

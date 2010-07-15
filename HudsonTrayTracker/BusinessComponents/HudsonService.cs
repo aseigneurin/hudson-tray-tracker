@@ -26,6 +26,8 @@ namespace Hudson.TrayTracker.BusinessComponents
         // URLs visited between 2 calls to RecycleCache()
         ISet<string> visitedURLs = new HashedSet<string>();
 
+        public ClaimService ClaimService { get; set; }
+
         public IList<Project> LoadProjects(Server server)
         {
             String url = NetUtils.ConcatUrls(server.Url, "/api/xml");
@@ -157,14 +159,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Time = date;
             res.Users = users;
 
-            XmlNode claimedNode = xml.SelectSingleNode("/*/action[claimed/text() = 'true']");
-            if (claimedNode != null)
-            {
-                ClaimDetails claimDetails = new ClaimDetails();
-                claimDetails.User = claimedNode.SelectSingleNode("claimedBy").InnerText;
-                claimDetails.Reason = claimedNode.SelectSingleNode("reason").InnerText;
-                res.ClaimDetails = claimDetails;
-            }
+            ClaimService.FillInBuildDetails(res, xml);
 
             if (logger.IsDebugEnabled)
                 logger.Debug("Done getting build details");
@@ -288,6 +283,14 @@ namespace Hudson.TrayTracker.BusinessComponents
 
                 if (logger.IsTraceEnabled)
                     logger.Trace("Recycling cache: " + cache.Keys.Count + " items in cache");
+            }
+        }
+
+        public void RemoveFromCache(string url)
+        {
+            lock (this)
+            {
+                cache.Remove(url);
             }
         }
 
