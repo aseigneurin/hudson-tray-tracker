@@ -22,7 +22,7 @@ namespace Hudson.TrayTracker.UI.Controls
 
         public ServersSettingsController Controller { get; set; }
         public ConfigurationService ConfigurationService { get; set; }
-        
+
         public ServerListControl()
         {
             InitializeComponent();
@@ -56,6 +56,14 @@ namespace Hudson.TrayTracker.UI.Controls
 
         private void editServerButtonItem_ItemClick(object sender, ItemClickEventArgs e)
         {
+            EditSelectedServer();
+        }
+        private void editServerMenuItem_Click(object sender, EventArgs e)
+        {
+            EditSelectedServer();
+        }
+        private void EditSelectedServer()
+        {
             Server server = GetSelectedServer();
             if (server == null)
                 return;
@@ -72,7 +80,18 @@ namespace Hudson.TrayTracker.UI.Controls
 
         private void removeServerButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            RemoveSelectedServer();
+        }
+        private void removeServerMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedServer();
+        }
+        private void RemoveSelectedServer()
+        {
             Server server = GetSelectedServer();
+            if (server == null)
+                return;
+
             serversDataSource.Remove(server);
             ConfigurationService.RemoveServer(server);
         }
@@ -98,6 +117,14 @@ namespace Hudson.TrayTracker.UI.Controls
             object row = serversGridView.GetFocusedRow();
             Server server = row as Server;
             return server;
+        }
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            Server server = GetSelectedServer();
+            editServerMenuItem.Enabled
+                = removeServerMenuItem.Enabled
+                = (server != null);
         }
     }
 }
