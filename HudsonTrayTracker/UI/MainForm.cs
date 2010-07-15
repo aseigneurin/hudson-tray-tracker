@@ -427,7 +427,7 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        private void acknowledgeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void acknowledgeMenuItem_Click(object sender, EventArgs e)
         {
             Project project = GetSelectedProject();
             if (project == null)
@@ -438,7 +438,7 @@ namespace Hudson.TrayTracker.UI
             TrayNotifier.Instance.AcknowledgeStatus(project, currentStatus);
         }
 
-        private void stopAcknowledgingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void stopAcknowledgingMenuItem_Click(object sender, EventArgs e)
         {
             Project project = GetSelectedProject();
             if (project == null)
@@ -456,14 +456,14 @@ namespace Hudson.TrayTracker.UI
                 openProjectPageMenuItem.Enabled
                     = openConsolePageMenuItem.Enabled
                     = runBuildMenuItem.Enabled
-                    = acknowledgeToolStripMenuItem.Enabled
-                    = stopAcknowledgingToolStripMenuItem.Enabled
+                    = acknowledgeMenuItem.Enabled
+                    = stopAcknowledgingMenuItem.Enabled
                     = false;
                 return;
             }
 
-            acknowledgeToolStripMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
-            stopAcknowledgingToolStripMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
+            acknowledgeMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
+            stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
             if (shouldOpenConsolePage)
