@@ -6,7 +6,7 @@ namespace Hudson.TrayTracker.Entities
 {
     public class Project : IComparable<Project>
     {
-        public Server Server{ get; set; }
+        public Server Server { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
         public AllBuildDetails AllBuildDetails { get; set; }
