@@ -23,6 +23,7 @@ namespace Hudson.TrayTracker.UI
             : this()
         {
             ServerAddress = server.Url;
+            IgnoreUntrustedCertificate = server.IgnoreUntrustedCertificate;
             if (server.Credentials != null)
             {
                 RequiresAuthentication = true;
@@ -65,6 +66,12 @@ namespace Hudson.TrayTracker.UI
             set { passwordTextBox.Text = value; }
         }
 
+        public bool IgnoreUntrustedCertificate
+        {
+            get { return ignoreUntrustedCertificateCheckBox.CheckState == CheckState.Checked; }
+            set { ignoreUntrustedCertificateCheckBox.CheckState = value ? CheckState.Checked : CheckState.Unchecked; }
+        }
+
         protected virtual bool IsNameValid(string name)
         {
             return String.IsNullOrEmpty(name) == false;
@@ -74,7 +81,6 @@ namespace Hudson.TrayTracker.UI
         {
             string name = urlTextBox.Text;
             bool nameValid = IsNameValid(name);
-            //ValidationTools.SetValid(nameTextBox, nameValid);
 
             validateButton.Enabled = nameValid;
         }

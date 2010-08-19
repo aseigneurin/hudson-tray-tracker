@@ -9,6 +9,7 @@ namespace Hudson.TrayTracker.Entities
     {
         public string Url { get; set; }
         public Credentials Credentials { get; set; }
+        public bool IgnoreUntrustedCertificate { get; set; }
         public ISet<Project> Projects { get; private set; }
 
         public Server()

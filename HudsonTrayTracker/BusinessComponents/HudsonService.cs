@@ -11,6 +11,8 @@ using Hudson.TrayTracker.Utils.Logging;
 using Iesi.Collections.Generic;
 using Hudson.TrayTracker.Utils.Web;
 using System.Threading;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
@@ -21,6 +23,9 @@ namespace Hudson.TrayTracker.BusinessComponents
         [ThreadStatic]
         static WebClient threadWebClient;
 
+        [ThreadStatic]
+        static bool ignoreUntrustedCertificate;
+
         // cache: key=url, value=xml
         IDictionary<string, string> cache = new Dictionary<string, string>();
         // URLs visited between 2 calls to RecycleCache()
@@ -28,13 +33,18 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public ClaimService ClaimService { get; set; }
 
+        public HudsonService()
+        {
+            ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;
+        }
+
         public IList<Project> LoadProjects(Server server)
         {
             String url = NetUtils.ConcatUrls(server.Url, "/api/xml");
 
             logger.Info("Loading projects from " + url);
 
-            String xmlStr = DownloadString(server.Credentials, url, false);
+            String xmlStr = DownloadString(server.Credentials, url, false, server.IgnoreUntrustedCertificate);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -72,7 +82,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             logger.Info("Updating project from " + url);
 
             Credentials credentials = project.Server.Credentials;
-            String xmlStr = DownloadString(credentials, url, false);
+            bool ignoreUntrustedCertificate = project.Server.IgnoreUntrustedCertificate;
+            String xmlStr = DownloadString(credentials, url, false, ignoreUntrustedCertificate);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -88,9 +99,9 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
-            res.LastCompletedBuild = GetBuildDetails(credentials, lastCompletedBuildUrl);
-            res.LastSuccessfulBuild = GetBuildDetails(credentials, lastSuccessfulBuildUrl);
-            res.LastFailedBuild = GetBuildDetails(credentials, lastFailedBuildUrl);
+            res.LastCompletedBuild = GetBuildDetails(credentials, lastCompletedBuildUrl, ignoreUntrustedCertificate);
+            res.LastSuccessfulBuild = GetBuildDetails(credentials, lastSuccessfulBuildUrl, ignoreUntrustedCertificate);
+            res.LastFailedBuild = GetBuildDetails(credentials, lastFailedBuildUrl, ignoreUntrustedCertificate);
 
             logger.Info("Done updating project");
             return res;
@@ -121,7 +132,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             return BuildStatus.Unknown;
         }
 
-        private BuildDetails GetBuildDetails(Credentials credentials, string buildUrl)
+        private BuildDetails GetBuildDetails(Credentials credentials, string buildUrl, bool ignoreUntrustedCertificate)
         {
             if (buildUrl == null)
                 return null;
@@ -131,7 +142,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (logger.IsDebugEnabled)
                 logger.Debug("Getting build details from " + url);
 
-            String xmlStr = DownloadString(credentials, url, true);
+            String xmlStr = DownloadString(credentials, url, true, ignoreUntrustedCertificate);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("XML: " + xmlStr);
@@ -186,7 +197,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             logger.Info("Running build at " + url);
 
             Credentials credentials = project.Server.Credentials;
-            String str = DownloadString(credentials, url, false);
+            String str = DownloadString(credentials, url, false, project.Server.IgnoreUntrustedCertificate);
 
             if (logger.IsTraceEnabled)
                 logger.Trace("Result: " + str);
@@ -194,7 +205,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             logger.Info("Done running build");
         }
 
-        private String DownloadString(Credentials credentials, string url, bool cacheable)
+        private String DownloadString(Credentials credentials, string url, bool cacheable,
+            bool ignoreUntrustedCertificate)
         {
             string res;
 
@@ -219,6 +231,9 @@ namespace Hudson.TrayTracker.BusinessComponents
                 if (logger.IsTraceEnabled)
                     logger.Trace("Cache miss: " + url);
             }
+
+            // set the thread-static field
+            HudsonService.ignoreUntrustedCertificate = ignoreUntrustedCertificate;
 
             WebClient webClient = GetWebClient(credentials);
             res = webClient.DownloadString(url);
@@ -328,6 +343,14 @@ namespace Hudson.TrayTracker.BusinessComponents
                 name = fullName;
 
             return name.Trim();
+        }
+
+        private bool ValidateServerCertificate(object sender, X509Certificate certificate,
+            X509Chain chain, SslPolicyErrors sslPolicyErrors)
+        {
+            if (ignoreUntrustedCertificate == true)
+                return true;
+            return sslPolicyErrors == SslPolicyErrors.None;
         }
     }
 }

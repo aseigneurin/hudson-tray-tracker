@@ -47,7 +47,7 @@ namespace Hudson.TrayTracker.UI.Controls
                 return;
 
             Server server = ConfigurationService.AddServer(namingForm.ServerAddress,
-                namingForm.Username, namingForm.Password);
+                namingForm.Username, namingForm.Password, namingForm.IgnoreUntrustedCertificate);
             if (server == null)
                 return;
 
@@ -73,7 +73,9 @@ namespace Hudson.TrayTracker.UI.Controls
                 return;
 
             ConfigurationService.UpdateServer(server,
-                   namingForm.ServerAddress, namingForm.Username, namingForm.Password);
+                namingForm.ServerAddress,
+                namingForm.Username, namingForm.Password,
+                namingForm.IgnoreUntrustedCertificate);
 
             Controller.UpdateProjectList(server);
         }

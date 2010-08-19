@@ -41,6 +41,7 @@ namespace Hudson.TrayTracker.UI
             this.passwordTextBox = new DevExpress.XtraEditors.TextEdit();
             this.passwordLabel = new DevExpress.XtraEditors.LabelControl();
             this.usernameLabel = new DevExpress.XtraEditors.LabelControl();
+            this.ignoreUntrustedCertificateCheckBox = new DevExpress.XtraEditors.CheckEdit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.urlTextBox.Properties)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -48,6 +49,7 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usernameTextBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextBox.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ignoreUntrustedCertificateCheckBox.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -55,9 +57,10 @@ namespace Hudson.TrayTracker.UI
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.urlTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.urlLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.authenticationCheckBox, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.ignoreUntrustedCertificateCheckBox, 0, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // urlTextBox
@@ -136,6 +139,14 @@ namespace Hudson.TrayTracker.UI
             resources.ApplyResources(this.usernameLabel, "usernameLabel");
             this.usernameLabel.Name = "usernameLabel";
             // 
+            // ignoreUntrustedCertificateCheckBox
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.ignoreUntrustedCertificateCheckBox, 2);
+            resources.ApplyResources(this.ignoreUntrustedCertificateCheckBox, "ignoreUntrustedCertificateCheckBox");
+            this.ignoreUntrustedCertificateCheckBox.Name = "ignoreUntrustedCertificateCheckBox";
+            this.ignoreUntrustedCertificateCheckBox.Properties.AutoWidth = true;
+            this.ignoreUntrustedCertificateCheckBox.Properties.Caption = resources.GetString("checkEdit1.Properties.Caption");
+            // 
             // EditServerForm
             // 
             this.AcceptButton = this.validateButton;
@@ -156,6 +167,7 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usernameTextBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.passwordTextBox.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ignoreUntrustedCertificateCheckBox.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +187,6 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private DevExpress.XtraEditors.SimpleButton validateButton;
         private DevExpress.XtraEditors.SimpleButton cancelButton;
+        private DevExpress.XtraEditors.CheckEdit ignoreUntrustedCertificateCheckBox;
     }
 }
