@@ -12,14 +12,14 @@ using DevExpress.XtraEditors;
 
 namespace Hudson.TrayTracker.Utils
 {
-    internal class ThreadExceptionHandler
+    static class ThreadExceptionHandler
     {
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         /// 
         /// Handles the thread exception.
         /// 
-        public void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        public static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             HandleException(e.Exception);
         }

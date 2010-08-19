@@ -31,8 +31,7 @@ namespace Hudson.TrayTracker
         {
             try
             {
-                ThreadExceptionHandler handler = new ThreadExceptionHandler();
-                Application.ThreadException += new ThreadExceptionEventHandler(handler.Application_ThreadException);
+                Application.ThreadException += new ThreadExceptionEventHandler(ThreadExceptionHandler.Application_ThreadException);
 
                 // skinning         
                 SkinManager.EnableFormSkins();

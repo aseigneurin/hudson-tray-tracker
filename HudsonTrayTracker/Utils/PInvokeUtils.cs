@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Hudson.TrayTracker.Utils
 {
-    class PInvokeUtils
+    static class PInvokeUtils
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, Int32 wParam, Int32 lParam);

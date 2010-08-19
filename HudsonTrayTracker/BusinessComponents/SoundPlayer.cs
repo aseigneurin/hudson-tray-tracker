@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Hudson.TrayTracker.BusinessComponents
 {
-    public class SoundPlayer
+    public static class SoundPlayer
     {
         private enum Flags
         {
