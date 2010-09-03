@@ -261,6 +261,11 @@ namespace Hudson.TrayTracker.UI
             AllBuildDetails newBuildDetails = project.AllBuildDetails;
             if (newBuildDetails == null)
                 return false;
+
+            // moving from unknown/aborted to successful should not be considered as a regression
+            if (newBuildDetails.Status <= BuildStatus.Successful_BuildInProgress)
+                return false;
+
             bool res = BuildStatusUtils.IsWorse(newBuildDetails.Status, lastBuildDetails.Status);
             return res;
         }
