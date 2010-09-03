@@ -355,6 +355,8 @@
     <Content Include="LoggingConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\StatusIcons\Aborted.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Aborted.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Stuck.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Stuck.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Unknown.gif" />

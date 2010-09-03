@@ -128,6 +128,8 @@ namespace Hudson.TrayTracker.BusinessComponents
                 return BuildStatus.Failed;
             if (status == "red_anime")
                 return BuildStatus.Failed_BuildInProgress;
+            if (status == "aborted")
+                return BuildStatus.Aborted;
 
             return BuildStatus.Unknown;
         }
