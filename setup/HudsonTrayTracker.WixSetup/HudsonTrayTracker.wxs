@@ -65,11 +65,22 @@
           <Component Id="cmp47CBB58C539892268E22BA64A5A479AD" Guid="{2A7873DD-3685-4A6F-AA33-D6D5DD51FE77}">
             <File Id="fil6DE4942C65AE21E7C7EF069364A9C3D3" KeyPath="yes" Name="Spring.Core.dll" />
           </Component>
+
+          <Directory Id="setup" Name="setup">
+            <Component Id="cmp0FAE03C65D96ED1D021C482BB95EC17C" Guid="{219D2CA4-86EE-40F5-B58A-0090402D2373}">
+              <File Id="fil05B5A1FCB0324171FCF22AD1C566E172" KeyPath="yes" Source="$(var.SolutionDir)HudsonTrayTracker.Setup.CustomActions\bin\x86\$(var.Configuration)\HudsonTrayTracker.Setup.CustomActions.dll" />
+            </Component>
+            <Component Id="cmp053A2ABE2833EF70F99155D399B3D030" Guid="{50413CFC-020E-4A7F-9933-1EDE39DEA88D}">
+              <File Id="InstallUtilConfig" KeyPath="yes" Source="src\InstallUtilConfig.xml" />
+            </Component>
+          </Directory>
         </Directory>
       </Directory>
     </Directory>
 
-    <Feature Id="HudsonTrayTracker" Title="Hudson Tray Tracker" Level="1">
+    <Binary Id="InstallUtil" SourceFile="src\InstallUtilLib.dll" />
+
+    <Feature Id="Application" Title="Hudson Tray Tracker" Level="1">
       <ComponentRef Id="cmp788826F037B232B8D1CA662C7A724415"/>
       <ComponentRef Id="cmp9C7F9E356EE86CE45ED3BA0B5BEAD581"/>
       <ComponentRef Id="cmpB5CD10B4F08899371641B0C0DE534EE3"/>
@@ -87,7 +98,12 @@
       <ComponentRef Id="cmp92A572B519DE896800538C7795082921"/>
       <ComponentRef Id="cmp5E383EFA84B425FA3738A2378659FA83"/>
       <ComponentRef Id="cmp47CBB58C539892268E22BA64A5A479AD"/>
-		</Feature>
+    </Feature>
+
+    <Feature Id="Setup" Title="Setup" Level="1">
+      <ComponentRef Id="cmp0FAE03C65D96ED1D021C482BB95EC17C"/>
+      <ComponentRef Id="cmp053A2ABE2833EF70F99155D399B3D030"/>
+    </Feature>
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Hudson Tray Tracker" />
@@ -147,5 +163,31 @@
     </UI>
 
     <UIRef Id="WixUI_Common" />
+
+    <CustomAction Id='Uninstall' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate="no" />
+    <CustomAction Id='UninstallSetProp' Property='Uninstall' Value='/installtype=notransaction /action=uninstall /LogFile= "[#fil05B5A1FCB0324171FCF22AD1C566E172]" "[#InstallUtilConfig]"' />
+
+    <CustomAction Id='Install' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='deferred' Impersonate="no" />
+    <CustomAction Id='InstallSetProp' Property='Install' Value='/installtype=notransaction /action=install /LogFile= "[#fil05B5A1FCB0324171FCF22AD1C566E172]" "[#InstallUtilConfig]"' />
+
+    <CustomAction Id='Rollback' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='rollback' Impersonate="no" />
+    <CustomAction Id='RollbackSetProp' Property='Rollback' Value='/installtype=notransaction /action=rollback /LogFile= "[#fil05B5A1FCB0324171FCF22AD1C566E172]" "[#InstallUtilConfig]"' />
+
+    <CustomAction Id='Commit' BinaryKey='InstallUtil' DllEntry='ManagedInstall' Execute='commit' Impersonate="no" />
+    <CustomAction Id='CommitSetProp' Property='Commit' Value='/installtype=notransaction /action=commit /LogFile= "[#fil05B5A1FCB0324171FCF22AD1C566E172]" "[#InstallUtilConfig]"' />
+
+    <InstallExecuteSequence>
+      <Custom Action="InstallSetProp" After="StartServices">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+      <Custom Action="Install" After="InstallSetProp">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+
+      <Custom Action="UninstallSetProp" After="MsiUnpublishAssemblies">$cmp0FAE03C65D96ED1D021C482BB95EC17C=2</Custom>
+      <Custom Action="Uninstall" After="UninstallSetProp">$cmp0FAE03C65D96ED1D021C482BB95EC17C=2</Custom>
+
+      <Custom Action="CommitSetProp" After="Rollback">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+      <Custom Action="Commit" After="CommitSetProp">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+
+      <Custom Action="RollbackSetProp" After="Install">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+      <Custom Action="Rollback" After="RollbackSetProp">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
+    </InstallExecuteSequence>
   </Product>
 </Wix>
