@@ -18,5 +18,25 @@ namespace Hudson.TrayTracker.Utils
             }
             return res.ToString();
         }
+
+        // Extracts the user name from a string:
+        // - "User Name" -> "User Name"
+        // - "User Name <user@example.com>" -> "User Name"
+        // - "User Name (user@example.com)" -> "User Name"
+        public static string ExtractUserName(string fullName)
+        {
+            string res = fullName;
+
+            int index = res.IndexOf(" <");
+            if (index > 0)
+                res = res.Substring(0, index);
+
+            index = res.IndexOf(" (");
+            if (index > 0)
+                res = res.Substring(0, index);
+
+            res = res.Trim();
+            return res;
+        }
     }
 }

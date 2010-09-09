@@ -163,7 +163,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
             {
-                string userName = CleanUserName(userNode.InnerText);
+                string userName = StringUtils.ExtractUserName(userNode.InnerText);
                 users.Add(userName);
             }
 
@@ -331,20 +331,6 @@ namespace Hudson.TrayTracker.BusinessComponents
             // if there is a build in progress, there is a build
             bool buildInProgress = BuildStatusUtils.IsBuildInProgress(allBuildDetails.Status);
             return buildInProgress;
-        }
-
-        private string CleanUserName(string fullName)
-        {
-            char[] filterArray = { '<', '(', '-' };
-            int bracketIndex = fullName.IndexOfAny(filterArray);
-
-            String name;
-            if (bracketIndex > 0)
-                name = fullName.Substring(0, bracketIndex);
-            else
-                name = fullName;
-
-            return name.Trim();
         }
 
         private bool ValidateServerCertificate(object sender, X509Certificate certificate,
