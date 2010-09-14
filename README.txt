@@ -2,6 +2,10 @@
 
   - Update the AssemblyInfo.cs file (HudsonTrayTracker\Properties\AssemblyInfo.cs) with the new version number.
   - Commit the AssemblyInfo.cs file
+
+  - Update the HudsonTrayTracker.WixSetup.wixproj file (setup\HudsonTrayTracker.WixSetup\HudsonTrayTracker.WixSetup.wixproj) with the new version number.
+  - Commit the HudsonTrayTracker.WixSetup.wixproj file
+
   - Let Hudson build the installer
 
   - Get the installer from http://hudson.idm.fr/job/Hudson%20Tray%20Tracker/ws/trunk/scripts/installer/HudsonTrayTrackerInstaller.exe
