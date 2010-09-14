@@ -3,11 +3,22 @@
   <Product Id="43b990b8-932e-474d-a4a5-fe9c17945199"
            Name="Hudson Tray Tracker"
            Language="1033"
-           Version="0.11.2.0"
+           Version="$(var.ProductVersion)"
            Manufacturer="IDM"
-           UpgradeCode="af3f2c0d-b057-485a-afc9-c51c75ff346e">
+           UpgradeCode="C8D46C5C-C37A-4596-BDDC-446D53436CFC">
 
     <Package InstallerVersion="200" Compressed="yes" />
+
+    <Upgrade Id="C8D46C5C-C37A-4596-BDDC-446D53436CFC">
+      <UpgradeVersion OnlyDetect="yes"
+                      Minimum="$(var.ProductVersion)"
+                      Property="NEWERVERSIONDETECTED"
+                      IncludeMinimum="no" />
+      <UpgradeVersion OnlyDetect="no"
+                      Maximum="$(var.ProductVersion)"
+                      Property="OLDERVERSIONBEINGUPGRADED"
+                      IncludeMaximum="no" />
+    </Upgrade>
 
     <Media Id="1" Cabinet="HudsonTrayTracker.cab" EmbedCab="yes" />
 
@@ -177,6 +188,8 @@
     <CustomAction Id='CommitSetProp' Property='Commit' Value='/installtype=notransaction /action=commit /LogFile= "[#fil05B5A1FCB0324171FCF22AD1C566E172]" "[#InstallUtilConfig]"' />
 
     <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize"/>
+
       <Custom Action="InstallSetProp" After="StartServices">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
       <Custom Action="Install" After="InstallSetProp">$cmp0FAE03C65D96ED1D021C482BB95EC17C&gt;2</Custom>
 
