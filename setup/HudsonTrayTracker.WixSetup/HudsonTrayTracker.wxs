@@ -9,6 +9,10 @@
 
     <Package InstallerVersion="200" Compressed="yes" />
 
+    <Condition Message="A newer version of [ProductName] is already installed. Setup will now exit.">
+      NOT NEWERVERSIONDETECTED OR Installed
+    </Condition>
+
     <Upgrade Id="C8D46C5C-C37A-4596-BDDC-446D53436CFC">
       <UpgradeVersion OnlyDetect="yes"
                       Minimum="$(var.ProductVersion)"
