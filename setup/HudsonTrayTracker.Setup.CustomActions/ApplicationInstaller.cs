@@ -14,45 +14,45 @@ namespace HudsonTrayTracker.Setup.CustomActions
         public override void Install(IDictionary stateSaver)
         {
             base.Install(stateSaver);
-            MessageBox.Show("ApplicationInstaller[Install]");
+            Context.LogMessage("ApplicationInstaller[Install]");
         }
 
         public override void Uninstall(IDictionary savedState)
         {
             base.Uninstall(savedState);
 
-            MessageBox.Show("ApplicationInstaller[Uninstall]: stopping all instances of the application");
+            Context.LogMessage("ApplicationInstaller[Uninstall]: stopping all instances of the application");
 
             Process[] processes = Process.GetProcessesByName("HudsonTrayTracker");
-            MessageBox.Show("ApplicationInstaller[Uninstall]: found " + processes.Length + " instances to stop");
+            Context.LogMessage("ApplicationInstaller[Uninstall]: found " + processes.Length + " instances to stop");
 
             foreach (Process process in processes)
             {
-                MessageBox.Show("ApplicationInstaller[Uninstall]: Stopping process id: " + process.Id);
+                Context.LogMessage("ApplicationInstaller[Uninstall]: Stopping process id: " + process.Id);
                 try
                 {
                     process.Kill();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ApplicationInstaller[Uninstall]: Failed stopping process: "
+                    Context.LogMessage("ApplicationInstaller[Uninstall]: Failed stopping process: "
                         + ex.Message + "\n" + ex.StackTrace);
                 }
             }
 
-            MessageBox.Show("ApplicationInstaller[Uninstall]: done");
+            Context.LogMessage("ApplicationInstaller[Uninstall]: done");
         }
 
         public override void Commit(IDictionary savedState)
         {
             base.Commit(savedState);
-            MessageBox.Show("ApplicationInstaller[Commit]");
+            Context.LogMessage("ApplicationInstaller[Commit]");
         }
 
         public override void Rollback(IDictionary savedState)
         {
             base.Rollback(savedState);
-            MessageBox.Show("ApplicationInstaller[Rollback]");
+            Context.LogMessage("ApplicationInstaller[Rollback]");
         }
     }
 }
