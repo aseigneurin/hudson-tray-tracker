@@ -28,7 +28,7 @@
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLLOCATION" Name="Hudson Tray Tracker" FileSource="$(var.SolutionDir)..\HudsonTrayTracker\bin\$(var.Configuration)">
+        <Directory Id="INSTALLLOCATION" Name="Hudson Tray Tracker" FileSource="$(var.SolutionDir)..\HudsonTrayTracker\bin\x86\$(var.Configuration)">
           <Component Id="cmp788826F037B232B8D1CA662C7A724415" Guid="{F488277E-40A7-476A-B965-BEEB006497F9}">
             <File Id="fil5688DA34328E8A1E0A4F6A1D804C37DE" KeyPath="yes" Name="antlr.runtime.dll" />
           </Component>
