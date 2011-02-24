@@ -72,15 +72,17 @@ namespace Hudson.TrayTracker.UI
             set { ignoreUntrustedCertificateCheckBox.CheckState = value ? CheckState.Checked : CheckState.Unchecked; }
         }
 
-        protected virtual bool IsNameValid(string name)
+        protected virtual bool IsUrlValid(string url)
         {
-            return String.IsNullOrEmpty(name) == false;
+            url = url.Trim();
+            bool valid = String.IsNullOrEmpty(url) == false && url != "http://" && url != "https://";
+            return valid;
         }
 
         private void ValidateForm()
         {
-            string name = urlTextBox.Text;
-            bool nameValid = IsNameValid(name);
+            string url = urlTextBox.Text;
+            bool nameValid = IsUrlValid(url);
 
             validateButton.Enabled = nameValid;
         }
@@ -92,6 +94,17 @@ namespace Hudson.TrayTracker.UI
                 = passwordLabel.Enabled
                 = passwordTextBox.Enabled
                 = RequiresAuthentication;
+        }
+
+        private void urlTextBox_Leave(object sender, EventArgs e)
+        {
+            string url = ServerAddress;
+            if (String.IsNullOrEmpty(url) == false
+                && url.StartsWith("http://") == false
+                && url.StartsWith("https://") == false)
+            {
+                ServerAddress = "http://" + url;
+            }
         }
     }
 }

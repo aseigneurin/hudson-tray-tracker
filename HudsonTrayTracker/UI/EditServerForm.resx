@@ -460,7 +460,7 @@
   <data name="ignoreUntrustedCertificateCheckBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 112</value>
   </data>
-  <data name="checkEdit1.Properties.Caption" xml:space="preserve">
+  <data name="ignoreUntrustedCertificateCheckBox.Properties.Caption" xml:space="preserve">
     <value>Ignore untrusted certificate (SSL)</value>
   </data>
   <data name="ignoreUntrustedCertificateCheckBox.Size" type="System.Drawing.Size, System.Drawing">

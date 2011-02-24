@@ -67,6 +67,7 @@ namespace Hudson.TrayTracker.UI
             // 
             resources.ApplyResources(this.urlTextBox, "urlTextBox");
             this.urlTextBox.Name = "urlTextBox";
+            this.urlTextBox.Leave += new System.EventHandler(this.urlTextBox_Leave);
             // 
             // urlLabel
             // 
@@ -145,7 +146,7 @@ namespace Hudson.TrayTracker.UI
             resources.ApplyResources(this.ignoreUntrustedCertificateCheckBox, "ignoreUntrustedCertificateCheckBox");
             this.ignoreUntrustedCertificateCheckBox.Name = "ignoreUntrustedCertificateCheckBox";
             this.ignoreUntrustedCertificateCheckBox.Properties.AutoWidth = true;
-            this.ignoreUntrustedCertificateCheckBox.Properties.Caption = resources.GetString("checkEdit1.Properties.Caption");
+            this.ignoreUntrustedCertificateCheckBox.Properties.Caption = resources.GetString("ignoreUntrustedCertificateCheckBox.Properties.Caption");
             // 
             // EditServerForm
             // 
