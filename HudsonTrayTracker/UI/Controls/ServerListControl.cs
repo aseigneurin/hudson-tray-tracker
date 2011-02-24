@@ -79,6 +79,7 @@ namespace Hudson.TrayTracker.UI.Controls
                 namingForm.Username, namingForm.Password,
                 namingForm.IgnoreUntrustedCertificate);
 
+            serversGridView.RefreshData();
             Controller.UpdateProjectList(server);
         }
 
