@@ -145,7 +145,7 @@
     <value>urlTextBox</value>
   </data>
   <data name="&gt;&gt;urlTextBox.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;urlTextBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -153,8 +153,8 @@
   <data name="&gt;&gt;urlTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <assembly alias="DevExpress.XtraEditors.v8.3" name="DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="urlLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v8.3">
+  <assembly alias="DevExpress.XtraEditors.v10.1" name="DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="urlLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v10.1">
     <value>Horizontal</value>
   </data>
   <data name="urlLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -179,7 +179,7 @@
     <value>urlLabel</value>
   </data>
   <data name="&gt;&gt;urlLabel.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;urlLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -212,7 +212,7 @@
     <value>validateButton</value>
   </data>
   <data name="&gt;&gt;validateButton.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;validateButton.Parent" xml:space="preserve">
     <value>tableLayoutPanel2</value>
@@ -236,7 +236,7 @@
     <value>cancelButton</value>
   </data>
   <data name="&gt;&gt;cancelButton.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;cancelButton.Parent" xml:space="preserve">
     <value>tableLayoutPanel2</value>
@@ -290,7 +290,7 @@
     <value>authenticationCheckBox</value>
   </data>
   <data name="&gt;&gt;authenticationCheckBox.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;authenticationCheckBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -326,7 +326,7 @@
     <value>usernameTextBox</value>
   </data>
   <data name="&gt;&gt;usernameTextBox.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;usernameTextBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel3</value>
@@ -353,7 +353,7 @@
     <value>passwordTextBox</value>
   </data>
   <data name="&gt;&gt;passwordTextBox.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;passwordTextBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel3</value>
@@ -361,7 +361,7 @@
   <data name="&gt;&gt;passwordTextBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="passwordLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v8.3">
+  <data name="passwordLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v10.1">
     <value>Horizontal</value>
   </data>
   <data name="passwordLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -386,7 +386,7 @@
     <value>passwordLabel</value>
   </data>
   <data name="&gt;&gt;passwordLabel.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;passwordLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel3</value>
@@ -394,7 +394,7 @@
   <data name="&gt;&gt;passwordLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="usernameLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v8.3">
+  <data name="usernameLabel.AutoSizeMode" type="DevExpress.XtraEditors.LabelAutoSizeMode, DevExpress.XtraEditors.v10.1">
     <value>Horizontal</value>
   </data>
   <data name="usernameLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -419,7 +419,7 @@
     <value>usernameLabel</value>
   </data>
   <data name="&gt;&gt;usernameLabel.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;usernameLabel.Parent" xml:space="preserve">
     <value>tableLayoutPanel3</value>
@@ -473,7 +473,7 @@
     <value>ignoreUntrustedCertificateCheckBox</value>
   </data>
   <data name="&gt;&gt;ignoreUntrustedCertificateCheckBox.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;ignoreUntrustedCertificateCheckBox.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1072,6 +1072,6 @@
     <value>EditServerForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v8.3, Version=8.3.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+    <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v10.1, Version=10.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
 </root>
