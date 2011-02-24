@@ -23,6 +23,7 @@ namespace Hudson.TrayTracker.UI
             : this()
         {
             ServerAddress = server.Url;
+            ServerName = server.DisplayName;
             IgnoreUntrustedCertificate = server.IgnoreUntrustedCertificate;
             if (server.Credentials != null)
             {
@@ -36,6 +37,12 @@ namespace Hudson.TrayTracker.UI
         {
             get { return urlTextBox.Text; }
             set { urlTextBox.Text = value; }
+        }
+
+        public string ServerName
+        {
+            get { return displayNameTextEdit.Text; }
+            set { displayNameTextEdit.Text = value; }
         }
 
         public bool RequiresAuthentication

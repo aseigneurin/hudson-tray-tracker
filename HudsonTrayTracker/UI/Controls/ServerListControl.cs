@@ -46,8 +46,10 @@ namespace Hudson.TrayTracker.UI.Controls
             if (namingForm.ShowDialog() != DialogResult.OK)
                 return;
 
-            Server server = ConfigurationService.AddServer(namingForm.ServerAddress,
-                namingForm.Username, namingForm.Password, namingForm.IgnoreUntrustedCertificate);
+            Server server = ConfigurationService.AddServer(
+                namingForm.ServerAddress, namingForm.ServerName,
+                namingForm.Username, namingForm.Password,
+                namingForm.IgnoreUntrustedCertificate);
             if (server == null)
                 return;
 
@@ -73,7 +75,7 @@ namespace Hudson.TrayTracker.UI.Controls
                 return;
 
             ConfigurationService.UpdateServer(server,
-                namingForm.ServerAddress,
+                namingForm.ServerAddress, namingForm.ServerName,
                 namingForm.Username, namingForm.Password,
                 namingForm.IgnoreUntrustedCertificate);
 

@@ -282,7 +282,7 @@ namespace Hudson.TrayTracker.UI
 
             public string Server
             {
-                get { return Project.Server.Url; }
+                get { return Project.Server.DisplayText; }
             }
             public string Name
             {

@@ -54,6 +54,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                 // read the server configuration
                 Server server = new Server();
                 server.Url = propertiesFile.GetGroupRequiredStringValue("servers", serverId, "url");
+                server.DisplayName = propertiesFile.GetGroupStringValue("servers", serverId, "displayName");
                 server.IgnoreUntrustedCertificate = propertiesFile.GetGroupBoolValue("servers", serverId, "ignoreUntrustedCertificate", false);
 
                 // credentials
@@ -118,6 +119,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             foreach (Server server in Servers)
             {
                 propertiesFile.SetGroupStringValue("servers", serverId, "url", server.Url);
+                propertiesFile.SetGroupStringValue("servers", serverId, "displayName", server.DisplayName);
                 propertiesFile.SetGroupBoolValue("servers", serverId, "ignoreUntrustedCertificate", server.IgnoreUntrustedCertificate);
                 Credentials credentials = server.Credentials;
                 if (credentials != null)
@@ -173,27 +175,28 @@ namespace Hudson.TrayTracker.BusinessComponents
             propertiesFile.SetBoolValue("sounds.TreatUnstableAsFailed", NotificationSettings.TreatUnstableAsFailed);
         }
 
-        public Server AddServer(string url, string username, string password, bool ignoreUntrustedCertificate)
+        public Server AddServer(string url, string displayName, string username, string password, bool ignoreUntrustedCertificate)
         {
             Server server = new Server();
-            BindData(server, url, username, password, ignoreUntrustedCertificate);
+            BindData(server, url, displayName, username, password, ignoreUntrustedCertificate);
             Servers.Add(server);
             SaveConfiguration();
             return server;
         }
 
-        public void UpdateServer(Server server, string url, string username, string password, bool ignoreUntrustedCertificate)
+        public void UpdateServer(Server server, string url, string displayName, string username, string password, bool ignoreUntrustedCertificate)
         {
             // note: we need remove and re-add the server because its hash-code might change
             Servers.Remove(server);
-            BindData(server, url, username, password, ignoreUntrustedCertificate);
+            BindData(server, url, displayName, username, password, ignoreUntrustedCertificate);
             Servers.Add(server);
             SaveConfiguration();
         }
 
-        private void BindData(Server server, string url, string username, string password, bool ignoreUntrustedCertificate)
+        private void BindData(Server server, string url, string displayName, string username, string password, bool ignoreUntrustedCertificate)
         {
             server.Url = url;
+            server.DisplayName = displayName;
             server.IgnoreUntrustedCertificate = ignoreUntrustedCertificate;
             if (String.IsNullOrEmpty(username) == false)
                 server.Credentials = new Credentials(username, password);

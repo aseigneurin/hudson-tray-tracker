@@ -73,14 +73,14 @@ namespace Hudson.TrayTracker.UI.Controls
             this.editServerMenuItem,
             this.removeServerMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(159, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(152, 48);
             this.contextMenuStrip.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip_Opening);
             // 
             // editServerMenuItem
             // 
             this.editServerMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editServerMenuItem.Image")));
             this.editServerMenuItem.Name = "editServerMenuItem";
-            this.editServerMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.editServerMenuItem.Size = new System.Drawing.Size(151, 22);
             this.editServerMenuItem.Text = "Edit server";
             this.editServerMenuItem.Click += new System.EventHandler(this.editServerMenuItem_Click);
             // 
@@ -88,7 +88,7 @@ namespace Hudson.TrayTracker.UI.Controls
             // 
             this.removeServerMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("removeServerMenuItem.Image")));
             this.removeServerMenuItem.Name = "removeServerMenuItem";
-            this.removeServerMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.removeServerMenuItem.Size = new System.Drawing.Size(151, 22);
             this.removeServerMenuItem.Text = "Remove server";
             this.removeServerMenuItem.Click += new System.EventHandler(this.removeServerMenuItem_Click);
             // 
@@ -109,7 +109,7 @@ namespace Hudson.TrayTracker.UI.Controls
             // serverGridColumn
             // 
             this.serverGridColumn.Caption = "Servers";
-            this.serverGridColumn.FieldName = "Url";
+            this.serverGridColumn.FieldName = "DisplayText";
             this.serverGridColumn.Name = "serverGridColumn";
             this.serverGridColumn.OptionsColumn.AllowEdit = false;
             this.serverGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.DisplayText;
@@ -179,6 +179,30 @@ namespace Hudson.TrayTracker.UI.Controls
             this.removeServerButtonItem.Id = 1;
             this.removeServerButtonItem.Name = "removeServerButtonItem";
             this.removeServerButtonItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.removeServerButtonItem_ItemClick);
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(680, 26);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 340);
+            this.barDockControlBottom.Size = new System.Drawing.Size(680, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 314);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(680, 26);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 314);
             // 
             // statusTextItem
             // 

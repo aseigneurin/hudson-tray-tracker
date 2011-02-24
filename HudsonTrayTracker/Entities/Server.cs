@@ -8,9 +8,15 @@ namespace Hudson.TrayTracker.Entities
     public class Server
     {
         public string Url { get; set; }
+        public string DisplayName { get; set; }
         public Credentials Credentials { get; set; }
         public bool IgnoreUntrustedCertificate { get; set; }
         public ISet<Project> Projects { get; private set; }
+
+        public string DisplayText
+        {
+            get { return String.IsNullOrEmpty(DisplayName) ? Url : DisplayName; }
+        }
 
         public Server()
         {
