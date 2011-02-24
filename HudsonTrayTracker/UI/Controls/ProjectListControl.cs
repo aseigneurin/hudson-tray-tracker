@@ -79,8 +79,7 @@ namespace Hudson.TrayTracker.UI.Controls
                 }
                 else
                 {
-                    status = string.Format(
-                        HudsonTrayTrackerResources.FailedLoadingProjects_FormatString, server.Url);
+                    endStatus = string.Format(HudsonTrayTrackerResources.FailedLoadingProjects_FormatString, server.Url);
                 }
 
                 // enable the window, change the cursor, update the status
