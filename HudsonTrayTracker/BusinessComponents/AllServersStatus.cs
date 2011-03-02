@@ -77,9 +77,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private bool TreatAsFailure(BuildStatusEnum status)
         {
-            return status == BuildStatusEnum.Failed ||
-                   status == BuildStatusEnum.Stuck ||
-                   status == BuildStatusEnum.Unstable;
+            return status == BuildStatusEnum.Failed
+                || status == BuildStatusEnum.Unstable;
         }
     }
 }
