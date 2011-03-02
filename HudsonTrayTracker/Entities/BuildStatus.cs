@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace Hudson.TrayTracker.Entities
 {
-    public enum BuildStatus
+    public enum BuildStatusEnum
     {
         Unknown,
         Aborted,
@@ -19,50 +20,71 @@ namespace Hudson.TrayTracker.Entities
         Stuck
     }
 
+    [DebuggerDisplay("Status={Value}, Stuck={Stuck}")]
+    public class BuildStatus
+    {
+        public readonly BuildStatusEnum Value;
+        public readonly bool IsStuck;
+
+        public BuildStatus(BuildStatusEnum value, bool isStuck)
+        {
+            this.Value = value;
+            this.IsStuck = isStuck;
+        }
+    }
+
     public static class BuildStatusUtils
     {
         public static bool IsBuildInProgress(BuildStatus status)
         {
-            return (status == BuildStatus.Successful_BuildInProgress
-                || status == BuildStatus.Indeterminate_BuildInProgress
-                || status == BuildStatus.Unstable_BuildInProgress
-                || status == BuildStatus.Failed_BuildInProgress);
+            return IsBuildInProgress(status.Value);
+        }
+        public static bool IsBuildInProgress(BuildStatusEnum status)
+        {
+            return (status == BuildStatusEnum.Successful_BuildInProgress
+                || status == BuildStatusEnum.Indeterminate_BuildInProgress
+                || status == BuildStatusEnum.Unstable_BuildInProgress
+                || status == BuildStatusEnum.Failed_BuildInProgress);
         }
 
-        public static BuildStatus GetBuildInProgress(BuildStatus status)
+        public static BuildStatusEnum GetBuildInProgress(BuildStatusEnum status)
         {
             // don't switch if the status is already a build-in-progress status
             if (BuildStatusUtils.IsBuildInProgress(status)
-                || status == BuildStatus.Unknown
-                || status == BuildStatus.Stuck)
+                || status == BuildStatusEnum.Unknown
+                || status == BuildStatusEnum.Stuck)
                 return status;
             return status + 1;
         }
 
         public static bool IsWorse(BuildStatus status, BuildStatus thanStatus)
         {
-            BuildStatus degradedStatus = DegradeStatus(status);
-            BuildStatus thanDegradedStatus = DegradeStatus(thanStatus);
+            return IsWorse(status.Value, thanStatus.Value);
+        }
+        public static bool IsWorse(BuildStatusEnum status, BuildStatusEnum thanStatus)
+        {
+            BuildStatusEnum degradedStatus = DegradeStatus(status);
+            BuildStatusEnum thanDegradedStatus = DegradeStatus(thanStatus);
             bool res = degradedStatus > thanDegradedStatus;
             return res;
         }
 
-        public static BuildStatus DegradeStatus(BuildStatus status)
+        public static BuildStatusEnum DegradeStatus(BuildStatusEnum status)
         {
-            if (status == BuildStatus.Successful_BuildInProgress)
-                return BuildStatus.Successful;
-            if (status == BuildStatus.Indeterminate_BuildInProgress)
-                return BuildStatus.Indeterminate;
-            if (status == BuildStatus.Unstable_BuildInProgress)
-                return BuildStatus.Unstable;
-            if (status == BuildStatus.Failed_BuildInProgress)
-                return BuildStatus.Failed;
+            if (status == BuildStatusEnum.Successful_BuildInProgress)
+                return BuildStatusEnum.Successful;
+            if (status == BuildStatusEnum.Indeterminate_BuildInProgress)
+                return BuildStatusEnum.Indeterminate;
+            if (status == BuildStatusEnum.Unstable_BuildInProgress)
+                return BuildStatusEnum.Unstable;
+            if (status == BuildStatusEnum.Failed_BuildInProgress)
+                return BuildStatusEnum.Failed;
             return status;
         }
 
-        public static bool IsErrorBuild(BuildStatus status)
+        public static bool IsErrorBuild(BuildStatusEnum status)
         {
-            return status == BuildStatus.Failed || status == BuildStatus.Failed_BuildInProgress;
+            return status == BuildStatusEnum.Failed || status == BuildStatusEnum.Failed_BuildInProgress;
         }
     }
 }

@@ -109,29 +109,30 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private BuildStatus GetStatus(string status, bool? stuck)
         {
-            if (stuck.HasValue && stuck.Value == true)
-                return BuildStatus.Stuck;
-
+            BuildStatusEnum value;
             if (status == "grey")
-                return BuildStatus.Indeterminate;
-            if (status == "grey_anime")
-                return BuildStatus.Indeterminate_BuildInProgress;
-            if (status == "blue")
-                return BuildStatus.Successful;
-            if (status == "blue_anime")
-                return BuildStatus.Successful_BuildInProgress;
-            if (status == "yellow")
-                return BuildStatus.Unstable;
-            if (status == "yellow_anime")
-                return BuildStatus.Unstable_BuildInProgress;
-            if (status == "red")
-                return BuildStatus.Failed;
-            if (status == "red_anime")
-                return BuildStatus.Failed_BuildInProgress;
-            if (status == "aborted")
-                return BuildStatus.Aborted;
+                value= BuildStatusEnum.Indeterminate;
+            else  if (status == "grey_anime")
+                value = BuildStatusEnum.Indeterminate_BuildInProgress;
+            else if (status == "blue")
+                value = BuildStatusEnum.Successful;
+            else if (status == "blue_anime")
+                value = BuildStatusEnum.Successful_BuildInProgress;
+            else if (status == "yellow")
+                value = BuildStatusEnum.Unstable;
+            else if (status == "yellow_anime")
+                value = BuildStatusEnum.Unstable_BuildInProgress;
+            else if (status == "red")
+                value = BuildStatusEnum.Failed;
+            else if (status == "red_anime")
+                value = BuildStatusEnum.Failed_BuildInProgress;
+            else if (status == "aborted")
+                value = BuildStatusEnum.Aborted;
+            else
+                value = BuildStatusEnum.Unknown;
 
-            return BuildStatus.Unknown;
+            bool isStuck = (stuck.HasValue && stuck.Value == true);
+            return new BuildStatus(value, isStuck);
         }
 
         private BuildDetails GetBuildDetails(Credentials credentials, string buildUrl, bool ignoreUntrustedCertificate)

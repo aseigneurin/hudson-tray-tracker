@@ -20,6 +20,7 @@ using DevExpress.Utils.Controls;
 using Hudson.TrayTracker.Utils;
 using DevExpress.XtraGrid.Columns;
 using Spring.Context.Support;
+using DevExpress.Utils;
 
 namespace Hudson.TrayTracker.UI
 {
@@ -39,7 +40,7 @@ namespace Hudson.TrayTracker.UI
         BindingList<ProjectWrapper> projectsDataSource;
         bool exiting;
         int lastHoveredDSRowIndex = -1;
-        IDictionary<BuildStatus, byte[]> icons;
+        IDictionary<BuildStatusEnum, byte[]> icons;
         Font normalMenuItemFont;
         Font mainMenuItemFont;
 
@@ -164,7 +165,7 @@ namespace Hudson.TrayTracker.UI
                 if (e.Column == statusGridColumn)
                 {
                     ProjectWrapper projectWrapper = (ProjectWrapper)projectsDataSource[e.ListSourceRowIndex];
-                    byte[] imgBytes = icons[projectWrapper.Project.Status];
+                    byte[] imgBytes = icons[projectWrapper.Project.StatusValue];
                     e.Value = imgBytes;
                 }
             }
@@ -172,15 +173,15 @@ namespace Hudson.TrayTracker.UI
 
         private void LoadIcons()
         {
-            icons = new Dictionary<BuildStatus, byte[]>();
+            icons = new Dictionary<BuildStatusEnum, byte[]>();
 
-            foreach (BuildStatus buildStatus in Enum.GetValues(typeof(BuildStatus)))
+            foreach (BuildStatusEnum buildStatus in Enum.GetValues(typeof(BuildStatusEnum)))
             {
                 try
                 {
                     string resourceName = string.Format("Hudson.TrayTracker.Resources.StatusIcons.{0}.gif",
                         buildStatus.ToString());
-                    Image img = ImageHelper.CreateImageFromResources(
+                    Image img = ResourceImageHelper.CreateImageFromResources(
                         resourceName, GetType().Assembly);
                     byte[] imgBytes = DevExpress.XtraEditors.Controls.ByteImageConverter.ToByteArray(img, ImageFormat.Gif);
                     icons.Add(buildStatus, imgBytes);
@@ -212,7 +213,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     ProjectWrapper project = projectsDataSource[dsRowIndex];
                     string message = HudsonTrayTrackerResources.ResourceManager
-                        .GetString("BuildStatus_" + project.Project.Status.ToString());
+                        .GetString("BuildStatus_" + project.Project.StatusValue.ToString());
                     toolTip.SetToolTip(projectsGridControl, message);
                 }
                 lastHoveredDSRowIndex = dsRowIndex;
@@ -239,7 +240,7 @@ namespace Hudson.TrayTracker.UI
         {
             if (project == null)
                 return false;
-            BuildStatus status = project.Status;
+            BuildStatusEnum status = project.StatusValue;
             bool res = BuildStatusUtils.IsErrorBuild(status) || BuildStatusUtils.IsBuildInProgress(status);
             return res;
         }
@@ -432,8 +433,8 @@ namespace Hudson.TrayTracker.UI
             Project project = GetSelectedProject();
             if (project == null)
                 return;
-            BuildStatus currentStatus = project.Status;
-            if (currentStatus < BuildStatus.Indeterminate)
+            BuildStatusEnum currentStatus = project.StatusValue;
+            if (currentStatus < BuildStatusEnum.Indeterminate)
                 return;
             TrayNotifier.Instance.AcknowledgeStatus(project, currentStatus);
         }
@@ -463,7 +464,7 @@ namespace Hudson.TrayTracker.UI
                 return;
             }
 
-            acknowledgeMenuItem.Enabled = project.Status >= BuildStatus.Indeterminate;
+            acknowledgeMenuItem.Enabled = project.StatusValue >= BuildStatusEnum.Indeterminate;
             stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);

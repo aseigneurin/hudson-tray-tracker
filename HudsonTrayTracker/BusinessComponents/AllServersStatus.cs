@@ -7,8 +7,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 {
     public class AllServersStatus
     {
-        private ThreadSafeDictionary<string, BuildStatus> lastStatuses = new ThreadSafeDictionary<string, BuildStatus>();
-        private ThreadSafeDictionary<string, BuildStatus> lastCompletedStatuses = new ThreadSafeDictionary<string, BuildStatus>();
+        private ThreadSafeDictionary<string, BuildStatusEnum> lastStatuses = new ThreadSafeDictionary<string, BuildStatusEnum>();
+        private ThreadSafeDictionary<string, BuildStatusEnum> lastCompletedStatuses = new ThreadSafeDictionary<string, BuildStatusEnum>();
 
         public IEnumerable<Server> Servers { get; private set; }
 
@@ -35,10 +35,10 @@ namespace Hudson.TrayTracker.BusinessComponents
             foreach (var project in server.Projects)
             {
                 UpdateForProject(project);
-                lastStatuses.SetOrAdd(project.Url, project.Status);
-                if (!BuildStatusUtils.IsBuildInProgress(project.Status))
+                lastStatuses.SetOrAdd(project.Url, project.StatusValue);
+                if (!BuildStatusUtils.IsBuildInProgress(project.StatusValue))
                 {
-                    lastCompletedStatuses.SetOrAdd(project.Url, project.Status);
+                    lastCompletedStatuses.SetOrAdd(project.Url, project.StatusValue);
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             {
                 if (BuildStatusUtils.IsBuildInProgress(lastStatuses[project.Url]))
                 {
-                    if (project.Status == BuildStatus.Successful)
+                    if (project.StatusValue == BuildStatusEnum.Successful)
                     {
                         if (BuildStatusUtils.IsErrorBuild(lastCompletedStatuses[project.Url]))
                         {
@@ -60,7 +60,7 @@ namespace Hudson.TrayTracker.BusinessComponents
                             SucceedingProjects.Add(project);
                         }
                     }
-                    else if (TreatAsFailure(project.Status))
+                    else if (TreatAsFailure(project.StatusValue))
                     {
                         if (TreatAsFailure(lastCompletedStatuses[project.Url]))
                         {
@@ -75,11 +75,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
         }
 
-        private bool TreatAsFailure(BuildStatus status)
+        private bool TreatAsFailure(BuildStatusEnum status)
         {
-            return status == BuildStatus.Failed ||
-                   status == BuildStatus.Stuck ||
-                   status == BuildStatus.Unstable;
+            return status == BuildStatusEnum.Failed ||
+                   status == BuildStatusEnum.Stuck ||
+                   status == BuildStatusEnum.Unstable;
         }
     }
 }
