@@ -371,12 +371,17 @@
     <Content Include="LoggingConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Resources\StatusIcons\Aborted_Stuck.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Failed_Stuck.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Indeterminate_Stuck.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Successful_Stuck.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Unknown_Stuck.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Unstable_Stuck.gif" />
     <EmbeddedResource Include="Resources\TrayIcons\Aborted_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Failed_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Failed_BuildInProgress_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Indeterminate_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Indeterminate_BuildInProgress_Stuck.ico" />
-    <EmbeddedResource Include="Resources\TrayIcons\Stuck_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Successful_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Successful_BuildInProgress_Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Unknown_Stuck.ico" />
@@ -387,14 +392,12 @@
     <EmbeddedResource Include="Resources\TrayIcons\Failed_BuildInProgress.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Indeterminate.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Indeterminate_BuildInProgress.ico" />
-    <EmbeddedResource Include="Resources\TrayIcons\Stuck.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Successful.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Successful_BuildInProgress.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Unknown.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable.ico" />
     <EmbeddedResource Include="Resources\TrayIcons\Unstable_BuildInProgress.ico" />
     <EmbeddedResource Include="Resources\StatusIcons\Aborted.gif" />
-    <EmbeddedResource Include="Resources\StatusIcons\Stuck.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Unknown.gif" />
     <EmbeddedResource Include="UI\ClaimBuildForm.resx">
       <DependentUpon>ClaimBuildForm.cs</DependentUpon>
