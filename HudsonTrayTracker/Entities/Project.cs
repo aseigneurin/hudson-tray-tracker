@@ -18,7 +18,7 @@ namespace Hudson.TrayTracker.Entities
                 // get a copy of the reference to avoid a race condition
                 AllBuildDetails details = this.AllBuildDetails;
                 if (details == null)
-                    return new BuildStatus(BuildStatusEnum.Unknown, false);
+                    return BuildStatus.UNKNOWN_BUILD_STATUS;
                 return details.Status;
             }
         }

@@ -32,7 +32,7 @@ namespace Hudson.TrayTracker.UI
 
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
-        IDictionary<Project, BuildStatusEnum> acknowledgedStatusByProject = new Dictionary<Project, BuildStatusEnum>();
+        IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
         IDictionary<string, Icon> iconsByKey;
 
         public ConfigurationService ConfigurationService { get; set; }
@@ -96,7 +96,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     BuildStatusEnum status = BuildStatusEnum.Unknown;
                     if (pair.Value != null)
-                        status = BuildStatusUtils.DegradeStatus(pair.Value.Status.Value);
+                        status = BuildStatusUtils.DegradeStatus(pair.Value.Status).Value;
                     SortedSet<Project> projects = new SortedSet<Project>();
                     if (projectsByStatus.TryGetValue(status, out projects) == false)
                     {
@@ -210,7 +210,7 @@ namespace Hudson.TrayTracker.UI
                         worstBuildStatus = status.Value;
                     if (status.Value >= BuildStatusEnum.Failed)
                         errorProjects.Add(project);
-                    if (BuildStatusUtils.IsBuildInProgress(status))
+                    if (status.IsInProgress)
                         buildInProgress = true;
                     if (status.IsStuck)
                         buildIsStuck = true;
@@ -231,10 +231,7 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine("tray:"+lastBuildStatus);
 #endif
 
-            BuildStatus buildStatus = new BuildStatus(worstBuildStatus.Value, buildIsStuck);
-            // if a build is in progress, switch to the nearest build-in-progress status
-            if (buildInProgress)
-                buildStatus = BuildStatusUtils.GetBuildInProgress(buildStatus);
+            BuildStatus buildStatus = new BuildStatus(worstBuildStatus.Value, buildInProgress, buildIsStuck);
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
@@ -245,12 +242,12 @@ namespace Hudson.TrayTracker.UI
         private BuildStatus GetProjectStatus(Project project)
         {
             BuildStatus status = project.Status;
-            BuildStatusEnum? acknowledgedStatus = GetAcknowledgedStatus(project);
+            BuildStatus acknowledgedStatus = GetAcknowledgedStatus(project);
             if (acknowledgedStatus != null)
             {
-                if (status.Value == acknowledgedStatus)
-                    return new BuildStatus(BuildStatusEnum.Successful, false);
-                else if (status.Value != BuildStatusEnum.Unknown && BuildStatusUtils.IsWorse(acknowledgedStatus.Value, status.Value))
+                if (status.Value == acknowledgedStatus.Value)
+                    return new BuildStatus(BuildStatusEnum.Successful, false, false);
+                else if (status.Value != BuildStatusEnum.Unknown && BuildStatusUtils.IsWorse(acknowledgedStatus, status))
                     ClearAcknowledgedStatus(project);
             }
             return status;
@@ -267,7 +264,7 @@ namespace Hudson.TrayTracker.UI
                 return false;
 
             // moving from unknown/aborted to successful should not be considered as a regression
-            if (newBuildDetails.Status.Value <= BuildStatusEnum.Successful_BuildInProgress)
+            if (newBuildDetails.Status.Value <= BuildStatusEnum.Successful)
                 return false;
 
             bool res = BuildStatusUtils.IsWorse(newBuildDetails.Status, lastBuildDetails.Status);
@@ -344,14 +341,19 @@ namespace Hudson.TrayTracker.UI
 
             foreach (BuildStatusEnum statusValue in Enum.GetValues(typeof(BuildStatusEnum)))
             {
-                LoadIcon(statusValue, false);
-                LoadIcon(statusValue, true);
+                LoadIcon(statusValue, false, false);
+                LoadIcon(statusValue, false, true);
+                LoadIcon(statusValue, true, false);
+                LoadIcon(statusValue, true, true);
             }
         }
 
-        private void LoadIcon(BuildStatusEnum statusValue, bool isStuck)
+        private void LoadIcon(BuildStatusEnum statusValue, bool isInProgress, bool isStuck)
         {
-            BuildStatus status = new BuildStatus(statusValue, isStuck);
+            BuildStatus status = new BuildStatus(statusValue, isInProgress, isStuck);
+            if (iconsByKey.ContainsKey(status.Key))
+                return;
+
             try
             {
                 string resourceName = string.Format("Hudson.TrayTracker.Resources.TrayIcons.{0}.ico", status.Key);
@@ -373,7 +375,7 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine(e.Clicks);
         }
 
-        public void AcknowledgeStatus(Project project, BuildStatusEnum currentStatus)
+        public void AcknowledgeStatus(Project project, BuildStatus currentStatus)
         {
             lock (acknowledgedStatusByProject)
             {
@@ -391,9 +393,9 @@ namespace Hudson.TrayTracker.UI
             UpdateNotifier();
         }
 
-        private BuildStatusEnum? GetAcknowledgedStatus(Project project)
+        private BuildStatus GetAcknowledgedStatus(Project project)
         {
-            BuildStatusEnum status;
+            BuildStatus status;
             lock (acknowledgedStatusByProject)
             {
                 if (acknowledgedStatusByProject.TryGetValue(project, out status) == false)

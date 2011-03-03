@@ -145,8 +145,8 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildStatus_Aborted" xml:space="preserve">
     <value>Build was aborted</value>
   </data>
-  <data name="BuildStatus_Blocked" xml:space="preserve">
-    <value>Build is blocked</value>
+  <data name="BuildStatus_Aborted_Stuck" xml:space="preserve">
+    <value>Build was aborted. Build is stuck.</value>
   </data>
   <data name="BuildStatus_Failed" xml:space="preserve">
     <value>Build failed</value>
@@ -154,20 +154,26 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildStatus_Failed_BuildInProgress" xml:space="preserve">
     <value>Build failed. Build in progress.</value>
   </data>
+  <data name="BuildStatus_Failed_Stuck" xml:space="preserve">
+    <value>Build failed. Build is stuck.</value>
+  </data>
   <data name="BuildStatus_Indeterminate" xml:space="preserve">
     <value>Indeterminate: no build done.</value>
   </data>
   <data name="BuildStatus_Indeterminate_BuildInProgress" xml:space="preserve">
     <value>Indeterminate: no build done. Build in progress.</value>
   </data>
-  <data name="BuildStatus_Stuck" xml:space="preserve">
-    <value>Build is stuck</value>
+  <data name="BuildStatus_Indeterminate_Stuck" xml:space="preserve">
+    <value>Indeterminate: no build done. Build is stuck.</value>
   </data>
   <data name="BuildStatus_Successful" xml:space="preserve">
     <value>Successful</value>
   </data>
   <data name="BuildStatus_Successful_BuildInProgress" xml:space="preserve">
     <value>Successful. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Successful_Stuck" xml:space="preserve">
+    <value>Successful. Build is stuck.</value>
   </data>
   <data name="BuildStatus_Unknown" xml:space="preserve">
     <value>Unknown status</value>
@@ -177,6 +183,9 @@ Do you want to download it now (the application will be closed)?</value>
   </data>
   <data name="BuildStatus_Unstable_BuildInProgress" xml:space="preserve">
     <value>Unstable: some tests failed. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Unstable_Stuck" xml:space="preserve">
+    <value>Unstable: some tests failed. Build is stuck.</value>
   </data>
   <data name="DisplayBuildStatus_Caption" xml:space="preserve">
     <value>Build status</value>

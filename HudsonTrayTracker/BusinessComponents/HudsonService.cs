@@ -110,29 +110,22 @@ namespace Hudson.TrayTracker.BusinessComponents
         private BuildStatus GetStatus(string status, bool? stuck)
         {
             BuildStatusEnum value;
-            if (status == "grey")
-                value= BuildStatusEnum.Indeterminate;
-            else  if (status == "grey_anime")
-                value = BuildStatusEnum.Indeterminate_BuildInProgress;
-            else if (status == "blue")
+            if (status.StartsWith("grey"))
+                value = BuildStatusEnum.Indeterminate;
+            else if (status.StartsWith("blue"))
                 value = BuildStatusEnum.Successful;
-            else if (status == "blue_anime")
-                value = BuildStatusEnum.Successful_BuildInProgress;
-            else if (status == "yellow")
+            else if (status.StartsWith("yellow"))
                 value = BuildStatusEnum.Unstable;
-            else if (status == "yellow_anime")
-                value = BuildStatusEnum.Unstable_BuildInProgress;
-            else if (status == "red")
+            else if (status.StartsWith("red"))
                 value = BuildStatusEnum.Failed;
-            else if (status == "red_anime")
-                value = BuildStatusEnum.Failed_BuildInProgress;
-            else if (status == "aborted")
+            else if (status.StartsWith("aborted"))
                 value = BuildStatusEnum.Aborted;
             else
                 value = BuildStatusEnum.Unknown;
 
+            bool isInProgress = status.EndsWith("_anime");
             bool isStuck = (stuck.HasValue && stuck.Value == true);
-            return new BuildStatus(value, isStuck);
+            return new BuildStatus(value, isInProgress, isStuck);
         }
 
         private BuildDetails GetBuildDetails(Credentials credentials, string buildUrl, bool ignoreUntrustedCertificate)
@@ -330,7 +323,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (allBuildDetails.LastCompletedBuild != null)
                 return true;
             // if there is a build in progress, there is a build
-            bool buildInProgress = BuildStatusUtils.IsBuildInProgress(allBuildDetails.Status);
+            bool buildInProgress = allBuildDetails.Status.IsInProgress;
             return buildInProgress;
         }
 
