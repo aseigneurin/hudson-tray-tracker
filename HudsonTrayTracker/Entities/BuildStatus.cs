@@ -19,16 +19,32 @@ namespace Hudson.TrayTracker.Entities
         Failed_BuildInProgress,
     }
 
-    [DebuggerDisplay("Status={Value}, Stuck={Stuck}")]
+    [DebuggerDisplay("Status={Value}, Stuck={IsStuck}")]
     public class BuildStatus
     {
+        public static BuildStatus UNKNOWN_BUILD_STATUS = new BuildStatus(BuildStatusEnum.Unknown, false);
+
         public readonly BuildStatusEnum Value;
+        public readonly bool IsInProgress;
         public readonly bool IsStuck;
 
         public BuildStatus(BuildStatusEnum value, bool isStuck)
         {
             this.Value = value;
             this.IsStuck = isStuck;
+        }
+
+        public string Key
+        {
+            get
+            {
+                string res = Value.ToString();
+                if (IsInProgress)
+                    res += "_BuildInProgress";
+                if (IsStuck)
+                    res += "_Stuck";
+                return res;
+            }
         }
     }
 
@@ -46,6 +62,11 @@ namespace Hudson.TrayTracker.Entities
                 || status == BuildStatusEnum.Failed_BuildInProgress);
         }
 
+        public static BuildStatus GetBuildInProgress(BuildStatus status)
+        {
+            BuildStatusEnum newValue = GetBuildInProgress(status.Value);
+            return new BuildStatus(newValue, status.IsStuck);
+        }
         public static BuildStatusEnum GetBuildInProgress(BuildStatusEnum status)
         {
             // don't switch if the status is already a build-in-progress status

@@ -181,8 +181,7 @@ namespace Hudson.TrayTracker.UI
                 {
                     string resourceName = string.Format("Hudson.TrayTracker.Resources.StatusIcons.{0}.gif",
                         buildStatus.ToString());
-                    Image img = ResourceImageHelper.CreateImageFromResources(
-                        resourceName, GetType().Assembly);
+                    Image img = ResourceImageHelper.CreateImageFromResources(resourceName, GetType().Assembly);
                     byte[] imgBytes = DevExpress.XtraEditors.Controls.ByteImageConverter.ToByteArray(img, ImageFormat.Gif);
                     icons.Add(buildStatus, imgBytes);
                 }
