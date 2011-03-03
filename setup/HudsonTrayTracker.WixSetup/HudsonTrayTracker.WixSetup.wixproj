@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <Version Condition=" '$(Version)' == '' ">0.11.1</Version>
+    <Version Condition=" '$(Version)' == '' ">0.12.0</Version>
     <ProductVersion>3.0</ProductVersion>
     <ProjectGuid>{4839b061-a1df-4f9f-852e-95f534d949bb}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
