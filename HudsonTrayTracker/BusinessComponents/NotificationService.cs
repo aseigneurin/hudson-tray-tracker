@@ -10,7 +10,6 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public ConfigurationService ConfigurationService { get; set; }
         public ProjectsUpdateService UpdateService { private get; set; }
-        public NotificationSettings Settings { private get; set; }
 
         public void Initialize()
         {
@@ -22,35 +21,30 @@ namespace Hudson.TrayTracker.BusinessComponents
                 UpdateService.ProjectsUpdated -= Execute;
             };
 
-            Execute();
+            //Execute();
         }
 
         public void Execute()
         {
             allServersStatus.Update(ConfigurationService.Servers);
 
+            string fileToPlay = null;
             if (allServersStatus.StillFailingProjects.Count > 0)
-            {
-                SoundPlayer.PlayFile(Settings.StillFailingSoundPath);
-            }
+                fileToPlay = ConfigurationService.NotificationSettings.StillFailingSoundPath;
             else if (allServersStatus.FailingProjects.Count > 0)
-            {
-                SoundPlayer.PlayFile(Settings.FailedSoundPath);
-            }
+                fileToPlay = ConfigurationService.NotificationSettings.FailedSoundPath;
             else if (allServersStatus.FixedProjects.Count > 0)
-            {
-                SoundPlayer.PlayFile(Settings.FixedSoundPath);
-            }
+                fileToPlay = ConfigurationService.NotificationSettings.FixedSoundPath;
             else if (allServersStatus.SucceedingProjects.Count > 0)
-            {
-                SoundPlayer.PlayFile(Settings.SucceededSoundPath);
-            }
+                fileToPlay = ConfigurationService.NotificationSettings.SucceededSoundPath;
+            if (fileToPlay != null)
+                SoundPlayer.PlayFile(fileToPlay);
         }
 
         private bool TreatAsFailure(BuildStatusEnum status)
         {
             return status == BuildStatusEnum.Failed
-                || (status == BuildStatusEnum.Unstable && Settings.TreatUnstableAsFailed);
+                || (status == BuildStatusEnum.Unstable && ConfigurationService.NotificationSettings.TreatUnstableAsFailed);
         }
     }
 }

@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Hudson.TrayTracker.Entities
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Project : IComparable<Project>
     {
         public Server Server { get; set; }
+        [JsonProperty("name")]
         public string Name { get; set; }
+        [JsonProperty("url")]
         public string Url { get; set; }
         public AllBuildDetails AllBuildDetails { get; set; }
 

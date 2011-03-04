@@ -2,15 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Iesi.Collections.Generic;
+using Newtonsoft.Json;
+using Hudson.TrayTracker.Utils.Serialization;
 
 namespace Hudson.TrayTracker.Entities
 {
+    [JsonObject(MemberSerialization.OptIn)]
     public class Server
     {
+        [JsonProperty("url")]
         public string Url { get; set; }
+
+        [JsonProperty("displayName")]
         public string DisplayName { get; set; }
+
+        [JsonProperty("credentials")]
+        [JsonConverter(typeof(CredentialsJsonConverter))]
         public Credentials Credentials { get; set; }
+
+        [JsonProperty("ignoreUntrustedCertificate")]
         public bool IgnoreUntrustedCertificate { get; set; }
+
+        [JsonProperty("projects")]
         public ISet<Project> Projects { get; private set; }
 
         public string DisplayText

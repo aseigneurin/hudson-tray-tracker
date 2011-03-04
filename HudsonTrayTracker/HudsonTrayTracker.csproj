@@ -152,6 +152,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Log4Net\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json.Net35, Version=4.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Json.NET\Newtonsoft.Json.Net35.dll</HintPath>
+    </Reference>
     <Reference Include="SmartThreadPool, Version=1.0.2235.39078, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\SmartThreadPool\SmartThreadPool.dll</HintPath>
@@ -184,6 +188,8 @@
     <Compile Include="BusinessComponents\ClaimService.cs" />
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
+    <Compile Include="Entities\Configuration.cs" />
+    <Compile Include="Legacy\BusinessComponents\LegacyConfigurationService.cs" />
     <Compile Include="BusinessComponents\NotificationService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -314,14 +320,15 @@
     <Compile Include="Utils\BackgroundProcessing\BackgroundProcessExecutor.cs" />
     <Compile Include="Utils\BackgroundProcessing\ErrorHolder.cs" />
     <Compile Include="Utils\BackgroundProcessing\Process.cs" />
-    <Compile Include="Utils\Collections\DualPropertiesContainer.cs" />
-    <Compile Include="Utils\Collections\IPropertiesContainer.cs" />
-    <Compile Include="Utils\Collections\PropertiesContainer.cs" />
+    <Compile Include="Legacy\Collections\DualPropertiesContainer.cs" />
+    <Compile Include="Legacy\Collections\IPropertiesContainer.cs" />
+    <Compile Include="Legacy\Collections\PropertiesContainer.cs" />
     <Compile Include="Utils\IO\PathHelper.cs" />
-    <Compile Include="Utils\IO\PropertiesFile.cs" />
+    <Compile Include="Legacy\IO\PropertiesFile.cs" />
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
     <Compile Include="Utils\NetUtils.cs" />
     <Compile Include="Utils\PInvokeUtils.cs" />
+    <Compile Include="Utils\Serialization\CredentialsJsonConverter.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\ThreadExceptionHandler.cs" />
     <Compile Include="Utils\Collections\ThreadSafeDictionary.cs" />

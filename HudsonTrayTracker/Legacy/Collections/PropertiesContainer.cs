@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 namespace Hudson.TrayTracker.Utils.Collections
 {
     // reads a properties file
+    [Obsolete]
     public class PropertiesContainer : IPropertiesContainer
     {
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

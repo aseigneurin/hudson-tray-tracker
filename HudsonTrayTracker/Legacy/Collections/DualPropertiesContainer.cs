@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Hudson.TrayTracker.Utils.Collections
 {
+    [Obsolete]
     public class DualPropertiesContainer : IPropertiesContainer
     {
         string id;

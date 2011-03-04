@@ -11,6 +11,7 @@ using Hudson.TrayTracker.Utils.Collections;
 namespace Hudson.TrayTracker.Utils.IO
 {
     // reads a properties file
+    [Obsolete]
     public class PropertiesFile : DualPropertiesContainer
     {
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);

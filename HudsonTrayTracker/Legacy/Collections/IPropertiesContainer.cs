@@ -7,6 +7,7 @@ using System.Reflection;
 namespace Hudson.TrayTracker.Utils.Collections
 {
     // reads a properties file
+    [Obsolete]
     public interface IPropertiesContainer : IEnumerable<KeyValuePair<string, string>>
     {
         bool ReadOnly { get; set; }
