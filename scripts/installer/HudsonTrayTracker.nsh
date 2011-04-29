@@ -86,6 +86,7 @@ Section "Uninstall"
   Delete "$INSTDIR\Iesi.Collections.dll"
   Delete "$INSTDIR\log4net.dll"
   Delete "$INSTDIR\LoggingConfig.xml"
+  Delete "$INSTDIR\Newtonsoft.Json.Net35.dll"
   Delete "$INSTDIR\SmartThreadPool.dll"
   Delete "$INSTDIR\Spring.Core.dll"
   
