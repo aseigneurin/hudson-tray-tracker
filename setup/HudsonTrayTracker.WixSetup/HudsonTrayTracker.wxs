@@ -74,6 +74,9 @@
           <Component Id="cmp92A572B519DE896800538C7795082921" Guid="{DB0AF5D1-A3C2-4F98-A162-4E50FA3071F0}">
             <File Id="fil562DC4F18EDB1DC79D012122BC96F3D9" KeyPath="yes" Name="LoggingConfig.xml" />
           </Component>
+          <Component Id="cmp82D2FB5D3FF74D23A18DD610758156C4" Guid="{1EE3ECAB-2858-4CC7-8B6C-75E8F5F52E6D}">
+            <File Id="fil302487DACA7C4A22B4D8B96816BD690E" KeyPath="yes" Name="Newtonsoft.Json.Net35.dll" />
+          </Component>
           <Component Id="cmp5E383EFA84B425FA3738A2378659FA83" Guid="{32E0E795-45CD-483A-8101-2A7BF775FAE0}">
             <File Id="fil48C49AC6BD43A7BF6F4C892431FD1ECD" KeyPath="yes" Name="SmartThreadPool.dll" />
           </Component>
@@ -111,6 +114,7 @@
       <ComponentRef Id="cmp7A04BD94527EA1928F335EE381F60B45"/>
       <ComponentRef Id="cmp75C51DF10C0B5BDF2822D9EEEF27813C"/>
       <ComponentRef Id="cmp92A572B519DE896800538C7795082921"/>
+      <ComponentRef Id="cmp82D2FB5D3FF74D23A18DD610758156C4"/>
       <ComponentRef Id="cmp5E383EFA84B425FA3738A2378659FA83"/>
       <ComponentRef Id="cmp47CBB58C539892268E22BA64A5A479AD"/>
     </Feature>
