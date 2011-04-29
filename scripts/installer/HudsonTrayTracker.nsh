@@ -50,6 +50,7 @@ Section
   File "${ROOT}\Iesi.Collections.dll"
   File "${ROOT}\log4net.dll"
   File "${ROOT}\LoggingConfig.xml"
+  File "${ROOT}\Newtonsoft.Json.Net35.dll"
   File "${ROOT}\SmartThreadPool.dll"
   File "${ROOT}\Spring.Core.dll"
 
