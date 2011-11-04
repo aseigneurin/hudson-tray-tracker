@@ -15,14 +15,13 @@ goto end
 echo ####################################################
 echo Environment variable NSIS has not been set
 echo ####################################################
-pause
-goto error
+exit 1
 
 :error
 @echo off
 echo ####################################################
 echo An error occured.
 echo ####################################################
-pause
+exit 2
 
 :end
