@@ -112,7 +112,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             BuildStatusEnum value;
             if (status.StartsWith("grey"))
                 value = BuildStatusEnum.Indeterminate;
-            else if (status.StartsWith("blue"))
+            else if (status.StartsWith("blue") || status.StartsWith("green"))
                 value = BuildStatusEnum.Successful;
             else if (status.StartsWith("yellow"))
                 value = BuildStatusEnum.Unstable;
