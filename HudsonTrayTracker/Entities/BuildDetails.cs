@@ -7,12 +7,12 @@ namespace Hudson.TrayTracker.Entities
 {
     public class BuildDetails
     {
-        public string Cause { get; set; }
+        public BuildCause Cause { get; set; }
         public int Number { get; set; }
         public string Url { get; set; }
         public string DisplayName { get; set; }
         public DateTime Time { get; set; }
-        public DateTime EstimatedDuration { get; set; }
+        public TimeSpan EstimatedDuration { get; set; }
         public ISet<string> Users { get; set; }
         public ClaimDetails ClaimDetails { get; set; }
     }

@@ -169,6 +169,7 @@
     <Compile Include="BusinessComponents\ClaimService.cs" />
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
+    <Compile Include="Entities\BuildCause.cs" />
     <Compile Include="Entities\Configuration.cs" />
     <Compile Include="Legacy\BusinessComponents\LegacyConfigurationService.cs" />
     <Compile Include="BusinessComponents\NotificationService.cs">

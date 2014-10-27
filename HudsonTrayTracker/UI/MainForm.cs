@@ -366,7 +366,37 @@ namespace Hudson.TrayTracker.UI
 
             private string FormatBuildDetailsAndSummary()
             {
-                return string.Empty;
+                string details = string.Empty;
+                // get a copy of the reference to avoid a race condition
+                BuildStatus projectStatus = Project.Status;
+
+                // get a copy of the reference to avoid a race condition
+                var lastBuild = Project.LastBuild;
+                if (lastBuild != null)
+                {
+                    TimeSpan progressts = DateTime.Now.Subtract(lastBuild.Time);
+                    if (projectStatus.IsInProgress)
+                    {
+                        details = lastBuild.EstimatedDuration + " - " + lastBuild.Cause.ShortDescription;
+                    }
+                    else
+                    {
+                        if (projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                        {
+                            details = projectStatus.Value.ToString() + ".";
+                            if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
+                            {
+                                details += " Broken by " + FormatUsers(lastBuild);
+                            }
+                        }
+                    }
+                    if (projectStatus.IsStuck)
+                    {
+                        details = "Most likely stuck. - " + lastBuild.Cause.ShortDescription;
+                    }
+                }
+
+                return details;
             }
 
             private string FormatBuildDetailsWithDisplayName(BuildDetails details)

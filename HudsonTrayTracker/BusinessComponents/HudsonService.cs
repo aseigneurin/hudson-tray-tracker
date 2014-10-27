@@ -150,7 +150,9 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
-            string cause = xml.SelectSingleNode("/*/action/cause[last()]/shortDescription").InnerText;
+            string causeShortDesc = xml.SelectSingleNode("/*/action/cause[last()]/shortDescription").InnerText;
+            XmlNode causeUpstreamProject = xml.SelectSingleNode("/*/action/cause[last()]/upstreamProject");
+            XmlNode causeUpstreamBuild = xml.SelectSingleNode("/*/action/cause[last()]/upstreamBuild");
             string number = xml.SelectSingleNode("/*/number").InnerText;
             string fullDisplayName = xml.SelectSingleNode("/*/fullDisplayName").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
@@ -160,8 +162,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             date = date.Add(ts);
-            TimeSpan durationts = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
-            DateTime duration = date.Add(durationts);
+            TimeSpan duration = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
 
             ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
@@ -171,6 +172,10 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             BuildDetails res = new BuildDetails();
+            BuildCause cause = new BuildCause();
+            cause.ShortDescription = causeShortDesc;
+            cause.UpstreamProject = causeUpstreamProject == null ? string.Empty : causeUpstreamProject.InnerText;
+            cause.UpstreamBuild = causeUpstreamBuild == null ? string.Empty : causeUpstreamBuild.InnerText;
             res.Cause = cause;
             res.Number = int.Parse(number);
             res.DisplayName = fullDisplayName;

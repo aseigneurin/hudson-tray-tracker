@@ -386,7 +386,7 @@ namespace Hudson.TrayTracker.UI
             // buildDetailsGridColumn
             // 
             this.buildDetailsGridColumn.AppearanceCell.Options.UseTextOptions = true;
-            this.buildDetailsGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.buildDetailsGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.buildDetailsGridColumn.Caption = "Details";
             this.buildDetailsGridColumn.FieldName = "buildDetailsStr";
             this.buildDetailsGridColumn.Name = "buildDetailsGridColumn";
