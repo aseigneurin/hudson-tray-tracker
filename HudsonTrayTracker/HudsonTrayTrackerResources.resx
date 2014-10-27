@@ -130,6 +130,9 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildDetails_Format_NumberDate" xml:space="preserve">
     <value>{0} ({1})</value>
   </data>
+  <data name="BuildDetails_Format_DisplayName_NumberDate" xml:space="preserve">
+    <value>{0} - {1} ({2})</value>
+  </data>
   <data name="BuildDetails_Format_NumberDateUsers" xml:space="preserve">
     <value>{0} ({1}, {2})</value>
   </data>
@@ -152,10 +155,10 @@ Do you want to download it now (the application will be closed)?</value>
     <value>Build failed</value>
   </data>
   <data name="BuildStatus_Failed_BuildInProgress" xml:space="preserve">
-    <value>Build failed. Build in progress.</value>
+    <value>Last build failed. Build in progress.</value>
   </data>
   <data name="BuildStatus_Failed_Stuck" xml:space="preserve">
-    <value>Build failed. Build is stuck.</value>
+    <value>Last build failed. Build is stuck.</value>
   </data>
   <data name="BuildStatus_Indeterminate" xml:space="preserve">
     <value>Indeterminate: no build done.</value>

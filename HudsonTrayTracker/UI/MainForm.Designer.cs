@@ -61,6 +61,8 @@ namespace Hudson.TrayTracker.UI
             this.repositoryItemPictureEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
             this.nameGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.urlGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.buildDetailsGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lastBuildGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastSuccessGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastSuccessUserGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lastFailureGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -310,6 +312,8 @@ namespace Hudson.TrayTracker.UI
             this.statusGridColumn,
             this.nameGridColumn,
             this.urlGridColumn,
+            this.buildDetailsGridColumn,
+            this.lastBuildGridColumn,
             this.lastSuccessGridColumn,
             this.lastSuccessUserGridColumn,
             this.lastFailureGridColumn,
@@ -377,9 +381,31 @@ namespace Hudson.TrayTracker.UI
             this.urlGridColumn.FieldName = "Url";
             this.urlGridColumn.Name = "urlGridColumn";
             this.urlGridColumn.OptionsColumn.AllowEdit = false;
-            this.urlGridColumn.Visible = true;
-            this.urlGridColumn.VisibleIndex = 2;
             this.urlGridColumn.Width = 157;
+            // 
+            // buildDetailsGridColumn
+            // 
+            this.buildDetailsGridColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.buildDetailsGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.buildDetailsGridColumn.Caption = "Details";
+            this.buildDetailsGridColumn.FieldName = "buildDetailsStr";
+            this.buildDetailsGridColumn.Name = "buildDetailsGridColumn";
+            this.buildDetailsGridColumn.OptionsColumn.AllowEdit = false;
+            this.buildDetailsGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
+            this.buildDetailsGridColumn.Width = 157;
+            // 
+            // lastBuildGridColumn
+            // 
+            this.lastBuildGridColumn.AppearanceCell.Options.UseTextOptions = true;
+            this.lastBuildGridColumn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.lastBuildGridColumn.Caption = "Last build";
+            this.lastBuildGridColumn.FieldName = "lastBuildStr";
+            this.lastBuildGridColumn.Name = "lastBuildGridColumn";
+            this.lastBuildGridColumn.OptionsColumn.AllowEdit = false;
+            this.lastBuildGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
+            this.lastBuildGridColumn.Visible = true;
+            this.lastBuildGridColumn.VisibleIndex = 2;
+            this.lastBuildGridColumn.Width = 157;
             // 
             // lastSuccessGridColumn
             // 
@@ -452,7 +478,7 @@ namespace Hudson.TrayTracker.UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainForm";
-            this.Text = "Hudson Tray Tracker";
+            this.Text = "Jenkins Tray Tracker";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
@@ -479,6 +505,8 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraGrid.Views.Grid.GridView projectsGridView;
         private DevExpress.XtraGrid.Columns.GridColumn nameGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn urlGridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn buildDetailsGridColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn lastBuildGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn lastSuccessGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn lastFailureGridColumn;
         private DevExpress.XtraGrid.Columns.GridColumn serverGridColumn;

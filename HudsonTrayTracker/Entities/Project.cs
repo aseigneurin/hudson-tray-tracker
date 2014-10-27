@@ -26,9 +26,22 @@ namespace Hudson.TrayTracker.Entities
                 return details.Status;
             }
         }
+
         public BuildStatusEnum StatusValue
         {
             get { return Status.Value; }
+        }
+
+        public BuildDetails LastBuild
+        {
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return null;
+                return details.LastBuild;
+            }
         }
 
         public BuildDetails LastSuccessfulBuild

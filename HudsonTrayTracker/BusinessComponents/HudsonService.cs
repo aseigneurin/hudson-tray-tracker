@@ -92,6 +92,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             xml.LoadXml(xmlStr);
 
             string status = xml.SelectSingleNode("/*/color").InnerText;
+            string lastBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastBuild/url");
             string lastCompletedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastCompletedBuild/url");
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
@@ -99,6 +100,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
+            res.LastBuild = GetBuildDetails(credentials, lastBuildUrl, ignoreUntrustedCertificate);
             res.LastCompletedBuild = GetBuildDetails(credentials, lastCompletedBuildUrl, ignoreUntrustedCertificate);
             res.LastSuccessfulBuild = GetBuildDetails(credentials, lastSuccessfulBuildUrl, ignoreUntrustedCertificate);
             res.LastFailedBuild = GetBuildDetails(credentials, lastFailedBuildUrl, ignoreUntrustedCertificate);
@@ -148,13 +150,18 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
+            string cause = xml.SelectSingleNode("/*/action/cause[last()]/shortDescription").InnerText;
             string number = xml.SelectSingleNode("/*/number").InnerText;
+            string fullDisplayName = xml.SelectSingleNode("/*/fullDisplayName").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
+            string estimatedDuration = xml.SelectSingleNode("/*/estimatedDuration").InnerText;
             XmlNodeList userNodes = xml.SelectNodes("/*/culprit/fullName");
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             date = date.Add(ts);
+            TimeSpan durationts = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
+            DateTime duration = date.Add(durationts);
 
             ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
@@ -164,8 +171,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             BuildDetails res = new BuildDetails();
+            res.Cause = cause;
             res.Number = int.Parse(number);
+            res.DisplayName = fullDisplayName;
             res.Time = date;
+            res.EstimatedDuration = duration;
             res.Users = users;
 
             ClaimService.FillInBuildDetails(res, xml);

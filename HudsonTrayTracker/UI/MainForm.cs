@@ -302,6 +302,21 @@ namespace Hudson.TrayTracker.UI
             {
                 get { return Uri.UnescapeDataString(Project.Url); }
             }
+
+            public string buildDetailsStr
+            {
+                get { return FormatBuildDetailsAndSummary(); }
+            }
+            public string lastBuildStr
+            {
+                get { return FormatBuildDetailsWithDisplayName(LastBuild); }
+            }
+
+            public BuildDetails LastBuild
+            {
+                get { return Project.LastBuild; }
+            }
+
             public BuildDetails LastSuccessBuild
             {
                 get { return Project.LastSuccessfulBuild; }
@@ -347,6 +362,31 @@ namespace Hudson.TrayTracker.UI
                         return "";
                     return Project.LastFailedBuild.ClaimDetails.Reason;
                 }
+            }
+
+            private string FormatBuildDetailsAndSummary()
+            {
+                return string.Empty;
+            }
+
+            private string FormatBuildDetailsWithDisplayName(BuildDetails details)
+            {
+                if (details == null)
+                    return "-";
+                string shortDisplayName = details.DisplayName.Replace(Project.Name, string.Empty).Trim();
+
+                string res = string.Empty;
+                if (shortDisplayName.Equals(string.Concat("#", details.Number.ToString())))
+                {
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_Format_NumberDate,
+                           details.Number.ToString(), details.Time.ToLocalTime());
+                }
+                else
+                {
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_Format_DisplayName_NumberDate,
+                           shortDisplayName, details.Number.ToString(), details.Time.ToLocalTime());
+                }
+                return res;
             }
 
             private string FormatBuildDetails(BuildDetails details)
