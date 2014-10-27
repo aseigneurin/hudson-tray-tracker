@@ -8,6 +8,7 @@ namespace Hudson.TrayTracker.Entities
     public enum BuildStatusEnum
     {
         Unknown,
+        Disabled,
         Aborted,
         Successful,
         Indeterminate,

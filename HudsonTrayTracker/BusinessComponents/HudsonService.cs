@@ -120,6 +120,8 @@ namespace Hudson.TrayTracker.BusinessComponents
                 value = BuildStatusEnum.Failed;
             else if (status.StartsWith("aborted"))
                 value = BuildStatusEnum.Aborted;
+            else if (status.StartsWith("disabled"))
+                value = BuildStatusEnum.Disabled;
             else
                 value = BuildStatusEnum.Unknown;
 

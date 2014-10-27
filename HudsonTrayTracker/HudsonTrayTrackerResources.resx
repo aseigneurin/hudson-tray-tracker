@@ -175,6 +175,15 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildStatus_Successful_Stuck" xml:space="preserve">
     <value>Successful. Build is stuck.</value>
   </data>
+  <data name="BuildStatus_Disabled" xml:space="preserve">
+    <value>Project disabled</value>
+  </data>
+  <data name="BuildStatus_Disabled_BuildInProgress" xml:space="preserve">
+    <value>Project disabled. Build in progress.</value>
+  </data>
+  <data name="BuildStatus_Disabled_Stuck" xml:space="preserve">
+    <value>Project disabled. Build is stuck.</value>
+  </data>
   <data name="BuildStatus_Unknown" xml:space="preserve">
     <value>Unknown status</value>
   </data>

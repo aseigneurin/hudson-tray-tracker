@@ -387,6 +387,10 @@
     <EmbeddedResource Include="Resources\TrayIcons\Unstable_BuildInProgress.ico" />
     <EmbeddedResource Include="Resources\StatusIcons\Aborted.gif" />
     <EmbeddedResource Include="Resources\StatusIcons\Unknown.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Disabled.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Disabled_Stuck.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Disabled.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Disabled_Stuck.ico" />
     <EmbeddedResource Include="UI\ClaimBuildForm.resx">
       <DependentUpon>ClaimBuildForm.cs</DependentUpon>
     </EmbeddedResource>

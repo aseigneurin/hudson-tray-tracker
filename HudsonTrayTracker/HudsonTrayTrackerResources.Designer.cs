@@ -233,6 +233,33 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project disabled.
+        /// </summary>
+        internal static string BuildStatus_Disabled {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project disabled. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Disabled_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project disabled. Build is stuck..
+        /// </summary>
+        internal static string BuildStatus_Disabled_Stuck {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled_Stuck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unknown status.
         /// </summary>
         internal static string BuildStatus_Unknown {
