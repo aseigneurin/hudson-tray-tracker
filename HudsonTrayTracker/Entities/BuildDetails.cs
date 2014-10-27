@@ -7,7 +7,7 @@ namespace Hudson.TrayTracker.Entities
 {
     public class BuildDetails
     {
-        public BuildCause Cause { get; set; }
+        public BuildCauses Causes { get; set; }
         public int Number { get; set; }
         public string Url { get; set; }
         public string DisplayName { get; set; }

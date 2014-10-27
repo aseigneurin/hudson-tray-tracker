@@ -377,7 +377,7 @@ namespace Hudson.TrayTracker.UI
                     TimeSpan progressts = DateTime.Now.Subtract(lastBuild.Time);
                     if (projectStatus.IsInProgress)
                     {
-                        details = lastBuild.EstimatedDuration + " - " + lastBuild.Cause.ShortDescription;
+                        details = lastBuild.EstimatedDuration + " - " + lastBuild.Causes.Summary;
                     }
                     else
                     {
@@ -392,7 +392,7 @@ namespace Hudson.TrayTracker.UI
                     }
                     if (projectStatus.IsStuck)
                     {
-                        details = "Most likely stuck. - " + lastBuild.Cause.ShortDescription;
+                        details = "Most likely stuck. - " + lastBuild.Causes.Summary;
                     }
                 }
 

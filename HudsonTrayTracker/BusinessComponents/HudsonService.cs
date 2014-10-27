@@ -150,9 +150,6 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
-            string causeShortDesc = xml.SelectSingleNode("/*/action/cause[last()]/shortDescription").InnerText;
-            XmlNode causeUpstreamProject = xml.SelectSingleNode("/*/action/cause[last()]/upstreamProject");
-            XmlNode causeUpstreamBuild = xml.SelectSingleNode("/*/action/cause[last()]/upstreamBuild");
             string number = xml.SelectSingleNode("/*/number").InnerText;
             string fullDisplayName = xml.SelectSingleNode("/*/fullDisplayName").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
@@ -172,11 +169,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
 
             BuildDetails res = new BuildDetails();
-            BuildCause cause = new BuildCause();
-            cause.ShortDescription = causeShortDesc;
-            cause.UpstreamProject = causeUpstreamProject == null ? string.Empty : causeUpstreamProject.InnerText;
-            cause.UpstreamBuild = causeUpstreamBuild == null ? string.Empty : causeUpstreamBuild.InnerText;
-            res.Cause = cause;
+            BuildCauses.FillInBuildCauses(res, xml);
             res.Number = int.Parse(number);
             res.DisplayName = fullDisplayName;
             res.Time = date;
