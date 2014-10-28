@@ -14,6 +14,7 @@ namespace Hudson.TrayTracker.Entities
         [JsonProperty("url")]
         public string Url { get; set; }
         public AllBuildDetails AllBuildDetails { get; set; }
+        public bool InQueue { get; set; }
 
         public BuildStatus Status
         {

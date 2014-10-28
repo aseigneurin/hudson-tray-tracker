@@ -36,7 +36,7 @@ namespace Hudson.TrayTracker
                 // skinning         
                 SkinManager.EnableFormSkins();
                 OfficeSkins.Register();
-                UserLookAndFeel.Default.ActiveLookAndFeel.SkinName = "Office 2007 Blue";
+                UserLookAndFeel.Default.ActiveLookAndFeel.SkinName = "Office 2010 Blue";
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

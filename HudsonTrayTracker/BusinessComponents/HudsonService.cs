@@ -91,6 +91,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             XmlDocument xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
+            bool? inQueue = XmlUtils.SelectSingleNodeBoolean(xml, "/*/inQueue");
             string status = xml.SelectSingleNode("/*/color").InnerText;
             string lastBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastBuild/url");
             string lastCompletedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastCompletedBuild/url");
@@ -98,6 +99,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
             bool? stuck = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/stuck");
 
+            project.InQueue = (inQueue.HasValue && inQueue.Value == true);
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
             res.LastBuild = GetBuildDetails(credentials, lastBuildUrl, ignoreUntrustedCertificate);

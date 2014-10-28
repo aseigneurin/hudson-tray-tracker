@@ -53,10 +53,10 @@ namespace Hudson.TrayTracker.Entities
                 if (causeShortDesc.StartsWith("Started by user"))
                 {
                     cause.Cause = BuildCauseEnum.User;
-                    var userId = causeNode["userId"];
-                    if (userId != null && userId.InnerText.Length > 0)
+                    var userName = causeNode["userName"];
+                    if (userName != null && userName.InnerText.Length > 0)
                     {
-                        cause.Starter = userId.InnerText.ToString();
+                        cause.Starter = userName.InnerText.ToString();
                     }
                 }
                 else if (causeShortDesc.StartsWith("Started by Timer", StringComparison.CurrentCultureIgnoreCase))
@@ -66,14 +66,23 @@ namespace Hudson.TrayTracker.Entities
                 else if (causeShortDesc.StartsWith("Started by Upstream Project", StringComparison.CurrentCultureIgnoreCase))
                 {
                     cause.Cause = BuildCauseEnum.UpstreamProject;
+                    var upstreamProject = causeNode["upstreamProject"];
+                    if (upstreamProject != null && upstreamProject.InnerText.Length > 0)
+                    {
+                        cause.Starter = upstreamProject.InnerText.ToString();
+                    }
                 }
                 else if (causeShortDesc.StartsWith("Started by an SCM change", StringComparison.CurrentCultureIgnoreCase))
                 {
                     cause.Cause = BuildCauseEnum.SCM;
                 }
-                else if (causeShortDesc.StartsWith("Started by Remote Host", StringComparison.CurrentCultureIgnoreCase))
+                else if (causeShortDesc.StartsWith("Started by remote host", StringComparison.CurrentCultureIgnoreCase))
                 {
                     cause.Cause = BuildCauseEnum.RemoteHost;
+                    string startedBy = @"Started by remote host ";
+                    string remoteHost = causeShortDesc.Remove(0, startedBy.Length);
+                    int index = remoteHost.IndexOf(" with note: ");
+                    cause.Starter = index > 0 ? remoteHost.Remove(index) : remoteHost; 
                 }
                 else
                 {
