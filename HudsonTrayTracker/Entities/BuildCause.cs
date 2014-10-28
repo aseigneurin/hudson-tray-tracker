@@ -42,16 +42,22 @@ namespace Hudson.TrayTracker.Entities
         public static void FillInBuildCauses(BuildDetails res, XmlDocument xml)
         {
             XmlNodeList causes = xml.SelectNodes("/*/action/cause");
+            res.Causes = new BuildCauses();
+
             foreach (XmlNode causeNode in causes)
             {
                 string causeShortDesc = causeNode["shortDescription"].InnerText;
                 BuildCause cause = new BuildCause();
                 cause.ShortDescription = causeShortDesc;
+
                 if (causeShortDesc.StartsWith("Started by user"))
                 {
                     cause.Cause = BuildCauseEnum.User;
                     var userId = causeNode["userId"];
-                    cause.Starter = userId != null ? userId.ToString() : "";
+                    if (userId != null && userId.InnerText.Length > 0)
+                    {
+                        cause.Starter = userId.InnerText.ToString();
+                    }
                 }
                 else if (causeShortDesc.StartsWith("Started by Timer", StringComparison.CurrentCultureIgnoreCase))
                 {
@@ -61,7 +67,7 @@ namespace Hudson.TrayTracker.Entities
                 {
                     cause.Cause = BuildCauseEnum.UpstreamProject;
                 }
-                else if (causeShortDesc.StartsWith("Started by SCM Changes", StringComparison.CurrentCultureIgnoreCase))
+                else if (causeShortDesc.StartsWith("Started by an SCM change", StringComparison.CurrentCultureIgnoreCase))
                 {
                     cause.Cause = BuildCauseEnum.SCM;
                 }

@@ -15,5 +15,6 @@ namespace Hudson.TrayTracker.Entities
         public TimeSpan EstimatedDuration { get; set; }
         public ISet<string> Users { get; set; }
         public ClaimDetails ClaimDetails { get; set; }
+        public string Details { get; set; }
     }
 }
