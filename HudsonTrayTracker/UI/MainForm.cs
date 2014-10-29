@@ -367,32 +367,76 @@ namespace Hudson.TrayTracker.UI
             private string FormatBuildDetailsAndSummary()
             {
                 string details = string.Empty;
-                // get a copy of the reference to avoid a race condition
-                BuildStatus projectStatus = Project.Status;
+                string buildCausesSummary = string.Empty;
 
                 // get a copy of the reference to avoid a race condition
-                var lastBuild = Project.LastBuild;
+                BuildStatus projectStatus = Project.Status;
+                BuildDetails lastBuild = Project.LastBuild;
+
                 if (lastBuild != null)
                 {
                     TimeSpan progressts = DateTime.Now.Subtract(lastBuild.Time);
-                    if (projectStatus.IsInProgress)
+                    // get a copy of the reference to avoid a race condition
+                    BuildCauses lastBuildCause = lastBuild.Causes;
+
+                    if (lastBuildCause != null)
                     {
-                        details = lastBuild.EstimatedDuration + " - " + lastBuild.Causes.Summary;
-                    }
-                    else
-                    {
-                        if (projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                        if (projectStatus.IsInProgress)
                         {
-                            details = projectStatus.Value.ToString() + ".";
-                            if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
+                            foreach (BuildCause cause in lastBuildCause.Causes)
                             {
-                                details += " Broken by " + FormatUsers(lastBuild);
+                                if (lastBuildCause.HasUniqueCauses == false)
+                                {
+                                    buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_MultipleSources);
+                                    break;
+                                }
+
+                                switch (cause.Cause)
+                                {
+                                    case BuildCauseEnum.SCM:
+                                        {
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Multiple);
+                                        }
+                                        break;
+                                    case BuildCauseEnum.User:
+                                        {
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_User);
+                                        }
+                                        break;
+                                    case BuildCauseEnum.RemoteHost:
+                                        {
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_RemoteHost);
+                                        }
+                                        break;
+                                    case BuildCauseEnum.Timer:
+                                        {
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_Timer);
+                                        }
+                                        break;
+                                    case BuildCauseEnum.UpstreamProject:
+                                        {
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_UpstreamProject);
+                                        }
+                                        break;
+                                }
+                            }
+                            details = lastBuild.EstimatedDuration + " - " + buildCausesSummary;
+                        }
+                        else
+                        {
+                            if (projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                            {
+                                details = projectStatus.Value.ToString() + ".";
+                                if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
+                                {
+                                    details += " Broken by " + FormatUsers(lastBuild);
+                                }
                             }
                         }
-                    }
-                    if (projectStatus.IsStuck)
-                    {
-                        details = "Most likely stuck. - " + lastBuild.Causes.Summary;
+                        if (projectStatus.IsStuck)
+                        {
+                            details = "Most likely stuck. - " + buildCausesSummary;
+                        }
                     }
                 }
 

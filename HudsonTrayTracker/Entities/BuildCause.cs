@@ -32,17 +32,20 @@ namespace Hudson.TrayTracker.Entities
     public class BuildCauses
     {
         public ISet<BuildCause> Causes;
-        public string Summary { get; set; }
+        public bool? HasUniqueCauses { get; set; }
 
         public BuildCauses()
         {
             Causes = new HashedSet<BuildCause>();
+            HasUniqueCauses = null;
         }
 
         public static void FillInBuildCauses(BuildDetails res, XmlDocument xml)
         {
             XmlNodeList causes = xml.SelectNodes("/*/action/cause");
             res.Causes = new BuildCauses();
+            res.Causes.HasUniqueCauses = null;
+            BuildCauseEnum causeEnum = BuildCauseEnum.Unknown;
 
             foreach (XmlNode causeNode in causes)
             {
@@ -87,6 +90,16 @@ namespace Hudson.TrayTracker.Entities
                 else
                 {
                     cause.Cause = BuildCauseEnum.Unknown;
+                }
+                if (res.Causes.HasUniqueCauses == null)
+                {
+                    causeEnum = cause.Cause;
+                    res.Causes.HasUniqueCauses = true;
+                }
+                else
+                {
+                    if (cause.Cause != causeEnum)
+                        res.Causes.HasUniqueCauses = false;
                 }
                 res.Causes.Causes.Add(cause);
             }

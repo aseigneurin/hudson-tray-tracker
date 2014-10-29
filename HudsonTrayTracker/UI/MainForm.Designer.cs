@@ -184,24 +184,28 @@ namespace Hudson.TrayTracker.UI
             // 
             // barDockControlTop
             // 
+            this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Size = new System.Drawing.Size(879, 26);
             // 
             // barDockControlBottom
             // 
+            this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControlBottom.Location = new System.Drawing.Point(0, 384);
             this.barDockControlBottom.Size = new System.Drawing.Size(879, 28);
             // 
             // barDockControlLeft
             // 
+            this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 358);
             // 
             // barDockControlRight
             // 
+            this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(879, 26);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 358);
@@ -332,9 +336,9 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridView.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.serverGridColumn, DevExpress.Data.ColumnSortOrder.Ascending),
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.nameGridColumn, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.projectsGridView.CustomColumnSort += new DevExpress.XtraGrid.Views.Base.CustomColumnSortEventHandler(this.projectsGridView_CustomColumnSort);
             this.projectsGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.projectsGridView_CustomUnboundColumnData);
             this.projectsGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.projectsGridView_MouseMove);
-            this.projectsGridView.CustomColumnSort += new DevExpress.XtraGrid.Views.Base.CustomColumnSortEventHandler(this.projectsGridView_CustomColumnSort);
             this.projectsGridView.DoubleClick += new System.EventHandler(this.projectsGridView_DoubleClick);
             // 
             // serverGridColumn
@@ -354,7 +358,7 @@ namespace Hudson.TrayTracker.UI
             this.statusGridColumn.UnboundType = DevExpress.Data.UnboundColumnType.Object;
             this.statusGridColumn.Visible = true;
             this.statusGridColumn.VisibleIndex = 0;
-            this.statusGridColumn.Width = 58;
+            this.statusGridColumn.Width = 50;
             // 
             // repositoryItemPictureEdit3
             // 
@@ -373,7 +377,7 @@ namespace Hudson.TrayTracker.UI
             this.nameGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.DisplayText;
             this.nameGridColumn.Visible = true;
             this.nameGridColumn.VisibleIndex = 1;
-            this.nameGridColumn.Width = 157;
+            this.nameGridColumn.Width = 137;
             // 
             // urlGridColumn
             // 
@@ -392,7 +396,9 @@ namespace Hudson.TrayTracker.UI
             this.buildDetailsGridColumn.Name = "buildDetailsGridColumn";
             this.buildDetailsGridColumn.OptionsColumn.AllowEdit = false;
             this.buildDetailsGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
-            this.buildDetailsGridColumn.Width = 157;
+            this.buildDetailsGridColumn.Visible = true;
+            this.buildDetailsGridColumn.VisibleIndex = 2;
+            this.buildDetailsGridColumn.Width = 200;
             // 
             // lastBuildGridColumn
             // 
@@ -404,8 +410,8 @@ namespace Hudson.TrayTracker.UI
             this.lastBuildGridColumn.OptionsColumn.AllowEdit = false;
             this.lastBuildGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             this.lastBuildGridColumn.Visible = true;
-            this.lastBuildGridColumn.VisibleIndex = 2;
-            this.lastBuildGridColumn.Width = 157;
+            this.lastBuildGridColumn.VisibleIndex = 3;
+            this.lastBuildGridColumn.Width = 121;
             // 
             // lastSuccessGridColumn
             // 
@@ -417,8 +423,8 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessGridColumn.OptionsColumn.AllowEdit = false;
             this.lastSuccessGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             this.lastSuccessGridColumn.Visible = true;
-            this.lastSuccessGridColumn.VisibleIndex = 3;
-            this.lastSuccessGridColumn.Width = 157;
+            this.lastSuccessGridColumn.VisibleIndex = 4;
+            this.lastSuccessGridColumn.Width = 121;
             // 
             // lastSuccessUserGridColumn
             // 
@@ -426,8 +432,7 @@ namespace Hudson.TrayTracker.UI
             this.lastSuccessUserGridColumn.FieldName = "LastSuccessUsers";
             this.lastSuccessUserGridColumn.Name = "lastSuccessUserGridColumn";
             this.lastSuccessUserGridColumn.OptionsColumn.AllowEdit = false;
-            this.lastSuccessUserGridColumn.Visible = true;
-            this.lastSuccessUserGridColumn.VisibleIndex = 4;
+            this.lastSuccessUserGridColumn.Width = 57;
             // 
             // lastFailureGridColumn
             // 
@@ -440,7 +445,7 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
             this.lastFailureGridColumn.Visible = true;
             this.lastFailureGridColumn.VisibleIndex = 5;
-            this.lastFailureGridColumn.Width = 161;
+            this.lastFailureGridColumn.Width = 124;
             // 
             // lastFailureUserGridColumn
             // 
@@ -450,6 +455,7 @@ namespace Hudson.TrayTracker.UI
             this.lastFailureUserGridColumn.OptionsColumn.AllowEdit = false;
             this.lastFailureUserGridColumn.Visible = true;
             this.lastFailureUserGridColumn.VisibleIndex = 6;
+            this.lastFailureUserGridColumn.Width = 65;
             // 
             // claimedByGridColumn
             // 
@@ -479,8 +485,8 @@ namespace Hudson.TrayTracker.UI
             this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "Jenkins Tray Tracker";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);

@@ -139,7 +139,6 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildDetails_UserSeparator" xml:space="preserve">
     <value>, </value>
   </data>
-
   <data name="BuildDetails_Cause_SCM_Single" xml:space="preserve">
     <value>Changes by {0}. </value>
   </data>
@@ -152,16 +151,15 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildDetails_Cause_User" xml:space="preserve">
     <value>Manual run by {0}. </value>
   </data>
-  <data name="BuildDetails_Cause_Upstream" xml:space="preserve">
+  <data name="BuildDetails_Cause_UpstreamProject" xml:space="preserve">
     <value>Started by upstream project. </value>
   </data>
-  <data name="BuildDetails_Cause_Remote" xml:space="preserve">
+  <data name="BuildDetails_Cause_RemoteHost" xml:space="preserve">
     <value>Started remotely. </value>
   </data>
   <data name="BuildDetails_Cause_MultipleSources" xml:space="preserve">
     <value>Started by multiple sources. </value>
   </data>
-
   <data name="BuildFailed_Caption" xml:space="preserve">
     <value>Build failed</value>
   </data>

@@ -87,29 +87,88 @@ namespace Hudson.TrayTracker {
                 return ResourceManager.GetString("ApplicationUpdates_NoUpdate_Text", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started by multiple sources. .
+        /// </summary>
+        internal static string BuildDetails_Cause_MultipleSources {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_MultipleSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started remotely. .
+        /// </summary>
+        internal static string BuildDetails_Cause_RemoteHost {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_RemoteHost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes by {0} persons. .
+        /// </summary>
+        internal static string BuildDetails_Cause_SCM_Multiple {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_SCM_Multiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes by {0}. .
+        /// </summary>
+        internal static string BuildDetails_Cause_SCM_Single {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_SCM_Single", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scheduled. .
+        /// </summary>
+        internal static string BuildDetails_Cause_Timer {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_Timer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started by upstream project. .
+        /// </summary>
+        internal static string BuildDetails_Cause_UpstreamProject {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_UpstreamProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual run by {0}. .
+        /// </summary>
+        internal static string BuildDetails_Cause_User {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_User", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} - {1} ({2}).
         /// </summary>
-        internal static string BuildDetails_Format_DisplayName_NumberDate
-        {
-            get
-            {
+        internal static string BuildDetails_Format_DisplayName_NumberDate {
+            get {
                 return ResourceManager.GetString("BuildDetails_Format_DisplayName_NumberDate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} ({1}).
         /// </summary>
-        internal static string BuildDetails_Format_NumberDate
-        {
-            get
-            {
+        internal static string BuildDetails_Format_NumberDate {
+            get {
                 return ResourceManager.GetString("BuildDetails_Format_NumberDate", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to {0} ({1}, {2}).
         /// </summary>
@@ -161,6 +220,33 @@ namespace Hudson.TrayTracker {
         internal static string BuildStatus_Aborted_Stuck {
             get {
                 return ResourceManager.GetString("BuildStatus_Aborted_Stuck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project disabled.
+        /// </summary>
+        internal static string BuildStatus_Disabled {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project disabled. Build in progress..
+        /// </summary>
+        internal static string BuildStatus_Disabled_BuildInProgress {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled_BuildInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project disabled. Build is stuck..
+        /// </summary>
+        internal static string BuildStatus_Disabled_Stuck {
+            get {
+                return ResourceManager.GetString("BuildStatus_Disabled_Stuck", resourceCulture);
             }
         }
         
@@ -242,33 +328,6 @@ namespace Hudson.TrayTracker {
         internal static string BuildStatus_Successful_Stuck {
             get {
                 return ResourceManager.GetString("BuildStatus_Successful_Stuck", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Project disabled.
-        /// </summary>
-        internal static string BuildStatus_Disabled {
-            get {
-                return ResourceManager.GetString("BuildStatus_Disabled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Project disabled. Build in progress..
-        /// </summary>
-        internal static string BuildStatus_Disabled_BuildInProgress {
-            get {
-                return ResourceManager.GetString("BuildStatus_Disabled_BuildInProgress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Project disabled. Build is stuck..
-        /// </summary>
-        internal static string BuildStatus_Disabled_Stuck {
-            get {
-                return ResourceManager.GetString("BuildStatus_Disabled_Stuck", resourceCulture);
             }
         }
         
