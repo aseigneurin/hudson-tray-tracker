@@ -305,7 +305,21 @@ namespace Hudson.TrayTracker.UI
 
             public string buildDetailsStr
             {
-                get { return FormatBuildDetailsAndSummary(); }
+                get
+                {
+                    string details = string.Empty;
+                    try
+                    {
+                        details = FormatBuildDetailsAndSummary();
+                    }
+                    catch (Exception ex)
+                    {
+                        LoggingHelper.LogError(logger, ex);
+                        XtraMessageBox.Show(string.Format(HudsonTrayTrackerResources.RunBuildFailed_Text, ex.Message),
+                            HudsonTrayTrackerResources.RunBuildFailed_Caption);
+                    }
+                    return details;
+                }
             }
             public string lastBuildStr
             {
@@ -375,17 +389,19 @@ namespace Hudson.TrayTracker.UI
 
                 if (lastBuild != null)
                 {
-                    TimeSpan progressts = DateTime.Now.Subtract(lastBuild.Time);
                     // get a copy of the reference to avoid a race condition
-                    BuildCauses lastBuildCause = lastBuild.Causes;
+                    BuildCauses lastBuildCauses = lastBuild.Causes;
 
-                    if (lastBuildCause != null)
+                    if (lastBuildCauses != null)
                     {
                         if (projectStatus.IsInProgress)
                         {
-                            foreach (BuildCause cause in lastBuildCause.Causes)
+                            TimeSpan progressts = lastBuild.EstimatedDuration;
+                            string timeleft = FormatEstimatedDuration(lastBuild);
+
+                            foreach (BuildCause cause in lastBuildCauses.Causes)
                             {
-                                if (lastBuildCause.HasUniqueCauses == false)
+                                if (lastBuildCauses.HasUniqueCauses == false)
                                 {
                                     buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_MultipleSources);
                                     break;
@@ -395,7 +411,9 @@ namespace Hudson.TrayTracker.UI
                                 {
                                     case BuildCauseEnum.SCM:
                                         {
-                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Multiple);
+                                            buildCausesSummary = lastBuild.Users.Count > 1 ? 
+                                                string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Multiple, lastBuild.Users.Count) : 
+                                                string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Single, FormatUsers(lastBuild));
                                         }
                                         break;
                                     case BuildCauseEnum.User:
@@ -420,7 +438,7 @@ namespace Hudson.TrayTracker.UI
                                         break;
                                 }
                             }
-                            details = lastBuild.EstimatedDuration + " - " + buildCausesSummary;
+                            details = timeleft + buildCausesSummary;
                         }
                         else
                         {
@@ -431,6 +449,10 @@ namespace Hudson.TrayTracker.UI
                                 {
                                     details += " Broken by " + FormatUsers(lastBuild);
                                 }
+                            }
+                            else
+                            {
+                                details = FormatDuration(lastBuild);
                             }
                         }
                         if (projectStatus.IsStuck)
@@ -471,11 +493,55 @@ namespace Hudson.TrayTracker.UI
                        details.Number, details.Time.ToLocalTime());
                 return res;
             }
+
             private string FormatUsers(BuildDetails details)
             {
                 if (details == null)
                     return "-";
                 string res = StringUtils.Join(details.Users, HudsonTrayTrackerResources.BuildDetails_UserSeparator);
+                return res;
+            }
+
+            private string FormatDuration(BuildDetails details)
+            {
+                if (details == null)
+                    return string.Empty;
+                string res = string.Empty;
+                if (details.Duration.TotalHours > 1)
+                {
+                    res = string.Format("Took {0:D1} hour(s) {1:D1} minutes. ", details.Duration.Days * 24 + details.Duration.Hours, details.Duration.Minutes);
+                }
+                else if (details.Duration.TotalHours > 0)
+                {
+                    res = string.Format("Took {1:D1} minutes. ", details.Duration.Days * 24 + details.Duration.Hours, details.Duration.Minutes);
+                }
+                else
+                {
+                    res = string.Empty;
+                }
+                return res;
+            }
+
+            private string FormatEstimatedDuration(BuildDetails details)
+            {
+                if (details == null)
+                    return string.Empty;
+                string res = string.Empty;
+                DateTime endtime = details.Time.Add(details.EstimatedDuration);
+                TimeSpan timeleft = TimeSpan.FromTicks(endtime.Subtract(DateTime.UtcNow).Ticks);
+
+                if (timeleft.TotalHours >= 2)
+                {
+                    res = string.Format("{0:D1} hour(s) {1:D1} minutes remaining. ", timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
+                }
+                else if (timeleft.TotalHours < 0)
+                {
+                    res = string.Format("-{0:D1} hours {1:D1} minutes overtime. ", timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
+                }
+                else
+                {
+                    res = string.Format("{0:D1} minutes remaining. ", timeleft.Minutes);
+                }
                 return res;
             }
         }
@@ -676,6 +742,8 @@ namespace Hudson.TrayTracker.UI
                 return projectWrapper.LastSuccessBuild;
             if (column == lastFailureGridColumn)
                 return projectWrapper.LastFailureBuild;
+            if (column == lastBuildGridColumn)
+                return projectWrapper.LastBuild;
             throw new Exception("Column not supported: " + column.Caption);
         }
 

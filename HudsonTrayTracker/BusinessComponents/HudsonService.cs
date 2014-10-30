@@ -156,12 +156,14 @@ namespace Hudson.TrayTracker.BusinessComponents
             string fullDisplayName = xml.SelectSingleNode("/*/fullDisplayName").InnerText;
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
             string estimatedDuration = xml.SelectSingleNode("/*/estimatedDuration").InnerText;
+            string duration = xml.SelectSingleNode("/*/duration").InnerText;
             XmlNodeList userNodes = xml.SelectNodes("/*/culprit/fullName");
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
             DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             date = date.Add(ts);
-            TimeSpan duration = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
+            TimeSpan estimatedts = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
+            TimeSpan durationts = TimeSpan.FromSeconds(long.Parse(estimatedDuration) / 1000);
 
             ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
@@ -175,7 +177,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Number = int.Parse(number);
             res.DisplayName = fullDisplayName;
             res.Time = date;
-            res.EstimatedDuration = duration;
+            res.EstimatedDuration = estimatedts;
+            res.Duration = durationts;
             res.Users = users;
 
             ClaimService.FillInBuildDetails(res, xml);
