@@ -160,6 +160,24 @@ Do you want to download it now (the application will be closed)?</value>
   <data name="BuildDetails_Cause_MultipleSources" xml:space="preserve">
     <value>Started by multiple sources. </value>
   </data>
+  <data name="BuildDetails_EstimatedDuration_HHMM_Remaining" xml:space="preserve">
+    <value>{0:D1} hour(s) {1:D1} minutes remaining. </value>
+  </data>
+  <data name="BuildDetails_EstimatedDuration_MM_Remaining" xml:space="preserve">
+    <value>{0:D1} minutes remaining. </value>
+  </data>
+  <data name="BuildDetails_EstimatedDuration_HHMM_LongerThanUsual" xml:space="preserve">
+    <value>{0:D1} hours {1:D1} minutes longer than usual. </value>
+  </data>
+  <data name="BuildDetails_EstimatedDuration_MM_LongerThanUsual" xml:space="preserve">
+    <value>{0:D1} minutes longer than usual. </value>
+  </data>
+  <data name="BuildDetails_Duration_HHMM" xml:space="preserve">
+    <value>Took {0:D1} hour(s) {1:D1} minutes. </value>
+  </data>
+  <data name="BuildDetails_Duration_MM" xml:space="preserve">
+    <value>Took {1:D1} minutes. </value>
+  </data>
   <data name="BuildFailed_Caption" xml:space="preserve">
     <value>Build failed</value>
   </data>

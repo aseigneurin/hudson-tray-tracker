@@ -96,6 +96,60 @@ namespace Hudson.TrayTracker {
                 return ResourceManager.GetString("BuildDetails_Cause_MultipleSources", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to {0:D1} hour(s) {1:D1} minutes remaining.
+        /// </summary>
+        internal static string BuildDetails_EstimatedDuration_HHMM_Remaining {
+            get {
+                return ResourceManager.GetString("BuildDetails_EstimatedDuration_HHMM_Remaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:D1} minutes remaining.
+        /// </summary>
+        internal static string BuildDetails_EstimatedDuration_MM_Remaining {
+            get {
+                return ResourceManager.GetString("BuildDetails_EstimatedDuration_MM_Remaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:D1} hours {1:D1} minutes longer than usual.
+        /// </summary>
+        internal static string BuildDetails_EstimatedDuration_HHMM_LongerThanUsual {
+            get {
+                return ResourceManager.GetString("BuildDetails_EstimatedDuration_HHMM_LongerThanUsual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0:D1} minutes longer than usual.
+        /// </summary>
+        internal static string BuildDetails_EstimatedDuration_MM_LongerThanUsual {
+            get {
+                return ResourceManager.GetString("BuildDetails_EstimatedDuration_MM_LongerThanUsual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Took {0:D1} hour(s) {1:D1} minutes.
+        /// </summary>
+        internal static string BuildDetails_Duration_HHMM {
+            get {
+                return ResourceManager.GetString("BuildDetails_Duration_HHMM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Took {1:D1} minutes.
+        /// </summary>
+        internal static string BuildDetails_Duration_MM {
+            get {
+                return ResourceManager.GetString("BuildDetails_Duration_MM", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Started remotely. .

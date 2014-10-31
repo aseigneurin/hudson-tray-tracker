@@ -418,7 +418,7 @@ namespace Hudson.TrayTracker.UI
                                         break;
                                     case BuildCauseEnum.User:
                                         {
-                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_User);
+                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_User, cause.Starter);
                                         }
                                         break;
                                     case BuildCauseEnum.RemoteHost:
@@ -534,9 +534,13 @@ namespace Hudson.TrayTracker.UI
                 {
                     res = string.Format("{0:D1} hour(s) {1:D1} minutes remaining. ", timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
                 }
+                else if (timeleft.TotalHours < -1)
+                {
+                    res = string.Format("{0:D1} hours {1:D1} minutes longer than usual. ", Math.Abs(timeleft.Days * 24 + timeleft.Hours), Math.Abs(timeleft.Minutes));
+                }
                 else if (timeleft.TotalHours < 0)
                 {
-                    res = string.Format("-{0:D1} hours {1:D1} minutes overtime. ", timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
+                    res = string.Format("{0:D1} minutes longer than usual. ", Math.Abs(timeleft.Minutes));
                 }
                 else
                 {
