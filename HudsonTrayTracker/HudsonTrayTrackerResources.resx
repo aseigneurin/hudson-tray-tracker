@@ -176,7 +176,7 @@ Do you want to download it now (the application will be closed)?</value>
     <value>Took {0:D1} hour(s) {1:D1} minutes. </value>
   </data>
   <data name="BuildDetails_Duration_MM" xml:space="preserve">
-    <value>Took {1:D1} minutes. </value>
+    <value>Took {0:D1} minutes. </value>
   </data>
   <data name="BuildFailed_Caption" xml:space="preserve">
     <value>Build failed</value>
@@ -305,5 +305,8 @@ The application will now be closed.</value>
   </data>
   <data name="Version_Format" xml:space="preserve">
     <value>Version {0}</value>
+  </data>
+  <data name="BuildDetails_Duration_0M" xml:space="preserve">
+    <value>Took less than a minute. </value>
   </data>
 </root>

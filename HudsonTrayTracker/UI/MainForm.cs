@@ -509,15 +509,17 @@ namespace Hudson.TrayTracker.UI
                 string res = string.Empty;
                 if (details.Duration.TotalHours > 1)
                 {
-                    res = string.Format("Took {0:D1} hour(s) {1:D1} minutes. ", details.Duration.Days * 24 + details.Duration.Hours, details.Duration.Minutes);
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_Duration_HHMM, 
+                        details.Duration.Days * 24 + details.Duration.Hours, details.Duration.Minutes);
                 }
-                else if (details.Duration.TotalHours > 0)
+                else if (details.Duration.TotalMinutes < 1)
                 {
-                    res = string.Format("Took {1:D1} minutes. ", details.Duration.Days * 24 + details.Duration.Hours, details.Duration.Minutes);
+                    res = HudsonTrayTrackerResources.BuildDetails_Duration_0M;
                 }
                 else
                 {
-                    res = string.Empty;
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_Duration_MM,
+                        Math.Max(details.Duration.Minutes, 1));
                 }
                 return res;
             }
@@ -532,19 +534,23 @@ namespace Hudson.TrayTracker.UI
 
                 if (timeleft.TotalHours >= 2)
                 {
-                    res = string.Format("{0:D1} hour(s) {1:D1} minutes remaining. ", timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_EstimatedDuration_HHMM_Remaining, 
+                        timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
                 }
                 else if (timeleft.TotalHours < -1)
                 {
-                    res = string.Format("{0:D1} hours {1:D1} minutes longer than usual. ", Math.Abs(timeleft.Days * 24 + timeleft.Hours), Math.Abs(timeleft.Minutes));
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_EstimatedDuration_HHMM_LongerThanUsual, 
+                        Math.Abs(timeleft.Days * 24 + timeleft.Hours), Math.Abs(timeleft.Minutes));
                 }
                 else if (timeleft.TotalHours < 0)
                 {
-                    res = string.Format("{0:D1} minutes longer than usual. ", Math.Abs(timeleft.Minutes));
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_EstimatedDuration_MM_LongerThanUsual, 
+                        Math.Abs(timeleft.Minutes));
                 }
                 else
                 {
-                    res = string.Format("{0:D1} minutes remaining. ", timeleft.Minutes);
+                    res = string.Format(HudsonTrayTrackerResources.BuildDetails_EstimatedDuration_MM_Remaining, 
+                        timeleft.Minutes);
                 }
                 return res;
             }
