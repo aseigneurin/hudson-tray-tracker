@@ -411,9 +411,19 @@ namespace Hudson.TrayTracker.UI
                                 {
                                     case BuildCauseEnum.SCM:
                                         {
-                                            buildCausesSummary = lastBuild.Users.Count > 1 ? 
-                                                string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Multiple, lastBuild.Users.Count) : 
-                                                string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Single, FormatUsers(lastBuild));
+                                            if (lastBuild.Users.Count == 0)
+                                            {
+                                                buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Unknown;
+                                            }
+                                            else if (lastBuild.Users.Count > 1)
+                                            {
+                                                buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Multiple, lastBuild.Users.Count);
+                                            }
+                                            else
+                                            {
+                                                buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Single, FormatUsers(lastBuild));
+                                            }
+                                            
                                         }
                                         break;
                                     case BuildCauseEnum.User:
@@ -444,11 +454,15 @@ namespace Hudson.TrayTracker.UI
                         {
                             if (projectStatus.Value >= BuildStatusEnum.Indeterminate)
                             {
-                                details = projectStatus.Value.ToString() + ".";
+                                details = projectStatus.Value.ToString() + ". ";
                                 if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
                                 {
-                                    details += " Broken by " + FormatUsers(lastBuild);
+                                    details += string.Format(HudsonTrayTrackerResources.BuildDetails_BrokenBy, FormatUsers(lastBuild));
                                 }
+                            }
+                            else if (projectStatus.Value == BuildStatusEnum.Disabled)
+                            {
+                                details = string.Format("{0}. ", HudsonTrayTrackerResources.BuildStatus_Disabled);
                             }
                             else
                             {
@@ -532,7 +546,7 @@ namespace Hudson.TrayTracker.UI
                 DateTime endtime = details.Time.Add(details.EstimatedDuration);
                 TimeSpan timeleft = TimeSpan.FromTicks(endtime.Subtract(DateTime.UtcNow).Ticks);
 
-                if (timeleft.TotalHours >= 2)
+                if (timeleft.TotalHours >= 1)
                 {
                     res = string.Format(HudsonTrayTrackerResources.BuildDetails_EstimatedDuration_HHMM_Remaining, 
                         timeleft.Days * 24 + timeleft.Hours, timeleft.Minutes);
