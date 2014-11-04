@@ -323,7 +323,7 @@ namespace Hudson.TrayTracker.UI
             }
             public string lastBuildStr
             {
-                get { return FormatBuildDetailsWithDisplayName(LastBuild); }
+                get { return FormatBuildDetails(LastBuild); }
             }
 
             public BuildDetails LastBuild
@@ -452,13 +452,9 @@ namespace Hudson.TrayTracker.UI
                         }
                         else
                         {
-                            if (projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                            if (projectStatus.Value == BuildStatusEnum.Successful)
                             {
-                                details = projectStatus.Value.ToString() + ". ";
-                                if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
-                                {
-                                    details += string.Format(HudsonTrayTrackerResources.BuildDetails_BrokenBy, FormatUsers(lastBuild));
-                                }
+                                details = FormatDuration(lastBuild);
                             }
                             else if (projectStatus.Value == BuildStatusEnum.Disabled)
                             {
@@ -466,7 +462,11 @@ namespace Hudson.TrayTracker.UI
                             }
                             else
                             {
-                                details = FormatDuration(lastBuild);
+                                details = projectStatus.Value.ToString() + ". ";
+                                if (lastBuild.Users != null && !lastBuild.Users.IsEmpty)
+                                {
+                                    details += string.Format(HudsonTrayTrackerResources.BuildDetails_BrokenBy, FormatUsers(lastBuild));
+                                }
                             }
                         }
                         if (projectStatus.IsStuck)
