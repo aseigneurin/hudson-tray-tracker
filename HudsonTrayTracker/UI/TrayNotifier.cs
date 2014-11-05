@@ -20,6 +20,7 @@ namespace Hudson.TrayTracker.UI
     public partial class TrayNotifier : Component
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        public static int Max_Tooltip_Length = 63;
 
         public static TrayNotifier Instance
         {
@@ -200,6 +201,7 @@ namespace Hudson.TrayTracker.UI
             bool buildIsStuck = false;
             var errorProjects = new HashedSet<Project>();
             var regressingProjects = new HashedSet<Project>();
+            var progressingAndErrorProjects = new HashedSet<Project>();
 
             foreach (Server server in ConfigurationService.Servers)
             {
@@ -209,9 +211,15 @@ namespace Hudson.TrayTracker.UI
                     if (worstBuildStatus == null || status.Value > worstBuildStatus)
                         worstBuildStatus = status.Value;
                     if (status.Value >= BuildStatusEnum.Failed)
+                    {
                         errorProjects.Add(project);
+                        progressingAndErrorProjects.Add(project);
+                    }
                     if (status.IsInProgress)
+                    {
                         buildInProgress = true;
+                        progressingAndErrorProjects.Add(project);
+                    }
                     if (status.IsStuck)
                         buildIsStuck = true;
                     if (IsRegressing(project))
@@ -235,6 +243,7 @@ namespace Hudson.TrayTracker.UI
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
+            UpdateTrayTooltip(progressingAndErrorProjects);
 
             lastBuildStatus = buildStatus;
         }
@@ -269,6 +278,43 @@ namespace Hudson.TrayTracker.UI
 
             bool res = BuildStatusUtils.IsWorse(newBuildDetails.Status, lastBuildDetails.Status);
             return res;
+        }
+
+        private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects)
+        {
+            if (progressingAndErrorProjects != null && progressingAndErrorProjects.Count > 0)
+            {
+                StringBuilder tooltipText = new StringBuilder();
+                string prefix = null;
+                foreach (Project project in progressingAndErrorProjects)
+                {
+                    if (prefix != null)
+                        tooltipText.Append(prefix);
+                    BuildStatus status = GetProjectStatus(project);
+                    BuildDetails buildDetails = project.LastBuild;
+                    if ((status.IsInProgress) && (status.Value == BuildStatusEnum.Failed))
+                    {
+                        tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_Failed_And_InProgress, project.Name));
+                    }
+                    else if (status.Value == BuildStatusEnum.Failed)
+                    {
+                        tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_Failed, project.Name));
+                    }
+                    else if (status.IsInProgress)
+                    {
+                        tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_InProgress, project.Name));
+                    }
+                    prefix = "\n";
+                    if (tooltipText.ToString().Length > Max_Tooltip_Length)
+                        break;
+                }
+                prefix = tooltipText.ToString();
+                if (prefix.Length > Max_Tooltip_Length)
+                {
+                    prefix = prefix.Remove(Max_Tooltip_Length - 4) + " ...";
+                }
+                notifyIcon.Text = prefix;
+            }
         }
 
         private void UpdateBalloonTip(ICollection<Project> errorProjects, ICollection<Project> regressingProjects)
