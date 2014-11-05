@@ -288,6 +288,11 @@ namespace Hudson.TrayTracker.UI
                 string prefix = null;
                 foreach (Project project in progressingAndErrorProjects)
                 {
+                    lock (acknowledgedStatusByProject)
+                    {
+                        if (acknowledgedStatusByProject.ContainsKey(project))
+                            continue;
+                    }
                     if (prefix != null)
                         tooltipText.Append(prefix);
                     BuildStatus status = GetProjectStatus(project);
