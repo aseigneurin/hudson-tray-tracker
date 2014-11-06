@@ -315,13 +315,16 @@ The application will now be closed.</value>
   <data name="BuildDetails_BrokenBy" xml:space="preserve">
     <value>Broken by {0}. </value>
   </data>
-  <data name="Tooltip_Failed" xml:space="preserve">
-    <value>{0}: Failed.</value>
+  <data name="Tooltip_BuildStatus" xml:space="preserve">
+    <value>{0}: {1}.</value>
   </data>
   <data name="Tooltip_Failed_And_InProgress" xml:space="preserve">
     <value>{0}: Failed and in progress.</value>
   </data>
   <data name="Tooltip_InProgress" xml:space="preserve">
     <value>{0}: In progress.</value>
+  </data>
+  <data name="Tooltip_AllGood" xml:space="preserve">
+    <value>All builds are good.</value>
   </data>
 </root>

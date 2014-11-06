@@ -211,10 +211,9 @@ namespace Hudson.TrayTracker.UI
                     if (worstBuildStatus == null || status.Value > worstBuildStatus)
                         worstBuildStatus = status.Value;
                     if (status.Value >= BuildStatusEnum.Failed)
-                    {
                         errorProjects.Add(project);
+                    if (status.Value > BuildStatusEnum.Successful)
                         progressingAndErrorProjects.Add(project);
-                    }
                     if (status.IsInProgress)
                     {
                         buildInProgress = true;
@@ -282,10 +281,11 @@ namespace Hudson.TrayTracker.UI
 
         private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects)
         {
+            StringBuilder tooltipText = new StringBuilder();
+            string prefix = null;
+
             if (progressingAndErrorProjects != null && progressingAndErrorProjects.Count > 0)
             {
-                StringBuilder tooltipText = new StringBuilder();
-                string prefix = null;
                 foreach (Project project in progressingAndErrorProjects)
                 {
                     lock (acknowledgedStatusByProject)
@@ -301,25 +301,29 @@ namespace Hudson.TrayTracker.UI
                     {
                         tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_Failed_And_InProgress, project.Name));
                     }
-                    else if (status.Value == BuildStatusEnum.Failed)
-                    {
-                        tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_Failed, project.Name));
-                    }
                     else if (status.IsInProgress)
                     {
                         tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_InProgress, project.Name));
+                    }
+                    else
+                    {
+                        tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_BuildStatus, project.Name, status.Value.ToString()));
                     }
                     prefix = "\n";
                     if (tooltipText.ToString().Length > Max_Tooltip_Length)
                         break;
                 }
-                prefix = tooltipText.ToString();
-                if (prefix.Length > Max_Tooltip_Length)
-                {
-                    prefix = prefix.Remove(Max_Tooltip_Length - 4) + " ...";
-                }
-                notifyIcon.Text = prefix;
             }
+            else
+            {
+                tooltipText.Append(HudsonTrayTrackerResources.Tooltip_AllGood);
+            }
+            prefix = tooltipText.ToString();
+            if (prefix.Length > Max_Tooltip_Length)
+            {
+                prefix = prefix.Remove(Max_Tooltip_Length - 4) + " ...";
+            }
+            notifyIcon.Text = prefix;
         }
 
         private void UpdateBalloonTip(ICollection<Project> errorProjects, ICollection<Project> regressingProjects)
