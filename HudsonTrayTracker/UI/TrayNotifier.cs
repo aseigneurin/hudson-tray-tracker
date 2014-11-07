@@ -34,6 +34,7 @@ namespace Hudson.TrayTracker.UI
         BuildStatus lastBuildStatus;
         IDictionary<Project, AllBuildDetails> lastProjectsBuildDetails = new Dictionary<Project, AllBuildDetails>();
         IDictionary<Project, BuildStatus> acknowledgedStatusByProject = new Dictionary<Project, BuildStatus>();
+        ISet<Project> acknowledgedProjects = new HashedSet<Project>();
         IDictionary<string, Icon> iconsByKey;
 
         public ConfigurationService ConfigurationService { get; set; }
@@ -430,6 +431,33 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine(e.Clicks);
         }
 
+        public void AcknowledgeProject(Project project)
+        {
+            lock (acknowledgedProjects)
+            {
+                acknowledgedProjects.Add(project);
+            }
+        }
+
+        public void UnacknowledgeProject(Project project)
+        {
+            lock (acknowledgedProjects)
+            {
+                if (acknowledgedProjects.Contains(project))
+                    acknowledgedProjects.Remove(project);
+            }
+        }
+
+        public bool IsProjectAcknowledged(Project project)
+        {
+            bool isAcknowledged = false;
+            lock (acknowledgedProjects)
+            {
+                isAcknowledged = acknowledgedProjects.Contains(project);
+            }
+            return isAcknowledged;
+        }
+
         public void AcknowledgeStatus(Project project, BuildStatus currentStatus)
         {
             lock (acknowledgedStatusByProject)
@@ -459,7 +487,7 @@ namespace Hudson.TrayTracker.UI
             return status;
         }
 
-        public bool IsAcknowledged(Project project)
+        public bool IsStatusAcknowledged(Project project)
         {
             lock (acknowledgedStatusByProject)
             {

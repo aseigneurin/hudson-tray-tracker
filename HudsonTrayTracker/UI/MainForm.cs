@@ -643,12 +643,22 @@ namespace Hudson.TrayTracker.UI
 
         private void acknowledgeMenuItem_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             Project project = GetSelectedProject();
             if (project == null)
                 return;
-            BuildStatus projectStatus = project.Status;
-            if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
-                TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
+
+            if (menuItem.Checked)
+            {
+                TrayNotifier.Instance.ClearAcknowledgedStatus(project);
+            }
+            else
+            {
+                BuildStatus projectStatus = project.Status;
+                if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                    TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
+            }
+            menuItem.Checked = !menuItem.Checked;
         }
 
         private void stopAcknowledgingMenuItem_Click(object sender, EventArgs e)
@@ -680,7 +690,7 @@ namespace Hudson.TrayTracker.UI
             BuildStatus projectStatus = project.Status;
 
             acknowledgeMenuItem.Enabled = projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate;
-            stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
+            stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsStatusAcknowledged(project);
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
             if (shouldOpenConsolePage)
@@ -821,6 +831,33 @@ namespace Hudson.TrayTracker.UI
                 claimedByGridColumn.Visible = false;
                 claimReasonGridColumn.Visible = false;
             }
+        }
+
+        private void acknowledgeAlwaysMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+
+            if (menuItem.Checked)
+            {
+                acknowledgeMenuItem.Enabled = true;
+                TrayNotifier.Instance.ClearAcknowledgedStatus(project);
+            }
+            else
+            {
+                acknowledgeMenuItem.Enabled = false;
+                if (!acknowledgeMenuItem.Checked)
+                {
+                    BuildStatus projectStatus = project.Status;
+                    if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                        TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
+
+                }
+                //acknowledgeMenuItem_Click(acknowledgeMenuItem, null);
+            }
+            menuItem.Checked = !menuItem.Checked;
         }
     }
 }

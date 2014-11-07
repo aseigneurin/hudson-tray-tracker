@@ -51,6 +51,7 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.acknowledgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopAcknowledgingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acknowledgeAlwaysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.claimBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -233,6 +234,7 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator1,
             this.acknowledgeMenuItem,
             this.stopAcknowledgingMenuItem,
+            this.acknowledgeAlwaysMenuItem,
             this.toolStripSeparator2,
             this.claimBuildMenuItem,
             this.toolStripSeparator3,
@@ -281,7 +283,15 @@ namespace Hudson.TrayTracker.UI
             this.stopAcknowledgingMenuItem.Name = "stopAcknowledgingMenuItem";
             this.stopAcknowledgingMenuItem.Size = new System.Drawing.Size(229, 22);
             this.stopAcknowledgingMenuItem.Text = "Stop acknowledging";
+            this.stopAcknowledgingMenuItem.Visible = false;
             this.stopAcknowledgingMenuItem.Click += new System.EventHandler(this.stopAcknowledgingMenuItem_Click);
+            // 
+            // acknowledgeAlwaysMenuItem
+            // 
+            this.acknowledgeAlwaysMenuItem.Name = "acknowledgeAlwaysMenuItem";
+            this.acknowledgeAlwaysMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.acknowledgeAlwaysMenuItem.Text = "Acknowledge - Always!";
+            this.acknowledgeAlwaysMenuItem.Click += new System.EventHandler(this.acknowledgeAlwaysMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -538,5 +548,6 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraGrid.Columns.GridColumn claimReasonGridColumn;
         private System.Windows.Forms.ToolStripMenuItem claimBuildMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem acknowledgeAlwaysMenuItem;
     }
 }
