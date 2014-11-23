@@ -680,8 +680,8 @@ namespace Hudson.TrayTracker.UI
                     = openConsolePageMenuItem.Enabled
                     = runBuildMenuItem.Enabled
                     = acknowledgeMenuItem.Enabled
-                    = stopAcknowledgingMenuItem.Enabled
                     = claimBuildMenuItem.Enabled
+                    = acknowledgeAlwaysMenuItem.Enabled
                     = false;
                 return;
             }
@@ -689,8 +689,16 @@ namespace Hudson.TrayTracker.UI
             // get a copy of the reference to avoid a race condition
             BuildStatus projectStatus = project.Status;
 
-            acknowledgeMenuItem.Enabled = projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate;
-            stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsStatusAcknowledged(project);
+            acknowledgeAlwaysMenuItem.Checked = project.IsAcknowledged;
+            acknowledgeMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);
+            if (acknowledgeAlwaysMenuItem.Checked)
+            {
+                acknowledgeMenuItem.Enabled = false;
+            }
+            else
+            {
+                acknowledgeMenuItem.Enabled = ( projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate );
+            }
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
             if (shouldOpenConsolePage)
@@ -840,24 +848,8 @@ namespace Hudson.TrayTracker.UI
             if (project == null)
                 return;
 
-            if (menuItem.Checked)
-            {
-                acknowledgeMenuItem.Enabled = true;
-                TrayNotifier.Instance.ClearAcknowledgedStatus(project);
-            }
-            else
-            {
-                acknowledgeMenuItem.Enabled = false;
-                if (!acknowledgeMenuItem.Checked)
-                {
-                    BuildStatus projectStatus = project.Status;
-                    if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
-                        TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
-
-                }
-                //acknowledgeMenuItem_Click(acknowledgeMenuItem, null);
-            }
-            menuItem.Checked = !menuItem.Checked;
+            menuItem.Checked = project.IsAcknowledged = !menuItem.Checked;
+            TrayNotifier.Instance.AcknowledgedProject();
         }
     }
 }

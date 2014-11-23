@@ -9,10 +9,16 @@ namespace Hudson.TrayTracker.Entities
     public class Project : IComparable<Project>
     {
         public Server Server { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
+
         [JsonProperty("url")]
         public string Url { get; set; }
+
+        [JsonProperty("acknowledged")]
+        public bool IsAcknowledged { get; set; }
+
         public AllBuildDetails AllBuildDetails { get; set; }
         public bool InQueue { get; set; }
 

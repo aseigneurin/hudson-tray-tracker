@@ -67,7 +67,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             }
         }
 
-        private void SaveConfiguration()
+        //  Save settings on application exit.
+        public void SaveConfiguration()
         {
             var streamWriter = new StreamWriter(userConfigurationFile);
             var serializer = new JsonSerializer();

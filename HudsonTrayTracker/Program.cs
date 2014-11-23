@@ -69,6 +69,7 @@ namespace Hudson.TrayTracker
         {
             try
             {
+                TrayNotifier.Instance.ConfigurationService.SaveConfiguration();
                 TrayNotifier.Instance.Dispose();
             }
             catch (Exception ex)
