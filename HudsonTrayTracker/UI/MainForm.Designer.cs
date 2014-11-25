@@ -49,9 +49,8 @@ namespace Hudson.TrayTracker.UI
             this.openConsolePageMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.acknowledgeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stopAcknowledgingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acknowledgeAlwaysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acknowledgeStatusMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acknowledgeProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.claimBuildMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -232,9 +231,8 @@ namespace Hudson.TrayTracker.UI
             this.openConsolePageMenuItem,
             this.runBuildMenuItem,
             this.toolStripSeparator1,
-            this.acknowledgeMenuItem,
-            this.stopAcknowledgingMenuItem,
-            this.acknowledgeAlwaysMenuItem,
+            this.acknowledgeStatusMenuItem,
+            this.acknowledgeProjectMenuItem,
             this.toolStripSeparator2,
             this.claimBuildMenuItem,
             this.toolStripSeparator3,
@@ -271,27 +269,19 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(226, 6);
             // 
-            // acknowledgeMenuItem
+            // acknowledgeStatusMenuItem
             // 
-            this.acknowledgeMenuItem.Name = "acknowledgeMenuItem";
-            this.acknowledgeMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.acknowledgeMenuItem.Text = "Acknowledge (tray icon only)";
-            this.acknowledgeMenuItem.Click += new System.EventHandler(this.acknowledgeMenuItem_Click);
+            this.acknowledgeStatusMenuItem.Name = "acknowledgeStatusMenuItem";
+            this.acknowledgeStatusMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.acknowledgeStatusMenuItem.Text = "Acknowledge status";
+            this.acknowledgeStatusMenuItem.Click += new System.EventHandler(this.acknowledgeMenuItem_Click);
             // 
-            // stopAcknowledgingMenuItem
+            // acknowledgeProjectMenuItem
             // 
-            this.stopAcknowledgingMenuItem.Name = "stopAcknowledgingMenuItem";
-            this.stopAcknowledgingMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.stopAcknowledgingMenuItem.Text = "Stop acknowledging";
-            this.stopAcknowledgingMenuItem.Visible = false;
-            this.stopAcknowledgingMenuItem.Click += new System.EventHandler(this.stopAcknowledgingMenuItem_Click);
-            // 
-            // acknowledgeAlwaysMenuItem
-            // 
-            this.acknowledgeAlwaysMenuItem.Name = "acknowledgeAlwaysMenuItem";
-            this.acknowledgeAlwaysMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.acknowledgeAlwaysMenuItem.Text = "Acknowledge - Always!";
-            this.acknowledgeAlwaysMenuItem.Click += new System.EventHandler(this.acknowledgeAlwaysMenuItem_Click);
+            this.acknowledgeProjectMenuItem.Name = "acknowledgeProjectMenuItem";
+            this.acknowledgeProjectMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.acknowledgeProjectMenuItem.Text = "Acknowledge project";
+            this.acknowledgeProjectMenuItem.Click += new System.EventHandler(this.acknowledgeProjectMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -536,9 +526,8 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ToolStripMenuItem openProjectPageMenuItem;
         private System.Windows.Forms.ToolStripMenuItem runBuildMenuItem;
         private DevExpress.XtraBars.BarButtonItem checkUpdatesButtonItem;
-        private System.Windows.Forms.ToolStripMenuItem acknowledgeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acknowledgeStatusMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem stopAcknowledgingMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem removeProjectMenuItem;
         private DevExpress.XtraGrid.Columns.GridColumn lastSuccessUserGridColumn;
@@ -548,6 +537,6 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraGrid.Columns.GridColumn claimReasonGridColumn;
         private System.Windows.Forms.ToolStripMenuItem claimBuildMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem acknowledgeAlwaysMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem acknowledgeProjectMenuItem;
     }
 }

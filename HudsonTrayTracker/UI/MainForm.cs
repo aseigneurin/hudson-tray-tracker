@@ -679,9 +679,9 @@ namespace Hudson.TrayTracker.UI
                 openProjectPageMenuItem.Enabled
                     = openConsolePageMenuItem.Enabled
                     = runBuildMenuItem.Enabled
-                    = acknowledgeMenuItem.Enabled
+                    = acknowledgeStatusMenuItem.Enabled
                     = claimBuildMenuItem.Enabled
-                    = acknowledgeAlwaysMenuItem.Enabled
+                    = acknowledgeProjectMenuItem.Enabled
                     = false;
                 return;
             }
@@ -689,15 +689,15 @@ namespace Hudson.TrayTracker.UI
             // get a copy of the reference to avoid a race condition
             BuildStatus projectStatus = project.Status;
 
-            acknowledgeAlwaysMenuItem.Checked = project.IsAcknowledged;
-            acknowledgeMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);
-            if (acknowledgeAlwaysMenuItem.Checked)
+            acknowledgeProjectMenuItem.Checked = project.IsAcknowledged;
+            acknowledgeStatusMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);
+            if (acknowledgeProjectMenuItem.Checked)
             {
-                acknowledgeMenuItem.Enabled = false;
+                acknowledgeStatusMenuItem.Enabled = false;
             }
             else
             {
-                acknowledgeMenuItem.Enabled = ( projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate );
+                acknowledgeStatusMenuItem.Enabled = ( projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate );
             }
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
@@ -841,7 +841,7 @@ namespace Hudson.TrayTracker.UI
             }
         }
 
-        private void acknowledgeAlwaysMenuItem_Click(object sender, EventArgs e)
+        private void acknowledgeProjectMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             Project project = GetSelectedProject();
