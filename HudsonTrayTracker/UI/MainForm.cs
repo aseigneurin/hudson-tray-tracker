@@ -851,5 +851,15 @@ namespace Hudson.TrayTracker.UI
             menuItem.Checked = project.IsAcknowledged = !menuItem.Checked;
             TrayNotifier.Instance.AcknowledgedProject();
         }
+
+        private void setAuthenticationTokenMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+
+            AuthenticationTokenForm.ShowDialogOrFocus(project);
+        }
     }
 }

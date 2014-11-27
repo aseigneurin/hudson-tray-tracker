@@ -232,6 +232,16 @@
         kLNBNmPTDMIYAqRirIKkYKyCpGCsgsTj/wwAQi7PQWsG3jEAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="setAuthenticationTokenMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAESSURBVDhPjZMxSgNBGIVlK+tUKa0scgCLVEGsLcQDhBxALEPIBcTK0srCwsJL2Fh4gLBFWFKF
+        FJIihFRL0O+feTsM7uy6Dz7YefPez7Ize2K6/Cj78ALfUEIOd5C5QJsI9WAFP7CDAo5aPynWLEKPCr/C
+        qbxzWIMNGrhgkwgswV67J8uJ9T3Y4KmstFQutAzCG2nAs6y0FMq1DMI7gwe4lZUWgU9407MxgwXYSbTx
+        BVduSCWMC7A36spGVS+M6z+Bf1HVCyM1YAs3MI+8gKpeGKkB8fc5RL7DFSthpAbswU5kEnkBVb0wmr7B
+        EOxIa3uqemE0DXgHO9ranqpeGNXt68pOVS+MDOynsuudKsTw55bjXxHF20TrdZMgAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="claimBuildMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6

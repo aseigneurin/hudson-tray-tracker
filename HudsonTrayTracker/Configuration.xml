@@ -20,6 +20,7 @@
     <property name="ApplicationUpdateService" ref="ApplicationUpdateService"/>
   </object>
   <object id="AboutForm" type="Hudson.TrayTracker.UI.AboutForm"/>
+  <object id="AuthenticationTokenForm" type="Hudson.TrayTracker.UI.AuthenticationTokenForm"/>
   <object id="SettingsForm" type="Hudson.TrayTracker.UI.SettingsForm">
     <property name="ConfigurationService" ref="ConfigurationService"/>
     <property name="HudsonService" ref="HudsonService"/>

@@ -56,6 +56,7 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.removeProjectMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectsGridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.setAuthenticationTokenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serverGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.statusGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemPictureEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit();
@@ -70,6 +71,7 @@ namespace Hudson.TrayTracker.UI
             this.claimedByGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.claimReasonGridColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectsGridControl)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -233,6 +235,8 @@ namespace Hudson.TrayTracker.UI
             this.toolStripSeparator1,
             this.acknowledgeStatusMenuItem,
             this.acknowledgeProjectMenuItem,
+            this.toolStripSeparator4,
+            this.setAuthenticationTokenMenuItem,
             this.toolStripSeparator2,
             this.claimBuildMenuItem,
             this.toolStripSeparator3,
@@ -340,6 +344,14 @@ namespace Hudson.TrayTracker.UI
             this.projectsGridView.CustomUnboundColumnData += new DevExpress.XtraGrid.Views.Base.CustomColumnDataEventHandler(this.projectsGridView_CustomUnboundColumnData);
             this.projectsGridView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.projectsGridView_MouseMove);
             this.projectsGridView.DoubleClick += new System.EventHandler(this.projectsGridView_DoubleClick);
+            // 
+            // setAuthenticationTokenMenuItem
+            // 
+            this.setAuthenticationTokenMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("setAuthenticationTokenMenuItem.Image")));
+            this.setAuthenticationTokenMenuItem.Name = "setAuthenticationTokenMenuItem";
+            this.setAuthenticationTokenMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.setAuthenticationTokenMenuItem.Text = "Set authentication token";
+            this.setAuthenticationTokenMenuItem.Click += new System.EventHandler(this.setAuthenticationTokenMenuItem_Click);
             // 
             // serverGridColumn
             // 
@@ -538,5 +550,7 @@ namespace Hudson.TrayTracker.UI
         private System.Windows.Forms.ToolStripMenuItem claimBuildMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem acknowledgeProjectMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setAuthenticationTokenMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
