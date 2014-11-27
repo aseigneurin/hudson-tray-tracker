@@ -251,9 +251,9 @@ namespace Hudson.TrayTracker.UI
         {
             BuildStatus status = project.Status;
             BuildStatus acknowledgedStatus = GetAcknowledgedStatus(project);
-            if (acknowledgedStatus != null)
+            if (project.IsAcknowledged || (acknowledgedStatus != null))
             {
-                if (status.Value == acknowledgedStatus.Value)
+                if (project.IsAcknowledged || (status.Value == acknowledgedStatus.Value))
                     return new BuildStatus(BuildStatusEnum.Successful, false, false);
                 else if (status.Value != BuildStatusEnum.Unknown && BuildStatusUtils.IsWorse(acknowledgedStatus, status))
                     ClearAcknowledgedStatus(project);
@@ -288,6 +288,8 @@ namespace Hudson.TrayTracker.UI
             {
                 foreach (Project project in progressingAndErrorProjects)
                 {
+                    if (project.IsAcknowledged)
+                        continue;
                     lock (acknowledgedStatusByProject)
                     {
                         if (acknowledgedStatusByProject.ContainsKey(project))
@@ -430,6 +432,11 @@ namespace Hudson.TrayTracker.UI
             Console.WriteLine(e.Clicks);
         }
 
+        public void AcknowledgedProject()
+        {
+            UpdateNotifier();
+        }
+
         public void AcknowledgeStatus(Project project, BuildStatus currentStatus)
         {
             lock (acknowledgedStatusByProject)
@@ -459,7 +466,7 @@ namespace Hudson.TrayTracker.UI
             return status;
         }
 
-        public bool IsAcknowledged(Project project)
+        public bool IsStatusAcknowledged(Project project)
         {
             lock (acknowledgedStatusByProject)
             {

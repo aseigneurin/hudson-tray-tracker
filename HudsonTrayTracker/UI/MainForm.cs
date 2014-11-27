@@ -643,12 +643,22 @@ namespace Hudson.TrayTracker.UI
 
         private void acknowledgeMenuItem_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             Project project = GetSelectedProject();
             if (project == null)
                 return;
-            BuildStatus projectStatus = project.Status;
-            if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
-                TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
+
+            if (menuItem.Checked)
+            {
+                TrayNotifier.Instance.ClearAcknowledgedStatus(project);
+            }
+            else
+            {
+                BuildStatus projectStatus = project.Status;
+                if (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate)
+                    TrayNotifier.Instance.AcknowledgeStatus(project, projectStatus);
+            }
+            menuItem.Checked = !menuItem.Checked;
         }
 
         private void stopAcknowledgingMenuItem_Click(object sender, EventArgs e)
@@ -669,9 +679,9 @@ namespace Hudson.TrayTracker.UI
                 openProjectPageMenuItem.Enabled
                     = openConsolePageMenuItem.Enabled
                     = runBuildMenuItem.Enabled
-                    = acknowledgeMenuItem.Enabled
-                    = stopAcknowledgingMenuItem.Enabled
+                    = acknowledgeStatusMenuItem.Enabled
                     = claimBuildMenuItem.Enabled
+                    = acknowledgeProjectMenuItem.Enabled
                     = false;
                 return;
             }
@@ -679,8 +689,16 @@ namespace Hudson.TrayTracker.UI
             // get a copy of the reference to avoid a race condition
             BuildStatus projectStatus = project.Status;
 
-            acknowledgeMenuItem.Enabled = projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate;
-            stopAcknowledgingMenuItem.Enabled = TrayNotifier.Instance.IsAcknowledged(project);
+            acknowledgeProjectMenuItem.Checked = project.IsAcknowledged;
+            acknowledgeStatusMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);
+            if (acknowledgeProjectMenuItem.Checked)
+            {
+                acknowledgeStatusMenuItem.Enabled = false;
+            }
+            else
+            {
+                acknowledgeStatusMenuItem.Enabled = ( projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate );
+            }
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
             if (shouldOpenConsolePage)
@@ -821,6 +839,17 @@ namespace Hudson.TrayTracker.UI
                 claimedByGridColumn.Visible = false;
                 claimReasonGridColumn.Visible = false;
             }
+        }
+
+        private void acknowledgeProjectMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+
+            menuItem.Checked = project.IsAcknowledged = !menuItem.Checked;
+            TrayNotifier.Instance.AcknowledgedProject();
         }
     }
 }
