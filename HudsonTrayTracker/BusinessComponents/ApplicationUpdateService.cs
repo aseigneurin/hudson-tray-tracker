@@ -29,7 +29,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         // every hour
         static readonly int DEFAULT_UPDATE_PERIOD = 60 * 60 * 1000;
 
-        static readonly String URL = "http://hudson-tray-tracker.googlecode.com/svn/trunk/scripts/version.properties";
+        static readonly String URL = "https://raw.githubusercontent.com/zionyx/jenkins-tray-tracker/master/scripts/version.properties";
 
         static readonly String PROPERTY_VERSION_NUMBER = "version.number";
         static readonly String PROPERTY_INSTALLER_URL = "version.installerUrl";

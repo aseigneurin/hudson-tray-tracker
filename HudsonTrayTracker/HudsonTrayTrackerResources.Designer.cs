@@ -61,7 +61,7 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hudson Tray Tracker updates.
+        ///   Looks up a localized string similar to Jenkins Tray Tracker updates.
         /// </summary>
         internal static string ApplicationUpdates_Caption {
             get {

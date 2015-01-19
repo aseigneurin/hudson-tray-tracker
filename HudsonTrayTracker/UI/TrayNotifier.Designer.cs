@@ -42,7 +42,7 @@ namespace Hudson.TrayTracker.UI
             // notifyIcon
             // 
             this.notifyIcon.ContextMenuStrip = this.notifyContextMenuStrip;
-            this.notifyIcon.Text = "Hudson Tray Tracker";
+            this.notifyIcon.Text = "Jenkins Tray Tracker";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 

@@ -248,7 +248,7 @@ namespace Hudson.TrayTracker.UI
             this.Controls.Add(this.tabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsForm";
-            this.Text = "Hudson Tray Tracker - Settings";
+            this.Text = "Jenkins Tray Tracker - Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();

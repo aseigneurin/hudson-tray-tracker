@@ -8,7 +8,7 @@
     <level value="INFO"/>
   </logger>
   <appender name="GeneralLog" type="log4net.Appender.RollingFileAppender">
-    <file value="${APPDATA}/Hudson Tray Tracker/Logs/general.txt" />
+    <file value="${APPDATA}/Jenkins Tray Tracker/Logs/general.txt" />
     <appendToFile value="true" />
     <maximumFileSize value="250KB" />
     <rollingStyle value="Size" />

@@ -15,7 +15,7 @@ namespace Hudson.TrayTracker.BusinessComponents
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
+        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Jenkins Tray Tracker";
         const string PROPERTIES_FILE = "hudson.properties";
         // 15 seconds
         const int DEFAULT_TIME_BETWEEN_UPDATES = 15;

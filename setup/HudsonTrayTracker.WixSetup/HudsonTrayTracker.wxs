@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="43b990b8-932e-474d-a4a5-fe9c17945199"
-           Name="Hudson Tray Tracker"
+           Name="Jenkins Tray Tracker"
            Language="1033"
            Version="$(var.ProductVersion)"
            Manufacturer="IDM"
@@ -24,11 +24,11 @@
                       IncludeMaximum="no" />
     </Upgrade>
 
-    <Media Id="1" Cabinet="HudsonTrayTracker.cab" EmbedCab="yes" />
+    <Media Id="1" Cabinet="JenkinsTrayTracker.cab" EmbedCab="yes" />
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLLOCATION" Name="Hudson Tray Tracker" FileSource="$(var.SolutionDir)..\HudsonTrayTracker\bin\x86\$(var.Configuration)">
+        <Directory Id="INSTALLLOCATION" Name="Jenkins Tray Tracker" FileSource="$(var.SolutionDir)..\HudsonTrayTracker\bin\x86\$(var.Configuration)">
           <Component Id="cmp788826F037B232B8D1CA662C7A724415" Guid="{F488277E-40A7-476A-B965-BEEB006497F9}">
             <File Id="fil5688DA34328E8A1E0A4F6A1D804C37DE" KeyPath="yes" Name="antlr.runtime.dll" />
           </Component>
@@ -60,10 +60,10 @@
             <File Id="filEDE5C71FA0C030AE438BD4489F0353CD" KeyPath="yes" Name="HudsonTrayTracker.ico" />
           </Component>
           <Component Id="cmpFC72D988F9982C9734B0DAEBC993CEE9" Guid="{5D5C900B-C308-4E69-8FC6-255D1FE809C8}">
-            <File Id="filACD69880BE1FDE3432073222CF6438B2" KeyPath="yes" Name="HudsonTrayTracker.exe" />
+            <File Id="filACD69880BE1FDE3432073222CF6438B2" KeyPath="yes" Name="JenkinsTrayTracker.exe" />
           </Component>
           <Component Id="cmp5BF8F81273881D3E0601F47EF72D2E46" Guid="{9DF189DC-B492-4FAF-9E55-2FBE452C9355}">
-            <File Id="fil5E49494DA4D5D964055F845312578640" KeyPath="yes" Name="HudsonTrayTracker.exe.config" />
+            <File Id="fil5E49494DA4D5D964055F845312578640" KeyPath="yes" Name="JenkinsTrayTracker.exe.config" />
           </Component>
           <Component Id="cmp7A04BD94527EA1928F335EE381F60B45" Guid="{4EB5E3D4-5BE0-404D-811F-478C91AF8533}">
             <File Id="filEAB10C719D803D8BE8F031DE48EA5654" KeyPath="yes" Name="Iesi.Collections.dll" />
@@ -86,7 +86,7 @@
 
           <Directory Id="setup" Name="setup">
             <Component Id="cmp0FAE03C65D96ED1D021C482BB95EC17C" Guid="{219D2CA4-86EE-40F5-B58A-0090402D2373}">
-              <File Id="fil05B5A1FCB0324171FCF22AD1C566E172" KeyPath="yes" Source="$(var.SolutionDir)HudsonTrayTracker.Setup.CustomActions\bin\x86\$(var.Configuration)\HudsonTrayTracker.Setup.CustomActions.dll" />
+              <File Id="fil05B5A1FCB0324171FCF22AD1C566E172" KeyPath="yes" Source="$(var.SolutionDir)HudsonTrayTracker.Setup.CustomActions\bin\x86\$(var.Configuration)\JenkinsTrayTracker.Setup.CustomActions.dll" />
             </Component>
             <Component Id="cmp053A2ABE2833EF70F99155D399B3D030" Guid="{50413CFC-020E-4A7F-9933-1EDE39DEA88D}">
               <File Id="InstallUtilConfig" KeyPath="yes" Source="src\InstallUtilConfig.xml" />
@@ -98,7 +98,7 @@
 
     <Binary Id="InstallUtil" SourceFile="src\InstallUtilLib.dll" />
 
-    <Feature Id="Application" Title="Hudson Tray Tracker" Level="1">
+    <Feature Id="Application" Title="Jenkins Tray Tracker" Level="1">
       <ComponentRef Id="cmp788826F037B232B8D1CA662C7A724415"/>
       <ComponentRef Id="cmp9C7F9E356EE86CE45ED3BA0B5BEAD581"/>
       <ComponentRef Id="cmpB5CD10B4F08899371641B0C0DE534EE3"/>
@@ -125,7 +125,7 @@
     </Feature>
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Hudson Tray Tracker" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Jenkins Tray Tracker" />
 
     <Property Id="WixShellExecTarget" Value="[#filACD69880BE1FDE3432073222CF6438B2]" />
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
