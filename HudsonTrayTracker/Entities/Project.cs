@@ -19,6 +19,12 @@ namespace Hudson.TrayTracker.Entities
         [JsonProperty("acknowledged")]
         public bool IsAcknowledged { get; set; }
 
+        [JsonProperty("token")]
+        public string AuthenticationToken { get; set; }
+
+        [JsonProperty("causetext")]
+        public string CauseText { get; set; }
+
         public AllBuildDetails AllBuildDetails { get; set; }
         public bool InQueue { get; set; }
 

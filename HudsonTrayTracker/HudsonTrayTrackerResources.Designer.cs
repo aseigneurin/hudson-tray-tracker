@@ -89,6 +89,15 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Project: {0}.
+        /// </summary>
+        internal static string AuthenticateToken_ProjectName {
+            get {
+                return ResourceManager.GetString("AuthenticateToken_ProjectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Broken by {0}. .
         /// </summary>
         internal static string BuildDetails_BrokenBy {

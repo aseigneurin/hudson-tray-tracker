@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
+using System.Web;
 using System.Xml;
 using Hudson.TrayTracker.Entities;
 using Hudson.TrayTracker.Utils;
@@ -198,6 +199,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             catch (Exception ex)
             {
                 LoggingHelper.LogError(logger, ex);
+                throw ex;
             }
         }
 
@@ -205,6 +207,14 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             String url = NetUtils.ConcatUrls(project.Url, "/build?delay=0sec");
 
+            if (!string.IsNullOrEmpty(project.AuthenticationToken))
+            {
+                url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&token=", HttpUtility.UrlEncodeUnicode(project.AuthenticationToken));
+                if (!string.IsNullOrEmpty(project.CauseText))
+                {
+                    url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&cause=", HttpUtility.UrlEncodeUnicode(project.CauseText));
+                }
+            }
             logger.Info("Running build at " + url);
 
             Credentials credentials = project.Server.Credentials;
