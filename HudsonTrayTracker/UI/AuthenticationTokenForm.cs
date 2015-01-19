@@ -38,7 +38,7 @@ namespace Hudson.TrayTracker.UI
         {
             if (referenceProject != null)
             {
-                projectLabel.Text = referenceProject.Name;
+                projectLabel.Text = string.Format(HudsonTrayTrackerResources.AuthenticateToken_ProjectName, referenceProject.Name);
                 TokentextBox.Text = referenceProject.AuthenticationToken;
                 CausetextBox.Text = referenceProject.CauseText;
             }
