@@ -4,7 +4,7 @@
            Name="Jenkins Tray Tracker"
            Language="1033"
            Version="$(var.ProductVersion)"
-           Manufacturer=""
+           Manufacturer="Jenkins Tray Tracker Project"
            UpgradeCode="C8D46C5C-C37A-4596-BDDC-446D53436CFC">
 
     <Package InstallerVersion="200" Compressed="yes" />
