@@ -176,6 +176,7 @@ namespace Hudson.TrayTracker.UI
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EditServerForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditServerForm_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.displayNameTextEdit.Properties)).EndInit();

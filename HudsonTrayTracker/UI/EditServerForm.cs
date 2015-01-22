@@ -113,5 +113,10 @@ namespace Hudson.TrayTracker.UI
                 ServerAddress = "http://" + url;
             }
         }
+
+        private void EditServerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            urlTextBox_Leave(null, null);
+        }
     }
 }

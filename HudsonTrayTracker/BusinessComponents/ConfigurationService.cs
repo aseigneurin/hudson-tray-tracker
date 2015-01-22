@@ -94,8 +94,19 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void UpdateServer(Server server, string url, string displayName, string username, string password, bool ignoreUntrustedCertificate)
         {
             // note: we need to remove and re-add the server because its hash-code might change
+            string oldServerUrl = server.Url;
             Servers.Remove(server);
             BindData(server, url, displayName, username, password, ignoreUntrustedCertificate);
+
+            //  Update all projects with new server url
+            if (server.Url.ToUpper().CompareTo(oldServerUrl.ToUpper()) != 0)
+            {
+                foreach (Project project in server.Projects)
+                {
+                    string updatedUrl = project.Url.Replace(oldServerUrl, server.Url);
+                    project.Url = updatedUrl;
+                }
+            }
             Servers.Add(server);
             SaveConfiguration();
         }
