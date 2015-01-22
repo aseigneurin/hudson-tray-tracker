@@ -126,6 +126,7 @@
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Jenkins Tray" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
 
     <Property Id="WixShellExecTarget" Value="[#filACD69880BE1FDE3432073222CF6438B2]" />
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
