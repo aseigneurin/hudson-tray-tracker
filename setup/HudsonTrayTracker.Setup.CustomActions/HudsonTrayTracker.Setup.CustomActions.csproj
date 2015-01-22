@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HudsonTrayTracker.Setup.CustomActions</RootNamespace>
-    <AssemblyName>JenkinsTrayTracker.Setup.CustomActions</AssemblyName>
+    <AssemblyName>JenkinsTray.Setup.CustomActions</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>

@@ -23,7 +23,7 @@ namespace HudsonTrayTracker.Setup.CustomActions
 
             Context.LogMessage("ApplicationInstaller[Uninstall]: stopping all instances of the application");
 
-            Process[] processes = Process.GetProcessesByName("JenkinsTrayTracker");
+            Process[] processes = Process.GetProcessesByName("JenkinsTray");
             Context.LogMessage("ApplicationInstaller[Uninstall]: found " + processes.Length + " instances to stop");
 
             foreach (Process process in processes)

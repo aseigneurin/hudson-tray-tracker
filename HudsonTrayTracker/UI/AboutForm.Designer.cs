@@ -80,7 +80,7 @@ namespace Hudson.TrayTracker.UI
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(278, 19);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Jenkins Tray Tracker";
+            this.labelControl1.Text = "Jenkins Tray";
             // 
             // versionLabelControl
             // 
@@ -172,7 +172,7 @@ namespace Hudson.TrayTracker.UI
             this.Name = "AboutForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "About Jenkins Tray Tracker";
+            this.Text = "About Jenkins Tray";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

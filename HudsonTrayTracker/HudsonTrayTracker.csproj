@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hudson.TrayTracker</RootNamespace>
-    <AssemblyName>JenkinsTrayTracker</AssemblyName>
+    <AssemblyName>JenkinsTray</AssemblyName>
     <StartupObject>Hudson.TrayTracker.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>

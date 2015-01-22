@@ -18,7 +18,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Jenkins Tray Tracker";
+        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Jenkins Tray";
         const string CONFIGURATION_FILE = "jenkins.configuration";
 
         string userConfigurationFile;

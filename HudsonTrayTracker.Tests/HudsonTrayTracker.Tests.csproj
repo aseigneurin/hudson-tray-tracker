@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HudsonTrayTracker.Tests</RootNamespace>
-    <AssemblyName>HudsonTrayTracker.Tests</AssemblyName>
+    <AssemblyName>JenkinsTray.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -74,7 +74,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HudsonTrayTracker\HudsonTrayTracker.csproj">
       <Project>{A54602CA-6823-4F2C-870F-1D464D9F4814}</Project>
-      <Name>HudsonTrayTracker</Name>
+      <Name>JenkinsTray</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

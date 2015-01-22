@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JenkinsTrayTracker.Setup.CustomActions")]
+[assembly: AssemblyTitle("JenkinsTray.Setup.CustomActions")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JenkinsTrayTracker.Setup.CustomActions")]
+[assembly: AssemblyProduct("JenkinsTray.Setup.CustomActions")]
 [assembly: AssemblyCopyright("Copyright ©  2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
