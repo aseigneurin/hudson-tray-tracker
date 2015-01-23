@@ -1,5 +1,5 @@
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "HudsonTrayTracker.WixSetup", "HudsonTrayTracker.WixSetup\HudsonTrayTracker.WixSetup.wixproj", "{4839B061-A1DF-4F9F-852E-95F534D949BB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{95AA7347-A21A-4F09-80DF-D9797B0FA997} = {95AA7347-A21A-4F09-80DF-D9797B0FA997}

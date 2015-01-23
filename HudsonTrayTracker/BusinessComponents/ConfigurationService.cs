@@ -101,9 +101,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             //  Update all projects with new server url
             if (server.Url.ToUpper().CompareTo(oldServerUrl.ToUpper()) != 0)
             {
+                logger.Info("Server Url updated: " + oldServerUrl + " -> " + server.Url);
                 foreach (Project project in server.Projects)
                 {
                     string updatedUrl = project.Url.Replace(oldServerUrl, server.Url);
+                    logger.Info("Project Url updated: " + project.Url + " -> " + updatedUrl);
                     project.Url = updatedUrl;
                 }
             }
