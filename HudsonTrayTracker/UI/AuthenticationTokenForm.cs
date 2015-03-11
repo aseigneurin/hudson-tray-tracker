@@ -67,5 +67,10 @@ namespace Hudson.TrayTracker.UI
             }
             this.Close();
         }
+
+        private void AuthenticationTokenForm_Load(object sender, EventArgs e)
+        {
+            OKbutton.Focus();
+        }
     }
 }

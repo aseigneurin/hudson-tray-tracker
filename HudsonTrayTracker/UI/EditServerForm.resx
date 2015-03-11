@@ -139,7 +139,7 @@
     <value>412, 20</value>
   </data>
   <data name="displayNameTextEdit.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;displayNameTextEdit.Name" xml:space="preserve">
     <value>displayNameTextEdit</value>
@@ -188,7 +188,7 @@
     <value>116, 13</value>
   </data>
   <data name="displayNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="displayNameLabel.Text" xml:space="preserve">
     <value>Display name (optional):</value>
@@ -221,7 +221,7 @@
     <value>26, 13</value>
   </data>
   <data name="urlLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="urlLabel.Text" xml:space="preserve">
     <value>URL: </value>
@@ -254,7 +254,7 @@
     <value>75, 23</value>
   </data>
   <data name="validateButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>0</value>
   </data>
   <data name="validateButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -278,7 +278,7 @@
     <value>75, 23</value>
   </data>
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>1</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Annuler</value>
@@ -308,7 +308,7 @@
     <value>534, 85</value>
   </data>
   <data name="tableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel2.Name" xml:space="preserve">
     <value>tableLayoutPanel2</value>
@@ -335,7 +335,7 @@
     <value>93, 19</value>
   </data>
   <data name="authenticationCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;authenticationCheckBox.Name" xml:space="preserve">
     <value>authenticationCheckBox</value>
@@ -371,7 +371,7 @@
     <value>447, 20</value>
   </data>
   <data name="usernameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;usernameTextBox.Name" xml:space="preserve">
     <value>usernameTextBox</value>
@@ -398,7 +398,7 @@
     <value>447, 20</value>
   </data>
   <data name="passwordTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;passwordTextBox.Name" xml:space="preserve">
     <value>passwordTextBox</value>
@@ -428,7 +428,7 @@
     <value>50, 13</value>
   </data>
   <data name="passwordLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>2</value>
   </data>
   <data name="passwordLabel.Text" xml:space="preserve">
     <value>Password:</value>
@@ -461,7 +461,7 @@
     <value>55, 13</value>
   </data>
   <data name="usernameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>0</value>
   </data>
   <data name="usernameLabel.Text" xml:space="preserve">
     <value>User name:</value>
@@ -491,7 +491,7 @@
     <value>534, 52</value>
   </data>
   <data name="tableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel3.Name" xml:space="preserve">
     <value>tableLayoutPanel3</value>

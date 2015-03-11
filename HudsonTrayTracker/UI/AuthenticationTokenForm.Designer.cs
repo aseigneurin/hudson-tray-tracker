@@ -29,58 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthenticationTokenForm));
-            this.TokentextBox = new System.Windows.Forms.TextBox();
-            this.Cancelbutton = new DevExpress.XtraEditors.SimpleButton();
-            this.OKbutton = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.projectLabel = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.TokentextBox = new System.Windows.Forms.TextBox();
+            this.OKbutton = new DevExpress.XtraEditors.SimpleButton();
             this.CausetextBox = new System.Windows.Forms.TextBox();
             this.Causelabel = new DevExpress.XtraEditors.LabelControl();
+            this.Cancelbutton = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // TokentextBox
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.TokentextBox, 2);
-            this.TokentextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TokentextBox.Location = new System.Drawing.Point(139, 44);
-            this.TokentextBox.Name = "TokentextBox";
-            this.TokentextBox.Size = new System.Drawing.Size(251, 21);
-            this.TokentextBox.TabIndex = 6;
-            // 
-            // Cancelbutton
-            // 
-            this.Cancelbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Cancelbutton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancelbutton.Location = new System.Drawing.Point(315, 109);
-            this.Cancelbutton.Name = "Cancelbutton";
-            this.Cancelbutton.Size = new System.Drawing.Size(75, 23);
-            this.Cancelbutton.TabIndex = 5;
-            this.Cancelbutton.Text = "Cancel";
-            // 
-            // OKbutton
-            // 
-            this.OKbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OKbutton.Location = new System.Drawing.Point(228, 109);
-            this.OKbutton.Name = "OKbutton";
-            this.OKbutton.Size = new System.Drawing.Size(75, 23);
-            this.OKbutton.TabIndex = 4;
-            this.OKbutton.Text = "OK";
-            this.OKbutton.Click += new System.EventHandler(this.OKbutton_Click);
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Options.UseTextOptions = true;
-            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelControl2.Location = new System.Drawing.Point(3, 46);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(130, 17);
-            this.labelControl2.TabIndex = 1;
-            this.labelControl2.Text = "Authentication Token:";
             // 
             // tableLayoutPanel1
             // 
@@ -91,25 +49,20 @@
             this.tableLayoutPanel1.Controls.Add(this.projectLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.labelControl2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.TokentextBox, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.OKbutton, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.CausetextBox, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.Causelabel, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.Cancelbutton, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.OKbutton, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.CausetextBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.Causelabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.Cancelbutton, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(393, 135);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // projectLabel
             // 
@@ -127,14 +80,47 @@
             this.projectLabel.TabIndex = 0;
             this.projectLabel.Text = "Project: Name";
             // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Options.UseTextOptions = true;
+            this.labelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelControl2.Location = new System.Drawing.Point(3, 46);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(130, 28);
+            this.labelControl2.TabIndex = 1;
+            this.labelControl2.Text = "Authentication Token:\r\n (Case sensitive)";
+            // 
+            // TokentextBox
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.TokentextBox, 2);
+            this.TokentextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TokentextBox.Location = new System.Drawing.Point(139, 44);
+            this.TokentextBox.Name = "TokentextBox";
+            this.TokentextBox.Size = new System.Drawing.Size(251, 21);
+            this.TokentextBox.TabIndex = 2;
+            // 
+            // OKbutton
+            // 
+            this.OKbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OKbutton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.OKbutton.Location = new System.Drawing.Point(228, 109);
+            this.OKbutton.Name = "OKbutton";
+            this.OKbutton.Size = new System.Drawing.Size(75, 23);
+            this.OKbutton.TabIndex = 5;
+            this.OKbutton.Text = "OK";
+            this.OKbutton.Click += new System.EventHandler(this.OKbutton_Click);
+            // 
             // CausetextBox
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.CausetextBox, 2);
             this.CausetextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CausetextBox.Location = new System.Drawing.Point(139, 71);
+            this.CausetextBox.Location = new System.Drawing.Point(139, 82);
             this.CausetextBox.Name = "CausetextBox";
             this.CausetextBox.Size = new System.Drawing.Size(251, 21);
-            this.CausetextBox.TabIndex = 7;
+            this.CausetextBox.TabIndex = 4;
             // 
             // Causelabel
             // 
@@ -142,15 +128,26 @@
             this.Causelabel.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Causelabel.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.Causelabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Causelabel.Location = new System.Drawing.Point(3, 73);
+            this.Causelabel.Location = new System.Drawing.Point(3, 84);
             this.Causelabel.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Causelabel.Name = "Causelabel";
             this.Causelabel.Size = new System.Drawing.Size(130, 17);
-            this.Causelabel.TabIndex = 8;
+            this.Causelabel.TabIndex = 3;
             this.Causelabel.Text = "Cause Text (Optional):";
+            // 
+            // Cancelbutton
+            // 
+            this.Cancelbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Cancelbutton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.Cancelbutton.Location = new System.Drawing.Point(315, 109);
+            this.Cancelbutton.Name = "Cancelbutton";
+            this.Cancelbutton.Size = new System.Drawing.Size(75, 23);
+            this.Cancelbutton.TabIndex = 6;
+            this.Cancelbutton.Text = "Cancel";
             // 
             // AuthenticationTokenForm
             // 
+            this.AcceptButton = this.OKbutton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancelbutton;
@@ -162,6 +159,7 @@
             this.Name = "AuthenticationTokenForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.AuthenticationTokenForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -170,14 +168,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TokentextBox;
-        private DevExpress.XtraEditors.SimpleButton Cancelbutton;
-        private DevExpress.XtraEditors.SimpleButton OKbutton;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.LabelControl projectLabel;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private System.Windows.Forms.TextBox TokentextBox;
+        private DevExpress.XtraEditors.SimpleButton OKbutton;
         private System.Windows.Forms.TextBox CausetextBox;
         private DevExpress.XtraEditors.LabelControl Causelabel;
+        private DevExpress.XtraEditors.SimpleButton Cancelbutton;
 
 
     }
