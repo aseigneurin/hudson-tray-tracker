@@ -87,7 +87,7 @@ To avoid checking without interruptions, a 15 seconds delay is imposed between t
 
 ## Auto-update
 
-The auto-update checks at startup and every hour if a new version of the application is available. To do that, it compares the version number of the installed version with the current version number which can be found from http://hudson-tray-tracker.googlecode.com/svn/trunk/scripts/version.properties.
+The auto-update checks at startup and every hour if a new version of the application is available. To do that, it compares the version number of the installed version with the current version number which can be found from https://github.com/aseigneurin/hudson-tray-tracker/blob/master/scripts/version.properties.
 
 ## Logs
 
