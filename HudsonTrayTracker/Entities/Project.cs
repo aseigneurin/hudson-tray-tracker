@@ -8,6 +8,13 @@ namespace Hudson.TrayTracker.Entities
     [JsonObject(MemberSerialization.OptIn)]
     public class Project : IComparable<Project>
     {
+        public class QueueItem
+        {
+            public bool InQueue { get; set; }
+            public DateTime InQueueSince { get; set; }
+            public string Why { get; set; }
+        }
+
         public Server Server { get; set; }
 
         [JsonProperty("name")]
@@ -26,7 +33,13 @@ namespace Hudson.TrayTracker.Entities
         public string CauseText { get; set; }
 
         public AllBuildDetails AllBuildDetails { get; set; }
-        public bool InQueue { get; set; }
+
+        public QueueItem Queue { get; set; }
+
+        public Project()
+        {
+            Queue = new QueueItem();
+        }
 
         public BuildStatus Status
         {

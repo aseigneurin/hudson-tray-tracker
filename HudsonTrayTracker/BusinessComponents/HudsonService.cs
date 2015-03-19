@@ -93,14 +93,28 @@ namespace Hudson.TrayTracker.BusinessComponents
             xml.LoadXml(xmlStr);
 
             bool? inQueue = XmlUtils.SelectSingleNodeBoolean(xml, "/*/inQueue");
+            string inQueueSince = XmlUtils.SelectSingleNodeText(xml, "/*/queueItem/inQueueSince");
+            string why = XmlUtils.SelectSingleNodeText(xml, "/*/queueItem/why");
+            bool? stuck = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/stuck");
             string status = xml.SelectSingleNode("/*/color").InnerText;
             string lastBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastBuild/url");
             string lastCompletedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastCompletedBuild/url");
             string lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             string lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
-            bool? stuck = XmlUtils.SelectSingleNodeBoolean(xml, "/*/queueItem/stuck");
 
-            project.InQueue = (inQueue.HasValue && inQueue.Value == true);
+            project.Queue.InQueue = (inQueue.HasValue && inQueue.Value == true);
+            if (!String.IsNullOrEmpty(inQueueSince))
+            {
+                TimeSpan ts = TimeSpan.FromSeconds(long.Parse(inQueueSince) / 1000);
+                DateTime date = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                date = date.Add(ts);
+                project.Queue.InQueueSince = date;
+            }
+            if (!String.IsNullOrEmpty(why))
+            {
+                project.Queue.Why = why;
+            }
+
             AllBuildDetails res = new AllBuildDetails();
             res.Status = GetStatus(status, stuck);
             res.LastBuild = GetBuildDetails(credentials, lastBuildUrl, ignoreUntrustedCertificate);

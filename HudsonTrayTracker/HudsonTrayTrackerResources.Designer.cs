@@ -269,6 +269,33 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subsequent build is queued..
+        /// </summary>
+        internal static string BuildDetails_InQueue {
+            get {
+                return ResourceManager.GetString("BuildDetails_InQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  In queue since {0}..
+        /// </summary>
+        internal static string BuildDetails_InQueue_Since {
+            get {
+                return ResourceManager.GetString("BuildDetails_InQueue_Since", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}..
+        /// </summary>
+        internal static string BuildDetails_InQueue_Why {
+            get {
+                return ResourceManager.GetString("BuildDetails_InQueue_Why", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
         internal static string BuildDetails_UserSeparator {

@@ -223,6 +223,10 @@ namespace Hudson.TrayTracker.UI
                     ProjectWrapper project = projectsDataSource[dsRowIndex];
                     string message = HudsonTrayTrackerResources.ResourceManager
                         .GetString("BuildStatus_" + project.Project.Status.Key);
+                    if (project.Project.Status.IsStuck && project.Project.Queue.InQueue)
+                    {
+                        message += string.Format(HudsonTrayTrackerResources.BuildDetails_InQueue_Since, project.Project.Queue.InQueueSince);
+                    }
                     toolTip.SetToolTip(projectsGridControl, message);
                 }
                 lastHoveredDSRowIndex = dsRowIndex;
@@ -469,9 +473,16 @@ namespace Hudson.TrayTracker.UI
                                 }
                             }
                         }
+                        if (Project.Queue.InQueue)
+                        {
+                            if (!projectStatus.IsInProgress)
+                            {
+                                details += string.Format(HudsonTrayTrackerResources.BuildDetails_InQueue_Why, Project.Queue.Why);
+                            }
+                        }
                         if (projectStatus.IsStuck)
                         {
-                            details = "Most likely stuck. - " + buildCausesSummary;
+                            details = "Most likely stuck. " + string.Format(HudsonTrayTrackerResources.BuildDetails_InQueue_Why, Project.Queue.Why);
                         }
                     }
                 }

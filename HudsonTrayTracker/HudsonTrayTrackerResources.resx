@@ -330,4 +330,13 @@ The application will now be closed.</value>
   <data name="AuthenticateToken_ProjectName" xml:space="preserve">
     <value>Project: {0}</value>
   </data>
+  <data name="BuildDetails_InQueue_Since" xml:space="preserve">
+    <value> In queue since {0}.</value>
+  </data>
+  <data name="BuildDetails_InQueue" xml:space="preserve">
+    <value>Subsequent build is queued.</value>
+  </data>
+  <data name="BuildDetails_InQueue_Why" xml:space="preserve">
+    <value>{0}.</value>
+  </data>
 </root>
