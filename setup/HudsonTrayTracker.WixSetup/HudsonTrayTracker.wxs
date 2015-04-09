@@ -92,10 +92,22 @@
               <File Id="InstallUtilConfig" KeyPath="yes" Source="src\InstallUtilConfig.xml" />
             </Component>
           </Directory>
+          <!-- Shortcuts menu -->
+          <Directory Id="ProgramMenuFolder">
+            <Directory Id="ApplicationProgramsFolder" Name="Jenkins Tray"/>
+          </Directory>
         </Directory>
       </Directory>
     </Directory>
 
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{BC1439CD-7AE8-4A71-99CE-C3C2512BE23A}">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Jenkins Tray" Description="Jenkins Tray $(var.ProductVersion)" Target="[#filACD69880BE1FDE3432073222CF6438B2]" WorkingDirectory="INSTALLLOCATION"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\JenkinsTray" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+    
     <Binary Id="InstallUtil" SourceFile="src\InstallUtilLib.dll" />
 
     <Feature Id="Application" Title="Jenkins Tray" Level="1">
@@ -117,6 +129,7 @@
       <ComponentRef Id="cmp82D2FB5D3FF74D23A18DD610758156C4"/>
       <ComponentRef Id="cmp5E383EFA84B425FA3738A2378659FA83"/>
       <ComponentRef Id="cmp47CBB58C539892268E22BA64A5A479AD"/>
+      <ComponentRef Id="ApplicationShortcut" />
     </Feature>
 
     <Feature Id="Setup" Title="Setup" Level="1">
