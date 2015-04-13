@@ -31,14 +31,13 @@ namespace Hudson.TrayTracker.UI
         public AuthenticationTokenForm()
         {
             InitializeComponent();
-
         }
 
         public void UpdateValues()
         {
             if (referenceProject != null)
             {
-                projectLabel.Text = string.Format(HudsonTrayTrackerResources.AuthenticateToken_ProjectName, referenceProject.Name);
+                this.Text = string.Format(HudsonTrayTrackerResources.AuthenticateToken_ProjectName, referenceProject.Name);
                 TokentextBox.Text = referenceProject.AuthenticationToken;
                 CausetextBox.Text = referenceProject.CauseText;
             }
@@ -55,7 +54,7 @@ namespace Hudson.TrayTracker.UI
                 Instance.ShowDialog();
         }
 
-        private void OKbutton_Click(object sender, EventArgs e)
+        private void validateButton_Click(object sender, EventArgs e)
         {
             if (referenceProject != null)
             {
@@ -65,12 +64,6 @@ namespace Hudson.TrayTracker.UI
                 if (referenceProject.CauseText != CausetextBox.Text.Trim())
                     referenceProject.CauseText = CausetextBox.Text.Trim();
             }
-            this.Close();
-        }
-
-        private void AuthenticationTokenForm_Load(object sender, EventArgs e)
-        {
-            OKbutton.Focus();
         }
     }
 }
