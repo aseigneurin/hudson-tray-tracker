@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -192,6 +193,13 @@ namespace Hudson.TrayTracker.UI
                 LoggingHelper.LogError(logger, ex);
                 UpdateIcon(BuildStatus.UNKNOWN_BUILD_STATUS);
             }
+        }
+
+        public void UpdateNotifierStartup()
+        {
+            UpdateIcon(BuildStatus.UNKNOWN_BUILD_STATUS);
+            notifyIcon.Text = Assembly.GetExecutingAssembly().GetName().Name + " " + 
+                              Assembly.GetExecutingAssembly().GetName().Version;
         }
 
         private void DoUpdateNotifier()
