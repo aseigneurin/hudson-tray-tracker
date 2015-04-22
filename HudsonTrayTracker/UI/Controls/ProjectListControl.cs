@@ -158,5 +158,33 @@ namespace Hudson.TrayTracker.UI.Controls
             ConfigurationService.RemoveProjects(projectsDataSource);
             projectsGridView.RefreshData();
         }
+
+        private void ProjectListControl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (char.ToUpper(e.KeyChar))
+            {
+                case (char)Keys.Space:
+                    CheckSelectedProject();
+                    e.Handled = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void CheckSelectedProject()
+        {
+            int[] selected = projectsGridView.GetSelectedRows();
+            if (selected.Length == 1 && selected[0] <= projectsGridView.RowCount)
+            {
+                bool isChecked = (bool)projectsGridView.GetRowCellValue(selected[0], projectSelectedGridColumn);
+                projectsGridView.SetRowCellValue(selected[0], projectSelectedGridColumn, !isChecked);
+            }
+        }
+
+        private void projectsGridControl_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            CheckSelectedProject();
+        }
     }
 }

@@ -67,6 +67,8 @@ namespace Hudson.TrayTracker.UI.Controls
             this.projectsGridControl.TabIndex = 1;
             this.projectsGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.projectsGridView});
+            this.projectsGridControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ProjectListControl_KeyPress);
+            this.projectsGridControl.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.projectsGridControl_MouseDoubleClick);
             // 
             // projectContextMenuStrip
             // 
