@@ -149,7 +149,7 @@ Do you want to download it now (the application will be closed)?</value>
     <value>Scheduled. </value>
   </data>
   <data name="BuildDetails_Cause_User" xml:space="preserve">
-    <value>Manual run by {0}. </value>
+    <value>Started by {0}. </value>
   </data>
   <data name="BuildDetails_Cause_UpstreamProject" xml:space="preserve">
     <value>Started by upstream project. </value>

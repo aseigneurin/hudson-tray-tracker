@@ -544,7 +544,7 @@ namespace Hudson.TrayTracker.UI
                 else
                 {
                     res = string.Format(HudsonTrayTrackerResources.BuildDetails_Duration_MM,
-                        Math.Max(details.Duration.Minutes, 1));
+                        Math.Max(details.Duration.Minutes + (details.Duration.Seconds >= 30 ? 1 : 0), 1));
                 }
                 return res;
             }

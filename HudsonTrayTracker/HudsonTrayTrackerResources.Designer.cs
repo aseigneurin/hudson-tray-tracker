@@ -170,7 +170,7 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manual run by {0}. .
+        ///   Looks up a localized string similar to Started by {0}. .
         /// </summary>
         internal static string BuildDetails_Cause_User {
             get {
