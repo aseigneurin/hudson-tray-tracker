@@ -30,12 +30,24 @@ namespace Hudson.TrayTracker.UI.Controls
 
             configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
 
-            treatUnstableAsFailedCheckBox.Checked = configurationService.IsTreadUnstableAsFailed();
+            enableSoundCheckBox_CheckedChanged(null, null);
         }
 
-        private void treatUnstableAsFailedCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void enableSoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            configurationService.SetTreadUnstableAsFailed(treatUnstableAsFailedCheckBox.Checked);
+            notificationSettingsControl1.Enabled =
+                notificationSettingsControl2.Enabled =
+                notificationSettingsControl3.Enabled =
+                notificationSettingsControl4.Enabled =
+                enableSoundCheckBox.Checked;
+        }
+
+        public void InvalidateData()
+        {
+            notificationSettingsControl1.InvalidateData();
+            notificationSettingsControl2.InvalidateData();
+            notificationSettingsControl3.InvalidateData();
+            notificationSettingsControl4.InvalidateData();
         }
     }
 }

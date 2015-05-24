@@ -79,5 +79,23 @@ namespace Hudson.TrayTracker.UI.Controls
         {
             SoundPlayer.PlayFile(SoundPath);
         }
+
+        private void pathEdit_EditValueChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(pathEdit.Text))
+            {
+                SetPath(pathEdit.Text);
+            }
+        }
+
+        public void InvalidateData()
+        {
+            if (String.IsNullOrEmpty(pathEdit.Text) ||
+                !pathEdit.Text.EndsWith(".wav", true, System.Globalization.CultureInfo.CurrentCulture) ||
+                !System.IO.File.Exists(pathEdit.Text))
+            {
+                SetPath(String.Empty);
+            }
+        }
     }
 }

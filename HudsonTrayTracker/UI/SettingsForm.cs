@@ -52,6 +52,7 @@ namespace Hudson.TrayTracker.UI
             refreshSpinEdit.Value = ConfigurationService.GeneralSettings.RefreshIntervalInSeconds;
             updateMainWindowIconCheckEdit.Checked = ConfigurationService.GeneralSettings.UpdateMainWindowIcon;
             integrateWithClaimPluginCheckEdit.Checked = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            treatUnstableAsFailedCheckBox.Checked = ConfigurationService.IsTreadUnstableAsFailed();
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,6 +61,8 @@ namespace Hudson.TrayTracker.UI
             ConfigurationService.SetRefreshIntervalInSeconds(refreshInterval);
             ConfigurationService.SetUpdateMainWindowIcon(updateMainWindowIconCheckEdit.Checked);
             ConfigurationService.SetIntegrateWithClaimPlugin(integrateWithClaimPluginCheckEdit.Checked);
+            ConfigurationService.SetTreadUnstableAsFailed(treatUnstableAsFailedCheckBox.Checked);
+            notificationsSettingsControl.InvalidateData();
         }
     }
 }
