@@ -197,6 +197,11 @@ namespace Hudson.TrayTracker.BusinessComponents
             return NotificationSettings.TreatUnstableAsFailed;
         }
 
+        public bool IsSoundNotificationsEnabled()
+        {
+            return NotificationSettings.SoundNotifications;
+        }
+
         public void SetTreadUnstableAsFailed(bool value)
         {
             NotificationSettings.TreatUnstableAsFailed = value;
@@ -218,6 +223,12 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetIntegrateWithClaimPlugin(bool value)
         {
             GeneralSettings.IntegrateWithClaimPlugin = value;
+            SaveConfiguration();
+        }
+
+        public void SetSoundNotifications(bool value)
+        {
+            NotificationSettings.SoundNotifications = value;
             SaveConfiguration();
         }
     }

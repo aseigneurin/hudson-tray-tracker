@@ -46,8 +46,6 @@ namespace Hudson.TrayTracker.UI
             this.updateMainWindowIconCheckEdit = new DevExpress.XtraEditors.CheckEdit();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.integrateWithClaimPluginCheckEdit = new DevExpress.XtraEditors.CheckEdit();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.treatUnstableAsFailedCheckBox = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serversTabPage.SuspendLayout();
@@ -64,8 +62,6 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.integrateWithClaimPluginCheckEdit.Properties)).BeginInit();
-            this.tableLayoutPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treatUnstableAsFailedCheckBox.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -146,7 +142,6 @@ namespace Hudson.TrayTracker.UI
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 1);
@@ -155,13 +150,13 @@ namespace Hudson.TrayTracker.UI
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 25);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 6;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.RowCount = 5;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(834, 472);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
@@ -292,31 +287,6 @@ namespace Hudson.TrayTracker.UI
             this.integrateWithClaimPluginCheckEdit.Size = new System.Drawing.Size(265, 21);
             this.integrateWithClaimPluginCheckEdit.TabIndex = 0;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.AutoSize = true;
-            this.tableLayoutPanel6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.treatUnstableAsFailedCheckBox, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 153);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 1;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(828, 29);
-            this.tableLayoutPanel6.TabIndex = 9;
-            // 
-            // treatUnstableAsFailedCheckBox
-            // 
-            this.treatUnstableAsFailedCheckBox.Location = new System.Drawing.Point(3, 4);
-            this.treatUnstableAsFailedCheckBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.treatUnstableAsFailedCheckBox.Name = "treatUnstableAsFailedCheckBox";
-            this.treatUnstableAsFailedCheckBox.Properties.Caption = "&Treat unstable as failed";
-            this.treatUnstableAsFailedCheckBox.Size = new System.Drawing.Size(162, 21);
-            this.treatUnstableAsFailedCheckBox.TabIndex = 8;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -348,8 +318,6 @@ namespace Hudson.TrayTracker.UI
             ((System.ComponentModel.ISupportInitialize)(this.updateMainWindowIconCheckEdit.Properties)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.integrateWithClaimPluginCheckEdit.Properties)).EndInit();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treatUnstableAsFailedCheckBox.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -373,8 +341,6 @@ namespace Hudson.TrayTracker.UI
         private DevExpress.XtraEditors.CheckEdit integrateWithClaimPluginCheckEdit;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private DevExpress.XtraEditors.CheckEdit checkEdit1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private DevExpress.XtraEditors.CheckEdit treatUnstableAsFailedCheckBox;
 
     }
 }

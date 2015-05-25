@@ -28,17 +28,20 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             allServersStatus.Update(ConfigurationService.Servers);
 
-            string fileToPlay = null;
-            if (allServersStatus.StillFailingProjects.Count > 0)
-                fileToPlay = ConfigurationService.NotificationSettings.StillFailingSoundPath;
-            else if (allServersStatus.FailingProjects.Count > 0)
-                fileToPlay = ConfigurationService.NotificationSettings.FailedSoundPath;
-            else if (allServersStatus.FixedProjects.Count > 0)
-                fileToPlay = ConfigurationService.NotificationSettings.FixedSoundPath;
-            else if (allServersStatus.SucceedingProjects.Count > 0)
-                fileToPlay = ConfigurationService.NotificationSettings.SucceededSoundPath;
-            if (fileToPlay != null)
-                SoundPlayer.PlayFile(fileToPlay);
+            if (ConfigurationService.NotificationSettings.SoundNotifications)
+            {
+                string fileToPlay = null;
+                if (allServersStatus.StillFailingProjects.Count > 0)
+                    fileToPlay = ConfigurationService.NotificationSettings.StillFailingSoundPath;
+                else if (allServersStatus.FailingProjects.Count > 0)
+                    fileToPlay = ConfigurationService.NotificationSettings.FailedSoundPath;
+                else if (allServersStatus.FixedProjects.Count > 0)
+                    fileToPlay = ConfigurationService.NotificationSettings.FixedSoundPath;
+                else if (allServersStatus.SucceedingProjects.Count > 0)
+                    fileToPlay = ConfigurationService.NotificationSettings.SucceededSoundPath;
+                if (fileToPlay != null)
+                    SoundPlayer.PlayFile(fileToPlay);
+            }
         }
 
         private bool TreatAsFailure(BuildStatusEnum status)

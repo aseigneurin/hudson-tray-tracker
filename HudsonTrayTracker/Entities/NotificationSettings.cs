@@ -4,6 +4,9 @@ namespace Hudson.TrayTracker.Entities
     [JsonObject(MemberSerialization.OptIn)]
     public class NotificationSettings
     {
+        [JsonProperty("soundNotifications")]
+        public bool SoundNotifications { get; set; }
+
         [JsonProperty("failedSoundPath")]
         public string FailedSoundPath { get; set; }
 
