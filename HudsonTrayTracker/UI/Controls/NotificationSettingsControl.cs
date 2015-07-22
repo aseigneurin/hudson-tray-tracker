@@ -42,7 +42,10 @@ namespace Hudson.TrayTracker.UI.Controls
             if (DesignMode || Process.GetCurrentProcess().ProcessName == "devenv")
                 return;
 
-            configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            if (configurationService == null)
+            {
+                configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            }
 
             statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + Status);
             SoundPath = configurationService.GetSoundPath(Status);
@@ -71,6 +74,11 @@ namespace Hudson.TrayTracker.UI.Controls
 
         private void SetPath(string path)
         {
+            if (configurationService == null)
+            {
+                configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            }
+
             configurationService.SetSoundPath(Status, path);
             SoundPath = path;
         }
