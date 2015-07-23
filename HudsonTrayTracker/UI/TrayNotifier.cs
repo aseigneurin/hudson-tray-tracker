@@ -197,9 +197,11 @@ namespace Hudson.TrayTracker.UI
 
         public void UpdateNotifierStartup()
         {
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
             UpdateIcon(BuildStatus.UNKNOWN_BUILD_STATUS);
-            notifyIcon.Text = Assembly.GetExecutingAssembly().GetName().Name + " " + 
-                              Assembly.GetExecutingAssembly().GetName().Version;
+            notifyIcon.Text = Assembly.GetExecutingAssembly().GetName().Name + " " +
+                              fvi.FileVersion;
         }
 
         private void DoUpdateNotifier()

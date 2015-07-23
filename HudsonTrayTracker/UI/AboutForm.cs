@@ -30,8 +30,8 @@ namespace Hudson.TrayTracker.UI
         {
             InitializeComponent();
 
-            versionLabelControl.Text = string.Format(HudsonTrayTrackerResources.Version_Format,
-                Assembly.GetExecutingAssembly().GetName().Version);
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            versionLabelControl.Text = string.Format(HudsonTrayTrackerResources.Version_Format, fvi.FileVersion);
         }
 
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

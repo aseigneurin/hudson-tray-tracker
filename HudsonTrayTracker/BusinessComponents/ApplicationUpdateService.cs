@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Common.Logging;
 using System.Reflection;
@@ -149,7 +150,8 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private Version GetCurrentVersion()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version;
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            return new Version(fvi.FileVersion);
         }
     }
 }
