@@ -3,6 +3,7 @@
 //
 //  Usage: Add VersionInfo.cs as a link to project.
 //
+[assembly: System.Reflection.AssemblyVersion("1.0.2.0")]
 [assembly: System.Reflection.AssemblyFileVersion("1.0.2.0")]
 [assembly: System.Reflection.AssemblyInformationalVersion("1.0.2.0")]
 
