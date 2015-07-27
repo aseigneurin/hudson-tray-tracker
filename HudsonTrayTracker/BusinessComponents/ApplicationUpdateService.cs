@@ -150,8 +150,7 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         private Version GetCurrentVersion()
         {
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            return new Version(fvi.FileVersion);
+            return new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
         }
     }
 }

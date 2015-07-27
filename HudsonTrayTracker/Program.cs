@@ -60,11 +60,9 @@ namespace Hudson.TrayTracker
 
         private static void Application_Prepare()
         {
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
             logger.Info("Log4net ready.");
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
-                + " v" + fvi.FileVersion);
+                + " v" + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
             logger.Info(FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location));
         }
 
@@ -80,10 +78,8 @@ namespace Hudson.TrayTracker
                 logger.Error("Failed disposing tray notifier", ex);
             }
 
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
             logger.Info(Assembly.GetExecutingAssembly().GetName().Name
-                + " v" + fvi.FileVersion + " Exit");
+                + " v" + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion + " Exit");
         }
     }
 }
