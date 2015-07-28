@@ -34,6 +34,14 @@ namespace Hudson.TrayTracker.UI.Controls
             enableSoundCheckBox_CheckedChanged(null, null);
         }
 
+        public void InitializeValues()
+        {
+            notificationSettingsControl1.Initialize();
+            notificationSettingsControl2.Initialize();
+            notificationSettingsControl3.Initialize();
+            notificationSettingsControl4.Initialize();
+        }
+
         public bool SoundNotificationsEnabled()
         {
             return enableSoundCheckBox.Checked;

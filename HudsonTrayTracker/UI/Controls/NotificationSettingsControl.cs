@@ -48,6 +48,14 @@ namespace Hudson.TrayTracker.UI.Controls
             }
 
             statusLabel.Text = HudsonTrayTrackerResources.ResourceManager.GetString("NotificationSettings_" + Status);
+        }
+
+        public void Initialize()
+        {
+            if (configurationService == null)
+            {
+                configurationService = (ConfigurationService)ContextRegistry.GetContext().GetObject("ConfigurationService");
+            }
             SoundPath = configurationService.GetSoundPath(Status);
         }
 
@@ -66,10 +74,10 @@ namespace Hudson.TrayTracker.UI.Controls
             fileDialog.Filter = "Sound file (*.wav)|*.wav";
 
             DialogResult res = fileDialog.ShowDialog();
-            if (res != DialogResult.OK)
-                return;
-
-            SetPath(fileDialog.FileName);
+            if (res == DialogResult.OK)
+            {
+                SetPath(fileDialog.FileName);
+            }
         }
 
         private void SetPath(string path)
