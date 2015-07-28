@@ -27,6 +27,7 @@ namespace Hudson.TrayTracker.UI
 
         public ConfigurationService ConfigurationService { get; set; }
         public HudsonService HudsonService { get; set; }
+        private ApplicationUpdateService applicationUpdateService;
 
         public SettingsForm()
         {
@@ -52,6 +53,8 @@ namespace Hudson.TrayTracker.UI
             refreshSpinEdit.Value = ConfigurationService.GeneralSettings.RefreshIntervalInSeconds;
             updateMainWindowIconCheckEdit.Checked = ConfigurationService.GeneralSettings.UpdateMainWindowIcon;
             integrateWithClaimPluginCheckEdit.Checked = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            checkForUpdatesCheckEdit.Checked = ConfigurationService.GeneralSettings.CheckForUpdates;
+            notificationsSettingsControl.InitializeValues();
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,9 +63,19 @@ namespace Hudson.TrayTracker.UI
             ConfigurationService.SetRefreshIntervalInSeconds(refreshInterval);
             ConfigurationService.SetUpdateMainWindowIcon(updateMainWindowIconCheckEdit.Checked);
             ConfigurationService.SetIntegrateWithClaimPlugin(integrateWithClaimPluginCheckEdit.Checked);
+            ConfigurationService.SetCheckForUpdates(checkForUpdatesCheckEdit.Checked);
             ConfigurationService.SetTreadUnstableAsFailed(notificationsSettingsControl.TreadUnstableAsFailed());
             ConfigurationService.SetSoundNotifications(notificationsSettingsControl.SoundNotificationsEnabled());
             notificationsSettingsControl.InvalidateData();
+        }
+
+        private void checkForUpdatesCheckEdit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (applicationUpdateService == null)
+            {
+                applicationUpdateService = (ApplicationUpdateService)ContextRegistry.GetContext().GetObject("ApplicationUpdateService");
+            }
+            applicationUpdateService.EnableTimer(checkForUpdatesCheckEdit.Checked);
         }
     }
 }

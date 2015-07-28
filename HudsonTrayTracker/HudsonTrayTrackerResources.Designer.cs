@@ -71,7 +71,8 @@ namespace Hudson.TrayTracker {
         
         /// <summary>
         ///   Looks up a localized string similar to A new version is available: v{0}.
-        ///Do you want to download it now (the application will be closed)?.
+        ///
+        ///Do you want to download the update now (the application will close) ?.
         /// </summary>
         internal static string ApplicationUpdates_NewVersion_Text {
             get {

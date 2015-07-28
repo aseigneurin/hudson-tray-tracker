@@ -29,23 +29,47 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         // every hour
         static readonly int DEFAULT_UPDATE_PERIOD = 60 * 60 * 1000;
+        // 5 seconds delay for the 1st check on application start up
+        static readonly int DEFAULT_UPDATE_DELAY = 5 * 1000;
 
         static readonly String URL = "https://raw.githubusercontent.com/zionyx/jenkins-tray/master/scripts/version.properties";
 
         static readonly String PROPERTY_VERSION_NUMBER = "version.number";
         static readonly String PROPERTY_INSTALLER_URL = "version.installerUrl";
 
+        public ConfigurationService ConfigurationService { get; set; }
+
         Timer timer;
         int updatePeriod = DEFAULT_UPDATE_PERIOD;
         bool updating;
+        bool timerEnabled;
 
         public ApplicationUpdateService()
         {
+            timerEnabled = false;
+            updating = false;
         }
 
         public void Initialize()
         {
-            timer = new Timer(CheckForUpdates, null, 0, updatePeriod);
+            timer = new Timer(CheckForUpdates);
+            EnableTimer(ConfigurationService.GeneralSettings.CheckForUpdates);
+        }
+
+        public void EnableTimer(bool enable)
+        {
+            if (timerEnabled && !enable)
+            {
+                //  Disable timer
+                timer.Change(Timeout.Infinite, Timeout.Infinite);
+                timerEnabled = false;
+            }
+            else if (!timerEnabled && enable)
+            {
+                //  Enable timer
+                timer.Change(DEFAULT_UPDATE_DELAY, updatePeriod);
+                timerEnabled = true;
+            }
         }
 
         public void CheckForUpdates_Asynchronous(UpdateSource source)
@@ -76,43 +100,55 @@ namespace Hudson.TrayTracker.BusinessComponents
         // returns true if an update was found, false otherwise
         private bool DoCheckForUpdates(UpdateSource source)
         {
-            logger.Info("Running update check from " + source);
+            bool result = false;
 
-            lock (this)
+            if (source == ApplicationUpdateService.UpdateSource.Timer &&
+                ConfigurationService.GeneralSettings.CheckForUpdates == false)
             {
-                if (updating)
-                {
-                    logger.Info("Already in update: skipping");
-                    return false;
-                }
-                updating = true;
+                logger.Info("Update check is already disabled in settings; stopping timer, from " + source);
+                //  Methods should only have 1 return point!
+                EnableTimer(false);
             }
+            else
+            {
+                logger.Info("Running update check from " + source);
 
-            bool res;
-            try
-            {
-                res = DoCheckForUpdatesInternal();
-            }
-            catch (Exception ex)
-            {
-                LoggingHelper.LogError(logger, ex);
-                throw;
-            }
-            finally
-            {
                 lock (this)
                 {
-                    updating = false;
+                    if (updating)
+                    {
+                        logger.Info("Already in update: skipping");
+                        return false;
+                    }
+                    updating = true;
                 }
-            }
 
-            logger.Info("Done");
-            return res;
+                try
+                {
+                    result = DoCheckForUpdatesInternal();
+                }
+                catch (Exception ex)
+                {
+                    LoggingHelper.LogError(logger, ex);
+                    throw;
+                }
+                finally
+                {
+                    lock (this)
+                    {
+                        updating = false;
+                    }
+                }
+
+                logger.Info("Done");
+            }
+            return result;
         }
 
         // returns true if an update was found, false otherwise
         private bool DoCheckForUpdatesInternal()
         {
+            bool result = false;
             logger.Info("Checking for updates from " + URL);
 
             // download the properties file
@@ -134,18 +170,20 @@ namespace Hudson.TrayTracker.BusinessComponents
             if (version <= currentVersion)
             {
                 logger.Info("No updates");
-                return false;
             }
+            else
+            {
+                logger.Info("An update is available");
 
-            logger.Info("An update is available");
+                // disable the timer
+                EnableTimer(false);
 
-            // disable the timer
-            timer.Change(Timeout.Infinite, Timeout.Infinite);
+                if (NewVersionAvailable != null)
+                    NewVersionAvailable(version, installerUrl);
 
-            if (NewVersionAvailable != null)
-                NewVersionAvailable(version, installerUrl);
-
-            return true;
+                result = true;
+            }
+            return result;
         }
 
         private Version GetCurrentVersion()

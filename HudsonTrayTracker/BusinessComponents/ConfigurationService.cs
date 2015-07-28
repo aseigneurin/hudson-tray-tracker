@@ -187,9 +187,11 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetSoundPath(string status, string path)
         {
             PropertyInfo prop = NotificationSettings.GetType().GetProperty(status + "SoundPath");
-            prop.SetValue(NotificationSettings, path, null);
-
-            SaveConfiguration();
+            if( prop.GetValue(NotificationSettings, null).ToString().CompareTo(path) != 0 )
+            {
+                prop.SetValue(NotificationSettings, path, null);
+                SaveConfiguration();
+            }
         }
 
         public bool IsTreadUnstableAsFailed()
@@ -204,32 +206,56 @@ namespace Hudson.TrayTracker.BusinessComponents
 
         public void SetTreadUnstableAsFailed(bool value)
         {
-            NotificationSettings.TreatUnstableAsFailed = value;
-            SaveConfiguration();
+            if (NotificationSettings.TreatUnstableAsFailed != value)
+            {
+                NotificationSettings.TreatUnstableAsFailed = value;
+                SaveConfiguration();
+            }
         }
 
         public void SetRefreshIntervalInSeconds(int value)
         {
-            GeneralSettings.RefreshIntervalInSeconds = value;
-            SaveConfiguration();
+            if (GeneralSettings.RefreshIntervalInSeconds != value)
+            {
+                GeneralSettings.RefreshIntervalInSeconds = value;
+                SaveConfiguration();
+            }
         }
 
         public void SetUpdateMainWindowIcon(bool value)
         {
-            GeneralSettings.UpdateMainWindowIcon = value;
-            SaveConfiguration();
+            if (GeneralSettings.UpdateMainWindowIcon != value)
+            {
+                GeneralSettings.UpdateMainWindowIcon = value;
+                SaveConfiguration();
+            }
         }
 
         public void SetIntegrateWithClaimPlugin(bool value)
         {
-            GeneralSettings.IntegrateWithClaimPlugin = value;
-            SaveConfiguration();
+            if (GeneralSettings.IntegrateWithClaimPlugin != value)
+            {
+                GeneralSettings.IntegrateWithClaimPlugin = value;
+                SaveConfiguration();
+            }
+        }
+
+        public void SetCheckForUpdates(bool value)
+        {
+            if (GeneralSettings.CheckForUpdates != value)
+            {
+                GeneralSettings.CheckForUpdates = value;
+                SaveConfiguration();
+            }
         }
 
         public void SetSoundNotifications(bool value)
         {
-            NotificationSettings.SoundNotifications = value;
-            SaveConfiguration();
+            if (NotificationSettings.SoundNotifications != value)
+            {
+                NotificationSettings.SoundNotifications = value;
+                SaveConfiguration();
+            }
         }
     }
 }
