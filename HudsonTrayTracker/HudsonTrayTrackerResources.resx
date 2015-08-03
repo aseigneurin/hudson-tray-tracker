@@ -310,7 +310,7 @@ The application will now be closed.</value>
   <data name="BuildDetails_Duration_0M" xml:space="preserve">
     <value>Took less than a minute. </value>
   </data>
-  <data name="BuildDetails_Cause_SCM_Unknown" xml:space="preserve">
+  <data name="BuildDetails_Cause_SCM" xml:space="preserve">
     <value>Started by SCM change. </value>
   </data>
   <data name="BuildDetails_BrokenBy" xml:space="preserve">
@@ -338,6 +338,6 @@ The application will now be closed.</value>
     <value>Subsequent build is queued.</value>
   </data>
   <data name="BuildDetails_InQueue_Why" xml:space="preserve">
-    <value>{0}.</value>
+    <value>Reason: {0}.</value>
   </data>
 </root>

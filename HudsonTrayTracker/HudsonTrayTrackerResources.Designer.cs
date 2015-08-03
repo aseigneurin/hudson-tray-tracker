@@ -126,6 +126,15 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Started by SCM change. .
+        /// </summary>
+        internal static string BuildDetails_Cause_SCM {
+            get {
+                return ResourceManager.GetString("BuildDetails_Cause_SCM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Changes by {0} persons. .
         /// </summary>
         internal static string BuildDetails_Cause_SCM_Multiple {
@@ -140,15 +149,6 @@ namespace Hudson.TrayTracker {
         internal static string BuildDetails_Cause_SCM_Single {
             get {
                 return ResourceManager.GetString("BuildDetails_Cause_SCM_Single", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Started by SCM change. .
-        /// </summary>
-        internal static string BuildDetails_Cause_SCM_Unknown {
-            get {
-                return ResourceManager.GetString("BuildDetails_Cause_SCM_Unknown", resourceCulture);
             }
         }
         
@@ -288,7 +288,7 @@ namespace Hudson.TrayTracker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}..
+        ///   Looks up a localized string similar to Reason: {0}..
         /// </summary>
         internal static string BuildDetails_InQueue_Why {
             get {

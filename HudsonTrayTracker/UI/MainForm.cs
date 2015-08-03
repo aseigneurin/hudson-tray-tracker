@@ -417,7 +417,7 @@ namespace Hudson.TrayTracker.UI
                                         {
                                             if (lastBuild.Users.Count == 0)
                                             {
-                                                buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Unknown;
+                                                buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_SCM;
                                             }
                                             else if (lastBuild.Users.Count > 1)
                                             {
