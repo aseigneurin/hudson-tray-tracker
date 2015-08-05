@@ -70,6 +70,18 @@ namespace Hudson.TrayTracker.Entities
             }
         }
 
+        public BuildDetails PreviousLastBuild
+        {
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return null;
+                return details.PreviousLastBuild;
+            }
+        }
+
         public BuildDetails LastSuccessfulBuild
         {
             get

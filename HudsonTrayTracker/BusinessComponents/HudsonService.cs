@@ -172,6 +172,8 @@ namespace Hudson.TrayTracker.BusinessComponents
             string timestamp = xml.SelectSingleNode("/*/timestamp").InnerText;
             string estimatedDuration = xml.SelectSingleNode("/*/estimatedDuration").InnerText;
             string duration = xml.SelectSingleNode("/*/duration").InnerText;
+            XmlNode xmlResult = xml.SelectSingleNode("/*/result");
+            string result = xmlResult == null ? string.Empty : xmlResult.InnerText;
             XmlNodeList userNodes = xml.SelectNodes("/*/culprit/fullName");
 
             TimeSpan ts = TimeSpan.FromSeconds(long.Parse(timestamp) / 1000);
@@ -194,6 +196,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Time = date;
             res.EstimatedDuration = estimatedts;
             res.Duration = durationts;
+            res.Result = result;
             res.Users = users;
 
             ClaimService.FillInBuildDetails(res, xml);

@@ -150,7 +150,17 @@ namespace Hudson.TrayTracker.BusinessComponents
                 {
                     IWorkItemResult newStatus;
                     allFutureBuildDetails.TryGetValue(project, out newStatus);
-                    project.AllBuildDetails = newStatus != null ? (AllBuildDetails)newStatus.Result : null;
+                    AllBuildDetails previousAllBuildDetails = project.AllBuildDetails;
+                    if (newStatus != null)
+                    {
+                        project.AllBuildDetails = (AllBuildDetails)newStatus.Result;
+                        if (previousAllBuildDetails != null &&
+                            previousAllBuildDetails.LastBuild != null &&
+                            project.AllBuildDetails != null &&
+                            project.AllBuildDetails.LastBuild != null &&
+                            previousAllBuildDetails.LastBuild.Number != project.AllBuildDetails.LastBuild.Number)
+                            project.AllBuildDetails.PreviousLastBuild = previousAllBuildDetails.LastBuild;
+                    }
                 }
             }
 
