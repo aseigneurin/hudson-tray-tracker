@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 using Iesi.Collections.Generic;
 
 namespace Hudson.TrayTracker.Entities
 {
+    [DebuggerDisplay("BuildNumber={Number}, Result={Result}")]
     public class BuildDetails
     {
         public BuildCauses Causes { get; set; }
@@ -14,7 +16,7 @@ namespace Hudson.TrayTracker.Entities
         public DateTime Time { get; set; }
         public TimeSpan EstimatedDuration { get; set; }
         public TimeSpan Duration { get; set; }
-        public string Result { get; set; }
+        public BuildStatusEnum Result { get; set; }
         public ISet<string> Users { get; set; }
         public ClaimDetails ClaimDetails { get; set; }
     }

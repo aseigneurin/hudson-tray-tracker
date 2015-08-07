@@ -126,6 +126,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             return res;
         }
 
+        //  http://javadoc.jenkins-ci.org/hudson/model/BallColor.html
         private BuildStatus GetStatus(string status, bool? stuck)
         {
             BuildStatusEnum value;
@@ -196,7 +197,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.Time = date;
             res.EstimatedDuration = estimatedts;
             res.Duration = durationts;
-            res.Result = result;
+            res.Result = BuildStatus.StringToBuildStatus(result);
             res.Users = users;
 
             ClaimService.FillInBuildDetails(res, xml);

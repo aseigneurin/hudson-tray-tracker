@@ -19,11 +19,16 @@ namespace Hudson.TrayTracker.Entities
     [DebuggerDisplay("Status={Value}, Stuck={IsStuck}")]
     public class BuildStatus
     {
-        public static BuildStatus UNKNOWN_BUILD_STATUS = new BuildStatus(BuildStatusEnum.Unknown, false, false);
+        public static readonly BuildStatus UNKNOWN_BUILD_STATUS = new BuildStatus(BuildStatusEnum.Unknown, false, false);
 
         public readonly BuildStatusEnum Value;
         public readonly bool IsInProgress;
         public readonly bool IsStuck;
+
+        private static readonly string SUCCESS = "success";
+        private static readonly string FAILURE = "failure";
+        private static readonly string UNSTABLE = "unstable";
+        private static readonly string ABORTED = "aborted";
 
         public BuildStatus(BuildStatusEnum value, bool isInProgress, bool isStuck)
         {
@@ -33,6 +38,31 @@ namespace Hudson.TrayTracker.Entities
             this.Value = value;
             this.IsInProgress = isInProgress;
             this.IsStuck = isStuck;
+        }
+
+        //  http://javadoc.jenkins-ci.org/hudson/model/Result.html
+        public static BuildStatusEnum StringToBuildStatus(string result)
+        {
+            BuildStatusEnum status = BuildStatusEnum.Unknown;
+
+            result = result.ToLower();
+            if (result == SUCCESS)
+            {
+                status = BuildStatusEnum.Successful;
+            }
+            else if (result == FAILURE)
+            {
+                status = BuildStatusEnum.Failed;
+            }
+            else if (result == UNSTABLE)
+            {
+                status = BuildStatusEnum.Unstable;
+            }
+            else if (result == ABORTED)
+            {
+                status = BuildStatusEnum.Aborted;
+            }
+            return status;
         }
 
         public string Key

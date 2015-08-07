@@ -482,7 +482,7 @@ namespace Hudson.TrayTracker.UI
                         }
                         if (projectStatus.IsStuck)
                         {
-                            details = "Most likely stuck. " + string.Format(HudsonTrayTrackerResources.BuildDetails_InQueue_Why, Project.Queue.Why);
+                            details = "Queued, possibly stuck. " + string.Format(HudsonTrayTrackerResources.BuildDetails_InQueue_Why, Project.Queue.Why);
                         }
                     }
                 }

@@ -33,6 +33,7 @@ namespace Hudson.TrayTracker.Entities
         public string CauseText { get; set; }
 
         public AllBuildDetails AllBuildDetails { get; set; }
+        public bool HasNewBuild { get; set; }
 
         public QueueItem Queue { get; set; }
 

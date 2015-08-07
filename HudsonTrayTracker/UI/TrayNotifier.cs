@@ -21,7 +21,8 @@ namespace Hudson.TrayTracker.UI
     public partial class TrayNotifier : Component
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        public static int Max_Tooltip_Length = 63;
+        public static readonly int MAX_TOOLTIP_LENGTH = 63;
+        public static readonly int BALLOON_TOOLTIP_TIMEOUT = 5000;
 
         public static TrayNotifier Instance
         {
@@ -138,7 +139,7 @@ namespace Hudson.TrayTracker.UI
                 string textToDisplay = text.ToString();
                 if (string.IsNullOrEmpty(textToDisplay))
                     textToDisplay = HudsonTrayTrackerResources.DisplayBuildStatus_NoProjects;
-                notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.DisplayBuildStatus_Caption,
+                notifyIcon.ShowBalloonTip(BALLOON_TOOLTIP_TIMEOUT, HudsonTrayTrackerResources.DisplayBuildStatus_Caption,
                     textToDisplay, ToolTipIcon.Info);
             }
             catch (Exception ex)
@@ -320,7 +321,7 @@ namespace Hudson.TrayTracker.UI
                         tooltipText.Append(string.Format(HudsonTrayTrackerResources.Tooltip_BuildStatus, project.Name, status.Value.ToString()));
                     }
                     prefix = "\n";
-                    if (tooltipText.ToString().Length > Max_Tooltip_Length)
+                    if (tooltipText.ToString().Length > MAX_TOOLTIP_LENGTH)
                         break;
                 }
             }
@@ -329,9 +330,9 @@ namespace Hudson.TrayTracker.UI
                 tooltipText.Append(HudsonTrayTrackerResources.Tooltip_AllGood);
             }
             prefix = tooltipText.ToString();
-            if (prefix.Length > Max_Tooltip_Length)
+            if (prefix.Length > MAX_TOOLTIP_LENGTH)
             {
-                prefix = prefix.Remove(Max_Tooltip_Length - 4) + " ...";
+                prefix = prefix.Remove(MAX_TOOLTIP_LENGTH - 4) + " ...";
             }
             notifyIcon.Text = prefix;
         }
@@ -355,7 +356,7 @@ namespace Hudson.TrayTracker.UI
                     prefix = "\n";
                 }
 
-                notifyIcon.ShowBalloonTip(10000, HudsonTrayTrackerResources.BuildFailed_Caption,
+                notifyIcon.ShowBalloonTip(BALLOON_TOOLTIP_TIMEOUT, HudsonTrayTrackerResources.BuildFailed_Caption,
                     errorProjectsText.ToString(), ToolTipIcon.Error);
             }
             else if (regressingProjects != null && regressingProjects.Count > 0)
