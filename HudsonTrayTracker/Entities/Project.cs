@@ -33,13 +33,13 @@ namespace Hudson.TrayTracker.Entities
         public string CauseText { get; set; }
 
         public AllBuildDetails AllBuildDetails { get; set; }
-        public bool HasNewBuild { get; set; }
-
+        public ProjectActivity Activity { get; set; }
         public QueueItem Queue { get; set; }
 
         public Project()
         {
             Queue = new QueueItem();
+            Activity = new ProjectActivity(this);
         }
 
         public BuildStatus Status
@@ -59,6 +59,30 @@ namespace Hudson.TrayTracker.Entities
             get { return Status.Value; }
         }
 
+        public BuildStatus PreviousStatus
+        {
+            set
+            {
+                if (this.AllBuildDetails != null)
+                {
+                    this.AllBuildDetails.PreviousStatus = value;
+                }
+            }
+            get
+            {
+                // get a copy of the reference to avoid a race condition
+                AllBuildDetails details = this.AllBuildDetails;
+                if (details == null)
+                    return BuildStatus.UNKNOWN_BUILD_STATUS;
+                return details.PreviousStatus;
+            }
+        }
+
+        public BuildStatusEnum PreviousStatusValue
+        {
+            get { return PreviousStatus.Value; }
+        }
+
         public BuildDetails LastBuild
         {
             get
@@ -68,18 +92,6 @@ namespace Hudson.TrayTracker.Entities
                 if (details == null)
                     return null;
                 return details.LastBuild;
-            }
-        }
-
-        public BuildDetails PreviousLastBuild
-        {
-            get
-            {
-                // get a copy of the reference to avoid a race condition
-                AllBuildDetails details = this.AllBuildDetails;
-                if (details == null)
-                    return null;
-                return details.PreviousLastBuild;
             }
         }
 

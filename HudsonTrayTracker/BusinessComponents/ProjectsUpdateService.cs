@@ -154,23 +154,24 @@ namespace Hudson.TrayTracker.BusinessComponents
                     if (newStatus != null)
                     {
                         project.AllBuildDetails = (AllBuildDetails)newStatus.Result;
-                        project.HasNewBuild = false;
+                        project.Activity.HasNewBuild = false;
 
                         if (previousAllBuildDetails != null && project.AllBuildDetails != null )
                         {
-                            //  Has existing LastBuilds
+                            project.PreviousStatus = previousAllBuildDetails.Status;
+
                             if (previousAllBuildDetails.LastBuild != null && project.AllBuildDetails.LastBuild != null)
                             {
+                                //  Has existing LastBuilds
                                 if (previousAllBuildDetails.LastBuild.Number != project.AllBuildDetails.LastBuild.Number)
                                 {
-                                    project.AllBuildDetails.PreviousLastBuild = previousAllBuildDetails.LastBuild;
-                                    project.HasNewBuild = true;
+                                    project.Activity.HasNewBuild = true;
                                 }
                             }
                             else if (previousAllBuildDetails.LastBuild == null && project.AllBuildDetails.LastBuild != null)
                             {
                                 //  1st new LastBuild is found
-                                project.HasNewBuild = true;
+                                project.Activity.HasNewBuild = true;
                             }
                         }
                     }

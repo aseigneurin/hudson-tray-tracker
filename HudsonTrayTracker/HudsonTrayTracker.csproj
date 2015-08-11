@@ -173,7 +173,9 @@
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
     <Compile Include="Entities\BuildCause.cs" />
+    <Compile Include="Entities\BuildTransition.cs" />
     <Compile Include="Entities\Configuration.cs" />
+    <Compile Include="Entities\ProjectActivity.cs" />
     <Compile Include="Legacy\BusinessComponents\LegacyConfigurationService.cs" />
     <Compile Include="BusinessComponents\NotificationService.cs">
       <SubType>Component</SubType>
