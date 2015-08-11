@@ -365,6 +365,15 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\StatusIcons\Aborted_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Disabled_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\StatusIcons\Unknown_BuildInProgress.gif" />
+    <EmbeddedResource Include="Resources\TrayIcons\Aborted_BuildInProgress.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Aborted_BuildInProgress_Stuck.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Disabled_BuildInProgress.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Disabled_BuildInProgress_Stuck.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Unknown_BuildInProgress.ico" />
+    <EmbeddedResource Include="Resources\TrayIcons\Unknown_BuildInProgress_Stuck.ico" />
     <EmbeddedResource Include="Configuration.xml" />
     <Content Include="HudsonTrayTracker.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

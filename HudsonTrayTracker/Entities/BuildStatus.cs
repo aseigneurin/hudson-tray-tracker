@@ -16,7 +16,7 @@ namespace Hudson.TrayTracker.Entities
         Failed,
     }
 
-    [DebuggerDisplay("Status={Value}, Stuck={IsStuck}")]
+    [DebuggerDisplay("Status={Value}, InProgress={IsInProgress}, Stuck={IsStuck}")]
     public class BuildStatus
     {
         public static readonly BuildStatus UNKNOWN_BUILD_STATUS = new BuildStatus(BuildStatusEnum.Unknown, false, false);
@@ -32,9 +32,6 @@ namespace Hudson.TrayTracker.Entities
 
         public BuildStatus(BuildStatusEnum value, bool isInProgress, bool isStuck)
         {
-            if (value < BuildStatusEnum.Successful)
-                isInProgress = false;
-
             this.Value = value;
             this.IsInProgress = isInProgress;
             this.IsStuck = isStuck;
