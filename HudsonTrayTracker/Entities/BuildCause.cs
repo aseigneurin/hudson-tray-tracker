@@ -21,6 +21,7 @@ namespace Hudson.TrayTracker.Entities
     {
         public string ShortDescription { get; set; }
         public string Starter { get; set; }
+        public string UserID { get; set; }
         public BuildCauseEnum Cause;
 
         public BuildCause()
@@ -60,6 +61,11 @@ namespace Hudson.TrayTracker.Entities
                     if (userName != null && userName.InnerText.Length > 0)
                     {
                         cause.Starter = userName.InnerText.ToString();
+                    }
+                    var userID = causeNode["userId"];
+                    if (userID != null && userID.InnerText.Length > 0)
+                    {
+                        cause.UserID = userID.InnerText.ToString();
                     }
                 }
                 else if (causeShortDesc.StartsWith("Started by Timer", StringComparison.CurrentCultureIgnoreCase))

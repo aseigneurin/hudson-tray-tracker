@@ -8,13 +8,11 @@ namespace Hudson.TrayTracker.Entities
 {
     public class BuildTransition
     {
-        public static readonly BuildTransition Broken = new BuildTransition("Broken build", ToolTipIcon.Error);                     //  null, Unstable, Success -> Failure
-        public static readonly BuildTransition Fixed = new BuildTransition("Fixed build", ToolTipIcon.Info);                        //  Failure, Unstable -> Success
-        public static readonly BuildTransition Unstable = new BuildTransition("Unstable build", ToolTipIcon.Warning);               //  null, Failure, Success -> Unstable
-        public static readonly BuildTransition Aborted = new BuildTransition("Aborted build", ToolTipIcon.Warning);                 //  * -> Aborted
-        public static readonly BuildTransition StillUnstable = new BuildTransition("Build still unstable", ToolTipIcon.Warning);    //  Unstable -> Unstable
-        public static readonly BuildTransition StillSuccessful = new BuildTransition("Build successful", ToolTipIcon.Info);         //  null, Success -> Success
-        public static readonly BuildTransition StillFailing = new BuildTransition("Build still failing", ToolTipIcon.Error);        //  Failure -> Failure
+        //  Build ended
+        public static readonly BuildTransition Failed = new BuildTransition("Build failed", ToolTipIcon.Error);
+        public static readonly BuildTransition Unstable = new BuildTransition("Build unstable", ToolTipIcon.Warning);
+        public static readonly BuildTransition Aborted = new BuildTransition("Build aborted", ToolTipIcon.Warning);
+        public static readonly BuildTransition Successful = new BuildTransition("Build successful", ToolTipIcon.Info);
 
         private readonly string caption;
         private readonly ToolTipIcon icon;
@@ -33,6 +31,31 @@ namespace Hudson.TrayTracker.Entities
         public override string ToString()
         {
             return caption;
+        }
+
+        public static BuildTransition GetBuildTransition(BuildStatusEnum buildStatusEnum)
+        {
+            BuildTransition buildTransition = null;
+
+            switch(buildStatusEnum)
+            {
+                case BuildStatusEnum.Aborted:
+                    buildTransition = BuildTransition.Aborted;
+                    break;
+                case BuildStatusEnum.Failed:
+                    buildTransition = BuildTransition.Failed;
+                    break;
+                case BuildStatusEnum.Unstable:
+                    buildTransition = BuildTransition.Unstable;
+                    break;
+                case BuildStatusEnum.Successful:
+                    buildTransition = BuildTransition.Successful;
+                    break;
+                default:
+                    buildTransition = BuildTransition.Successful;
+                    break;
+            }
+            return buildTransition;
         }
     }
 }

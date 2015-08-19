@@ -407,7 +407,7 @@ namespace Hudson.TrayTracker.UI
                             {
                                 if (lastBuildCauses.HasUniqueCauses == false)
                                 {
-                                    buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_MultipleSources);
+                                    buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_MultipleSources;
                                     break;
                                 }
 
@@ -427,7 +427,6 @@ namespace Hudson.TrayTracker.UI
                                             {
                                                 buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_SCM_Single, FormatUsers(lastBuild));
                                             }
-                                            
                                         }
                                         break;
                                     case BuildCauseEnum.User:
@@ -437,17 +436,17 @@ namespace Hudson.TrayTracker.UI
                                         break;
                                     case BuildCauseEnum.RemoteHost:
                                         {
-                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_RemoteHost);
+                                            buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_RemoteHost;
                                         }
                                         break;
                                     case BuildCauseEnum.Timer:
                                         {
-                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_Timer);
+                                            buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_Timer;
                                         }
                                         break;
                                     case BuildCauseEnum.UpstreamProject:
                                         {
-                                            buildCausesSummary = string.Format(HudsonTrayTrackerResources.BuildDetails_Cause_UpstreamProject);
+                                            buildCausesSummary = HudsonTrayTrackerResources.BuildDetails_Cause_UpstreamProject;
                                         }
                                         break;
                                 }

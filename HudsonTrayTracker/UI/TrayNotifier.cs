@@ -21,7 +21,7 @@ namespace Hudson.TrayTracker.UI
     public partial class TrayNotifier : Component
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        public static readonly int MAX_TOOLTIP_LENGTH = 63;
+        public static readonly int MAX_TOOLTIP_LENGTH = 127;
         public static readonly int BALLOON_TOOLTIP_TIMEOUT = 5000;
 
         public static TrayNotifier Instance
@@ -211,6 +211,7 @@ namespace Hudson.TrayTracker.UI
             var errorProjects = new HashedSet<Project>();
             var regressingProjects = new HashedSet<Project>();
             var progressingAndErrorProjects = new HashedSet<Project>();
+            var interestingProjects = new HashedSet<Project>();
 
             foreach (Server server in ConfigurationService.Servers)
             {
@@ -233,6 +234,11 @@ namespace Hudson.TrayTracker.UI
                     if (IsRegressing(project))
                         regressingProjects.Add(project);
                     lastProjectsBuildDetails[project] = project.AllBuildDetails;
+
+                    if (project.Activity.HasBuildActivity)
+                    {
+                        interestingProjects.Add(project);
+                    }
                 }
             }
 
@@ -252,6 +258,7 @@ namespace Hudson.TrayTracker.UI
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
             UpdateTrayTooltip(progressingAndErrorProjects);
+            ShowBallowTip(interestingProjects);
 
             lastBuildStatus = buildStatus;
         }
@@ -330,11 +337,25 @@ namespace Hudson.TrayTracker.UI
                 tooltipText.Append(HudsonTrayTrackerResources.Tooltip_AllGood);
             }
             prefix = tooltipText.ToString();
-            if (prefix.Length > MAX_TOOLTIP_LENGTH)
+            SetNotifyIconText(notifyIcon, prefix);
+        }
+
+        public void ShowBallowTip(ICollection<Project> interestingProjects)
+        {
+            foreach (Project project in interestingProjects)
             {
-                prefix = prefix.Remove(MAX_TOOLTIP_LENGTH - 4) + " ...";
+                try
+                {
+                    CaptionAndMessage info = project.Activity.ActivityDetails;
+
+                    //  Need a queue so no events are skipped
+                    notifyIcon.ShowBalloonTip(BALLOON_TOOLTIP_TIMEOUT, info.Caption, info.Message, info.Icon);
+                }
+                catch(Exception ex)
+                {
+                    LoggingHelper.LogError(logger, ex);
+                }
             }
-            notifyIcon.Text = prefix;
         }
 
         private void UpdateBalloonTip(ICollection<Project> errorProjects, ICollection<Project> regressingProjects)
@@ -481,6 +502,19 @@ namespace Hudson.TrayTracker.UI
             {
                 return acknowledgedStatusByProject.ContainsKey(project);
             }
+        }
+
+        public static void SetNotifyIconText(NotifyIcon notifyIcon, string text)
+        {
+            if (text.Length > MAX_TOOLTIP_LENGTH)
+            {
+                text = text.Remove(MAX_TOOLTIP_LENGTH - 4) + " ...";
+            }
+            Type t = typeof(NotifyIcon);
+            BindingFlags hidden = BindingFlags.NonPublic | BindingFlags.Instance;
+            t.GetField("text", hidden).SetValue(notifyIcon, text);
+            if ((bool)t.GetField("added", hidden).GetValue(notifyIcon))
+                t.GetMethod("UpdateIcon", hidden).Invoke(notifyIcon, new object[] { true });
         }
     }
 }

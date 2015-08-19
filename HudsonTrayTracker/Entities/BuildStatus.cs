@@ -74,6 +74,31 @@ namespace Hudson.TrayTracker.Entities
                 return res;
             }
         }
+
+        public override string ToString()
+        {
+            string toString = null;
+
+            switch (this.Value)
+            {
+                case BuildStatusEnum.Successful:
+                    toString = SUCCESS;
+                    break;
+                case BuildStatusEnum.Failed:
+                    toString = FAILURE;
+                    break;
+                case BuildStatusEnum.Unstable:
+                    toString = UNSTABLE;
+                    break;
+                case BuildStatusEnum.Aborted:
+                    toString = ABORTED;
+                    break;
+                default:
+                    toString = base.ToString();
+                    break;
+            }
+            return toString;
+        }
     }
 
     public static class BuildStatusUtils
