@@ -80,7 +80,7 @@ namespace Hudson.TrayTracker.BusinessComponents
         {
             String url = NetUtils.ConcatUrls(project.Url, "/api/xml");
 
-            logger.Info("Updating project from " + url);
+            //logger.Info("Updating project from " + url);
 
             Credentials credentials = project.Server.Credentials;
             bool ignoreUntrustedCertificate = project.Server.IgnoreUntrustedCertificate;
@@ -122,7 +122,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             res.LastSuccessfulBuild = GetBuildDetails(credentials, lastSuccessfulBuildUrl, ignoreUntrustedCertificate);
             res.LastFailedBuild = GetBuildDetails(credentials, lastFailedBuildUrl, ignoreUntrustedCertificate);
 
-            logger.Info("Done updating project");
+            //logger.Info("Done updating project");
             return res;
         }
 
