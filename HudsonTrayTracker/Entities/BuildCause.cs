@@ -41,6 +41,23 @@ namespace Hudson.TrayTracker.Entities
             HasUniqueCauses = null;
         }
 
+        public BuildCause FirstBuildCause
+        {
+            get
+            {
+                BuildCause first = null;
+                if (HasUniqueCauses == true)
+                {
+                    using (IEnumerator<BuildCause> enumer = Causes.GetEnumerator())
+                    {
+                        if (enumer.MoveNext())
+                            first = enumer.Current;
+                    }
+                }
+                return first;
+            }
+        }
+
         public static void FillInBuildCauses(BuildDetails res, XmlDocument xml)
         {
             XmlNodeList causes = xml.SelectNodes("/*/action/cause");

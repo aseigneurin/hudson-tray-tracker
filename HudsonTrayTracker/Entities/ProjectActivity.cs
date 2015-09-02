@@ -79,7 +79,11 @@ namespace Hudson.TrayTracker.Entities
 
         public bool HasBuildActivity
         {
-            get { return HasBuildEnded || HasNewBuildStarted; }
+            get
+            {
+                return ( HasBuildEnded || HasNewBuildStarted ) && 
+                    (project.PreviousStatusValue > BuildStatusEnum.Disabled && project.StatusValue > BuildStatusEnum.Disabled);
+            }
         }
 
 #if false // tests
@@ -106,129 +110,119 @@ namespace Hudson.TrayTracker.Entities
             {
                 string Source = string.Empty;
                 BuildDetails lastBuild = project.LastBuild;
-                BuildCause cause = null;
-                BuildCauseEnum buildCauseEnum = BuildCauseEnum.Unknown;
+                BuildCause firstBuildCause = project.LastBuild != null && project.LastBuild.Causes != null ? project.LastBuild.Causes.FirstBuildCause : null;
+                BuildCauseEnum buildCauseEnum = firstBuildCause != null ? firstBuildCause.Cause : BuildCauseEnum.Unknown;
                 captionAndMessage.CleanUp();
 
-                if (lastBuild != null)
+                //  Filters out invalid data and ignores re-Enabled projects
+                if (lastBuild != null && firstBuildCause != null && buildCauseEnum != BuildCauseEnum.Unknown)
                 {
-                    BuildCauses lastBuildCauses = lastBuild.Causes;
-
-                    if (lastBuildCauses.HasUniqueCauses == true)
+                    switch (buildCauseEnum)
                     {
-                        using (IEnumerator<BuildCause> enumer = lastBuildCauses.Causes.GetEnumerator())
+                        case BuildCauseEnum.SCM:
+                            if (lastBuild.Users.Count() == 1)
+                            {
+                                Source = string.Format(" (commits by {0})", StringUtils.Join(lastBuild.Users, HudsonTrayTrackerResources.BuildDetails_UserSeparator));
+                            }
+                            else
+                            {
+                                Source = " (recent commits)";
+                            }
+                            break;
+                        case BuildCauseEnum.User:
+                            Source = !string.IsNullOrEmpty(firstBuildCause.UserID) ? string.Format(" (triggered by {0})", firstBuildCause.UserID) : " (forced)";
+                            break;
+                        case BuildCauseEnum.RemoteHost:
+                            Source = " (started remotely)";
+                            break;
+                        case BuildCauseEnum.Timer:
+                            Source = " (scheduled)";
+                            break;
+                        case BuildCauseEnum.UpstreamProject:
+                            Source = " (by upstream project)";
+                            break;
+                    }
+
+                    if (IsBuilding)
+                    {
+                        captionAndMessage.BuildTransition = BuildTransition.Successful;
+                        captionAndMessage.Caption = "Project Name: " + project;
+                        captionAndMessage.Message = buildCauseEnum == BuildCauseEnum.User && !string.IsNullOrEmpty(firstBuildCause.UserID) ?
+                            string.Format(UserStartsBuild, firstBuildCause.UserID) : string.Format(BuildStarted, Source);
+                    }
+                    else
+                    {
+                        captionAndMessage.BuildTransition = BuildTransition.GetBuildTransition(project.StatusValue);
+                        captionAndMessage.Caption = project + ": " + captionAndMessage.BuildTransition;
+                        /*
+                        if (IsAnotherBuildComplete)
                         {
-                            if (enumer.MoveNext())
-                                cause = enumer.Current;
-                            buildCauseEnum = cause.Cause;
-                            switch (buildCauseEnum)
-                            {
-                                case BuildCauseEnum.SCM:
-                                    if (lastBuild.Users.Count() == 1)
-                                    {
-                                        Source = string.Format(" (commits by {0})", StringUtils.Join(lastBuild.Users, HudsonTrayTrackerResources.BuildDetails_UserSeparator));
-                                    }
-                                    else
-                                    {
-                                        Source = " (recent commits)";
-                                    }
-                                    break;
-                                case BuildCauseEnum.User:
-                                    Source = !string.IsNullOrEmpty(cause.UserID) ? string.Format(" (triggered by {0})", cause.UserID) : " (forced)";
-                                    break;
-                                case BuildCauseEnum.RemoteHost:
-                                    Source = " (started remotely)";
-                                    break;
-                                case BuildCauseEnum.Timer:
-                                    Source = " (scheduled)";
-                                    break;
-                                case BuildCauseEnum.UpstreamProject:
-                                    Source = " (by upstream project)";
-                                    break;
-                            }
+                            captionAndMessage.Message = "The previous build" + Source + " was " + project.Status + "\n";
                         }
-                    }
-                }
+                        */
 
-                if (IsBuilding)
-                {
-                    captionAndMessage.BuildTransition = BuildTransition.Successful;
-                    captionAndMessage.Caption = "Project Name: " + project;
-                    captionAndMessage.Message = buildCauseEnum == BuildCauseEnum.User && !string.IsNullOrEmpty(cause.UserID) ?
-                        string.Format(UserStartsBuild, cause.UserID) : string.Format(BuildStarted, Source);
-                }
-                else
-                {
-                    captionAndMessage.BuildTransition = BuildTransition.GetBuildTransition(project.StatusValue);
-                    captionAndMessage.Caption = project + ": " + captionAndMessage.BuildTransition;
-                    /*
-                    if (IsAnotherBuildComplete)
-                    {
-                        captionAndMessage.Message = "The previous build" + Source + " was " + project.Status + "\n";
-                    }
-                    */
-
-                    switch (project.StatusValue)
-                    {
-                        case BuildStatusEnum.Aborted:
-                            captionAndMessage.Caption = "Project Name: " + project;
-                            captionAndMessage.Message = Aborted;
-                            break;
-                        case BuildStatusEnum.Successful:
-                        case BuildStatusEnum.Unstable:
-                        case BuildStatusEnum.Failed:
-                            {
-                                bool wasSuccessful = project.PreviousStatusValue == BuildStatusEnum.Successful;
-                                bool wasUnstable = project.PreviousStatusValue == BuildStatusEnum.Unstable;
-                                bool wasFailing = project.PreviousStatusValue == BuildStatusEnum.Failed;
-
-                                bool isSuccessful = project.StatusValue == BuildStatusEnum.Successful;
-                                bool isUnstable = project.StatusValue == BuildStatusEnum.Unstable;
-                                bool isFailing = project.StatusValue == BuildStatusEnum.Failed;
-
-                                if (wasSuccessful && isUnstable) captionAndMessage.Message = string.Format(Unstable, Source);
-                                else if (wasSuccessful && isFailing) captionAndMessage.Message = string.Format(Broken, Source);
-                                else if (wasSuccessful && isSuccessful) captionAndMessage.Message = StillSuccessful;
-                                else if (wasUnstable && isUnstable)
+                        switch (project.StatusValue)
+                        {
+                            case BuildStatusEnum.Aborted:
+                                captionAndMessage.Caption = "Project Name: " + project;
+                                captionAndMessage.Message = Aborted;
+                                break;
+                            case BuildStatusEnum.Successful:
+                            case BuildStatusEnum.Unstable:
+                            case BuildStatusEnum.Failed:
                                 {
-                                    captionAndMessage.Message = string.Format(StillUnstable, Source);
-                                }
-                                else if (wasUnstable && isFailing)
-                                {
-                                    if (buildCauseEnum == BuildCauseEnum.SCM)
+                                    bool wasSuccessful = project.PreviousStatusValue == BuildStatusEnum.Successful;
+                                    bool wasUnstable = project.PreviousStatusValue == BuildStatusEnum.Unstable;
+                                    bool wasFailing = project.PreviousStatusValue == BuildStatusEnum.Failed;
+
+                                    bool isSuccessful = project.StatusValue == BuildStatusEnum.Successful;
+                                    bool isUnstable = project.StatusValue == BuildStatusEnum.Unstable;
+                                    bool isFailing = project.StatusValue == BuildStatusEnum.Failed;
+
+                                    if (wasSuccessful && isUnstable) captionAndMessage.Message = string.Format(Unstable, Source);
+                                    else if (wasSuccessful && isFailing) captionAndMessage.Message = string.Format(Broken, Source);
+                                    else if (wasSuccessful && isSuccessful) captionAndMessage.Message = StillSuccessful;
+                                    else if (wasUnstable && isUnstable)
                                     {
-                                        captionAndMessage.Message = string.Format(BreakingChanges, Source);
+                                        captionAndMessage.Message = string.Format(StillUnstable, Source);
                                     }
+                                    else if (wasUnstable && isFailing)
+                                    {
+                                        if (buildCauseEnum == BuildCauseEnum.SCM)
+                                        {
+                                            captionAndMessage.Message = string.Format(BreakingChanges, Source);
+                                        }
+                                        else
+                                        {
+                                            captionAndMessage.Message = string.Format(Broken, Source);
+                                        }
+                                    }
+                                    else if (wasUnstable && isSuccessful) captionAndMessage.Message = FixedUnstable;
+                                    else if (wasFailing && isUnstable) captionAndMessage.Message = string.Format(FixedBrokenButUnstable, Source);
+                                    else if (wasFailing && isFailing)
+                                    {
+                                        if (buildCauseEnum == BuildCauseEnum.SCM)
+                                        {
+                                            captionAndMessage.Message = string.Format(FailToFix, Source);
+                                        }
+                                        else
+                                        {
+                                            captionAndMessage.Message = string.Format(StillFailing, Source);
+                                        }
+                                    }
+                                    else if (wasFailing && isSuccessful) captionAndMessage.Message = FixedBroken;
+                                    else if (isUnstable) captionAndMessage.Message = string.Format(Unstable, Source);
+                                    else if (isFailing) captionAndMessage.Message = Broken;
+                                    else if (isSuccessful) captionAndMessage.Message = string.Format(SuccessfulBuild, Source);
                                     else
                                     {
-                                        captionAndMessage.Message = string.Format(Broken, Source);
+                                        throw new Exception("Build Activity does not meet all conditions in the logic: " + project + ", status is " + project.Status.ToString());
                                     }
                                 }
-                                else if (wasUnstable && isSuccessful) captionAndMessage.Message = FixedUnstable;
-                                else if (wasFailing && isUnstable) captionAndMessage.Message = string.Format(FixedBrokenButUnstable, Source);
-                                else if (wasFailing && isFailing)
-                                {
-                                    if (buildCauseEnum == BuildCauseEnum.SCM)
-                                    {
-                                        captionAndMessage.Message = string.Format(FailToFix, Source);
-                                    }
-                                    else
-                                    {
-                                        captionAndMessage.Message = string.Format(StillFailing, Source);
-                                    }
-                                }
-                                else if (wasFailing && isSuccessful) captionAndMessage.Message = FixedBroken;
-                                else if (isUnstable) captionAndMessage.Message = string.Format(Unstable, Source);
-                                else if (isFailing) captionAndMessage.Message = Broken;
-                                else if (isSuccessful) captionAndMessage.Message = string.Format(BreakingChanges, Source);
-                                else
-                                {
-                                    throw new Exception("Build Activity does not meet all conditions in the logic: " + project + ", status is " + project.Status);
-                                }
-                            }
-                            break;
-                        default:
-                            throw new Exception("Build Activity does not meet all conditions in the logic: " + project + ", status is " + project.Status);
+                                break;
+                            default:
+                                throw new Exception("Build Activity does not meet all conditions in the logic: " + project + ", status is " + project.Status.ToString());
+                        }
                     }
                 }
                 return captionAndMessage;
@@ -247,6 +241,7 @@ namespace Hudson.TrayTracker.Entities
         private static readonly string Broken = "Build{0} is broken";                                   //  Unstable, Success -> Failure. NOT by SCM change.
         private static readonly string FixedBrokenButUnstable = "Build{0} is fixed but remains unstable";  //  Failure -> Unstable. Supports SCM change.
         private static readonly string Unstable = "Build{0} is unstable";                               //  Success, Unknown -> Unstable. Supports SCM change.
+        private static readonly string SuccessfulBuild = "Build{0} completes successfully";             //  * -> Success. Supports Cause.
         //  Build started
         private static readonly string BuildStarted = "Build{0} has started";                           //  * -> IsBuilding. Supports Cause.
         private static readonly string UserStartsBuild = "{0} started a build";                         //  * -> IsBuilding. By User.
