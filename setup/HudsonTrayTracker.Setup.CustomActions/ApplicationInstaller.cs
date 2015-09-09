@@ -6,7 +6,7 @@ using System.Configuration.Install;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace HudsonTrayTracker.Setup.CustomActions
+namespace JenkinsTray.Setup.CustomActions
 {
     [RunInstaller(true)]
     public class ApplicationInstaller : Installer
