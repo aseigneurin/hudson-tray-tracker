@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <Version Condition=" '$(Version)' == '' ">1.0.2</Version>
+    <Version Condition=" '$(Version)' == '' ">1.0.3</Version>
     <ProductVersion>3.0</ProductVersion>
     <ProjectGuid>{4839b061-a1df-4f9f-852e-95f534d949bb}</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>

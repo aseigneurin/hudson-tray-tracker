@@ -113,7 +113,7 @@ namespace Hudson.TrayTracker.UI
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(278, 15);
             this.labelControl3.TabIndex = 4;
-            this.labelControl3.Text = "Contributor(s): Khang Yeen Lee";
+            this.labelControl3.Text = "Main Contributor: Khang Yeen Lee";
             // 
             // linkLabel3
             // 
