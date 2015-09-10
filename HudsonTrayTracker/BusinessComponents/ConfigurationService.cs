@@ -187,7 +187,10 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void SetSoundPath(string status, string path)
         {
             PropertyInfo prop = NotificationSettings.GetType().GetProperty(status + "SoundPath");
-            if( prop.GetValue(NotificationSettings, null).ToString().CompareTo(path) != 0 )
+            object obj = prop.GetValue(NotificationSettings, null);
+
+            //  obj == null, is to allow NOTHING to be set to the status.
+            if (obj == null || obj.ToString().CompareTo(path) != 0)
             {
                 prop.SetValue(NotificationSettings, path, null);
                 SaveConfiguration();
