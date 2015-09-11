@@ -407,7 +407,7 @@ namespace Hudson.TrayTracker.UI
             this.buildDetailsGridColumn.FieldName = "buildDetailsStr";
             this.buildDetailsGridColumn.Name = "buildDetailsGridColumn";
             this.buildDetailsGridColumn.OptionsColumn.AllowEdit = false;
-            this.buildDetailsGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
+            this.buildDetailsGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.DisplayText;
             this.buildDetailsGridColumn.Visible = true;
             this.buildDetailsGridColumn.VisibleIndex = 2;
             this.buildDetailsGridColumn.Width = 200;
