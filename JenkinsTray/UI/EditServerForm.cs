@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 
 using DevExpress.XtraEditors;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class EditServerForm : DevExpress.XtraEditors.XtraForm
     {

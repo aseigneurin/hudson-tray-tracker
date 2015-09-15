@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Jenkins.Tray.Utils
+namespace JenkinsTray.Utils
 {
     static class PInvokeUtils
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Jenkins.Tray {
+namespace JenkinsTray {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Jenkins.Tray {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Jenkins.Tray.JenkinsTrayResources", typeof(JenkinsTrayResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JenkinsTray.JenkinsTrayResources", typeof(JenkinsTrayResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

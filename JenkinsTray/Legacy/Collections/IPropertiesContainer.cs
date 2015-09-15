@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
-namespace Jenkins.Tray.Utils.Collections
+namespace JenkinsTray.Utils.Collections
 {
     // reads a properties file
     [Obsolete]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Iesi.Collections.Generic;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     public class ClaimDetails
     {

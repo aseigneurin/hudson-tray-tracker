@@ -1,4 +1,4 @@
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     partial class SettingsForm
     {
@@ -31,9 +31,9 @@ namespace Jenkins.Tray.UI
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.serversTabPage = new DevExpress.XtraTab.XtraTabPage();
-            this.serversSettingsControl = new Jenkins.Tray.UI.Controls.ServersSettingsControl();
+            this.serversSettingsControl = new JenkinsTray.UI.Controls.ServersSettingsControl();
             this.notificationsTabPage = new DevExpress.XtraTab.XtraTabPage();
-            this.notificationsSettingsControl = new Jenkins.Tray.UI.Controls.NotificationsSettingsControl();
+            this.notificationsSettingsControl = new JenkinsTray.UI.Controls.NotificationsSettingsControl();
             this.generalTabPage = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -313,8 +313,8 @@ namespace Jenkins.Tray.UI
         private DevExpress.XtraTab.XtraTabControl tabControl;
         private DevExpress.XtraTab.XtraTabPage serversTabPage;
         private DevExpress.XtraTab.XtraTabPage notificationsTabPage;
-        private Jenkins.Tray.UI.Controls.ServersSettingsControl serversSettingsControl;
-        private Jenkins.Tray.UI.Controls.NotificationsSettingsControl notificationsSettingsControl;
+        private JenkinsTray.UI.Controls.ServersSettingsControl serversSettingsControl;
+        private JenkinsTray.UI.Controls.NotificationsSettingsControl notificationsSettingsControl;
         private DevExpress.XtraTab.XtraTabPage generalTabPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.SpinEdit refreshSpinEdit;

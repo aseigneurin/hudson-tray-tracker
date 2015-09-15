@@ -5,7 +5,7 @@ using System.IO;
 
 using Common.Logging;
 
-namespace Jenkins.Tray.Utils.Logging
+namespace JenkinsTray.Utils.Logging
 {
     public static class LoggingHelper
     {

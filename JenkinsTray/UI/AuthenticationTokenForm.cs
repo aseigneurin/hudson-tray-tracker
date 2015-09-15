@@ -8,11 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using Spring.Context.Support;
-using Jenkins.Tray.Utils;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Utils;
+using JenkinsTray.Entities;
 using Common.Logging;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class AuthenticationTokenForm : DevExpress.XtraEditors.XtraForm
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     public enum BuildStatusEnum
     {

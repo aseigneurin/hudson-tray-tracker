@@ -8,7 +8,7 @@ using Common.Logging;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace Jenkins.Tray.Utils.Collections
+namespace JenkinsTray.Utils.Collections
 {
     // reads a properties file
     [Obsolete]

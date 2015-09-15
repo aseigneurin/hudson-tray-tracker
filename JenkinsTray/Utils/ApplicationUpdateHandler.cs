@@ -6,9 +6,9 @@ using DevExpress.XtraEditors;
 using Common.Logging;
 using System.Reflection;
 using System.Diagnostics;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 
-namespace Jenkins.Tray.Utils
+namespace JenkinsTray.Utils
 {
     class ApplicationUpdateHandler
     {

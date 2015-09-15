@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class NotificationSettings

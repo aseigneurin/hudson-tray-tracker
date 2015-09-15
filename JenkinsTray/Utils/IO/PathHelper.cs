@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
-namespace Jenkins.Tray.Utils.IO
+namespace JenkinsTray.Utils.IO
 {
     public static class PathHelper
     {

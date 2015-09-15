@@ -1,4 +1,4 @@
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     partial class ServersSettingsControl
     {
@@ -39,8 +39,8 @@ namespace Jenkins.Tray.UI.Controls
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.serverListControl = new Jenkins.Tray.UI.Controls.ServerListControl();
-            this.projectListControl = new Jenkins.Tray.UI.Controls.ProjectListControl();
+            this.serverListControl = new JenkinsTray.UI.Controls.ServerListControl();
+            this.projectListControl = new JenkinsTray.UI.Controls.ProjectListControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMarqueeProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();

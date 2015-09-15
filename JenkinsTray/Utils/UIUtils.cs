@@ -7,7 +7,7 @@ using Common.Logging;
 using DevExpress.XtraEditors;
 using System.Windows.Forms;
 
-namespace Jenkins.Tray.Utils
+namespace JenkinsTray.Utils
 {
     public static class UIUtils
     {

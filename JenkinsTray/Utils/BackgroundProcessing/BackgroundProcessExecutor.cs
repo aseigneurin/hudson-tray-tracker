@@ -11,10 +11,10 @@ using System.Reflection;
 
 using Common.Logging;
 
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using System.Threading;
 
-namespace Jenkins.Tray.Utils.BackgroundProcessing
+namespace JenkinsTray.Utils.BackgroundProcessing
 {
     public static class BackgroundProcessExecutor
     {

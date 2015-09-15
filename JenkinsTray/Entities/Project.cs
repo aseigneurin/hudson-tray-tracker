@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Project : IComparable<Project>

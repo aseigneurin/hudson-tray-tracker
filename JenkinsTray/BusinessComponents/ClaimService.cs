@@ -7,11 +7,11 @@ using System.Net;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Web;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Entities;
+using JenkinsTray.Utils;
 using System.Xml;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class ClaimService
     {

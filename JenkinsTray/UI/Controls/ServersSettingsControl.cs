@@ -6,7 +6,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     public partial class ServersSettingsControl : DevExpress.XtraEditors.XtraUserControl
     {

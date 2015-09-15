@@ -8,9 +8,9 @@
     <ProjectGuid>{A54602CA-6823-4F2C-870F-1D464D9F4814}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jenkins.Tray</RootNamespace>
+    <RootNamespace>JenkinsTray</RootNamespace>
     <AssemblyName>JenkinsTray</AssemblyName>
-    <StartupObject>Jenkins.Tray.Program</StartupObject>
+    <StartupObject>JenkinsTray.Program</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>

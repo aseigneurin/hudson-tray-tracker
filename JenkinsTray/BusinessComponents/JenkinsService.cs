@@ -4,18 +4,18 @@ using System.Text;
 using System.Net;
 using System.Web;
 using System.Xml;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Entities;
+using JenkinsTray.Utils;
 using Common.Logging;
 using System.Reflection;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using Iesi.Collections.Generic;
-using Jenkins.Tray.Utils.Web;
+using JenkinsTray.Utils.Web;
 using System.Threading;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class JenkinsService
     {

@@ -6,9 +6,9 @@ using System.Reflection;
 
 using Common.Logging;
 
-using Jenkins.Tray.Utils.Collections;
+using JenkinsTray.Utils.Collections;
 
-namespace Jenkins.Tray.Utils.IO
+namespace JenkinsTray.Utils.IO
 {
     // reads a properties file
     [Obsolete]

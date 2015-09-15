@@ -6,13 +6,13 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Jenkins.Tray.BusinessComponents;
-using Jenkins.Tray.Entities;
+using JenkinsTray.BusinessComponents;
+using JenkinsTray.Entities;
 using DevExpress.XtraBars;
-using Jenkins.Tray.Utils.BackgroundProcessing;
+using JenkinsTray.Utils.BackgroundProcessing;
 using Spring.Context.Support;
 
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     public partial class ServerListControl : DevExpress.XtraEditors.XtraUserControl
     {

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using Common.Logging;
 using System.Reflection;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public static class SoundPlayer
     {

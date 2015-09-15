@@ -6,23 +6,23 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Jenkins.Tray.BusinessComponents;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.Properties;
+using JenkinsTray.BusinessComponents;
+using JenkinsTray.Entities;
+using JenkinsTray.Properties;
 using DevExpress.XtraGrid.Views.Base;
 using System.Drawing.Imaging;
 using Common.Logging;
 using System.Reflection;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using System.Diagnostics;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using DevExpress.Utils.Controls;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Utils;
 using DevExpress.XtraGrid.Columns;
 using Spring.Context.Support;
 using DevExpress.Utils;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
@@ -191,7 +191,7 @@ namespace Jenkins.Tray.UI
 
             try
             {
-                string resourceName = string.Format("Jenkins.Tray.Resources.StatusIcons.{0}.gif", status.Key);
+                string resourceName = string.Format("JenkinsTray.Resources.StatusIcons.{0}.gif", status.Key);
                 Image img = ResourceImageHelper.CreateImageFromResources(resourceName, GetType().Assembly);
                 byte[] imgBytes = DevExpress.XtraEditors.Controls.ByteImageConverter.ToByteArray(img, ImageFormat.Gif);
                 iconsByKey.Add(status.Key, imgBytes);

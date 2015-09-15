@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 using Spring.Context.Support;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 using DevExpress.XtraBars;
 
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     public class ServersSettingsController
     {

@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 using DevExpress.Skins;
 using DevExpress.LookAndFeel;
 using DevExpress.UserSkins;
-using Jenkins.Tray.UI;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.UI;
+using JenkinsTray.Utils.Logging;
 using System.Reflection;
 using System.Diagnostics;
 using Common.Logging;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Utils;
 using System.Threading;
 using System.Drawing;
 using System.IO;
 using DevExpress.XtraEditors;
 using Spring.Context.Support;
 
-namespace Jenkins.Tray
+namespace JenkinsTray
 {
     static class Program
     {

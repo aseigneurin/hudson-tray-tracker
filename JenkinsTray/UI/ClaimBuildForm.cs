@@ -6,11 +6,11 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.Entities;
+using JenkinsTray.BusinessComponents;
 using Spring.Context.Support;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class ClaimBuildForm : DevExpress.XtraEditors.XtraForm
     {

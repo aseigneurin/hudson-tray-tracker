@@ -8,10 +8,10 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Reflection;
 using Spring.Context.Support;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Utils;
 using Common.Logging;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class AboutForm : DevExpress.XtraEditors.XtraForm
     {

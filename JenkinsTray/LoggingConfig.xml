@@ -4,7 +4,7 @@
     <level value="INFO" />
     <appender-ref ref="GeneralLog" />
   </root>
-  <logger name="Jenkins.Tray.BusinessComponents">
+  <logger name="JenkinsTray.BusinessComponents">
     <level value="INFO"/>
   </logger>
   <appender name="GeneralLog" type="log4net.Appender.RollingFileAppender">

@@ -1,4 +1,4 @@
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     partial class NotificationsSettingsControl
     {
@@ -29,10 +29,10 @@ namespace Jenkins.Tray.UI.Controls
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.notificationSettingsControl1 = new Jenkins.Tray.UI.Controls.NotificationSettingsControl();
-            this.notificationSettingsControl2 = new Jenkins.Tray.UI.Controls.NotificationSettingsControl();
-            this.notificationSettingsControl3 = new Jenkins.Tray.UI.Controls.NotificationSettingsControl();
-            this.notificationSettingsControl4 = new Jenkins.Tray.UI.Controls.NotificationSettingsControl();
+            this.notificationSettingsControl1 = new JenkinsTray.UI.Controls.NotificationSettingsControl();
+            this.notificationSettingsControl2 = new JenkinsTray.UI.Controls.NotificationSettingsControl();
+            this.notificationSettingsControl3 = new JenkinsTray.UI.Controls.NotificationSettingsControl();
+            this.notificationSettingsControl4 = new JenkinsTray.UI.Controls.NotificationSettingsControl();
             this.enableSoundCheckBox = new DevExpress.XtraEditors.CheckEdit();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.treatUnstableAsFailedCheckBox = new DevExpress.XtraEditors.CheckEdit();

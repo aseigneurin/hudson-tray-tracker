@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 using Iesi.Collections.Generic;
-using Jenkins.Tray.Utils.IO;
+using JenkinsTray.Utils.IO;
 using System.IO;
 using System.Reflection;
 using Common.Logging;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     [Obsolete]
     public class LegacyConfigurationService

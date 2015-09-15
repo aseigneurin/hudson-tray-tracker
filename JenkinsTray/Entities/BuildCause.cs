@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using Iesi.Collections.Generic;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     public enum BuildCauseEnum
     {

@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class NotificationService : Component
     {

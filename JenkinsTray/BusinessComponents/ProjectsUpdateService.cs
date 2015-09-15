@@ -4,13 +4,13 @@ using System.Text;
 using System.Threading;
 using Common.Logging;
 using System.Reflection;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 using System.ComponentModel;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using Iesi.Collections.Generic;
 using Amib.Threading;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class ProjectsUpdateService
     {

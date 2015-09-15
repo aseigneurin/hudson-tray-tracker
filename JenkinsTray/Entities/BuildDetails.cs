@@ -4,7 +4,7 @@ using System.Text;
 using System.Diagnostics;
 using Iesi.Collections.Generic;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     [DebuggerDisplay("BuildNumber={Number}, Result={Result}")]
     public class BuildDetails

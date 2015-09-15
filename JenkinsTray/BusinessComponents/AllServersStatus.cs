@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.Utils;
-using Jenkins.Tray.Utils.Collections;
+using JenkinsTray.Entities;
+using JenkinsTray.Utils;
+using JenkinsTray.Utils.Collections;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class AllServersStatus
     {

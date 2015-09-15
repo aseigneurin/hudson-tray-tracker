@@ -7,10 +7,10 @@ using System.Windows.Forms;
 
 using Common.Logging;
 
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using DevExpress.XtraEditors;
 
-namespace Jenkins.Tray.Utils
+namespace JenkinsTray.Utils
 {
     static class ThreadExceptionHandler
     {

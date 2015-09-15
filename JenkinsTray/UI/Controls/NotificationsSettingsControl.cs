@@ -6,10 +6,10 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 using Spring.Context.Support;
 
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     public partial class NotificationsSettingsControl : DevExpress.XtraEditors.XtraUserControl
     {

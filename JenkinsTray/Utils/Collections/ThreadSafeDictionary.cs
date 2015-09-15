@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Jenkins.Tray.Utils.Collections
+namespace JenkinsTray.Utils.Collections
 {
     public class ThreadSafeDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Iesi.Collections.Generic;
 using Newtonsoft.Json;
-using Jenkins.Tray.Utils.Serialization;
+using JenkinsTray.Utils.Serialization;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Server

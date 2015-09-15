@@ -5,13 +5,13 @@ using System.Text;
 using Common.Logging;
 using System.Reflection;
 using System.Threading;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Utils.Logging;
 using System.ComponentModel;
 using System.Net;
-using Jenkins.Tray.Utils.IO;
-using Jenkins.Tray.Utils.Collections;
+using JenkinsTray.Utils.IO;
+using JenkinsTray.Utils.Collections;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class ApplicationUpdateService
     {

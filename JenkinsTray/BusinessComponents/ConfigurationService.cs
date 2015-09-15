@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 using Iesi.Collections.Generic;
-using Jenkins.Tray.Utils.IO;
+using JenkinsTray.Utils.IO;
 using System.IO;
 using System.Reflection;
 using Common.Logging;
 using Newtonsoft.Json;
 
-namespace Jenkins.Tray.BusinessComponents
+namespace JenkinsTray.BusinessComponents
 {
     public class ConfigurationService
     {

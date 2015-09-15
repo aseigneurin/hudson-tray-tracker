@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     public class AllBuildDetails
     {

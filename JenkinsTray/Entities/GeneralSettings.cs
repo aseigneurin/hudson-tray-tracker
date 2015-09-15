@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class GeneralSettings

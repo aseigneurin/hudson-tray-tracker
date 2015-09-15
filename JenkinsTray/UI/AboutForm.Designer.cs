@@ -1,4 +1,4 @@
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     partial class AboutForm
     {

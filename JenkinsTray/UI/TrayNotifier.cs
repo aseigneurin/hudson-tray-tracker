@@ -5,18 +5,18 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Jenkins.Tray.BusinessComponents;
+using JenkinsTray.BusinessComponents;
 using Common.Logging;
 using System.Reflection;
-using Jenkins.Tray.Entities;
-using Jenkins.Tray.Utils.Logging;
+using JenkinsTray.Entities;
+using JenkinsTray.Utils.Logging;
 using Iesi.Collections.Generic;
 using DevExpress.XtraEditors;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Utils;
 using Spring.Context.Support;
 using DevExpress.Utils;
 
-namespace Jenkins.Tray.UI
+namespace JenkinsTray.UI
 {
     public partial class TrayNotifier : Component
     {
@@ -443,7 +443,7 @@ namespace Jenkins.Tray.UI
 
             try
             {
-                string resourceName = string.Format("Jenkins.Tray.Resources.TrayIcons.{0}.ico", status.Key);
+                string resourceName = string.Format("JenkinsTray.Resources.TrayIcons.{0}.ico", status.Key);
                 Icon icon = ResourceImageHelper.CreateIconFromResources(resourceName, GetType().Assembly);
                 iconsByKey.Add(status.Key, icon);
             }

@@ -1,4 +1,4 @@
-namespace Jenkins.Tray.UI.Controls
+namespace JenkinsTray.UI.Controls
 {
     partial class ServerListControl
     {

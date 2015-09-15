@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
-using Jenkins.Tray.Entities;
+using JenkinsTray.Entities;
 
-namespace Jenkins.Tray.Utils.Serialization
+namespace JenkinsTray.Utils.Serialization
 {
     class CredentialsJsonConverter : JsonConverter
     {

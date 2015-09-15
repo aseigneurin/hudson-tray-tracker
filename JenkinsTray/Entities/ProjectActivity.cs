@@ -6,9 +6,9 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Common.Logging;
 using System.Reflection;
-using Jenkins.Tray.Utils;
+using JenkinsTray.Utils;
 
-namespace Jenkins.Tray.Entities
+namespace JenkinsTray.Entities
 {
     public class CaptionAndMessage
     {

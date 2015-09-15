@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 
-namespace Jenkins.Tray.Utils.Web
+namespace JenkinsTray.Utils.Web
 {
     public class CookieAwareWebClient : WebClient
     {
