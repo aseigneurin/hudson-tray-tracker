@@ -459,6 +459,10 @@ namespace JenkinsTray.UI
                             {
                                 details = FormatDuration(lastBuild);
                             }
+                            else if (projectStatus.Value == BuildStatusEnum.Unstable)
+                            {
+                                details = projectStatus.Value.ToString() + ".";
+                            }
                             else if (projectStatus.Value == BuildStatusEnum.Disabled)
                             {
                                 details = string.Format("{0}. ", JenkinsTrayResources.BuildStatus_Disabled);
