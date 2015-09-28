@@ -7,7 +7,11 @@
            Manufacturer="Jenkins Tray Project"
            UpgradeCode="C8D46C5C-C37A-4596-BDDC-446D53436CFC">
 
-    <Package InstallerVersion="200" Compressed="yes" />
+    <!--InstallPrivileges="elevated" -->
+    <Package InstallerVersion="200"
+        Description="Jenkins Tray $(var.ProductVersion)"
+        InstallScope="perMachine"
+        Compressed="yes" />
 
     <Condition Message="A newer version of [ProductName] is already installed. Setup will now exit.">
       NOT NEWERVERSIONDETECTED OR Installed

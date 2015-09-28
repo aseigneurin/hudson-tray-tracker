@@ -45,11 +45,11 @@
     <CreateProperty Value="$(DefineConstants);ProductVersion=$(strAssemblyFileVersion)">
       <Output TaskParameter="Value" PropertyName="DefineConstants" />
     </CreateProperty>
-    <!-- Name the .msi file after the solution platform and assembly version e.g TestService-x86-1.4.0.0.msi -->
+    <!-- Name the .msi file after the solution platform and assembly version e.g JenkinsTray-v1.4.0.0.msi -->
     <CreateProperty Value="$(OutputName)_v$(strAssemblyFileVersion)">
       <Output TaskParameter="Value" PropertyName="TargetName" />
     </CreateProperty>
-    <!-- Name the .wixpdb file after the solution platform and assembly version e.g TestService-x86-1.4.0.0.msi -->
+    <!-- Name the .wixpdb file after the solution platform and assembly version e.g JenkinsTray-v1.4.0.0.msi -->
     <CreateProperty Value="$(TargetName)$(TargetPdbExt)">
       <Output TaskParameter="Value" PropertyName="TargetPdbName" />
     </CreateProperty>
