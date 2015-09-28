@@ -199,8 +199,7 @@ namespace JenkinsTray.UI
         public void UpdateNotifierStartup()
         {
             UpdateIcon(BuildStatus.UNKNOWN_BUILD_STATUS);
-            notifyIcon.Text = Assembly.GetExecutingAssembly().GetName().Name + " " +
-                              FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
+            notifyIcon.Text = Assembly.GetExecutingAssembly().GetName().Name;
         }
 
         private void DoUpdateNotifier()
