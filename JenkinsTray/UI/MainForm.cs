@@ -215,7 +215,7 @@ namespace JenkinsTray.UI
         {
             Point pt = new Point(e.X, e.Y);
             GridHitInfo ghi = projectsGridView.CalcHitInfo(pt);
-            if (ghi.InRow)
+            if (ghi.InRowCell)
             {
                 int dsRowIndex = projectsGridView.GetDataSourceRowIndex(ghi.RowHandle);
                 if (lastHoveredDSRowIndex != dsRowIndex)
@@ -239,14 +239,24 @@ namespace JenkinsTray.UI
 
         private void projectsGridView_DoubleClick(object sender, EventArgs e)
         {
-            Project project = GetSelectedProject();
-            if (project == null)
-                return;
-            bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
-            if (shouldOpenConsolePage)
-                OpenProjectConsolePage(project);
-            else
-                OpenProjectPage(project);
+            GridHitInfo hi = projectsGridView.CalcHitInfo(projectsGridControl.PointToClient(MousePosition));
+            if (hi.InColumnPanel)
+            {
+                GridColumn column = projectsGridView.Columns.ColumnByName(hi.Column.Name);
+                if (column != null)
+                    column.BestFit();
+            }
+            else if (hi.InRowCell)
+            {
+                Project project = GetSelectedProject();
+                if (project == null)
+                    return;
+                bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
+                if (shouldOpenConsolePage)
+                    OpenProjectConsolePage(project);
+                else
+                    OpenProjectPage(project);
+            }
         }
 
         private bool ShouldOpenConsolePage(Project project)
@@ -616,10 +626,17 @@ namespace JenkinsTray.UI
             int[] rowHandles = projectsGridView.GetSelectedRows();
             if (rowHandles.Length != 1)
                 return null;
+
             int rowHandle = rowHandles[0];
-            int dsRowIndex = projectsGridView.GetDataSourceRowIndex(rowHandle);
-            ProjectWrapper projectWrapper = projectsDataSource[dsRowIndex];
-            return projectWrapper.Project;
+            Project project = null;
+
+            if (rowHandle >= 0)
+            {
+                int dsRowIndex = projectsGridView.GetDataSourceRowIndex(rowHandle);
+                ProjectWrapper projectWrapper = projectsDataSource[dsRowIndex];
+                project = projectWrapper.Project;
+            }
+            return project;
         }
 
         public static void ShowOrFocus()
@@ -688,15 +705,18 @@ namespace JenkinsTray.UI
             Project project = GetSelectedProject();
             bool isProjectSelected = project != null;
 
-            if (project == null)
+            openProjectPageMenuItem.Enabled
+                = openConsolePageMenuItem.Enabled
+                = runBuildMenuItem.Enabled
+                = acknowledgeStatusMenuItem.Enabled
+                = claimBuildMenuItem.Enabled
+                = acknowledgeProjectMenuItem.Enabled
+                = setAuthenticationTokenMenuItem.Enabled
+                = removeProjectMenuItem.Enabled
+                = isProjectSelected;
+
+            if (!isProjectSelected)
             {
-                openProjectPageMenuItem.Enabled
-                    = openConsolePageMenuItem.Enabled
-                    = runBuildMenuItem.Enabled
-                    = acknowledgeStatusMenuItem.Enabled
-                    = claimBuildMenuItem.Enabled
-                    = acknowledgeProjectMenuItem.Enabled
-                    = false;
                 return;
             }
 
@@ -711,7 +731,7 @@ namespace JenkinsTray.UI
             }
             else
             {
-                acknowledgeStatusMenuItem.Enabled = ( projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate );
+                acknowledgeStatusMenuItem.Enabled = (projectStatus.IsStuck || projectStatus.Value >= BuildStatusEnum.Indeterminate);
             }
 
             bool shouldOpenConsolePage = ShouldOpenConsolePage(project);
