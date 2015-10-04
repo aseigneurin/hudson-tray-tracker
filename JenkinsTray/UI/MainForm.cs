@@ -239,14 +239,11 @@ namespace JenkinsTray.UI
 
         private void projectsGridView_DoubleClick(object sender, EventArgs e)
         {
-            GridHitInfo hi = projectsGridView.CalcHitInfo(projectsGridControl.PointToClient(MousePosition));
-            if (hi.InColumnPanel)
-            {
-                GridColumn column = projectsGridView.Columns.ColumnByName(hi.Column.Name);
-                if (column != null)
-                    column.BestFit();
-            }
-            else if (hi.InRowCell)
+            DXMouseEventArgs mouseEventArgs = e as DXMouseEventArgs;
+            Point pt = new Point(mouseEventArgs.X, mouseEventArgs.Y);
+            GridHitInfo hi = projectsGridView.CalcHitInfo(pt);
+
+            if (hi.InRowCell)
             {
                 Project project = GetSelectedProject();
                 if (project == null)
