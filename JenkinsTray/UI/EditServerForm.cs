@@ -105,13 +105,16 @@ namespace JenkinsTray.UI
 
         private void urlTextBox_Leave(object sender, EventArgs e)
         {
-            string url = ServerAddress;
+            string url = ServerAddress.Trim();
             if (String.IsNullOrEmpty(url) == false
                 && url.StartsWith("http://") == false
                 && url.StartsWith("https://") == false)
             {
                 ServerAddress = "http://" + url;
             }
+            //  Prevents malformed URL
+            if (!ServerAddress.EndsWith("/", true, System.Globalization.CultureInfo.CurrentCulture))
+                ServerAddress += "/";
         }
 
         private void EditServerForm_FormClosing(object sender, FormClosingEventArgs e)
