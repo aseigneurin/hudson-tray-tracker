@@ -211,13 +211,13 @@ namespace JenkinsTray.UI
             var regressingProjects = new HashedSet<Project>();
             var progressingAndErrorProjects = new HashedSet<Project>();
             var interestingProjects = new HashedSet<Project>();
-            var allProjects = new HashedSet<Project>();
+            int totalProjectCount = 0;
 
             foreach (Server server in ConfigurationService.Servers)
             {
                 foreach (Project project in server.Projects)
                 {
-                    allProjects.Add(project);
+                    totalProjectCount++;
 
                     BuildStatus status = GetProjectStatus(project);
                     if (worstBuildStatus == null || status.Value > worstBuildStatus)
@@ -259,7 +259,7 @@ namespace JenkinsTray.UI
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
-            UpdateTrayTooltip(progressingAndErrorProjects, allProjects);
+            UpdateTrayTooltip(progressingAndErrorProjects, totalProjectCount);
             ShowBallowTip(interestingProjects);
 
             lastBuildStatus = buildStatus;
@@ -297,12 +297,16 @@ namespace JenkinsTray.UI
             return res;
         }
 
-        private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects, ICollection<Project> allProjects)
+        private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects, int totalProjectCount)
         {
             StringBuilder tooltipText = new StringBuilder();
             string prefix = null;
 
-            if (progressingAndErrorProjects != null && progressingAndErrorProjects.Count > 0)
+            if (totalProjectCount == 0)
+            {
+                tooltipText.Append(JenkinsTrayResources.Tooltip_NoProjects);
+            }
+            else if (progressingAndErrorProjects != null && progressingAndErrorProjects.Count > 0)
             {
                 foreach (Project project in progressingAndErrorProjects)
                 {
@@ -333,10 +337,6 @@ namespace JenkinsTray.UI
                     if (tooltipText.ToString().Length > MAX_TOOLTIP_LENGTH)
                         break;
                 }
-            }
-            else if (allProjects.Count == 0)
-            {
-                tooltipText.Append(JenkinsTrayResources.Tooltip_NoProjects);
             }
             else
             {
