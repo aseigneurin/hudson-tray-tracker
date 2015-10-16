@@ -211,11 +211,14 @@ namespace JenkinsTray.UI
             var regressingProjects = new HashedSet<Project>();
             var progressingAndErrorProjects = new HashedSet<Project>();
             var interestingProjects = new HashedSet<Project>();
+            var allProjects = new HashedSet<Project>();
 
             foreach (Server server in ConfigurationService.Servers)
             {
                 foreach (Project project in server.Projects)
                 {
+                    allProjects.Add(project);
+
                     BuildStatus status = GetProjectStatus(project);
                     if (worstBuildStatus == null || status.Value > worstBuildStatus)
                         worstBuildStatus = status.Value;
@@ -256,7 +259,7 @@ namespace JenkinsTray.UI
 
             UpdateIcon(buildStatus);
             UpdateBalloonTip(errorProjects, regressingProjects);
-            UpdateTrayTooltip(progressingAndErrorProjects);
+            UpdateTrayTooltip(progressingAndErrorProjects, allProjects);
             ShowBallowTip(interestingProjects);
 
             lastBuildStatus = buildStatus;
@@ -294,7 +297,7 @@ namespace JenkinsTray.UI
             return res;
         }
 
-        private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects)
+        private void UpdateTrayTooltip(ICollection<Project> progressingAndErrorProjects, ICollection<Project> allProjects)
         {
             StringBuilder tooltipText = new StringBuilder();
             string prefix = null;
@@ -330,6 +333,10 @@ namespace JenkinsTray.UI
                     if (tooltipText.ToString().Length > MAX_TOOLTIP_LENGTH)
                         break;
                 }
+            }
+            else if (allProjects.Count == 0)
+            {
+                tooltipText.Append(JenkinsTrayResources.Tooltip_NoProjects);
             }
             else
             {
