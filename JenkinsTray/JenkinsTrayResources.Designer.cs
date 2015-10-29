@@ -695,7 +695,7 @@ namespace JenkinsTray {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No projects monitored. How about adding some?.
+        ///   Looks up a localized string similar to No projects monitored..
         /// </summary>
         internal static string Tooltip_NoProjects {
             get {

@@ -329,7 +329,7 @@ The application will now be closed.</value>
     <value>All builds are good.</value>
   </data>
   <data name="Tooltip_NoProjects" xml:space="preserve">
-    <value>No projects monitored. How about adding some?</value>
+    <value>No projects monitored.</value>
   </data>
   <data name="AuthenticateToken_ProjectName" xml:space="preserve">
     <value>Project: {0}</value>
