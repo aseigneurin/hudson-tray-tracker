@@ -659,6 +659,24 @@ namespace JenkinsTray {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string StopBuildFailed_Caption {
+            get {
+                return ResourceManager.GetString("StopBuildFailed_Caption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed stopping / cancelling queued build: {0}..
+        /// </summary>
+        internal static string StopBuildFailed_Text {
+            get {
+                return ResourceManager.GetString("StopBuildFailed_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All builds are good..
         /// </summary>
         internal static string Tooltip_AllGood {

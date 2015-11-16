@@ -618,6 +618,30 @@ namespace JenkinsTray.UI
             }
         }
 
+        private void stopBuildMenuItem_Click(object sender, EventArgs e)
+        {
+            Project project = GetSelectedProject();
+            if (project == null)
+                return;
+            try
+            {
+                if (project.AllBuildDetails != null && project.AllBuildDetails.Status != null && project.AllBuildDetails.Status.IsInProgress )
+                {
+                    JenkinsService.SafeStopBuild(project);
+                }
+                else if (project.Queue.InQueue && project.Queue.Id > 0)
+                {
+                    JenkinsService.SafeRemoveFromQueue(project);
+                }
+            }
+            catch (Exception ex)
+            {
+                LoggingHelper.LogError(logger, ex);
+                XtraMessageBox.Show(string.Format(JenkinsTrayResources.StopBuildFailed_Text, ex.Message),
+                    JenkinsTrayResources.StopBuildFailed_Caption);
+            }
+        }
+
         private Project GetSelectedProject()
         {
             int[] rowHandles = projectsGridView.GetSelectedRows();
@@ -705,6 +729,7 @@ namespace JenkinsTray.UI
             openProjectPageMenuItem.Enabled
                 = openConsolePageMenuItem.Enabled
                 = runBuildMenuItem.Enabled
+                = stopBuildMenuItem.Enabled
                 = acknowledgeStatusMenuItem.Enabled
                 = claimBuildMenuItem.Enabled
                 = acknowledgeProjectMenuItem.Enabled
@@ -719,6 +744,16 @@ namespace JenkinsTray.UI
 
             // get a copy of the reference to avoid a race condition
             BuildStatus projectStatus = project.Status;
+
+            stopBuildMenuItem.Text = "&Stop build";
+            if (!projectStatus.IsInProgress && project.Queue.InQueue)
+            {
+                stopBuildMenuItem.Text = "&Cancel queue";
+            }
+            else if (!projectStatus.IsInProgress && !project.Queue.InQueue)
+            {
+                stopBuildMenuItem.Enabled = false;
+            }
 
             acknowledgeProjectMenuItem.Checked = project.IsAcknowledged;
             acknowledgeStatusMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);

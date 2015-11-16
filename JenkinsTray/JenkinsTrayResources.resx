@@ -343,4 +343,10 @@ The application will now be closed.</value>
   <data name="BuildDetails_InQueue_Why" xml:space="preserve">
     <value>Reason: {0}.</value>
   </data>
+  <data name="StopBuildFailed_Caption" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="StopBuildFailed_Text" xml:space="preserve">
+    <value>Failed stopping / cancelling queued build: {0}.</value>
+  </data>
 </root>
