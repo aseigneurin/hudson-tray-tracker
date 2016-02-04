@@ -755,6 +755,9 @@ namespace JenkinsTray.UI
                 stopBuildMenuItem.Enabled = false;
             }
 
+            stopBuildMenuItem.Visible = projectStatus.IsInProgress;
+            runBuildMenuItem.Visible = !projectStatus.IsInProgress;
+
             acknowledgeProjectMenuItem.Checked = project.IsAcknowledged;
             acknowledgeStatusMenuItem.Checked = TrayNotifier.Instance.IsStatusAcknowledged(project);
             if (acknowledgeProjectMenuItem.Checked)
