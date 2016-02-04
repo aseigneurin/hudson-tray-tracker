@@ -745,7 +745,7 @@ namespace JenkinsTray.UI
             // get a copy of the reference to avoid a race condition
             BuildStatus projectStatus = project.Status;
 
-            stopBuildMenuItem.Text = "&Stop build";
+            stopBuildMenuItem.Text = "&Abort build";
             if (!projectStatus.IsInProgress && project.Queue.InQueue)
             {
                 stopBuildMenuItem.Text = "&Cancel queue";

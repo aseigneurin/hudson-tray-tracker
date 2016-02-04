@@ -257,6 +257,7 @@ namespace JenkinsTray.UI
             // 
             // openConsolePageMenuItem
             // 
+            this.openConsolePageMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openConsolePageMenuItem.Image")));
             this.openConsolePageMenuItem.Name = "openConsolePageMenuItem";
             this.openConsolePageMenuItem.Size = new System.Drawing.Size(229, 22);
             this.openConsolePageMenuItem.Text = "View &console output";
@@ -275,7 +276,7 @@ namespace JenkinsTray.UI
             this.stopBuildMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("stopBuildMenuItem.Image")));
             this.stopBuildMenuItem.Name = "stopBuildMenuItem";
             this.stopBuildMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.stopBuildMenuItem.Text = "&Stop build";
+            this.stopBuildMenuItem.Text = "&Abort build";
             this.stopBuildMenuItem.Click += new System.EventHandler(this.stopBuildMenuItem_Click);
             // 
             // toolStripSeparator1
