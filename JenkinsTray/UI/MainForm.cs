@@ -374,7 +374,7 @@ namespace JenkinsTray.UI
                     var lastFailedBuild = Project.LastFailedBuild;
                     if (lastFailedBuild == null || lastFailedBuild.ClaimDetails == null)
                         return "";
-                    return Project.LastFailedBuild.ClaimDetails.User;
+                    return Project.LastFailedBuild.ClaimDetails.Assignee;
                 }
             }
             public string ClaimReason
