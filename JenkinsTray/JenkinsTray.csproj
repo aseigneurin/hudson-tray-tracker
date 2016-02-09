@@ -191,58 +191,40 @@
     <Compile Include="Entities\NotificationSettings.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Server.cs" />
-    <Compile Include="UI\AboutForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\AboutForm.cs" />
     <Compile Include="UI\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ClaimBuildForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\ClaimBuildForm.cs" />
     <Compile Include="UI\ClaimBuildForm.Designer.cs">
       <DependentUpon>ClaimBuildForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\ProjectListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\ProjectListControl.cs" />
     <Compile Include="UI\Controls\ProjectListControl.Designer.cs">
       <DependentUpon>ProjectListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\ServerListControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\ServerListControl.cs" />
     <Compile Include="UI\Controls\ServerListControl.Designer.cs">
       <DependentUpon>ServerListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\NotificationSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\NotificationSettingsControl.cs" />
     <Compile Include="UI\Controls\NotificationSettingsControl.Designer.cs">
       <DependentUpon>NotificationSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\NotificationsSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\NotificationsSettingsControl.cs" />
     <Compile Include="UI\Controls\NotificationsSettingsControl.Designer.cs">
       <DependentUpon>NotificationsSettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\ServersSettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UI\Controls\ServersSettingsControl.cs" />
     <Compile Include="UI\Controls\ServersSettingsControl.Designer.cs">
       <DependentUpon>ServersSettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\ServersSettingsController.cs" />
-    <Compile Include="UI\AuthenticationTokenForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\AuthenticationTokenForm.cs" />
     <Compile Include="UI\AuthenticationTokenForm.Designer.cs">
       <DependentUpon>AuthenticationTokenForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\MainForm.cs" />
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
@@ -251,15 +233,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JenkinsTrayResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="UI\SettingsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\SettingsForm.cs" />
     <Compile Include="UI\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\EditServerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="UI\EditServerForm.cs" />
     <Compile Include="UI\EditServerForm.designer.cs">
       <DependentUpon>EditServerForm.cs</DependentUpon>
     </Compile>
