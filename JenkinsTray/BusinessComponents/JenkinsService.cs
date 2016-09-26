@@ -114,6 +114,7 @@ namespace JenkinsTray.BusinessComponents
             var xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
+            var displayName = XmlUtils.SelectSingleNodeText(xml, "/*/displayName");
             var inQueue = XmlUtils.SelectSingleNodeBoolean(xml, "/*/inQueue");
             var inQueueSince = XmlUtils.SelectSingleNodeText(xml, "/*/queueItem/inQueueSince");
             var queueId = XmlUtils.SelectSingleNodeText(xml, "/*/queueItem/id");
@@ -125,6 +126,7 @@ namespace JenkinsTray.BusinessComponents
             var lastSuccessfulBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastSuccessfulBuild/url");
             var lastFailedBuildUrl = XmlUtils.SelectSingleNodeText(xml, "/*/lastFailedBuild/url");
 
+            project.DisplayName = displayName;
             project.Queue.InQueue = inQueue.HasValue && inQueue.Value;
             if (!string.IsNullOrEmpty(queueId))
             {

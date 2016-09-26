@@ -648,7 +648,7 @@ namespace JenkinsTray.UI
 
             public string Name
             {
-                get { return Project.Name; }
+                get { return string.IsNullOrEmpty(Project.DisplayName) ? Project.Name : Project.DisplayName; }
             }
 
             public string Url
