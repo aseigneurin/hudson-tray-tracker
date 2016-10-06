@@ -266,6 +266,15 @@ namespace JenkinsTray.BusinessComponents
             }
         }
 
+        public void SetShowProjectDisplayName(bool value)
+        {
+            if (GeneralSettings.ShowProjectDisplayNameInMainUI != value)
+            {
+                GeneralSettings.ShowProjectDisplayNameInMainUI = value;
+                SaveConfiguration();
+            }
+        }
+
         public void SetCheckForUpdates(bool value)
         {
             if (GeneralSettings.CheckForUpdates != value)

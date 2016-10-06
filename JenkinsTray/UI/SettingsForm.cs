@@ -46,6 +46,7 @@ namespace JenkinsTray.UI
             refreshSpinEdit.Value = ConfigurationService.GeneralSettings.RefreshIntervalInSeconds;
             updateMainWindowIconCheckEdit.Checked = ConfigurationService.GeneralSettings.UpdateMainWindowIcon;
             integrateWithClaimPluginCheckEdit.Checked = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            showProjectDisplayNameCheckEdit.Checked = ConfigurationService.GeneralSettings.ShowProjectDisplayNameInMainUI;
             checkForUpdatesCheckEdit.Checked = ConfigurationService.GeneralSettings.CheckForUpdates;
             notificationsSettingsControl.InitializeValues();
         }
@@ -56,6 +57,7 @@ namespace JenkinsTray.UI
             ConfigurationService.SetRefreshIntervalInSeconds(refreshInterval);
             ConfigurationService.SetUpdateMainWindowIcon(updateMainWindowIconCheckEdit.Checked);
             ConfigurationService.SetIntegrateWithClaimPlugin(integrateWithClaimPluginCheckEdit.Checked);
+            ConfigurationService.SetShowProjectDisplayName(showProjectDisplayNameCheckEdit.Checked);
             ConfigurationService.SetCheckForUpdates(checkForUpdatesCheckEdit.Checked);
             ConfigurationService.SetTreadUnstableAsFailed(notificationsSettingsControl.TreadUnstableAsFailed());
             ConfigurationService.SetSoundNotifications(notificationsSettingsControl.SoundNotificationsEnabled());

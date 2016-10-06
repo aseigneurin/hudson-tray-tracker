@@ -105,7 +105,8 @@ namespace JenkinsTray.UI
             {
                 foreach (var project in server.Projects)
                 {
-                    var wrapper = new ProjectWrapper(project);
+                    var wrapper = new ProjectWrapper(project, 
+                        ConfigurationService.GeneralSettings.ShowProjectDisplayNameInMainUI);
                     projectsDataSource.Add(wrapper);
                 }
             }
@@ -634,9 +635,12 @@ namespace JenkinsTray.UI
 
         private class ProjectWrapper
         {
-            public ProjectWrapper(Project project)
+            private bool ShowDisplayname { get; set; }
+
+            public ProjectWrapper(Project project, bool showDisplayName)
             {
                 Project = project;
+                ShowDisplayname = showDisplayName;
             }
 
             public Project Project { get; }
@@ -648,7 +652,7 @@ namespace JenkinsTray.UI
 
             public string Name
             {
-                get { return string.IsNullOrEmpty(Project.DisplayName) ? Project.Name : Project.DisplayName; }
+                get { return ShowDisplayname && string.IsNullOrEmpty(Project.DisplayName) ? Project.Name : Project.DisplayName; }
             }
 
             public string Url

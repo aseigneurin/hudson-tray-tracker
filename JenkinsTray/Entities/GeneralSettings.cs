@@ -24,6 +24,9 @@ namespace JenkinsTray.Entities
         [JsonProperty("integrateWithClaimPlugin")]
         public bool IntegrateWithClaimPlugin { get; set; }
 
+        [JsonProperty("showProjectDisplayNameInMainUI")]
+        public bool ShowProjectDisplayNameInMainUI { get; set; }
+
         [JsonProperty("checkForUpdates")]
         public bool CheckForUpdates { get; set; }
 
