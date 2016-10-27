@@ -28,7 +28,7 @@ namespace JenkinsTray.BusinessComponents
         // cache: key=url, value=xml
         private IDictionary<string, string> cache = new Dictionary<string, string>();
         // URLs visited between 2 calls to RecycleCache()
-        private readonly ISet<string> visitedURLs = new HashedSet<string>();
+        private readonly Iesi.Collections.Generic.ISet<string> visitedURLs = new HashedSet<string>();
 
         public JenkinsService()
         {
@@ -212,7 +212,7 @@ namespace JenkinsTray.BusinessComponents
             var estimatedts = TimeSpan.FromSeconds(long.Parse(estimatedDuration)/1000);
             var durationts = TimeSpan.FromSeconds(long.Parse(estimatedDuration)/1000);
 
-            ISet<string> users = new HashedSet<string>();
+            Iesi.Collections.Generic.ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
             {
                 var userName = StringUtils.ExtractUserName(userNode.InnerText);
@@ -257,11 +257,11 @@ namespace JenkinsTray.BusinessComponents
             if (!string.IsNullOrEmpty(project.AuthenticationToken))
             {
                 url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&token=",
-                                                              HttpUtility.UrlEncodeUnicode(project.AuthenticationToken));
+                                                              HttpUtility.UrlEncode(project.AuthenticationToken));
                 if (!string.IsNullOrEmpty(project.CauseText))
                 {
                     url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&cause=",
-                                                                  HttpUtility.UrlEncodeUnicode(project.CauseText));
+                                                                  HttpUtility.UrlEncode(project.CauseText));
                 }
             }
             logger.Info("Running build at " + url);
@@ -295,11 +295,11 @@ namespace JenkinsTray.BusinessComponents
             if (!string.IsNullOrEmpty(project.AuthenticationToken))
             {
                 url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&token=",
-                                                              HttpUtility.UrlEncodeUnicode(project.AuthenticationToken));
+                                                              HttpUtility.UrlEncode(project.AuthenticationToken));
                 if (!string.IsNullOrEmpty(project.CauseText))
                 {
                     url = NetUtils.ConcatUrlsWithoutTrailingSlash(url, "&cause=",
-                                                                  HttpUtility.UrlEncodeUnicode(project.CauseText));
+                                                                  HttpUtility.UrlEncode(project.CauseText));
                 }
             }
             logger.Info("Stopping build at " + url);

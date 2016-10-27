@@ -98,16 +98,16 @@ namespace JenkinsTray.UI
             try
             {
                 // order the projects by build status
-                var projectsByStatus = new Dictionary<BuildStatusEnum, SortedSet<Project>>();
+                var projectsByStatus = new Dictionary<BuildStatusEnum, Iesi.Collections.Generic.SortedSet<Project>>();
                 foreach (var pair in lastProjectsBuildDetails)
                 {
                     var status = BuildStatusEnum.Unknown;
                     if (pair.Value != null)
                         status = BuildStatusUtils.DegradeStatus(pair.Value.Status).Value;
-                    var projects = new SortedSet<Project>();
+                    var projects = new Iesi.Collections.Generic.SortedSet<Project>();
                     if (projectsByStatus.TryGetValue(status, out projects) == false)
                     {
-                        projects = new SortedSet<Project>();
+                        projects = new Iesi.Collections.Generic.SortedSet<Project>();
                         projectsByStatus.Add(status, projects);
                     }
                     projects.Add(pair.Key);
@@ -416,7 +416,7 @@ namespace JenkinsTray.UI
             }
         }
 
-        private void FormatProjectDetails(string projectName, ISet<string> users, StringBuilder builder)
+        private void FormatProjectDetails(string projectName, Iesi.Collections.Generic.ISet<string> users, StringBuilder builder)
         {
             builder.Append(projectName);
 

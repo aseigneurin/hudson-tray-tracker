@@ -22,7 +22,7 @@ namespace JenkinsTray.BusinessComponents
 
         private string userConfigurationFile;
 
-        public ISet<Server> Servers
+        public Iesi.Collections.Generic.ISet<Server> Servers
         {
             get { return configuration.Servers; }
         }
@@ -182,9 +182,9 @@ namespace JenkinsTray.BusinessComponents
             server.Projects.Remove(project);
         }
 
-        public IDictionary<Server, ISet<Project>> GetProjects()
+        public IDictionary<Server, Iesi.Collections.Generic.ISet<Project>> GetProjects()
         {
-            var res = new Dictionary<Server, ISet<Project>>();
+            var res = new Dictionary<Server, Iesi.Collections.Generic.ISet<Project>>();
             foreach (var server in Servers)
             {
                 var projects = new HashedSet<Project>();
