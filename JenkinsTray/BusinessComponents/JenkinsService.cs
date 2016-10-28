@@ -9,11 +9,11 @@ using System.Threading;
 using System.Web;
 using System.Xml;
 using Common.Logging;
-using Iesi.Collections.Generic;
 using JenkinsTray.Entities;
 using JenkinsTray.Utils;
 using JenkinsTray.Utils.Logging;
 using JenkinsTray.Utils.Web;
+using Spring.Collections.Generic;
 
 namespace JenkinsTray.BusinessComponents
 {
@@ -28,7 +28,7 @@ namespace JenkinsTray.BusinessComponents
         // cache: key=url, value=xml
         private IDictionary<string, string> cache = new Dictionary<string, string>();
         // URLs visited between 2 calls to RecycleCache()
-        private readonly Iesi.Collections.Generic.ISet<string> visitedURLs = new HashedSet<string>();
+        private readonly Spring.Collections.Generic.ISet<string> visitedURLs = new HashedSet<string>();
 
         public JenkinsService()
         {
@@ -212,7 +212,7 @@ namespace JenkinsTray.BusinessComponents
             var estimatedts = TimeSpan.FromSeconds(long.Parse(estimatedDuration)/1000);
             var durationts = TimeSpan.FromSeconds(long.Parse(estimatedDuration)/1000);
 
-            Iesi.Collections.Generic.ISet<string> users = new HashedSet<string>();
+            Spring.Collections.Generic.ISet<string> users = new HashedSet<string>();
             foreach (XmlNode userNode in userNodes)
             {
                 var userName = StringUtils.ExtractUserName(userNode.InnerText);

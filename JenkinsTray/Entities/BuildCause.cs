@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-using Iesi.Collections.Generic;
+using Spring.Collections.Generic;
 
 namespace JenkinsTray.Entities
 {

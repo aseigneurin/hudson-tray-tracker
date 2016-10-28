@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Common.Logging;
-using Iesi.Collections.Generic;
 using JenkinsTray.Entities;
 using JenkinsTray.Utils.IO;
 using Newtonsoft.Json;
+using Spring.Collections.Generic;
 
 namespace JenkinsTray.BusinessComponents
 {
@@ -22,7 +22,7 @@ namespace JenkinsTray.BusinessComponents
 
         private string userConfigurationFile;
 
-        public Iesi.Collections.Generic.ISet<Server> Servers
+        public Spring.Collections.Generic.ISet<Server> Servers
         {
             get { return configuration.Servers; }
         }
@@ -182,9 +182,9 @@ namespace JenkinsTray.BusinessComponents
             server.Projects.Remove(project);
         }
 
-        public IDictionary<Server, Iesi.Collections.Generic.ISet<Project>> GetProjects()
+        public IDictionary<Server, Spring.Collections.Generic.ISet<Project>> GetProjects()
         {
-            var res = new Dictionary<Server, Iesi.Collections.Generic.ISet<Project>>();
+            var res = new Dictionary<Server, Spring.Collections.Generic.ISet<Project>>();
             foreach (var server in Servers)
             {
                 var projects = new HashedSet<Project>();

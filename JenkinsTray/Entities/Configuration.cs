@@ -1,5 +1,5 @@
-﻿using Iesi.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Spring.Collections.Generic;
 
 namespace JenkinsTray.Entities
 {
