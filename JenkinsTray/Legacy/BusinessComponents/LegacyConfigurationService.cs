@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using Common.Logging;
-using Iesi.Collections.Generic;
 using JenkinsTray.Entities;
 using JenkinsTray.Utils.IO;
 using Spring.Collections.Generic;
