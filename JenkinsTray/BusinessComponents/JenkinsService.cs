@@ -386,6 +386,7 @@ namespace JenkinsTray.BusinessComponents
             JenkinsService.ignoreUntrustedCertificate = ignoreUntrustedCertificate;
 
             var webClient = GetWebClient(credentials);
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             res = webClient.DownloadString(url);
 
             if (logger.IsTraceEnabled)
