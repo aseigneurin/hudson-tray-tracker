@@ -19,6 +19,7 @@ namespace JenkinsTray.BusinessComponents
 {
     public class JenkinsService
     {
+        public static readonly String buildDetailsFilter = "?tree=number,timestamp,builtOn,culprits[fullName],changeSet[items[*,author[id]]]";
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         [ThreadStatic] private static WebClient threadWebClient;
@@ -184,7 +185,7 @@ namespace JenkinsTray.BusinessComponents
             if (buildUrl == null)
                 return null;
 
-            var url = NetUtils.ConcatUrls(buildUrl, "/api/xml");
+            var url = NetUtils.ConcatUrls(buildUrl, "/api/xml", JenkinsService.buildDetailsFilter);
 
             if (logger.IsDebugEnabled)
                 logger.Debug("Getting build details from " + url);

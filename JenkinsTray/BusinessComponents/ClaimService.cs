@@ -96,7 +96,7 @@ namespace JenkinsTray.BusinessComponents
             {
                 LoggingHelper.LogError(logger, ex);
             }
-            var buildUrl = NetUtils.ConcatUrls(project.Url, buildDetails.Number.ToString(), "/api/xml");
+            var buildUrl = NetUtils.ConcatUrls(project.Url, buildDetails.Number.ToString(), "/api/xml", JenkinsService.buildDetailsFilter);
             JenkinsService.RemoveFromCache(buildUrl);
         }
 
