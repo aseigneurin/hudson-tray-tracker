@@ -28,7 +28,7 @@
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)" FileSource="$(var.SolutionDir)JenkinsTray\bin\x86\$(var.Configuration)">
+        <Directory Id="INSTALLLOCATION" Name="$(var.ProductName)" FileSource="$(var.SolutionDir)JenkinsTray\bin\$(var.Configuration)">
           <Component Id="cmp9C7F9E356EE86CE45ED3BA0B5BEAD581" Guid="{C484E181-B75C-4C50-AB24-83060D94D229}">
             <File Id="fil7D65322AEFD472BABBD4824D11274DAE" KeyPath="yes" Name="Common.Logging.dll" />
           </Component>
