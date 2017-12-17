@@ -18,24 +18,47 @@ param (
 #Requires -Version 3.0
 
 try {
-    . (Join-Path $PSScriptRoot "build-utils.ps1")
 
+    if (!(Test-Path $repoRoot -PathType Container)) {
+        Write-Error "$repoRoot does not exist. Aborting."
+    }
+    if (!(Test-Path $versionjson -PathType Leaf)) {
+        Write-Error "$versionjson does not exist. Aborting."
+    }
+    if (!(Test-Path $nuspec -PathType Leaf)) {
+        Write-Error "$nuspec does not exist. Aborting."
+    }
+    if (!(Test-Path $outputPath -PathType Container)) {
+        Write-Error "$outputPath does not exist. Aborting."
+    }
     $squirrelPath = Get-Item -Path "$($repoRoot)\packages\*" -Filter "squirrel.windows*"
     if (!(Test-Path "$($squirrelPath)\tools" -PathType Container)) {
-        Write-Error "$($squirrelPath)\tools is not found. Aborting." -ErrorAction Stop
+        Write-Error "$($squirrelPath)\tools is not found. Aborting."
     }
+
+    . (Join-Path $PSScriptRoot "build-utils.ps1")
+
+    Get-ChildItem -Path $repoRoot -Filter *.nupkg -ErrorAction SilentlyContinue | Remove-Item -Force | Out-Host 
 
     $json = Get-Content $versionjson | ConvertFrom-Json
-
     $nuget = Ensure-NuGet
-    Exec-Command -command $nuget -commandArgs "pack `"$($nuspec)`" -o `"$($repoRoot)`" -Version $($json.MajorMinorPatch) -NonInteractive -Properties BasePath=$outputPath" | Out-Host
 
-    $nupkg = Get-ChildItem -Path "$($repoRoot)" -Filter "Jenkins.Tray*.nupkg"
-    if (!(Test-Path $nupkg -PathType Leaf)) {
-        Write-Error "Cannot find NuGet package. Aborting." -ErrorAction Stop
+    $cmdInfo = Exec-Command2 -command $nuget -commandArgs "pack `"$($nuspec)`" -o `"$($repoRoot)`" -Version $($json.MajorMinorPatch) -NonInteractive -BasePath `"$outputPath`"" -forwardExitCode
+    Write-Host $cmdInfo[0], $cmdInfo[1]
+    if ($cmdInfo[2] -ne 0) {
+        Write-Error "NuGet package generation failed. Aborting."
     }
 
-    Exec-Command -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName)" | Out-Host
+    $nupkg = Get-ChildItem -Path $repoRoot -Filter "Jenkins*.nupkg" | Select -First 1
+    if (!(Test-Path $nupkg -PathType Leaf)) {
+        Write-Error "Cannot find NuGet package. Aborting."
+    }
+
+    $cmdInfo = Exec-Command2 -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName)"
+    Write-Host $cmdInfo[0], $cmdInfo[1]
+    if ($cmdInfo[2] -ne 0) {
+        Write-Error "Squirrel releasify failed. Aborting."
+    }
     Write-Host "Releasified $($nupkg.FullName)."
 
 } catch {

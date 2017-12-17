@@ -117,4 +117,5 @@ version.json
 version.txt
 
 .vscode/
+# Squirrel.Windows Releases folder
 Releases/

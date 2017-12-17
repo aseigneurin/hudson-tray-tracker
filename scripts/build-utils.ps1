@@ -90,6 +90,59 @@ function Exec-Command([string]$command, [string]$commandArgs, [switch]$forwardEx
     }
 }
 
+# Refer to Exec-Command above
+#
+# Returns stdout, stderr and exit code as an array.
+function Exec-Command2([string]$command, [string]$commandArgs) {
+    $startInfo = New-Object System.Diagnostics.ProcessStartInfo
+    $startInfo.FileName = $command
+    $startInfo.Arguments = $commandArgs
+
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.UseShellExecute = $false
+    $startInfo.CreateNoWindow = $true
+    $startInfo.WorkingDirectory = Get-Location
+
+    $process = New-Object System.Diagnostics.Process
+    $process.StartInfo = $startInfo
+    $process.StartInfo.RedirectStandardOutput = $true;
+    $process.StartInfo.RedirectStandardError = $true;
+    $process.Start() | Out-Null
+
+    $finished = $false
+    $stdout = [string]::Empty
+    $stderr = [string]::Empty
+    $exitCode = -1
+    try {
+        # The OutputDataReceived event doesn't fire as events are sent by the 
+        # process in powershell.  Possibly due to subtlties of how Powershell
+        # manages the thread pool that I'm not aware of.  Using blocking
+        # reading here as an alternative which is fine since this blocks 
+        # on completion already.
+        $stdout = $process.StandardOutput.ReadToEnd()
+        $stderr = $process.StandardError.ReadToEnd()
+        while (-not $process.WaitForExit(100)) { 
+            # Non-blocking loop done to allow ctr-c interrupts
+        }
+
+        $finished = $true
+        $exitCode = $process.ExitCode
+    }
+    catch {
+        Write-Host "$($_.Exception.Message)"
+        $exitCode = -1
+    }
+    finally {
+        # If we didn't finish then an error occured or the user hit ctrl-c.  Either
+        # way kill the process
+        if (-not $finished) {
+            $process.Kill()
+            $exitCode = -1
+        }
+    }
+    return $stdout, $stderr, $exitCode
+}
+
 # Handy function for executing a powershell script in a clean environment with 
 # arguments.  Prefer this over & sourcing a script as it will both use a clean
 # environment and do proper error checking
