@@ -115,3 +115,6 @@ UpgradeLog*.htm
 NuGet*
 version.json
 version.txt
+
+.vscode/
+Releases/

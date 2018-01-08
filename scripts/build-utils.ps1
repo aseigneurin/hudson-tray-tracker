@@ -39,7 +39,7 @@ function Exec-Block([scriptblock]$cmd) {
 #   $args = "/p:ManualBuild=true Test.proj"
 #   Exec-Command $msbuild $args
 # 
-function Exec-Command([string]$command, [string]$commandArgs) {
+function Exec-Command([string]$command, [string]$commandArgs, [switch]$forwardExitCode) {
     $startInfo = New-Object System.Diagnostics.ProcessStartInfo
     $startInfo.FileName = $command
     $startInfo.Arguments = $commandArgs
@@ -72,8 +72,10 @@ function Exec-Command([string]$command, [string]$commandArgs) {
         }
 
         $finished = $true
-        if ($process.ExitCode -ne 0) { 
-            throw "Command failed to execute: $command $commandArgs" 
+        if (!$forwardExitCode.IsPresent) {
+            if ($process.ExitCode -ne 0) { 
+                throw "Command failed to execute: $command $commandArgs" 
+            }
         }
     }
     finally {
@@ -82,6 +84,9 @@ function Exec-Command([string]$command, [string]$commandArgs) {
         if (-not $finished) {
             $process.Kill()
         }
+    }
+    if ($forwardExitCode.IsPresent) {
+        return $process.ExitCode
     }
 }
 
@@ -100,7 +105,7 @@ function Ensure-GitVersion () {
     $gitversion = Get-ChildItem -Path $gitversionFolder -Recurse -Filter GitVersion.exe | Select -First 1
     if (Test-Path $gitversion.FullName -PathType Leaf) {
         $json = Join-Path -Path (Split-Path -Path $nuget) -ChildPath "version.json"
-        Exec-Command $gitversion.FullName | Out-File $json -Encoding ASCII -Force
+        Exec-Command $gitversion.FullName -commandArgs "/updateassemblyinfo" | Out-File $json -Encoding ASCII -Force
     }
     return $gitversion
 }
