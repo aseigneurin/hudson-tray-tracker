@@ -19,7 +19,8 @@ namespace JenkinsTray.BusinessComponents
 {
     public class JenkinsService
     {
-        public static readonly String buildDetailsFilter = "?tree=number,timestamp,builtOn,culprits[fullName],changeSet[items[*,author[id]]]";
+        //  Claim details in actions[*] are not included for now.
+        public static readonly String buildDetailsFilter = "?tree=number,fullDisplayName,timestamp,estimatedDuration,duration,result,userNodes,culprits[fullName],builtOn,url";
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         [ThreadStatic] private static WebClient threadWebClient;

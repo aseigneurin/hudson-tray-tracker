@@ -589,7 +589,7 @@ namespace JenkinsTray.UI
 
         private void UpdateClaimPluginIntegration()
         {
-            var integrate = ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
+            var integrate = false;// ConfigurationService.GeneralSettings.IntegrateWithClaimPlugin;
             if (integrate)
             {
                 if (claimedByGridColumn.VisibleIndex == -1)

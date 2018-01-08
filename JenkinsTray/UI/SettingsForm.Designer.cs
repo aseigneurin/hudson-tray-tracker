@@ -276,6 +276,7 @@ namespace JenkinsTray.UI
             this.integrateWithClaimPluginCheckEdit.Properties.Caption = "Integrate with Clai&m plugin (experimental)";
             this.integrateWithClaimPluginCheckEdit.Size = new System.Drawing.Size(224, 19);
             this.integrateWithClaimPluginCheckEdit.TabIndex = 0;
+            this.integrateWithClaimPluginCheckEdit.Enabled = false;
             // 
             // showProjectDisplayNameCheckEdit
             // 
