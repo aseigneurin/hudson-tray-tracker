@@ -4,21 +4,21 @@ A PowerShell script to package and releasify Jenkins Tray.
 #>
 [CmdletBinding(PositionalBinding = $false)]
 param (
-    #[Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$true)]
     [ValidateNotNullOrEmpty()]
-    [string]$repoRoot = "$($PSScriptRoot)\..",
+    [string]$repoRoot,
     [ValidateNotNullOrEmpty()]
-    [string]$versionjson = "$($repoRoot)\version.json",
+    [string]$versionjson = "$repoRoot\version.json",
     [ValidateNotNullOrEmpty()]
-    [string]$nuspec = "$($repoRoot)\JenkinsTray.nuspec",
+    [string]$nuspec = "$repoRoot\JenkinsTray.nuspec",
     [ValidateNotNullOrEmpty()]
-    [string]$outputPath = "$($repoRoot)\JenkinsTray\bin\x86\Release",
+    [string]$outputPath = "$repoRoot\JenkinsTray\bin\x86\Release",
     [parameter(ValueFromRemainingArguments = $true)] $badArgs)
 
 #Requires -Version 3.0
+$ErrorActionPreference="Stop"
 
 try {
-
     if (!(Test-Path $repoRoot -PathType Container)) {
         Write-Error "$repoRoot does not exist. Aborting."
     }
@@ -50,11 +50,11 @@ try {
     }
 
     $nupkg = Get-ChildItem -Path $repoRoot -Filter "Jenkins*.nupkg" | Select -First 1
-    if (!(Test-Path $nupkg -PathType Leaf)) {
+    if (!(Test-Path $nupkg.FullName -PathType Leaf)) {
         Write-Error "Cannot find NuGet package. Aborting."
     }
 
-    $cmdInfo = Exec-Command2 -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName)"
+    $cmdInfo = Exec-Command2 -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName) -r=$repoRoot\Releases -i=$repoRoot\JenkinsTray\JenkinsTray.ico"
     Write-Host $cmdInfo[0], $cmdInfo[1]
     if ($cmdInfo[2] -ne 0) {
         Write-Error "Squirrel releasify failed. Aborting."
