@@ -77,6 +77,10 @@ namespace JenkinsTray.BusinessComponents
                     var xml = new XmlDocument();
                     xml.LoadXml(xmlStr);
                     var nodes = xml.SelectNodes("/folder/job");
+                    if (nodes.Count == 0)
+                    {
+                        nodes = xml.SelectNodes("/workflowMultiBranchProject/job");
+                    }
                     projects.AddRange(GetProjects(nodes, server));
                 }
                 else
