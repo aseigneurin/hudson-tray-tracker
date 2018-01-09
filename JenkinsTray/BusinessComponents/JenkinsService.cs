@@ -19,8 +19,7 @@ namespace JenkinsTray.BusinessComponents
 {
     public class JenkinsService
     {
-        //  Claim details in actions[*] are not included for now.
-        public static readonly String buildDetailsFilter = "?tree=number,fullDisplayName,timestamp,estimatedDuration,duration,result,userNodes,culprits[fullName],builtOn,url";
+        public static readonly String buildDetailsFilter = "?tree=number,fullDisplayName,timestamp,estimatedDuration,duration,result,userNodes,culprits[fullName],builtOn,url,actions[assignedBy,claimDate,claimed,claimedBy,reason]";
         private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         [ThreadStatic] private static WebClient threadWebClient;
