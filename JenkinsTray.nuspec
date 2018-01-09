@@ -3,7 +3,7 @@
     <metadata>
         <id>JenkinsTray</id>
         <version>$version$</version>
-        <authors>Jenkins Tray Project contributors and Hudson Tray Tracker author</authors>
+        <authors>Jenkins Tray Project contributors</authors>
         <owners>Jenkins Tray Project</owners>
         <licenseUrl>https://raw.githubusercontent.com/zionyx/jenkins-tray/master/LICENSE</licenseUrl>
         <iconUrl>https://github.com/zionyx/jenkins-tray/raw/master/JenkinsTray/JenkinsTray.ico</iconUrl>

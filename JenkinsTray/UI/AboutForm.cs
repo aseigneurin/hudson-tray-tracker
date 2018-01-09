@@ -18,7 +18,7 @@ namespace JenkinsTray.UI
 
             versionLabelControl.Text = string.Format(JenkinsTrayResources.Version_Format,
                                                      FileVersionInfo.GetVersionInfo(
-                                                         Assembly.GetExecutingAssembly().Location).FileVersion);
+                                                     Assembly.GetExecutingAssembly().Location).FileVersion);
         }
 
         public static AboutForm Instance
