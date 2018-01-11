@@ -54,7 +54,7 @@ try {
         Write-Error "Cannot find NuGet package. Aborting."
     }
 
-    $cmdInfo = Exec-Command2 -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName) -r=$repoRoot\Releases -i=$repoRoot\JenkinsTray\JenkinsTray.ico"
+    $cmdInfo = Exec-Command2 -command "$($squirrelPath)\tools\Squirrel.exe" -commandArgs "--releasify $($nupkg.FullName) -r=$repoRoot\Releases -i=$repoRoot\JenkinsTray\JenkinsTray.ico -l=Desktop,StartMenu,Startup"
     Write-Host $cmdInfo[0], $cmdInfo[1]
     if ($cmdInfo[2] -ne 0) {
         Write-Error "Squirrel releasify failed. Aborting."
