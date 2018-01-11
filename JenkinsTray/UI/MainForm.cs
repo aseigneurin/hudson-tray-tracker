@@ -62,6 +62,9 @@ namespace JenkinsTray.UI
                             ConfigurationService.ConfigurationUpdated -= configurationService_ConfigurationUpdated;
                             ProjectsUpdateService.ProjectsUpdated -= updateService_ProjectsUpdated;
                         };
+
+            System.Diagnostics.FileVersionInfo versionInfo = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location);
+            this.Text = string.Format("{0} v{1}.{2}.{3}", versionInfo.ProductName, versionInfo.FileMajorPart, versionInfo.FileMinorPart, versionInfo.FileBuildPart);
         }
 
         protected override void OnLoad(EventArgs e)

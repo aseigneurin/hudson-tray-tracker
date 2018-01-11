@@ -311,6 +311,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UI\AuthenticationTokenForm.resx">
       <DependentUpon>AuthenticationTokenForm.cs</DependentUpon>
     </EmbeddedResource>
